@@ -24,8 +24,9 @@ namespace PokeStrat.Modeles
         public bool shiny { get; set; }
         public int nivEvolution { get; set; }
         public MPokemon evolution { get; set; }
+        public MVersion gen { get; set; }
 
-        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomPokemon, string NumPokemon, double TaillePokemon, int PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, int NivEvolution, MPokemon Evolution)
+        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomPokemon, string NumPokemon, double TaillePokemon, int PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, int NivEvolution, MPokemon Evolution, MVersion Gen)
         {
             this.idPokemon = IdPokemon;
             this.cheminImgPokemon = CheminImgPokemon;
@@ -44,6 +45,7 @@ namespace PokeStrat.Modeles
             this.shiny = Shiny;
             this.nivEvolution = NivEvolution;
             this.evolution = Evolution;
+            this.gen = Gen;
         }
     }
 }

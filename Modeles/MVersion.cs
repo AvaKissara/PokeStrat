@@ -10,13 +10,13 @@ namespace PokeStrat.Modeles
     {
         public int idVersion { get; }
         public string nomVersion { get; set; }
-        public int emlplacement { get; set; }
+        public int emplacement { get; set; }
 
         public MVersion(int IdVersion, string NomVersion, int Emplacement) 
         {
             this.idVersion = IdVersion;
             this.nomVersion = NomVersion;
-            this.emlplacement = Emplacement;
+            this.emplacement = Emplacement;
         }
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="Connexion.cs" />
     <Compile Include="Modeles\MPokemon.cs" />
     <Compile Include="Modeles\MVersion.cs" />
+    <Compile Include="Modeles\Type.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />
     <Compile Include="Vues\AccueilPage.xaml.cs">
