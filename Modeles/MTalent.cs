@@ -10,6 +10,7 @@ namespace PokeStrat.Modeles
     {
         public int idTalent { get; }
         public string nomTalent { get; set; }
+        public MVersion versionTalent { get; set; }
 
         public MTalent(int IdTalent, string NomTalent)
         {

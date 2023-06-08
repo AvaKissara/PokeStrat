@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,9 +57,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Connexion.cs" />
+    <Compile Include="Modeles\MCapacite.cs" />
+    <Compile Include="Modeles\MCategorie.cs" />
     <Compile Include="Modeles\MPokemon.cs" />
+    <Compile Include="Modeles\MTalent.cs" />
     <Compile Include="Modeles\MVersion.cs" />
-    <Compile Include="Modeles\Type.cs" />
+    <Compile Include="Modeles\MType.cs" />
+    <Compile Include="Repositories\RepPokemon.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />
     <Compile Include="Vues\AccueilPage.xaml.cs">
@@ -103,7 +108,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -115,9 +120,64 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
-    <Folder Include="Ressources\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\arceus.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\blastoise.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\blaziken.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\bulbasaur.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\charizard.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\charmander.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\charmeleon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\ivysaur.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\marshtomp.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\mewtwo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\milotic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\mudkip.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\pikachu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\raichu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\sharpedo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\squirtle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\swampert.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\venusaur.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ressources\wartortle.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
