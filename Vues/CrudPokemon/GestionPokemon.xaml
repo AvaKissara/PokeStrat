@@ -8,13 +8,13 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GestionPokemon">
     
-    <Page.Resources>
-        <vuesmodeles:GestionPokemonVueModel x:Key="GestionPokemonVueModel" />
-    </Page.Resources>
-
-    <Grid>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="365,241,0,0" VerticalAlignment="Top"/>
-
-    </Grid>
     
+
+    <Grid VerticalAlignment="Center">
+        <TextBox Text="Gestion des Pokémons"  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,16,0,0"/>
+        <DataGrid Height="600" ItemsSource="{Binding Pokedex}" Margin="0,-118,0,0" AutoGenerateColumns="True">
+           
+        </DataGrid>
+    </Grid>
+
 </Page>

@@ -12,6 +12,7 @@ namespace PokeStat.Repositories
     public class RepPokemon
     {
         private SqlConnection activeConnexion;
+
         public RepPokemon()
         {
             this.dbConnecter();
@@ -28,35 +29,59 @@ namespace PokeStat.Repositories
             List<MPokemon> ListMPokemons = new List<MPokemon>();
 
             SqlCommand RequestGetPokemons = activeConnexion.CreateCommand();
-            RequestGetPokemons.CommandText = "SELECT P.nom_eng_pok, P.nom_fra_pok, P.pok_img, P.num_pok, P.taille_pok, P.poids_pok, P.base_experience, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P2.id_pok as id_evo, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, P.niv_evo, V.nom_version, V.num_version FROM Pokemon AS P LEFT JOIN Version as V ON P.id_version = V.id_version LEFT JOIN Pokemon P2 ON P.id_evo = P2.id_pok";
+            RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img, P.nom_eng_pok, P.nom_fra_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_experience, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P2.id_pok as id_evo, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, P.niv_evo, V.id_version, V.nom_version, V.num_version FROM Pokemon AS P LEFT JOIN Version as V ON P.id_version = V.id_version LEFT JOIN Pokemon P2 ON P.id_evo = P2.id_pok";
 
-            SqlDataReader pokemons = RequestGetPokemons.ExecuteReader();
-
-            while (pokemons.Read())
+            using (SqlDataReader pokemons = RequestGetPokemons.ExecuteReader())
             {
-                 MPokemon unPokemon = new MPokemon(
-                 pokemons.GetInt32(0),
-                 $"{pokemons[1]}",
-                 $"{pokemons[2]}",
-                 $"{pokemons[3]}",
-                 $"{pokemons[4]}",
-                 pokemons.GetDouble(5),
-                 pokemons.GetInt32(6),
-                 pokemons.GetInt32(7),
-                 pokemons.GetInt32(8),
-                 pokemons.GetInt32(9),
-                 pokemons.GetInt32(10),
-                 pokemons.GetInt32(11),
-                 pokemons.GetInt32(12),
-                 pokemons.GetInt32(13),
-                 Convert.ToBoolean(pokemons.GetInt32(14)),
-                 Convert.ToBoolean(pokemons.GetInt32(15)),
-                 new MPokemon(pokemons.GetInt32(17), $"{pokemons[18]}", $"{pokemons[19]}"),
-                 pokemons.GetInt32(16),
-                 new MVersion(pokemons.GetInt32(20), $"{pokemons[21]}", pokemons.GetInt32(22))
-             );
+                while (pokemons.Read())
+                {
+                    decimal taille = pokemons.IsDBNull(5) ? 0.0m : pokemons.GetDecimal(5); // Récupérer la valeur de la taille ou utiliser 0.0m si elle est nulle
+                    decimal poids = pokemons.IsDBNull(6) ? 0.0m : pokemons.GetDecimal(6); // Récupérer la valeur du poids ou utiliser 0.0m si elle est nulle
 
-                ListMPokemons.Add(unPokemon);
+                    MPokemon evolution = null;
+                    if (!pokemons.IsDBNull(16)) // Vérifier si la colonne id_evo peut être nulle
+                    {
+                        int idEvo = pokemons.IsDBNull(16) ? 0 : pokemons.GetInt32(16);
+                        string imgEvo = pokemons.IsDBNull(17) ? "" : $"{pokemons[17]}";
+                        string nomEvo = pokemons.IsDBNull(18) ? "" : $"{pokemons[18]}";
+                        evolution = new MPokemon(idEvo, imgEvo, nomEvo);
+                    }
+
+                    int niveauEvo = pokemons.IsDBNull(19) ? 0 : pokemons.GetInt32(19);
+
+                    MVersion version = null;
+                    if (!pokemons.IsDBNull(20)) // Vérifier si la colonne id_version peut être nulle
+                    {
+                        int idVersion = pokemons.IsDBNull(20) ? 0 : pokemons.GetInt32(20);
+                        string nomVersion = pokemons.IsDBNull(21) ? "" : $"{pokemons[21]}";
+                        int numVersion = pokemons.IsDBNull(22) ? 0 : pokemons.GetInt32(22);
+                        version = new MVersion(idVersion, nomVersion, numVersion);
+                    }
+
+                    MPokemon unPokemon = new MPokemon(
+                        pokemons.GetInt32(0),
+                        $"{pokemons[1]}",
+                        $"{pokemons[2]}",
+                        $"{pokemons[3]}",
+                        $"{pokemons[4]}",
+                        taille,
+                        poids,
+                        pokemons.GetInt32(7),
+                        pokemons.GetInt32(8),
+                        pokemons.GetInt32(9),
+                        pokemons.GetInt32(10),
+                        pokemons.GetInt32(11),
+                        pokemons.GetInt32(12),
+                        pokemons.GetInt32(13),
+                        Convert.ToBoolean(pokemons.GetValue(14)),
+                        Convert.ToBoolean(pokemons.GetValue(15)),
+                        evolution,
+                        niveauEvo,
+                        version
+                    );
+
+                    ListMPokemons.Add(unPokemon);
+                }
             }
 
             // Fermeture de la connexion

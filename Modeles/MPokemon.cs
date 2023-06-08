@@ -14,8 +14,8 @@ namespace PokeStat.Modeles
         public string nomFraPokemon { get; set; }
         public string nomEngPokemon { get; set; }
         public string numPokemon { get; set; }
-        public double taillePokemon { get; set; }
-        public double poidsPokemon { get; set; }
+        public decimal taillePokemon { get; set; }
+        public decimal poidsPokemon { get; set; }
         public int niveau { get; set; }
         public int ev { get; set; }
         public int iv { get; set; }
@@ -34,7 +34,7 @@ namespace PokeStat.Modeles
         public MVersion gen { get; set; }
         public string nature { get; set; }
 
-        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, double TaillePokemon, int PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MVersion Gen)
+        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MVersion Gen)
         {
             this.idPokemon = IdPokemon;
             this.cheminImgPokemon = CheminImgPokemon;
