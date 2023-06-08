@@ -7,12 +7,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GestionPokemon">
-    
-    
 
     <Grid VerticalAlignment="Center">
         <TextBox Text="Gestion des Pokémons"  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,16,0,0"/>
-        <DataGrid Height="600" ItemsSource="{Binding Pokedex}" Margin="0,-118,0,0" AutoGenerateColumns="True">
+        <DataGrid Height="600" ItemsSource="{Binding Pokedex}" Margin="0,-118,0,0" AutoGenerateColumns="False" Name="dataGridView">
            
         </DataGrid>
     </Grid>
