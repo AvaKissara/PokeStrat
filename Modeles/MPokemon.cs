@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace PokeStrat.Modeles
 {
     public class MPokemon
-    {  public int idPokemon { get; }
+    {  
+        public int idPokemon { get; }
         public string cheminImgPokemon { get; set; }
         public string nomFraPokemon { get; set; }
         public string nomEngPokemon { get; set; }

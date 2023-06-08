@@ -11,11 +11,13 @@ namespace PokeStrat.Modeles
         public int idTalent { get; }
         public string nomTalent { get; set; }
         public MVersion versionTalent { get; set; }
+        public string descTalent { get; set; }
 
-        public MTalent(int IdTalent, string NomTalent)
+        public MTalent(int IdTalent, string NomTalent, string DescTalent)
         {
             this.idTalent = IdTalent;
             this.nomTalent = NomTalent;
+            this.descTalent = DescTalent;
         }
     }
 }
