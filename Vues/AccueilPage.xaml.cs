@@ -1,4 +1,5 @@
-﻿using PokeStrat.VuesModeles;
+﻿using PokeStat.Utilitaires;
+using PokeStat.VuesModeles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PokeStrat.Vues
+namespace PokeStat.Vues
 {
     /// <summary>
     /// Logique d'interaction pour AccueilPage.xaml
@@ -22,11 +23,15 @@ namespace PokeStrat.Vues
     public partial class AccueilPage : Page
     {
         private AccueilVueModel accueilVueModel;
+        private Frame MainFrame;
         public AccueilPage()
         {
+            MainFrame = NavigationServices.GetMainFrame();
+
             InitializeComponent();
             accueilVueModel = new AccueilVueModel();
             DataContext = accueilVueModel;
+
         }
 
     }

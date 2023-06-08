@@ -1,7 +1,7 @@
-﻿<Application x:Class="PokeStrat.App"
+﻿<Application x:Class="PokeStat.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:PokeStrat"
+             xmlns:local="clr-namespace:PokeStat"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

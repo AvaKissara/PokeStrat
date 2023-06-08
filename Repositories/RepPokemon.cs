@@ -1,5 +1,5 @@
-﻿using PokeStrat;
-using PokeStrat.Modeles;
+﻿using PokeStat;
+using PokeStat.Modeles;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokeStrat.Repositories
+namespace PokeStat.Repositories
 {
     public class RepPokemon
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokeStrat.Modeles
+namespace PokeStat.Modeles
 {
     public interface IPokemonTalent
     {

@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
-using PokeStrat.Utilitaires;
+using PokeStat.Utilitaires;
+using PokeStat.Utilitaires;
+using PokeStat.Vues.CrudPokemon;
 
-namespace PokeStrat.VuesModeles
+namespace PokeStat.VuesModeles
 {
     public class AccueilVueModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand ConnexionCommand { get; private set; }
-        public ICommand InscriptionCommand { get; private set; }
-        public ICommand GestionPokemonCommand { get; private set; }
+        public ICommand ConnexionCommand { get; set; }
+        public ICommand InscriptionCommand { get; set; }
+        public ICommand GestionPokemonCommand { get; set; }
 
         public AccueilVueModel()
         {
@@ -38,7 +40,8 @@ namespace PokeStrat.VuesModeles
 
         private void GestionPokemon() 
         {
-            Utilitaires.NavigationService.Navigate(new Uri("Vues/CrudPokemon/GestionPokemon.xaml", UriKind.Relative));
+            NavigationServices.NavigateToPage(new GestionPokemon());
+         
             MessageBox.Show("Le bouton 'Gestion Pokemon' a été cliqué !");
         }
     }

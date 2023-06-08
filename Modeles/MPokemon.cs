@@ -5,7 +5,7 @@ using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokeStrat.Modeles
+namespace PokeStat.Modeles
 {
     public class MPokemon
     {  

@@ -1,4 +1,5 @@
-﻿using PokeStrat.VuesModeles;
+﻿using PokeStat.Utilitaires;
+using PokeStat.VuesModeles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,19 +16,26 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace PokeStrat.Vues.CrudPokemon
+namespace PokeStat.Vues.CrudPokemon
 {
     /// <summary>
     /// Logique d'interaction pour GestionPokemon.xaml
     /// </summary>
     public partial class GestionPokemon : Page
     {
+        public Frame MainFrame;
+        private GestionPokemonVueModel gestionPokemonVueModel;
         public GestionPokemon()
         {
-            DataContext = new GestionPokemonVueModel();
             InitializeComponent();
-            PokeStrat.Utilitaires.NavigationService.Initialize(Application.Current.MainWindow as NavigationWindow);
+            gestionPokemonVueModel = new GestionPokemonVueModel();
+            DataContext = gestionPokemonVueModel;
+
+            Frame mainFrame = NavigationServices.GetMainFrame();
+            NavigationServices.Initialize(mainFrame);
+            NavigationServices.NavigateToPage(this);
         }
-       
+
+    
     }
 }

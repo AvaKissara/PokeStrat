@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace PokeStrat.Modeles
+namespace PokeStat.Modeles
 {
     public class PokemonCapacite : IPokemonCapacite
     {

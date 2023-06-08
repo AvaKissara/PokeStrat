@@ -68,7 +68,7 @@
     <Compile Include="Modeles\PokemonCapacite.cs" />
     <Compile Include="Modeles\PokemonTalent.cs" />
     <Compile Include="Repositories\RepPokemon.cs" />
-    <Compile Include="Utilitaires\NavigationService.cs" />
+    <Compile Include="Utilitaires\NavigationServices.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />
     <Compile Include="VuesModeles\GestionPokemonVueModel.cs" />
