@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokeStrat.VuesModeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace PokeStrat.Vues
     /// </summary>
     public partial class AccueilPage : Page
     {
+        private AccueilVueModel accueilVueModel;
         public AccueilPage()
         {
             InitializeComponent();
+            accueilVueModel = new AccueilVueModel();
+            DataContext = accueilVueModel;
         }
 
     }

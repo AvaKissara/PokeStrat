@@ -39,6 +39,7 @@ namespace PokeStrat.VuesModeles
         private void GestionPokemon() 
         {
             Utilitaires.NavigationService.Navigate(new Uri("Vues/CrudPokemon/GestionPokemon.xaml", UriKind.Relative));
+            MessageBox.Show("Le bouton 'Gestion Pokemon' a été cliqué !");
         }
     }
 }
