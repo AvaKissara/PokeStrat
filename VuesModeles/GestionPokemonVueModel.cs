@@ -46,7 +46,7 @@ namespace PokeStat.VuesModeles
 
             // Ajouter les colonnes à la DataTable
             Pokedex.Columns.Add("id", typeof(int));
-            Pokedex.Columns.Add("Image", typeof(Image));
+            Pokedex.Columns.Add("Image", typeof(Bitmap));
             Pokedex.Columns.Add("Nom anglais", typeof(string));
             Pokedex.Columns.Add("Nom français", typeof(string));  
             Pokedex.Columns.Add("Numéro", typeof(string));
@@ -96,6 +96,7 @@ namespace PokeStat.VuesModeles
 
             return Pokedex;
         }
+
 
         // EVENT HANDLER
         public event PropertyChangedEventHandler PropertyChanged;

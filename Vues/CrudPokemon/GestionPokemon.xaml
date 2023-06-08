@@ -10,7 +10,7 @@
 
     <Grid VerticalAlignment="Center">
         <TextBox Text="Gestion des Pokémons"  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,16,0,0"/>
-        <DataGrid Height="600" ItemsSource="{Binding Pokedex}" Margin="0,-118,0,0" AutoGenerateColumns="False" Name="dataGridView">
+        <DataGrid Height="600" ItemsSource="{Binding Pokedex}" Margin="0,-118,0,0" AutoGenerateColumns="True" Name="dataGridView">
            
         </DataGrid>
     </Grid>
