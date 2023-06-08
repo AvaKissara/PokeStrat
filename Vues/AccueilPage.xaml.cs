@@ -24,5 +24,6 @@ namespace PokeStrat.Vues
         {
             InitializeComponent();
         }
+
     }
 }

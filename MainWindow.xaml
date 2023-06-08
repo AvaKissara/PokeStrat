@@ -7,10 +7,11 @@
         xmlns:views="clr-namespace:PokeStrat.Vues"
         mc:Ignorable="d"
         Title="PokeStrat" Height="450" Width="800">
+    
     <Grid>
         <Frame Name="MainFrame" NavigationUIVisibility="Hidden">
             <Frame.Content>
-            <views:AccueilPage/>
+                <views:AccueilPage/>
             </Frame.Content>
         </Frame>
 

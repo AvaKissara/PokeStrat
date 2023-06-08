@@ -3,14 +3,21 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PokeStrat.Vues"
+      xmlns:local="clr-namespace:PokeStrat.Vues" xmlns:vuesmodeles="clr-namespace:PokeStrat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:AccueilVueModel}"
+      xmlns:util="clr-namespace:PokeStrat.Utilitaires"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AccueilPage">
+
+    <Page.Resources>
+        <vuesmodeles:AccueilVueModel x:Key="AccueilVueModel" />
+    </Page.Resources>
+
 
     <Grid>
         <TextBox Text="Dresseurs, dresseuses bienvenue !" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,16,0,0"/>
         <Button Content="Connexion" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,16,8,0" Padding="6,6,6,6"/>
         <Button Content="Inscription" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,16,84,0" Padding="6,6,6,6"/>
+        <Button x:Name="btnGestionPokemon" Content="Gestion Pokemon" Command="{Binding GestionPokemonCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,16,0,0" Padding="6,6,6,6"/>
     </Grid>
 </Page>

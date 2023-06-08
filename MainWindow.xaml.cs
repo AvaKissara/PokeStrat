@@ -24,7 +24,7 @@ namespace PokeStrat
         public MainWindow()
         {
             InitializeComponent();
-      
+             
         }
     }
 }

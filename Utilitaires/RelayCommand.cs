@@ -38,5 +38,6 @@ namespace PokeStrat.Utilitaires
         {
             _execute();
         }
+      
     }
 }
