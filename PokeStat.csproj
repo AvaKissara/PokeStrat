@@ -76,8 +76,17 @@
     <Compile Include="Vues\AccueilPage.xaml.cs">
       <DependentUpon>AccueilPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vues\CrudPokemon\AjoutPokemon.xaml.cs">
+      <DependentUpon>AjoutPokemon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\CrudPokemon\EffacePokemon.xaml.cs">
+      <DependentUpon>EffacePokemon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vues\CrudPokemon\GestionPokemon.xaml.cs">
       <DependentUpon>GestionPokemon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\CrudPokemon\ModifiePokemon.xaml.cs">
+      <DependentUpon>ModifiePokemon.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -95,7 +104,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vues\CrudPokemon\AjoutPokemon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudPokemon\EffacePokemon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vues\CrudPokemon\GestionPokemon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudPokemon\ModifiePokemon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

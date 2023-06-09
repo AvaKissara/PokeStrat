@@ -44,5 +44,6 @@ namespace PokeStat.Vues.CrudPokemon
             
 
         }
+
     }
 }

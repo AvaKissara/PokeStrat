@@ -16,6 +16,10 @@ namespace PokeStat.VuesModeles
 {
     public class GestionPokemonVueModel : INotifyPropertyChanged
     {
+        public ICommand AjoutPokemonCommand { get; set; }
+        public ICommand ModifiePokemonCommand { get; set; }
+        public ICommand EffacePokemonCommand { get; set; }
+
         private DataTable pokedex;
 
         public DataTable Pokedex
@@ -33,11 +37,31 @@ namespace PokeStat.VuesModeles
 
         public GestionPokemonVueModel()
         {
-            // Initialisez les membres de votre vue modèle ici si nécessaire
+            AjoutPokemonCommand = new RelayCommand(AjoutPokemon);
+            ModifiePokemonCommand = new RelayCommand(ModifiePokemon);
+            EffacePokemonCommand = new RelayCommand(EffacePokemon);
+
+
             RepPokemon repPokemon = new RepPokemon();
             List<MPokemon> pokemons = repPokemon.GetPokemons();
             Pokedex = ConvertListToDataTable(pokemons);
         }
+
+        private void AjoutPokemon()
+        {
+            NavigationServices.NavigateToPage(new AjoutPokemon());
+        }
+
+        private void ModifiePokemon()
+        {
+
+        }
+
+        private void EffacePokemon()
+        {
+
+        }
+
 
         // Convertir une liste de MPokemon en DataTable
         private DataTable ConvertListToDataTable(List<MPokemon> pokemons)

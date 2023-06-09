@@ -9,10 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AccueilPage">
 
-    <Page.Resources>
-        <vuesmodeles:AccueilVueModel x:Key="AccueilVueModel" />
-    </Page.Resources>
-
 
     <Grid>
         <TextBox Text="Dresseurs, dresseuses bienvenue !" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,16,0,0"/>
