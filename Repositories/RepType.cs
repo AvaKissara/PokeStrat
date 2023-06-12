@@ -23,8 +23,19 @@ namespace PokeStat.Repositories
             Connexion con = new Connexion();
             this.activeConnexion = con.GetConnexion();
         }
+
+        private void EnsureConnection()
+        {
+            if (activeConnexion.State == ConnectionState.Closed)
+            {
+                activeConnexion.Open();
+            }
+        }
+
         public List<MType> GetTypes()
         {
+            EnsureConnection();
+
             List<MType> ListMTypes = new List<MType>();
 
             SqlCommand RequestGetTypes = activeConnexion.CreateCommand();
@@ -52,6 +63,8 @@ namespace PokeStat.Repositories
         }
         public void AddType(MType nouveauType)
         {
+            EnsureConnection();
+
             SqlCommand RequestAddType = activeConnexion.CreateCommand();
             RequestAddType.CommandText = "INSERT INTO Types (nom_type) VALUES (@nom_type)";
 
@@ -63,17 +76,18 @@ namespace PokeStat.Repositories
 
         }
 
-        //public void deleteType(int idSuppr)
-        //{
-        //    SqlCommand RequestDeleteType = activeConnexion.CreateCommand();
-        //    RequestDeleteType.CommandText = "DELETE FROM personne WHERE idType = @idType";
+        public void deleteType(int idSuppr)
+        {
+            EnsureConnection();
+            SqlCommand RequestDeleteType = activeConnexion.CreateCommand();
+            RequestDeleteType.CommandText = "DELETE FROM Types WHERE id_type = @id_type";
 
-        //    SqlParameter id = RequestDeleteType.Parameters.Add("@idType", SqlDbType.VarChar);
+            SqlParameter id = RequestDeleteType.Parameters.Add("@id_type", SqlDbType.Int);
 
-        //    id.Value = idSuppr;
+            id.Value = idSuppr;
 
-        //    int result = RequestDeleteType.ExecuteNonQuery();
-        //}
+            int result = RequestDeleteType.ExecuteNonQuery();
+        }
 
         //public void updateType(MType modifType)
         //{

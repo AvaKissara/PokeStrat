@@ -14,7 +14,7 @@ namespace PokeStat.Modeles
         public  int emplacement { get; set; }
 
 
-        public MType(string NomType)
+        public MType(System.Data.DataColumn dataColumn, string NomType)
         {
             this.nomType = NomType;
         }

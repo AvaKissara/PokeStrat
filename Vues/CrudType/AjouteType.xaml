@@ -9,6 +9,18 @@
       Title="AjouteType">
 
     <Grid>
-        <Label Content="Félicitations ! Le nouveau type a bien été ajouté" Foreground="DarkGray" HorizontalAlignment="Center" Margin="69,150,0,0" VerticalAlignment="Top"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Titre de la vue -->
+            <TextBlock Grid.Column="0" Text="Félicitations ! Le nouveau type a bien été ajouté" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,96,0,0"/>
+
+            <!-- Bouton de fermeture -->
+            <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top"  Command="{Binding CloseCommand}"/>
+        </Grid>
+        <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
     </Grid>
 </Page>

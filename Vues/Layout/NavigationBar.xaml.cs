@@ -1,6 +1,4 @@
-﻿using PokeStat.Utilitaires;
-using PokeStat.VuesModeles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,25 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PokeStat
+namespace PokeStat.Vues.Layout
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour NavigationBar.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NavigationBar : UserControl
     {
-        public MainWindow()
+        public NavigationBar()
         {
             InitializeComponent();
-            SetWindowFullScreen();
-            NavigationServices.Initialize(MainFrame);
-           
-        }
-
-        private void SetWindowFullScreen()
-        {
-            WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
         }
     }
 }
