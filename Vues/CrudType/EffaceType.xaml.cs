@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PokeStat.Vues.CrudPokemon
+namespace PokeStat.Vues.CrudType
 {
     /// <summary>
-    /// Logique d'interaction pour AjoutPokemon.xaml
+    /// Logique d'interaction pour EffaceType.xaml
     /// </summary>
-    public partial class AjoutPokemon : Page
+    public partial class EffaceType : Page
     {
-        public AjoutPokemon()
+        public EffaceType()
         {
             InitializeComponent();
         }

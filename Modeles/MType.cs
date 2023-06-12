@@ -11,10 +11,23 @@ namespace PokeStat.Modeles
         public int idType { get; }
         public string nomType { get; set; }
 
+        public  int emplacement { get; set; }
+
+
+        public MType()
+        { }
+
         public MType(int IdType, string NomType)
         {
             this.idType = IdType;
             this.nomType = NomType;
+        }
+
+        public MType(int IdType, string NomType, int Emplacement)
+        {
+            this.idType = IdType;
+            this.nomType = NomType;
+            this.emplacement = Emplacement;
         }
     }
 }
