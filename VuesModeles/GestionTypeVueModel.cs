@@ -16,7 +16,7 @@ namespace PokeStat.VuesModeles
 {
     public class GestionTypeVueModel : INotifyPropertyChanged
     {
-        public MType typePok = new MType();
+        private string nomType { get; set; }
         public ICommand CreeTypeCommand { get; set; }
         public ICommand AjouteTypeCommand { get; set; }
         public ICommand ModifieTypeCommand { get; set; }
@@ -33,6 +33,19 @@ namespace PokeStat.VuesModeles
                 {
                     dtTypes = value;
                     OnPropertyChanged(nameof(DtTypes));
+                }
+            }
+        }
+
+        public string NomType
+        {
+            get { return nomType; }
+            set
+            {
+                if (nomType != value)
+                {
+                    nomType = value;
+                    OnPropertyChanged(nameof(NomType));
                 }
             }
         }
