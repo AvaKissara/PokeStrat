@@ -88,6 +88,7 @@
     <Compile Include="Vues\CrudPokemon\ModifiePokemon.xaml.cs">
       <DependentUpon>ModifiePokemon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vues\CrudType\GestionType.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
