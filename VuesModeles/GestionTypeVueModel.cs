@@ -16,11 +16,27 @@ namespace PokeStat.VuesModeles
 {
     public class GestionTypeVueModel : INotifyPropertyChanged
     {
-        public MType typePok = new MType();
+       
         public ICommand CreeTypeCommand { get; set; }
         public ICommand AjouteTypeCommand { get; set; }
         public ICommand ModifieTypeCommand { get; set; }
         public ICommand EffaceTypeCommand { get; set; }
+
+        public int IdType;
+        private string nomType { get; set; }
+        public string NomType
+        {
+            get { return nomType; }
+            set
+            {
+                if (nomType != value)
+                {
+                    nomType = value;
+                    OnPropertyChanged(nameof(NomType));
+                }
+            }
+        }
+
 
         private DataTable dtTypes;
 
@@ -58,6 +74,16 @@ namespace PokeStat.VuesModeles
         private void AjouteType()
         {
             NavigationServices.NavigateToPage(new AjouteType());
+            MType nouveauType = new MType(NomType);
+            RepType repType = new RepType();
+            repType.AddType(nouveauType);
+
+            // Actualiser la liste des types
+            List<MType> types = repType.GetTypes();
+            DtTypes = ConvertListToDataTable(types);
+
+            // Réinitialiser le champ NomType
+            NomType = string.Empty;
 
         }
 

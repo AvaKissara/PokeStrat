@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PokeStat.Utilitaires;
+using PokeStat.VuesModeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,17 @@ namespace PokeStat.Vues.CrudType
     /// </summary>
     public partial class CreeType : Page
     {
+        public Frame MainFrame;
+        private GestionTypeVueModel gestionTypeVueModel;
         public CreeType()
         {
             InitializeComponent();
+            gestionTypeVueModel = new GestionTypeVueModel();
+            DataContext = gestionTypeVueModel;
+
+            Frame mainFrame = NavigationServices.GetMainFrame();
+            NavigationServices.Initialize(mainFrame);
+            NavigationServices.NavigateToPage(this);
         }
     }
 }

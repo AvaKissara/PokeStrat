@@ -28,7 +28,7 @@ namespace PokeStat.Repositories
             List<MType> ListMTypes = new List<MType>();
 
             SqlCommand RequestGetTypes = activeConnexion.CreateCommand();
-            RequestGetTypes.CommandText = "SELECT * fROM Types";
+            RequestGetTypes.CommandText = "SELECT * FROM Types";
 
             using (SqlDataReader types = RequestGetTypes.ExecuteReader())
             {
@@ -39,7 +39,6 @@ namespace PokeStat.Repositories
                     MType unType = new MType(
                         types.GetInt32(0),
                         $"{types[1]}"
-
                     );
 
                     ListMTypes.Add(unType);
@@ -54,13 +53,10 @@ namespace PokeStat.Repositories
         public void AddType(MType nouveauType)
         {
             SqlCommand RequestAddType = activeConnexion.CreateCommand();
-            RequestAddType.CommandText = "INSERT INTO Types (idType, nomType) VALUES (@idType,@nomType)";
+            RequestAddType.CommandText = "INSERT INTO Types (nom_type) VALUES (@nom_type)";
 
-            SqlParameter id = RequestAddType.Parameters.Add("@idType", SqlDbType.Int);
-            SqlParameter nom = RequestAddType.Parameters.Add("@nomType", SqlDbType.VarChar);
+            SqlParameter nom = RequestAddType.Parameters.Add("@nom_type", SqlDbType.VarChar);
 
-
-            id.Value = nouveauType.idType;
             nom.Value = nouveauType.nomType;
 
             int result = RequestAddType.ExecuteNonQuery();
