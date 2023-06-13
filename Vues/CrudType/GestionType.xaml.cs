@@ -24,6 +24,7 @@ namespace PokeStat.Vues.CrudType
     {
         public Frame MainFrame;
         private GestionTypeVueModel gestionTypeVueModel;
+        DataRowViewToMTypeConverter test;
         public GestionType()
         {
             InitializeComponent();
@@ -33,6 +34,8 @@ namespace PokeStat.Vues.CrudType
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
             NavigationServices.NavigateToPage(this);
+
+            test = new DataRowViewToMTypeConverter();
         }
     }
 }

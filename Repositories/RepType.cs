@@ -76,9 +76,10 @@ namespace PokeStat.Repositories
 
         }
 
-        public void deleteType(int idSuppr)
+        public void DeleteType(int idSuppr)
         {
             EnsureConnection();
+
             SqlCommand RequestDeleteType = activeConnexion.CreateCommand();
             RequestDeleteType.CommandText = "DELETE FROM Types WHERE id_type = @id_type";
 
@@ -88,6 +89,31 @@ namespace PokeStat.Repositories
 
             int result = RequestDeleteType.ExecuteNonQuery();
         }
+
+        //public MType GetTypeDetails(int typeId)
+        //{
+        //    EnsureConnection();
+
+        //    MType typeDetails = null;
+
+        //    SqlCommand requestGetTypeDetails = activeConnexion.CreateCommand();
+        //    requestGetTypeDetails.CommandText = "SELECT * FROM Types WHERE id_type = @typeId";
+        //    requestGetTypeDetails.Parameters.AddWithValue("@typeId", typeId);
+
+        //    using (SqlDataReader reader = requestGetTypeDetails.ExecuteReader())
+        //    {
+        //        if (reader.Read())
+        //        {
+        //            typeDetails = new MType(
+        //                reader.GetInt32(0),
+        //                $"{reader[1]}"
+        //            );
+        //        }
+        //    }
+
+        //    return typeDetails;
+        //}
+
 
         //public void updateType(MType modifType)
         //{

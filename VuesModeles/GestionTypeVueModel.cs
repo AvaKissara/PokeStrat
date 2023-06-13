@@ -30,18 +30,7 @@ namespace PokeStat.VuesModeles
 
         public int IdType;
         private string nomType { get; set; }
-        public string NomType
-        {
-            get { return nomType; }
-            set
-            {
-                if (nomType != value)
-                {
-                    nomType = value;
-                    OnPropertyChanged(nameof(NomType));
-                }
-            }
-        }
+       
 
         private MType _ligneSelection;
         public MType LigneSelection
@@ -153,7 +142,7 @@ namespace PokeStat.VuesModeles
 
 
                     // Utiliser la méthode deleteType du repository pour supprimer l'entrée
-                    repType.deleteType(entryId);
+                    repType.DeleteType(entryId);
 
 
                     types = repType.GetTypes();
