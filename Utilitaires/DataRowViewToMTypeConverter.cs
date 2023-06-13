@@ -22,9 +22,38 @@ namespace PokeStat.Utilitaires
             return null;
         }
 
+        private DataRowView FindDataRowViewById(DataView dataView, int id)
+        {
+            foreach (DataRowView rowView in dataView)
+            {
+                int rowId = (int)rowView["id"];
+                if (rowId == id)
+                {
+                    return rowView;
+                }
+            }
+            return null;
+        }
+
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException();
+            MType mType = value as MType;
+            if (mType != null)
+            {
+                //// Recherche de la DataRowView correspondante
+                //DataRowView rowView = FindDataRowViewById(dataGridView, mType.idType);
+
+                //if (rowView != null)
+                //{
+                //    return rowView;
+                //}
+            }
+
+            // Si la conversion n'est pas possible ou si aucune correspondance n'a été trouvée, vous pouvez retourner Binding.DoNothing ou la valeur cible par défaut.
+            return Binding.DoNothing;
         }
+
+
     }
 }
