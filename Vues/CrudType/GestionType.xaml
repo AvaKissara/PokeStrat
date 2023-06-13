@@ -9,10 +9,23 @@
       Title="GestionType">
 
     <Grid>
-        <DataGrid ColumnWidth="*" ItemsSource="{Binding DtTypes}" Margin="0,-118,0,0" AutoGenerateColumns="True" Name="dataGridView">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Titre de la vue -->
+            <TextBlock Grid.Column="0" Text="Félicitations ! Le nouveau type a bien été ajouté" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,96,0,0"/>
+
+            <!-- Bouton de fermeture -->
+            <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top"  Command="{Binding CloseCommand}"/>
+        </Grid>
+        <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <DataGrid ColumnWidth="*" ItemsSource="{Binding DtTypes}"  SelectedItem="{Binding LigneSelection, Mode=TwoWay}" SelectedValue="{Binding IdLigneSelectionnee, Mode=TwoWay}" Margin="0, 30,0,0" AutoGenerateColumns="True" Name="dataGridView">
 
         </DataGrid>
-        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeTypeCommand}" HorizontalAlignment="Left" Margin="0,391,0,0" VerticalAlignment="Top"/>
+        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeTypeCommand}" HorizontalAlignment="Left" Margin="0,391,0,0" VerticalAlignment="Center"/>
         <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieTypeCommand}" HorizontalAlignment="Center" Margin="0,391,0,0" VerticalAlignment="Center"/>
         <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceTypeCommand}" HorizontalAlignment="Right" Margin="0,391,0,0" VerticalAlignment="Center"/>
     </Grid>

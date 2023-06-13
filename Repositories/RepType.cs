@@ -23,12 +23,23 @@ namespace PokeStat.Repositories
             Connexion con = new Connexion();
             this.activeConnexion = con.GetConnexion();
         }
+
+        private void EnsureConnection()
+        {
+            if (activeConnexion.State == ConnectionState.Closed)
+            {
+                activeConnexion.Open();
+            }
+        }
+
         public List<MType> GetTypes()
         {
+            EnsureConnection();
+
             List<MType> ListMTypes = new List<MType>();
 
             SqlCommand RequestGetTypes = activeConnexion.CreateCommand();
-            RequestGetTypes.CommandText = "SELECT * fROM Types";
+            RequestGetTypes.CommandText = "SELECT * FROM Types";
 
             using (SqlDataReader types = RequestGetTypes.ExecuteReader())
             {
@@ -39,7 +50,6 @@ namespace PokeStat.Repositories
                     MType unType = new MType(
                         types.GetInt32(0),
                         $"{types[1]}"
-
                     );
 
                     ListMTypes.Add(unType);
@@ -53,31 +63,31 @@ namespace PokeStat.Repositories
         }
         public void AddType(MType nouveauType)
         {
+            EnsureConnection();
+
             SqlCommand RequestAddType = activeConnexion.CreateCommand();
-            RequestAddType.CommandText = "INSERT INTO Types (idType, nomType) VALUES (@idType,@nomType)";
+            RequestAddType.CommandText = "INSERT INTO Types (nom_type) VALUES (@nom_type)";
 
-            SqlParameter id = RequestAddType.Parameters.Add("@idType", SqlDbType.Int);
-            SqlParameter nom = RequestAddType.Parameters.Add("@nomType", SqlDbType.VarChar);
+            SqlParameter nom = RequestAddType.Parameters.Add("@nom_type", SqlDbType.VarChar);
 
-
-            id.Value = nouveauType.idType;
             nom.Value = nouveauType.nomType;
 
             int result = RequestAddType.ExecuteNonQuery();
 
         }
 
-        //public void deleteType(int idSuppr)
-        //{
-        //    SqlCommand RequestDeleteType = activeConnexion.CreateCommand();
-        //    RequestDeleteType.CommandText = "DELETE FROM personne WHERE idType = @idType";
+        public void deleteType(int idSuppr)
+        {
+            EnsureConnection();
+            SqlCommand RequestDeleteType = activeConnexion.CreateCommand();
+            RequestDeleteType.CommandText = "DELETE FROM Types WHERE id_type = @id_type";
 
-        //    SqlParameter id = RequestDeleteType.Parameters.Add("@idType", SqlDbType.VarChar);
+            SqlParameter id = RequestDeleteType.Parameters.Add("@id_type", SqlDbType.Int);
 
-        //    id.Value = idSuppr;
+            id.Value = idSuppr;
 
-        //    int result = RequestDeleteType.ExecuteNonQuery();
-        //}
+            int result = RequestDeleteType.ExecuteNonQuery();
+        }
 
         //public void updateType(MType modifType)
         //{

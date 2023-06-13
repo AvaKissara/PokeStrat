@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using PokeStat.Utilitaires;
 using PokeStat.Vues.CrudPokemon;
 using PokeStat.Vues.CrudType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace PokeStat.VuesModeles
 {
@@ -20,6 +21,7 @@ namespace PokeStat.VuesModeles
         public ICommand InscriptionCommand { get; set; }
         public ICommand GestionPokemonCommand { get; set; }
         public ICommand GestionTypeCommand { get; set; }
+        public ICommand CloseCommand { get; }
 
         public AccueilVueModel()
         {
@@ -27,6 +29,7 @@ namespace PokeStat.VuesModeles
             InscriptionCommand = new RelayCommand(Inscription);
             GestionPokemonCommand = new RelayCommand(GestionPokemon);
             GestionTypeCommand = new RelayCommand(GestionType);
+            CloseCommand = new RelayCommand(Close);
         }
 
         private void Connexion()
@@ -49,6 +52,11 @@ namespace PokeStat.VuesModeles
         private void GestionType()
         {
             NavigationServices.NavigateToPage(new GestionType());
+        }
+
+        private void Close()
+        {
+            Application.Current.Shutdown();
         }
 
         // EVENT HANDLER

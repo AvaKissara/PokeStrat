@@ -9,9 +9,22 @@
       Title="CreeType">
 
     <Grid>
-        <TextBox Text="Ajouter un Type"  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,16,0,0"/>
-        <Label Content="Nom :" Foreground="DarkGray" HorizontalAlignment="Left" Margin="69,150,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="tbNomType" Text="{Binding NomType}" HorizontalAlignment="Left" Margin="170,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Name="btnValid" Content="Valider" Command="{Binding AjouteTypeCommand}" HorizontalAlignment="Left" Margin="0,391,0,0" VerticalAlignment="Top"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Titre de la vue -->
+            <TextBlock Grid.Column="0" Text="Ajouter un Type" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,6,0,0"/>
+
+            <!-- Bouton de fermeture -->
+            <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top"  Command="{Binding CloseCommand}"/>
+        </Grid>
+
+        <Label Content="Nom :" HorizontalAlignment="Center" Margin="-50,150,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="tbNomType" Text="{Binding NomType}" HorizontalAlignment="Center" Margin="170,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Name="btnValid" Content="Valider" Command="{Binding AjouteTypeCommand}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Center" Margin="90,0,0,0" VerticalAlignment="Center"/>
     </Grid>
 </Page>

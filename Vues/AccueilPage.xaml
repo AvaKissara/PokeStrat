@@ -11,10 +11,21 @@
 
 
     <Grid>
-        <TextBox Text="Dresseurs, dresseuses bienvenue !" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,96,0,0"/>
-        <Button Content="Connexion" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,16,8,0" Padding="6,6,6,6"/>
-        <Button Content="Inscription" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,16,84,0" Padding="6,6,6,6"/>
-        <Button x:Name="btnGestionPokemon" Content="Gestion Pokemon" Command="{Binding GestionPokemonCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,16,0,0" Padding="6,6,6,6"/>
-        <Button x:Name="btnGestionType" Content="Gestion Type" Command="{Binding GestionTypeCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="118,16,0,0" Padding="6,6,6,6"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Titre de la vue -->
+            <TextBlock Grid.Column="0" Text="Dresseurs, dresseuses bienvenue !" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,96,0,0"/>
+
+            <!-- Bouton de fermeture -->
+            <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top"  Command="{Binding CloseCommand}"/>
+        </Grid>
+        <Button Content="Connexion" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,8,0" Padding="6,6,6,6"/>
+        <Button Content="Inscription" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,84,0" Padding="6,6,6,6"/>
+        <Button x:Name="btnGestionPokemon" Content="Gestion Pokemon" Command="{Binding GestionPokemonCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="8,50,0,0" Padding="6,6,6,6"/>
+        <Button x:Name="btnGestionType" Content="Gestion Type" Command="{Binding GestionTypeCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="118,50,0,0" Padding="6,6,6,6"/>
     </Grid>
 </Page>

@@ -69,7 +69,7 @@
     <Compile Include="Modeles\MType.cs" />
     <Compile Include="Modeles\PokemonCapacite.cs" />
     <Compile Include="Modeles\PokemonTalent.cs" />
-    <Compile Include="Modeles\Region.cs" />
+    <Compile Include="Modeles\MRegion.cs" />
     <Compile Include="Repositories\RepPokemon.cs" />
     <Compile Include="Repositories\RepType.cs" />
     <Compile Include="Utilitaires\NavigationServices.cs" />
@@ -106,6 +106,9 @@
     </Compile>
     <Compile Include="Vues\CrudType\ModifieType.xaml.cs">
       <DependentUpon>ModifieType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Layout\NavigationBar.xaml.cs">
+      <DependentUpon>NavigationBar.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vues\CrudType\ModifieType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\Layout\NavigationBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

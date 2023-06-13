@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Modeles
 {
-    public class Region
+    public class MRegion
     {
         public int idReg {  get; set; }
         public string nomReg { get; set; }
-        public Region(int IdReg, string NomReg) 
+        public MRegion(int IdReg, string NomReg) 
         {
             this.idReg = IdReg;
             this.nomReg = NomReg;

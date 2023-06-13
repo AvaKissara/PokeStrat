@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows;
 
 namespace PokeStat.VuesModeles
 {
@@ -19,6 +20,7 @@ namespace PokeStat.VuesModeles
         public ICommand AjoutePokemonCommand { get; set; }
         public ICommand ModifiePokemonCommand { get; set; }
         public ICommand EffacePokemonCommand { get; set; }
+        public ICommand CloseCommand { get; }
 
         private DataTable dtPokedex;
 
@@ -40,6 +42,7 @@ namespace PokeStat.VuesModeles
             AjoutePokemonCommand = new RelayCommand(AjoutePokemon);
             ModifiePokemonCommand = new RelayCommand(ModifiePokemon);
             EffacePokemonCommand = new RelayCommand(EffacePokemon);
+            CloseCommand = new RelayCommand(Close);
 
 
             RepPokemon repPokemon = new RepPokemon();
@@ -119,6 +122,11 @@ namespace PokeStat.VuesModeles
             }
 
             return dtPokedex;
+        }
+
+        private void Close()
+        {
+            Application.Current.Shutdown();
         }
 
 
