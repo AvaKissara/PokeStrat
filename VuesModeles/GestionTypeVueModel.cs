@@ -28,8 +28,7 @@ namespace PokeStat.VuesModeles
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
-        public int IdType;
-        private string nomType { get; set; }
+     
        
 
         private MType _ligneSelection;
@@ -69,6 +68,8 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
+        public int IdType;
+        private string nomType { get; set; }
 
         public string NomType
         {
@@ -83,6 +84,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        private List<DataRowView> dataRowViews;
+
         public GestionTypeVueModel()
         {
             CreeTypeCommand = new RelayCommand(CreeType);
@@ -96,6 +99,24 @@ namespace PokeStat.VuesModeles
             RepType repType = new RepType();
             List<MType> types = repType.GetTypes();
             DtTypes = ConvertListToDataTable(types);
+            // Initialisez la liste des DataRowView
+            dataRowViews = new List<DataRowView>();
+            LigneSelection = new MType();
+        }
+
+        public List<DataRowView> DataRowViews
+        {
+            get { return dataRowViews; }
+        }
+
+        public void AddDataRowView(DataRowView rowView)
+        {
+            dataRowViews.Add(rowView);
+        }
+
+        public DataRowView FindDataRowViewById(int id)
+        {
+            return dataRowViews.Find(rv => (int)rv["id"] == id);
         }
 
         private void CreeType()
@@ -131,23 +152,17 @@ namespace PokeStat.VuesModeles
             List<MType> types = repType.GetTypes();
             if (DtTypes != null && DtTypes.Rows.Count > 0)
             {
-                // Récupérer l'identifiant de l'entrée à supprimer à partir de la colonne 0
-                int entryId = Convert.ToInt32(DtTypes.Rows[0]);
+                int entryId = LigneSelection.idType;
 
                 // Vérifier si l'identifiant existe dans la liste types
-                MType typeToDelete = types.FirstOrDefault(t => t.idType == entryId);
+                DataRowView typeToDelete = FindDataRowViewById(entryId);
                 if (typeToDelete != null)
                 {
-
-
-
                     // Utiliser la méthode deleteType du repository pour supprimer l'entrée
                     repType.DeleteType(entryId);
 
-
                     types = repType.GetTypes();
                     DtTypes = ConvertListToDataTable(types);
-
                 }
                 else
                 {

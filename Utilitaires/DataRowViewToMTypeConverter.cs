@@ -1,10 +1,10 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.VuesModeles;
 using System;
 using System.Data;
 using System.Globalization;
+using System.Windows.Controls;
 using System.Windows.Data;
-
-
 
 namespace PokeStat.Utilitaires
 {
@@ -22,38 +22,28 @@ namespace PokeStat.Utilitaires
             return null;
         }
 
-        private DataRowView FindDataRowViewById(DataView dataView, int id)
-        {
-            foreach (DataRowView rowView in dataView)
-            {
-                int rowId = (int)rowView["id"];
-                if (rowId == id)
-                {
-                    return rowView;
-                }
-            }
-            return null;
-        }
-
-
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             MType mType = value as MType;
             if (mType != null)
             {
-                //// Recherche de la DataRowView correspondante
-                //DataRowView rowView = FindDataRowViewById(dataGridView, mType.idType);
-
-                //if (rowView != null)
-                //{
-                //    return rowView;
-                //}
+                // Vérifier si le paramètre est un DataGrid valide
+                if (parameter is DataGrid dataGrid)
+                {
+                    // Recherche de la DataRowView correspondante dans la vue modèle
+                    if (dataGrid.DataContext is GestionTypeVueModel viewModel)
+                    {
+                        DataRowView rowView = viewModel.FindDataRowViewById(mType.idType);
+                        if (rowView != null)
+                        {
+                            return rowView;
+                        }
+                    }
+                }
             }
 
             // Si la conversion n'est pas possible ou si aucune correspondance n'a été trouvée, vous pouvez retourner Binding.DoNothing ou la valeur cible par défaut.
             return Binding.DoNothing;
         }
-
-
     }
 }
