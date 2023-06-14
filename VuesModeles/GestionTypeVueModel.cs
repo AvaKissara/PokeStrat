@@ -27,6 +27,7 @@ namespace PokeStat.VuesModeles
         public ICommand MajTypeCommand { get; set; }
         public ICommand EffaceTypeCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
+        public ICommand GestionTypeCommand { get; set; }
         public ICommand CloseCommand { get; }  
        
 
@@ -38,17 +39,6 @@ namespace PokeStat.VuesModeles
             {
                 _ligneSelection = value;
                 OnPropertyChanged(nameof(LigneSelection));
-            }
-        }
-
-        private int _idLigneSelectionnee;
-        public int IdLigneSelectionnee
-        {
-            get { return _idLigneSelectionnee; }
-            set
-            {
-                _idLigneSelectionnee = value;
-                OnPropertyChanged(nameof(IdLigneSelectionnee));
             }
         }
 
@@ -94,6 +84,7 @@ namespace PokeStat.VuesModeles
             ModifieTypeCommand = new RelayCommand(ModifieType);
             MajTypeCommand = new RelayCommand(MajType);
             EffaceTypeCommand = new RelayCommand(EffaceType);
+            GestionTypeCommand = new RelayCommand(GestionType);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
 
@@ -128,7 +119,6 @@ namespace PokeStat.VuesModeles
         }
         private void AjouteType()
         {
-            NavigationServices.NavigateToPage(new AjouteType());
             MType nouveauType = new MType(NomType);
             RepType repType = new RepType();
             repType.AddType(nouveauType);
@@ -139,6 +129,9 @@ namespace PokeStat.VuesModeles
 
             // Réinitialiser le champ NomType
             NomType = string.Empty;
+            MessageBox.Show("Bravo !");
+
+            NavigationServices.NavigateToPage(new GestionType());
 
         }
 
@@ -169,7 +162,7 @@ namespace PokeStat.VuesModeles
             repType.UpdateType(LigneSelection);
             List<MType> types = repType.GetTypes();
             DtTypes = ConvertListToDataTable(types);
-            NavigationServices.NavigateToPage(new MajType());
+            NavigationServices.NavigateToPage(new GestionType());
         }
 
 
@@ -196,6 +189,11 @@ namespace PokeStat.VuesModeles
                     MessageBox.Show("Echec !");
                 }
             }
+        }
+
+        private void GestionType()
+        {
+            NavigationServices.NavigateToPage(new GestionType());
         }
 
         private void AccueilPage()

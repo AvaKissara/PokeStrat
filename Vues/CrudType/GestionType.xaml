@@ -30,8 +30,7 @@
         
         <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
         <DataGrid ColumnWidth="*" ItemsSource="{Binding DtTypes, UpdateSourceTrigger=PropertyChanged}"
-         SelectedItem="{Binding LigneSelection, Converter={StaticResource DataRowViewToMTypeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-Margin="0, 60,0,0" AutoGenerateColumns="True" Name="dataGridView"/>
+         SelectedItem="{Binding LigneSelection, Converter={StaticResource DataRowViewToMTypeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0, 60,0,0" AutoGenerateColumns="True" Name="dataGridView"/>
         <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeTypeCommand}" HorizontalAlignment="Left" Margin="0,391,0,0" VerticalAlignment="Center"/>
         <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieTypeCommand}" HorizontalAlignment="Center" Margin="0,391,0,0" VerticalAlignment="Center"/>
         <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceTypeCommand}" HorizontalAlignment="Right" Margin="0,391,0,0" VerticalAlignment="Center"/>
