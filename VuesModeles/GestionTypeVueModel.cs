@@ -42,7 +42,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-
         private DataTable dtTypes;
 
         public DataTable DtTypes
@@ -57,9 +56,34 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
-        public int IdType;
-        private string nomType { get; set; }
 
+      
+
+        private bool isSaisieValide;
+        public bool IsSaisieValide
+        {
+            get { return isSaisieValide; }
+            set
+            {
+                isSaisieValide = value;
+                OnPropertyChanged(nameof(IsSaisieValide));
+            }
+        }
+
+        private string erreurSaisie;
+        public string ErreurSaisie
+        {
+            get { return erreurSaisie; }
+            set
+            {
+                erreurSaisie = value;
+                OnPropertyChanged(nameof(ErreurSaisie));
+            }
+        }
+
+        public int IdType;
+
+        private string nomType;
         public string NomType
         {
             get { return nomType; }
@@ -68,14 +92,22 @@ namespace PokeStat.VuesModeles
                 if (nomType != value)
                 {
                     nomType = value;
+                    ValidateNomType(); 
                     OnPropertyChanged(nameof(NomType));
                 }
             }
         }
 
-
-
         private List<DataRowView> dataRowViews;
+        public List<DataRowView> DataRowViews
+        {
+            get { return dataRowViews; }
+        }
+
+        public DataRowView FindDataRowViewById(int id)
+        {
+            return dataRowViews.Find(rv => (int)rv["id"] == id);
+        }
 
         public GestionTypeVueModel()
         {
@@ -92,48 +124,42 @@ namespace PokeStat.VuesModeles
             RepType repType = new RepType();
             List<MType> types = repType.GetTypes();
             DtTypes = ConvertListToDataTable(types);
+
             // Initialisez la liste des DataRowView
             dataRowViews = new List<DataRowView>();
 
         }
-
-        public List<DataRowView> DataRowViews
-        {
-            get { return dataRowViews; }
-        }
-
-        public void AddDataRowView(DataRowView rowView)
-        {
-            dataRowViews.Add(rowView);
-        }
-
-        public DataRowView FindDataRowViewById(int id)
-        {
-            return dataRowViews.Find(rv => (int)rv["id"] == id);
-        }
+     
+       
 
         private void CreeType()
         {
             NavigationServices.NavigateToPage(new CreeType());
 
         }
+
         private void AjouteType()
         {
             MType nouveauType = new MType(NomType);
             RepType repType = new RepType();
-            repType.AddType(nouveauType);
 
-            // Actualiser la liste des types
-            List<MType> types = repType.GetTypes();
-            DtTypes = ConvertListToDataTable(types);
+            if (IsSaisieValide)
+            {
+                repType.AddType(nouveauType);
 
-            // Réinitialiser le champ NomType
-            NomType = string.Empty;
-            MessageBox.Show("Bravo !");
-
-            NavigationServices.NavigateToPage(new GestionType());
-
+                // Actualiser la liste des types
+                List<MType> types = repType.GetTypes();
+                DtTypes = ConvertListToDataTable(types);
+             
+                MessageBox.Show("Le type a bien été ajouté !");
+                NavigationServices.NavigateToPage(new GestionType());
+            }
+            else
+            {
+                ErreurSaisie = "Veuillez corriger les erreurs de saisie.";
+            }
         }
+
 
         private void ModifieType()
         {
@@ -147,7 +173,6 @@ namespace PokeStat.VuesModeles
                     if (type.Equals(LigneSelection))
                     {
                         LigneSelection = type;
-                        break;
                     }
                 }
             }
@@ -159,12 +184,20 @@ namespace PokeStat.VuesModeles
         {
             RepType repType = new RepType();
             LigneSelection.nomType = nomType;
-            repType.UpdateType(LigneSelection);
-            List<MType> types = repType.GetTypes();
-            DtTypes = ConvertListToDataTable(types);
-            NavigationServices.NavigateToPage(new GestionType());
-        }
 
+            if (IsSaisieValide)
+            {
+                repType.UpdateType(LigneSelection);
+                List<MType> types = repType.GetTypes();
+                DtTypes = ConvertListToDataTable(types);
+
+                NavigationServices.NavigateToPage(new GestionType());
+            }
+            else
+            {
+                ErreurSaisie = "Veuillez corriger les erreurs de saisie.";
+            }
+        }
 
 
         private void EffaceType()
@@ -180,7 +213,6 @@ namespace PokeStat.VuesModeles
                 if (typeToDelete != null)
                 {
                     repType.DeleteType(entryId);
-
                     types = repType.GetTypes();
                     DtTypes = ConvertListToDataTable(types);
                 }
@@ -230,6 +262,24 @@ namespace PokeStat.VuesModeles
             Application.Current.Shutdown();
         }
 
+        private void ValidateNomType()
+        {
+            if (string.IsNullOrEmpty(NomType))
+            {
+                ErreurSaisie = "Le champ Nom est requis.";
+                IsSaisieValide = false;
+            }
+            else if (!NomType.All(char.IsLetter))
+            {
+                ErreurSaisie = "Le champ Nom ne peut contenir que des lettres.";
+                IsSaisieValide = false;
+            }
+            else
+            {
+                ErreurSaisie = string.Empty;
+                IsSaisieValide = true;
+            }
+        }
 
         // EVENT HANDLER
         public event PropertyChangedEventHandler PropertyChanged;
