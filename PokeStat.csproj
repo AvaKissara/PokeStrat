@@ -73,6 +73,7 @@
     <Compile Include="Repositories\RepPokemon.cs" />
     <Compile Include="Repositories\RepType.cs" />
     <Compile Include="Utilitaires\DataRowViewToMTypeConverter.cs" />
+    <Compile Include="Utilitaires\LetterValidationRule.cs" />
     <Compile Include="Utilitaires\NavigationServices.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />
