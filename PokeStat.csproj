@@ -105,6 +105,9 @@
     <Compile Include="Vues\CrudType\GestionType.xaml.cs">
       <DependentUpon>GestionType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vues\CrudType\MajType.xaml.cs">
+      <DependentUpon>MajType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vues\CrudType\ModifieType.xaml.cs">
       <DependentUpon>ModifieType.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vues\CrudType\GestionType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudType\MajType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

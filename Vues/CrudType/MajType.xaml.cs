@@ -1,4 +1,5 @@
-﻿using PokeStat.Utilitaires;
+﻿using PokeStat.Modeles;
+using PokeStat.Utilitaires;
 using PokeStat.VuesModeles;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,13 @@ using System.Windows.Shapes;
 namespace PokeStat.Vues.CrudType
 {
     /// <summary>
-    /// Logique d'interaction pour AjouteType.xaml
+    /// Logique d'interaction pour MajType.xaml
     /// </summary>
-    public partial class AjouteType : Page
+    public partial class MajType : Page
     {
         public Frame MainFrame;
         private GestionTypeVueModel gestionTypeVueModel;
-        public AjouteType()
+        public MajType()
         {
             InitializeComponent();
             gestionTypeVueModel = new GestionTypeVueModel();

@@ -7,12 +7,7 @@ using PokeStat.Modeles;
 namespace PokeStat.Utilitaires
 {
     public class DataRowViewToMTypeConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return Binding.DoNothing; 
-        }
-
+    {      
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is DataRowView rowView)
@@ -26,6 +21,10 @@ namespace PokeStat.Utilitaires
             }
 
             return null;
+        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return Binding.DoNothing;
         }
     }
 }

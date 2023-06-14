@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PokeStat.Modeles;
+using PokeStat.Utilitaires;
+using PokeStat.VuesModeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +21,23 @@ namespace PokeStat.Vues.CrudType
     /// <summary>
     /// Logique d'interaction pour ModifieType.xaml
     /// </summary>
+  
     public partial class ModifieType : Page
     {
-        public ModifieType()
+
+        private GestionTypeVueModel gestionTypeVueModel;
+
+        public ModifieType(MType typeAModifier)
         {
             InitializeComponent();
+            gestionTypeVueModel = new GestionTypeVueModel();
+            gestionTypeVueModel.LigneSelection = typeAModifier;
+            DataContext = gestionTypeVueModel;
+
+            Frame mainFrame = NavigationServices.GetMainFrame();
+            NavigationServices.Initialize(mainFrame);
+            NavigationServices.NavigateToPage(this);
+
         }
     }
 }

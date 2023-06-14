@@ -34,5 +34,14 @@ namespace PokeStat.Modeles
         public MType()
         {
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            MType other = (MType)obj;
+            return idType == other.idType && nomType == other.nomType;
+        }
     }
 }

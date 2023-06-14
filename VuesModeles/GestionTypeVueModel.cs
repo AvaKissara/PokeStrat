@@ -24,6 +24,7 @@ namespace PokeStat.VuesModeles
         public ICommand CreeTypeCommand { get; set; }
         public ICommand AjouteTypeCommand { get; set; }
         public ICommand ModifieTypeCommand { get; set; }
+        public ICommand MajTypeCommand { get; set; }
         public ICommand EffaceTypeCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }  
@@ -82,6 +83,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
+
+
         private List<DataRowView> dataRowViews;
 
         public GestionTypeVueModel()
@@ -89,6 +92,7 @@ namespace PokeStat.VuesModeles
             CreeTypeCommand = new RelayCommand(CreeType);
             AjouteTypeCommand = new RelayCommand(AjouteType);
             ModifieTypeCommand = new RelayCommand(ModifieType);
+            MajTypeCommand = new RelayCommand(MajType);
             EffaceTypeCommand = new RelayCommand(EffaceType);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
@@ -99,7 +103,6 @@ namespace PokeStat.VuesModeles
             DtTypes = ConvertListToDataTable(types);
             // Initialisez la liste des DataRowView
             dataRowViews = new List<DataRowView>();
-            LigneSelection = new MType { idType = 0, nomType = "" };
 
         }
 
@@ -141,8 +144,35 @@ namespace PokeStat.VuesModeles
 
         private void ModifieType()
         {
+            RepType repType = new RepType();
+            List<MType> types = repType.GetTypes();
 
+            if (DtTypes != null && DtTypes.Rows.Count > 0)
+            {
+                foreach (MType type in types)
+                {
+                    if (type.Equals(LigneSelection))
+                    {
+                        LigneSelection = type;
+                        break;
+                    }
+                }
+            }
+            NavigationServices.NavigateToPage(new ModifieType(LigneSelection));
         }
+
+
+        public void MajType()
+        {
+            RepType repType = new RepType();
+            LigneSelection.nomType = nomType;
+            repType.UpdateType(LigneSelection);
+            List<MType> types = repType.GetTypes();
+            DtTypes = ConvertListToDataTable(types);
+            NavigationServices.NavigateToPage(new MajType());
+        }
+
+
 
         private void EffaceType()
         {
@@ -156,7 +186,6 @@ namespace PokeStat.VuesModeles
                 MType typeToDelete = types.FirstOrDefault(t => t.idType == entryId);
                 if (typeToDelete != null)
                 {
-                    // Utiliser la méthode deleteType du repository pour supprimer l'entrée
                     repType.DeleteType(entryId);
 
                     types = repType.GetTypes();

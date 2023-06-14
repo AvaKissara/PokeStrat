@@ -90,50 +90,24 @@ namespace PokeStat.Repositories
             int result = RequestDeleteType.ExecuteNonQuery();
         }
 
-        //public MType GetTypeDetails(int typeId)
-        //{
-        //    EnsureConnection();
+  
 
-        //    MType typeDetails = null;
+        public void UpdateType(MType modifType)
+        {
+            EnsureConnection();
 
-        //    SqlCommand requestGetTypeDetails = activeConnexion.CreateCommand();
-        //    requestGetTypeDetails.CommandText = "SELECT * FROM Types WHERE id_type = @typeId";
-        //    requestGetTypeDetails.Parameters.AddWithValue("@typeId", typeId);
-
-        //    using (SqlDataReader reader = requestGetTypeDetails.ExecuteReader())
-        //    {
-        //        if (reader.Read())
-        //        {
-        //            typeDetails = new MType(
-        //                reader.GetInt32(0),
-        //                $"{reader[1]}"
-        //            );
-        //        }
-        //    }
-
-        //    return typeDetails;
-        //}
+            SqlCommand RequestUpdateType = activeConnexion.CreateCommand();
+            RequestUpdateType.CommandText = "UPDATE Types SET nom_type= @nomType WHERE id_type = @idType";
 
 
-        //public void updateType(MType modifType)
-        //{
-        //    SqlCommand RequestUpdateType = activeConnexion.CreateCommand();
-        //    RequestUpdateType.CommandText = "UPDATE personne SET nomType= @nomType, prenomType= @prenomType, mdp = @mdp WHERE idType = @idType";
+            SqlParameter id = RequestUpdateType.Parameters.Add("@idType", SqlDbType.VarChar);
+            SqlParameter nom = RequestUpdateType.Parameters.Add("@nomType", SqlDbType.VarChar);
 
 
-        //    SqlParameter id = RequestUpdateType.Parameters.Add("@idType", SqlDbType.VarChar);
-        //    SqlParameter nom = RequestUpdateType.Parameters.Add("@nomType", SqlDbType.VarChar);
-        //    SqlParameter pnom = RequestUpdateType.Parameters.Add("@prenomType", SqlDbType.VarChar);
-        //    SqlParameter mdp = RequestUpdateType.Parameters.Add("@mdp", SqlDbType.VarBinary);
+            id.Value = modifType.idType;
+            nom.Value = modifType.nomType;
 
-
-
-        //    id.Value = modifType.idType;
-        //    nom.Value = modifType.nomType;
-        //    pnom.Value = modifType.prenomType;
-        //    mdp.Value = modifType.mdp;
-
-        //    int result = RequestUpdateType.ExecuteNonQuery();
-        //}
+            int result = RequestUpdateType.ExecuteNonQuery();
+        }
     }
 }
