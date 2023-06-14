@@ -26,9 +26,7 @@ namespace PokeStat.VuesModeles
         public ICommand ModifieTypeCommand { get; set; }
         public ICommand EffaceTypeCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
-        public ICommand CloseCommand { get; }
-
-     
+        public ICommand CloseCommand { get; }  
        
 
         private MType _ligneSelection;
@@ -101,7 +99,8 @@ namespace PokeStat.VuesModeles
             DtTypes = ConvertListToDataTable(types);
             // Initialisez la liste des DataRowView
             dataRowViews = new List<DataRowView>();
-            LigneSelection = new MType();
+            LigneSelection = new MType { idType = 0, nomType = "" };
+
         }
 
         public List<DataRowView> DataRowViews
@@ -154,8 +153,7 @@ namespace PokeStat.VuesModeles
             {
                 int entryId = LigneSelection.idType;
 
-                // Vérifier si l'identifiant existe dans la liste types
-                DataRowView typeToDelete = FindDataRowViewById(entryId);
+                MType typeToDelete = types.FirstOrDefault(t => t.idType == entryId);
                 if (typeToDelete != null)
                 {
                     // Utiliser la méthode deleteType du repository pour supprimer l'entrée
