@@ -10,10 +10,8 @@
 
     <Grid VerticalAlignment="Center">
         <TextBox Text="Gestion des Pokémons"  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,16,0,0"/>
-        <DataGrid ColumnWidth="*" ItemsSource="{Binding DtPokedex}" Margin="0,-118,0,0" AutoGenerateColumns="True" Name="dataGridView">
-            
+        <DataGrid ColumnWidth="*" ItemsSource="{Binding DtPokedex}" Margin="0,0,0,0" AutoGenerateColumns="True" Name="dataGridView" SelectionMode="Single" CanUserAddRows="False"/>
 
-        </DataGrid>
         <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreePokemonCommand}" HorizontalAlignment="Left" Margin="210,391,0,0" VerticalAlignment="Top"/>
         <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifiePokemonCommand}" HorizontalAlignment="Left" Margin="385,391,0,0" VerticalAlignment="Top"/>
         <Button Name="btnDel" Content="Supprimer" Command="{Binding EffacePokemonCommand}" HorizontalAlignment="Left" Margin="552,391,0,0" VerticalAlignment="Top"/>
