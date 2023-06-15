@@ -15,6 +15,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
 using System.Runtime.InteropServices;
+using System.Drawing.Drawing2D;
 
 namespace PokeStat.VuesModeles
 {
@@ -47,6 +48,9 @@ namespace PokeStat.VuesModeles
             }
         }
         public bool IsSelectionne => LigneSelection != null;
+
+
+        RepType repType = new RepType();
 
         //Propriété de type DataTable stockant des objets MType
         private DataTable dtTypes;
@@ -105,7 +109,8 @@ namespace PokeStat.VuesModeles
         }
 
         public int IdType;
-        
+     
+
         private List<DataRowView> dataRowViews;
         public List<DataRowView> DataRowViews
         {
@@ -130,7 +135,6 @@ namespace PokeStat.VuesModeles
             CloseCommand = new RelayCommand(Close);
 
             // Récupération des types de données depuis le repository
-            RepType repType = new RepType();
             List<MType> types = repType.GetTypes();
 
             // Conversion de la liste de types en DataTable
@@ -149,7 +153,7 @@ namespace PokeStat.VuesModeles
         private void AjouteType()
         {
             MType nouveauType = new MType(NomType);
-            RepType repType = new RepType();
+           
 
             if (IsSaisieValide)
             {
@@ -184,7 +188,6 @@ namespace PokeStat.VuesModeles
 
         private void ModifieType()
         {
-            RepType repType = new RepType();
             List<MType> types = repType.GetTypes();
            
             if (DtTypes != null && DtTypes.Rows.Count > 0)
@@ -206,16 +209,24 @@ namespace PokeStat.VuesModeles
 
         public void MajType()
         {
-            RepType repType = new RepType();
-
             if (IsSaisieValide)
             {
+                List<MType> types = repType.GetTypes();
                 // Mise à jour du nom du type avec la saisie de l'admin
                 LigneSelection.nomType = nomType;
-                repType.UpdateType(LigneSelection);
+                // Vérifie si le nom du type existe déjà dans la liste des types
+                bool typeExiste = types.Any(t => t.nomType.Equals(LigneSelection.nomType, StringComparison.OrdinalIgnoreCase));
+
+                if (typeExiste)
+                {
+                    MessageBox.Show("Ce type existe déjà !");
+                }
+                else
+                {
+                    repType.UpdateType(LigneSelection);
 
                 // Actualisation de la liste des types
-                List<MType> types = repType.GetTypes();
+                types = repType.GetTypes();
                 DtTypes = ConvertListToDataTable(types);
 
                 // Message de confirmation
@@ -223,6 +234,7 @@ namespace PokeStat.VuesModeles
 
                 // Vers la page de gestion des types
                 NavigationServices.NavigateToPage(new GestionType());
+                }
             }
             else
             {
@@ -232,7 +244,6 @@ namespace PokeStat.VuesModeles
 
         private void EffaceType()
         {
-            RepType repType = new RepType();
             List<MType> types = repType.GetTypes();
 
             if (DtTypes != null && DtTypes.Rows.Count > 0)
