@@ -15,16 +15,16 @@ namespace PokeStat.Repositories
 
         public RepType()
         {
-            this.dbConnecter();
+            this.DbConnecter();
         }
 
-        private void dbConnecter()
+        private void DbConnecter()
         {
             Connexion con = new Connexion();
             this.activeConnexion = con.GetConnexion();
         }
 
-        private void EnsureConnection()
+        private void CheckConnexion()
         {
             if (activeConnexion.State == ConnectionState.Closed)
             {
@@ -34,7 +34,7 @@ namespace PokeStat.Repositories
 
         public List<MType> GetTypes()
         {
-            EnsureConnection();
+            CheckConnexion();
 
             List<MType> ListMTypes = new List<MType>();
 
@@ -61,9 +61,10 @@ namespace PokeStat.Repositories
 
             return ListMTypes;
         }
+
         public void AddType(MType nouveauType)
         {
-            EnsureConnection();
+            CheckConnexion();
 
             SqlCommand RequestAddType = activeConnexion.CreateCommand();
             RequestAddType.CommandText = "INSERT INTO Types (nom_type) VALUES (@nom_type)";
@@ -74,11 +75,14 @@ namespace PokeStat.Repositories
 
             int result = RequestAddType.ExecuteNonQuery();
 
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
+
         }
 
         public void DeleteType(int idSuppr)
         {
-            EnsureConnection();
+            CheckConnexion();
 
             SqlCommand RequestDeleteType = activeConnexion.CreateCommand();
             RequestDeleteType.CommandText = "DELETE FROM Types WHERE id_type = @id_type";
@@ -88,13 +92,14 @@ namespace PokeStat.Repositories
             id.Value = idSuppr;
 
             int result = RequestDeleteType.ExecuteNonQuery();
-        }
 
-  
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
+        }  
 
         public void UpdateType(MType modifType)
         {
-            EnsureConnection();
+            CheckConnexion();
 
             SqlCommand RequestUpdateType = activeConnexion.CreateCommand();
             RequestUpdateType.CommandText = "UPDATE Types SET nom_type= @nomType WHERE id_type = @idType";
@@ -108,6 +113,9 @@ namespace PokeStat.Repositories
             nom.Value = modifType.nomType;
 
             int result = RequestUpdateType.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
         }
     }
 }

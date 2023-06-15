@@ -1,20 +1,21 @@
 ﻿<Page x:Class="PokeStat.Vues.CrudType.GestionType"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles"
       xmlns:local="clr-namespace:PokeStat.Utilitaires"
       d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionTypeVueModel}"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GestionType">
 
-
     <Page.Resources>
+        <!-- Convertisseur utilisé pour convertir DataRowView en MType -->
         <local:DataRowViewToMTypeConverter x:Key="DataRowViewToMTypeConverter" />
     </Page.Resources>
-    <Grid>
+
+    <Grid Background="#1976D2">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -22,18 +23,30 @@
             </Grid.ColumnDefinitions>
 
             <!-- Titre de la vue -->
-            <TextBlock Grid.Column="0" Text="{Binding LigneSelection.idType}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,16,0,0"/>
+            <TextBlock Grid.Column="0" Text="Gestion des types" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Margin="0,16,0,0" Foreground="White"/>
 
             <!-- Bouton de fermeture -->
-            <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top"  Command="{Binding CloseCommand}"/>
+            <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseCommand}"/>
         </Grid>
-        
-        <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+
+        <!-- Bouton Accueil -->
+        <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="40,16,0,0" VerticalAlignment="Top" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+
+        <!-- Grille de données -->
         <DataGrid ColumnWidth="*" ItemsSource="{Binding DtTypes, UpdateSourceTrigger=PropertyChanged}"
-         SelectedItem="{Binding LigneSelection, Converter={StaticResource DataRowViewToMTypeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0, 60,0,0" AutoGenerateColumns="True" Name="dataGridView"/>
-        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeTypeCommand}" HorizontalAlignment="Left" Margin="0,391,0,0" VerticalAlignment="Center"/>
-        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieTypeCommand}" HorizontalAlignment="Center" Margin="0,391,0,0" VerticalAlignment="Center"/>
-        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceTypeCommand}" HorizontalAlignment="Right" Margin="0,391,0,0" VerticalAlignment="Center"/>
-        <TextBox Text="{Binding LigneSelection.idType}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" Margin="0,96,0,0"/>
+                  SelectedItem="{Binding LigneSelection, Converter={StaticResource DataRowViewToMTypeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Margin="40,80,40,80" AutoGenerateColumns="True" Name="dataGridView" Background="White" BorderBrush="#64B5F6" BorderThickness="1"/>
+
+        <!-- Bouton Ajouter -->
+        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeTypeCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+
+        <!-- Bouton Modifier -->
+        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Center" Margin="40,0,0,40" VerticalAlignment="Bottom" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+
+        <!-- Bouton Supprimer -->
+        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+
+        <!-- Champ de texte pour l'id du type sélectionné -->
+        <TextBox Text="{Binding LigneSelection.idType}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="300,10,0,40" Background="White" Width="40" Height="40" BorderBrush="Black" BorderThickness="1"/>
     </Grid>
 </Page>

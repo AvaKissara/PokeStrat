@@ -16,7 +16,7 @@ namespace PokeStat.VuesModeles
 {
     public class AccueilVueModel : INotifyPropertyChanged
     {
- 
+        // Déclaration des commandes utilisées dans la classe
         public ICommand ConnexionCommand { get; set; }
         public ICommand InscriptionCommand { get; set; }
         public ICommand GestionPokemonCommand { get; set; }

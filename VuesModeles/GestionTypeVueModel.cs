@@ -20,7 +20,7 @@ namespace PokeStat.VuesModeles
 {
     public class GestionTypeVueModel : INotifyPropertyChanged
     {
-       
+        // Déclaration des commandes utilisées dans la classe
         public ICommand CreeTypeCommand { get; set; }
         public ICommand AjouteTypeCommand { get; set; }
         public ICommand ModifieTypeCommand { get; set; }
@@ -28,20 +28,27 @@ namespace PokeStat.VuesModeles
         public ICommand EffaceTypeCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand GestionTypeCommand { get; set; }
-        public ICommand CloseCommand { get; }  
-       
+        public ICommand CloseCommand { get; }
 
+        //Propriété de type MType corrrespondant à l'élément actuellement sélectionné dans la liste des types.
         private MType _ligneSelection;
         public MType LigneSelection
         {
             get { return _ligneSelection; }
             set
             {
-                _ligneSelection = value;
-                OnPropertyChanged(nameof(LigneSelection));
+                if (_ligneSelection != value)
+                {
+                    _ligneSelection = value;
+                    OnPropertyChanged(nameof(LigneSelection));
+                    // indique si un élément est sélectionné ou non
+                    OnPropertyChanged(nameof(IsSelectionne));
+                }
             }
         }
+        public bool IsSelectionne => LigneSelection != null;
 
+        //Propriété de type DataTable stockant des objets MType sous forme de table.
         private DataTable dtTypes;
 
         public DataTable DtTypes
@@ -57,8 +64,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
-      
-
+        //Propriété de type string utilisée pour contrôler la saisie d'un type
         private bool isSaisieValide;
         public bool IsSaisieValide
         {
@@ -70,6 +76,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        //Propriété de type string utilisée pour stocker un message d'erreur relatif à la saisie d'un type
         private string erreurSaisie;
         public string ErreurSaisie
         {
@@ -80,9 +87,8 @@ namespace PokeStat.VuesModeles
                 OnPropertyChanged(nameof(ErreurSaisie));
             }
         }
-
-        public int IdType;
-
+        
+        //Propriété de type string liée au nom de type saisi.
         private string nomType;
         public string NomType
         {
@@ -98,6 +104,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        public int IdType;
+        
         private List<DataRowView> dataRowViews;
         public List<DataRowView> DataRowViews
         {
@@ -111,6 +119,7 @@ namespace PokeStat.VuesModeles
 
         public GestionTypeVueModel()
         {
+            // Initialisation des commandes
             CreeTypeCommand = new RelayCommand(CreeType);
             AjouteTypeCommand = new RelayCommand(AjouteType);
             ModifieTypeCommand = new RelayCommand(ModifieType);
@@ -120,20 +129,21 @@ namespace PokeStat.VuesModeles
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
 
-
+            // Récupération des types de données depuis le repository
             RepType repType = new RepType();
             List<MType> types = repType.GetTypes();
+
+            // Conversion de la liste de types en DataTable
             DtTypes = ConvertListToDataTable(types);
 
-            // Initialisez la liste des DataRowView
+            // Initialisation de la liste des DataRowView
             dataRowViews = new List<DataRowView>();
-
         }
-           
+
         private void CreeType()
         {
+            // Vers la page de création de type
             NavigationServices.NavigateToPage(new CreeType());
-
         }
 
         private void AjouteType()
@@ -143,14 +153,27 @@ namespace PokeStat.VuesModeles
 
             if (IsSaisieValide)
             {
-                repType.AddType(nouveauType);
-
-                // Actualiser la liste des types
                 List<MType> types = repType.GetTypes();
-                DtTypes = ConvertListToDataTable(types);
-             
-                MessageBox.Show("Le type a bien été ajouté !");
-                NavigationServices.NavigateToPage(new GestionType());
+
+                // Vérifie si le nom du type existe déjà dans la liste des types
+                bool typeExiste = types.Any(t => t.nomType.Equals(nouveauType.nomType, StringComparison.OrdinalIgnoreCase));
+
+                if (typeExiste)
+                {
+                    MessageBox.Show("Ce type existe déjà !");
+                }
+                else
+                {
+                    // Ajout de nouveau type au repository
+                    repType.AddType(nouveauType);
+
+                    // Actualisation de la liste des types
+                    types = repType.GetTypes();
+                    DtTypes = ConvertListToDataTable(types);
+
+                    MessageBox.Show("Le type a bien été ajouté !");
+                    NavigationServices.NavigateToPage(new GestionType());
+                }
             }
             else
             {
@@ -164,32 +187,41 @@ namespace PokeStat.VuesModeles
             RepType repType = new RepType();
             List<MType> types = repType.GetTypes();
 
+            //Cherche le type qui correspond à la ligne sélectionnée
             if (DtTypes != null && DtTypes.Rows.Count > 0)
             {
                 foreach (MType type in types)
                 {
                     if (type.Equals(LigneSelection))
                     {
+                        // Mise à jour de la ligne sélectionnée avec le type correspondant
                         LigneSelection = type;
                     }
                 }
             }
+
+            // Vers la page de modification du type avec la ligne sélectionnée en argument
             NavigationServices.NavigateToPage(new ModifieType(LigneSelection));
         }
-
 
         public void MajType()
         {
             RepType repType = new RepType();
-            
+
             if (IsSaisieValide)
             {
+                // Mise à jour du nom du type avec la saisie de l'admin
                 LigneSelection.nomType = nomType;
                 repType.UpdateType(LigneSelection);
+
+                // Actualisation de la liste des types
                 List<MType> types = repType.GetTypes();
                 DtTypes = ConvertListToDataTable(types);
 
+                // Message de confirmation
                 MessageBox.Show("Le type a bien été modifié !");
+
+                // Vers la page de gestion des types
                 NavigationServices.NavigateToPage(new GestionType());
             }
             else
@@ -198,26 +230,29 @@ namespace PokeStat.VuesModeles
             }
         }
 
-
         private void EffaceType()
         {
             RepType repType = new RepType();
-
             List<MType> types = repType.GetTypes();
+
             if (DtTypes != null && DtTypes.Rows.Count > 0)
             {
                 int idTypeAEfface = LigneSelection.idType;
 
-                MType typeToDelete = types.FirstOrDefault(t => t.idType == idTypeAEfface);
-                if (typeToDelete != null)
+                // Cherche le type à effacer en fonction de son id
+                MType typeAEffacer = types.FirstOrDefault(t => t.idType == idTypeAEfface);
+                if (typeAEffacer != null)
                 {
-                    // Afficher une boîte de dialogue de confirmation
+                    // Boîte de dialogue de confirmation
                     MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce type ?", "Confirmation de suppression", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                    // Vérifier la réponse de l'utilisateur
+                    // Vérifie la réponse de l'admin
                     if (result == MessageBoxResult.Yes)
                     {
+                        // Envoi le type à supprimer vers le Repository
                         repType.DeleteType(idTypeAEfface);
+
+                        // Actualisation de la liste des types
                         types = repType.GetTypes();
                         DtTypes = ConvertListToDataTable(types);
                     }
@@ -231,26 +266,24 @@ namespace PokeStat.VuesModeles
 
         private void GestionType()
         {
+            // Vers la page de gestion des types
             NavigationServices.NavigateToPage(new GestionType());
         }
 
         private void AccueilPage()
         {
-            Page accueilPage = new AccueilPage(); 
+            // Vers la page d'accueil
+            Page accueilPage = new AccueilPage();
             NavigationServices.NavigateToPage(accueilPage);
-
         }
 
-        // Convertir une liste de MType en DataTable
+        // Conversion d'une liste de MType en DataTable
         private DataTable ConvertListToDataTable(List<MType> types)
         {
             DataTable dtType = new DataTable();
-
-            // Ajouter les colonnes à la DataTable
             dtType.Columns.Add("id", typeof(int));
             dtType.Columns.Add("Nom type", typeof(string));
 
-            // Ajouter les données à la DataTable
             foreach (var type in types)
             {
                 DataRow row;
@@ -265,6 +298,7 @@ namespace PokeStat.VuesModeles
 
         private void Close()
         {
+            // Fermer l'application
             Application.Current.Shutdown();
         }
 
@@ -286,6 +320,7 @@ namespace PokeStat.VuesModeles
                 IsSaisieValide = true;
             }
         }
+
 
         // EVENT HANDLER
         public event PropertyChangedEventHandler PropertyChanged;

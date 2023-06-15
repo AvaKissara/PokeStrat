@@ -8,19 +8,21 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ModifieType">
 
- 
 
-    <Grid>
+
+    <Grid Background="#1976D2">
         <Grid>
             <!-- Titre de la vue -->
-            <TextBlock Grid.Column="0" Text="Modifier un Type" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,6,0,0"/>
+            <TextBlock Text="Modifier un Type" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="26" Margin="0,40,0,0" Foreground="White"/>
 
             <!-- Bouton de fermeture -->
             <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top"  Command="{Binding CloseCommand}"/>
         </Grid>
 
-        <Label Content="Nom :" HorizontalAlignment="Center" Margin="-50,150,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="tbNomType" HorizontalAlignment="Center" Margin="170,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+        <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="40,16,0,0" VerticalAlignment="Top" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+
+        <Label Content="Nom du type:" HorizontalAlignment="Center" Margin="0,0,170,0" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
+        <TextBox Name="tbNomType" HorizontalAlignment="Center" Margin="100,4,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" >
             <TextBox.Text>
                 <Binding Path="NomType" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
                 </Binding>
@@ -34,8 +36,7 @@
            Margin="0,5,0,180"
            VerticalAlignment="Bottom" />
 
-        <Button Name="btnValid" Content="Valider" Command="{Binding MajTypeCommand}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
-        <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Center" Margin="90,0,0,0" VerticalAlignment="Center"/>
-        
+        <Button Name="btnValid" Content="Valider" Command="{Binding MajTypeCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnAnnul" Content="Annuler" Command="{Binding GestionTypeCommand}" HorizontalAlignment="Center" Margin="120,0,0,60" VerticalAlignment="Bottom" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
     </Grid>
 </Page>
