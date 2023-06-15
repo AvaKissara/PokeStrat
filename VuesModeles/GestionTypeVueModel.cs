@@ -129,9 +129,7 @@ namespace PokeStat.VuesModeles
             dataRowViews = new List<DataRowView>();
 
         }
-     
-       
-
+           
         private void CreeType()
         {
             NavigationServices.NavigateToPage(new CreeType());
@@ -183,14 +181,15 @@ namespace PokeStat.VuesModeles
         public void MajType()
         {
             RepType repType = new RepType();
-            LigneSelection.nomType = nomType;
-
+            
             if (IsSaisieValide)
             {
+                LigneSelection.nomType = nomType;
                 repType.UpdateType(LigneSelection);
                 List<MType> types = repType.GetTypes();
                 DtTypes = ConvertListToDataTable(types);
 
+                MessageBox.Show("Le type a bien été modifié !");
                 NavigationServices.NavigateToPage(new GestionType());
             }
             else
@@ -207,14 +206,21 @@ namespace PokeStat.VuesModeles
             List<MType> types = repType.GetTypes();
             if (DtTypes != null && DtTypes.Rows.Count > 0)
             {
-                int entryId = LigneSelection.idType;
+                int idTypeAEfface = LigneSelection.idType;
 
-                MType typeToDelete = types.FirstOrDefault(t => t.idType == entryId);
+                MType typeToDelete = types.FirstOrDefault(t => t.idType == idTypeAEfface);
                 if (typeToDelete != null)
                 {
-                    repType.DeleteType(entryId);
-                    types = repType.GetTypes();
-                    DtTypes = ConvertListToDataTable(types);
+                    // Afficher une boîte de dialogue de confirmation
+                    MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce type ?", "Confirmation de suppression", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    // Vérifier la réponse de l'utilisateur
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        repType.DeleteType(idTypeAEfface);
+                        types = repType.GetTypes();
+                        DtTypes = ConvertListToDataTable(types);
+                    }
                 }
                 else
                 {
