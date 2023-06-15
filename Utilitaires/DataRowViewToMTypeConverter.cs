@@ -15,8 +15,8 @@ namespace PokeStat.Utilitaires
                 // Convertir la DataRowView en instance de MType
                 return new MType
                 {
-                    idType = (int)rowView["id"],
-                    nomType = (string)rowView["Nom type"]
+                    idType = (int)rowView["ID"],
+                    nomType = (string)rowView["NOM"]
                 };
             }
 

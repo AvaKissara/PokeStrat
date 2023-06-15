@@ -53,8 +53,6 @@
                     <Setter Property="Background" Value="#7B7B7E"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 </Style>
-
-            
             </DataGrid.Resources>
 
         </DataGrid>
@@ -63,12 +61,25 @@
         <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeTypeCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
 
         <!-- Bouton Modifier -->
-        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway"  VerticalAlignment="Bottom" Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway" VerticalAlignment="Bottom" FontSize="18" Padding="20,7">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#7B7B7E" />
+                    <Setter Property="Foreground" Value="White" />
+                </Style>
+            </Button.Style>
+        </Button>
 
-        <!-- Bouton Supprimer -->
-        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" Background="#7B7B7E" FontFamily="Raleway"  Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" FontFamily="Raleway" FontSize="18" Padding="20,7">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#7B7B7E" />
+                    <Setter Property="Foreground" Value="White" />
+                </Style>
+            </Button.Style>
+        </Button>
 
         <!-- Champ de texte pour l'id du type sélectionné -->
-        <TextBox Text="{Binding LigneSelection.idType}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="300,10,0,40" Background="White" Width="40" Height="40" BorderBrush="Black" BorderThickness="1"/>
+        <TextBox Text="{Binding LigneSelection.idType}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="300,10,0,40" Background="#7B7B7E" Foreground="White" Width="40" Height="40" BorderBrush="Black" BorderThickness="1"/>
     </Grid>
 </Page>

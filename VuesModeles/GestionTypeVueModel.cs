@@ -281,8 +281,8 @@ namespace PokeStat.VuesModeles
         private DataTable ConvertListToDataTable(List<MType> types)
         {
             DataTable dtType = new DataTable();
-            dtType.Columns.Add("id", typeof(int));
-            dtType.Columns.Add("Nom type", typeof(string));
+            dtType.Columns.Add("ID", typeof(int));
+            dtType.Columns.Add("NOM", typeof(string));
 
             foreach (var type in types)
             {
