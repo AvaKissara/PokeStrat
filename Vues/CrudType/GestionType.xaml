@@ -15,7 +15,7 @@
         <local:DataRowViewToMTypeConverter x:Key="DataRowViewToMTypeConverter" />
     </Page.Resources>
 
-    <Grid Background="#1976D2">
+    <Grid Background="#2D354D">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -23,28 +23,50 @@
             </Grid.ColumnDefinitions>
 
             <!-- Titre de la vue -->
-            <TextBlock Grid.Column="0" Text="Gestion des types" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Margin="0,16,0,0" Foreground="White"/>
+            <TextBlock Grid.Column="0" Text="GESTION DES TYPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
 
             <!-- Bouton de fermeture -->
             <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseCommand}"/>
         </Grid>
 
         <!-- Bouton Accueil -->
-        <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="40,16,0,0" VerticalAlignment="Top" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="40,16,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway"  Foreground="White" FontSize="18" Padding="20,7"/>
 
         <!-- Grille de données -->
         <DataGrid ColumnWidth="*" ItemsSource="{Binding DtTypes, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding LigneSelection, Converter={StaticResource DataRowViewToMTypeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  Margin="40,80,40,80" AutoGenerateColumns="True" Name="dataGridView" Background="White" BorderBrush="#64B5F6" BorderThickness="1"/>
+          SelectedItem="{Binding LigneSelection, Converter={StaticResource DataRowViewToMTypeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+          Margin="40,30,40,100" AutoGenerateColumns="True" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
+
+            <DataGrid.Resources>
+                <!-- Style de cellule -->
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
+                    <Setter Property="TextBlock.FontSize" Value="16"/>
+                    <Setter Property="TextBlock.Foreground" Value="Black"/>
+                </Style>
+
+                <!-- Style d'en-tête de colonne -->
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
+                    <Setter Property="TextBlock.FontSize" Value="18"/>
+                    <Setter Property="TextBlock.Foreground" Value="White"/>
+                    <Setter Property="Background" Value="#7B7B7E"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+
+            
+            </DataGrid.Resources>
+
+        </DataGrid>
 
         <!-- Bouton Ajouter -->
-        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeTypeCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeTypeCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
 
         <!-- Bouton Modifier -->
-        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Center" Margin="40,0,0,40" VerticalAlignment="Bottom" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway"  VerticalAlignment="Bottom" Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
 
         <!-- Bouton Supprimer -->
-        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" Background="#64B5F6" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" Background="#7B7B7E" FontFamily="Raleway"  Foreground="White" FontSize="18" Padding="20,7"/>
 
         <!-- Champ de texte pour l'id du type sélectionné -->
         <TextBox Text="{Binding LigneSelection.idType}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="300,10,0,40" Background="White" Width="40" Height="40" BorderBrush="Black" BorderThickness="1"/>
