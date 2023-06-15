@@ -18,7 +18,7 @@ namespace PokeStat.Repositories
             }
             catch (Exception ex)
             {
-                // Gérer l'exception, par exemple, afficher un message d'erreur ou enregistrer l'erreur dans un journal.
+                // Gestion de l'exception
                 Console.WriteLine("Erreur lors de la connexion à la base de données : " + ex.Message);
             }
         }
@@ -63,7 +63,7 @@ namespace PokeStat.Repositories
             }
             catch (Exception ex)
             {
-                // Gérer l'exception, par exemple, afficher un message d'erreur ou enregistrer l'erreur dans un journal.
+                // Gestion de l'exception
                 Console.WriteLine("Erreur lors de la récupération des types : " + ex.Message);
             }
 
@@ -89,7 +89,7 @@ namespace PokeStat.Repositories
             }
             catch (Exception ex)
             {
-                // Gérer l'exception, par exemple, afficher un message d'erreur ou enregistrer l'erreur dans un journal.
+                // Gestion de l'exception
                 Console.WriteLine("Erreur lors de l'ajout du type : " + ex.Message);
             }
 
@@ -113,7 +113,7 @@ namespace PokeStat.Repositories
             }
             catch (Exception ex)
             {
-                // Gérer l'exception, par exemple, afficher un message d'erreur ou enregistrer l'erreur dans un journal.
+                // Gestion de l'exception
                 Console.WriteLine("Erreur lors de la suppression du type : " + ex.Message);
             }
 
@@ -140,7 +140,7 @@ namespace PokeStat.Repositories
             }
             catch (Exception ex)
             {
-                // Gérer l'exception, par exemple, afficher un message d'erreur ou enregistrer l'erreur dans un journal.
+                // Gestion de l'exception
                 Console.WriteLine("Erreur lors de la mise à jour du type : " + ex.Message);
             }
 

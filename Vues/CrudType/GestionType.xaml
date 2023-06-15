@@ -32,7 +32,7 @@
         <!-- Bouton Accueil -->
         <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="40,16,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway"  Foreground="White" FontSize="18" Padding="20,7"/>
 
-        <!-- Grille de données -->
+        <!-- DataGridView -->
         <DataGrid ColumnWidth="*" ItemsSource="{Binding DtTypes, UpdateSourceTrigger=PropertyChanged}"
           SelectedItem="{Binding LigneSelection, Converter={StaticResource DataRowViewToMTypeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
           Margin="40,30,40,100" AutoGenerateColumns="True" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
@@ -69,7 +69,8 @@
                 </Style>
             </Button.Style>
         </Button>
-
+        
+        <!-- Bouton Supprimer -->
         <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceTypeCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" FontFamily="Raleway" FontSize="18" Padding="20,7">
             <Button.Style>
                 <Style TargetType="Button">

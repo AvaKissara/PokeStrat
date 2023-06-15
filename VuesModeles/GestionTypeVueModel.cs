@@ -48,7 +48,7 @@ namespace PokeStat.VuesModeles
         }
         public bool IsSelectionne => LigneSelection != null;
 
-        //Propriété de type DataTable stockant des objets MType sous forme de table.
+        //Propriété de type DataTable stockant des objets MType
         private DataTable dtTypes;
 
         public DataTable DtTypes
@@ -114,7 +114,7 @@ namespace PokeStat.VuesModeles
 
         public DataRowView FindDataRowViewById(int id)
         {
-            return dataRowViews.Find(rv => (int)rv["id"] == id);
+            return dataRowViews.Find(rv => (int)rv["ID"] == id);
         }
 
         public GestionTypeVueModel()
@@ -164,7 +164,7 @@ namespace PokeStat.VuesModeles
                 }
                 else
                 {
-                    // Ajout de nouveau type au repository
+                    // Ajout d'un nouveau type au repository
                     repType.AddType(nouveauType);
 
                     // Actualisation de la liste des types
@@ -186,10 +186,10 @@ namespace PokeStat.VuesModeles
         {
             RepType repType = new RepType();
             List<MType> types = repType.GetTypes();
-
-            //Cherche le type qui correspond à la ligne sélectionnée
+           
             if (DtTypes != null && DtTypes.Rows.Count > 0)
-            {
+            { 
+                //Cherche le type qui correspond à la ligne sélectionnée
                 foreach (MType type in types)
                 {
                     if (type.Equals(LigneSelection))
@@ -277,7 +277,11 @@ namespace PokeStat.VuesModeles
             NavigationServices.NavigateToPage(accueilPage);
         }
 
-        // Conversion d'une liste de MType en DataTable
+        /// <summary>
+        /// Conversion d'une liste de MType en DataTable
+        /// </summary>
+        /// <param name="types"></param>
+        /// <returns></returns>
         private DataTable ConvertListToDataTable(List<MType> types)
         {
             DataTable dtType = new DataTable();
@@ -302,6 +306,9 @@ namespace PokeStat.VuesModeles
             Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// Contrôle de la saisie
+        /// </summary>
         private void ValidateNomType()
         {
             if (string.IsNullOrEmpty(NomType))
