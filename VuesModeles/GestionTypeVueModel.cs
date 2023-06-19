@@ -154,7 +154,6 @@ namespace PokeStat.VuesModeles
         {
             MType nouveauType = new MType(NomType);
            
-
             if (IsSaisieValide)
             {
                 List<MType> types = repType.GetTypes();

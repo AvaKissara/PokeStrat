@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Windows.Data;
 using PokeStat.Modeles;
 
@@ -13,11 +14,7 @@ namespace PokeStat.Utilitaires
             if (value is DataRowView rowView)
             {
                 // Convertir la DataRowView en instance de MType
-                return new MType
-                {
-                    idType = (int)rowView["ID"],
-                    nomType = (string)rowView["NOM"]
-                };
+                return new MType((int)rowView["ID"], (string)rowView["NOM"]);
             }
 
             return null;

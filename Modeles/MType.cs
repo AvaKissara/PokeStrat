@@ -31,10 +31,7 @@ namespace PokeStat.Modeles
         //    this.emplacement = Emplacement;
         //}
 
-        public MType()
-        {
-        }
-
+       
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
