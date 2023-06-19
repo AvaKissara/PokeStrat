@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Modeles
 {
-    public interface IPokemonCapacite
+    public interface IPokemon
     {
         int IdPokemon { get; }
         string CheminImgPokemon { get; set; }
@@ -29,9 +29,6 @@ namespace PokeStat.Modeles
         List<MType> TypesPokemon { get; set; }
         MPokemon Evolution { get; set; }
         MVersion Gen { get; set; }
-        int IdCapacite { get; }
-        string NomCapacite { get; set; }
-        MType TypeCapacite { get; set; }
-        List<MCategorie> CatCapacite { get; set; }
+  
     }
 }

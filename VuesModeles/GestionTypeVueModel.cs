@@ -134,7 +134,7 @@ namespace PokeStat.VuesModeles
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
 
-            // Récupération des types de données depuis le repository
+            // Récupération des données de types  depuis le repository
             List<MType> types = repType.GetTypes();
 
             // Conversion de la liste de types en DataTable

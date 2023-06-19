@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Modeles
 {
-    public class PokemonCapacite : IPokemonCapacite
+    public class PokemonCapacite : IPokemon, ICapacite
     {
         public int IdPokemon { get; }
         public string CheminImgPokemon { get; set; }
@@ -48,6 +48,7 @@ namespace PokeStat.Modeles
             AttSpe = pokemon.attSpe;
             DefSpe = pokemon.defSpe;
             Vitesse = pokemon.vitesse;
+
             IdCapacite = capacite.idCapacite;
             NomCapacite = capacite.nomCapacite;
             TypeCapacite = capacite.typeCapacite;
