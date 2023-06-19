@@ -8,13 +8,46 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GestionPokemon">
 
-    <Grid VerticalAlignment="Center">
-        <TextBox Text="Gestion des Pokémons"  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="0,16,0,0"/>
-        <DataGrid ColumnWidth="*" ItemsSource="{Binding DtPokedex}" Margin="0,0,0,0" AutoGenerateColumns="True" Name="dataGridView" SelectionMode="Single"/>
+    <Grid Background="#2D354D">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="GESTION DES POKEMONS" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
+        <!-- Bouton de fermeture -->
+        <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseCommand}"/>
 
-        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreePokemonCommand}" HorizontalAlignment="Left" Margin="210,391,0,0" VerticalAlignment="Top"/>
-        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifiePokemonCommand}" HorizontalAlignment="Left" Margin="385,391,0,0" VerticalAlignment="Top"/>
-        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffacePokemonCommand}" HorizontalAlignment="Left" Margin="552,391,0,0" VerticalAlignment="Top"/>
+            <!-- Bouton Accueil -->
+            <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="40,16,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway"  Foreground="White" FontSize="18" Padding="20,7"/>
+
+        </Grid>
+
+        <DataGrid ColumnWidth="*" ItemsSource="{Binding DtPokedex, UpdateSourceTrigger=PropertyChanged}" Margin="40,30,40,100" AutoGenerateColumns="True" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
+
+            <DataGrid.Resources>
+                <!-- Style de cellule -->
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
+                    <Setter Property="TextBlock.FontSize" Value="16"/>
+                    <Setter Property="TextBlock.Foreground" Value="Black"/>
+                </Style>
+
+                <!-- Style d'en-tête de colonne -->
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
+                    <Setter Property="TextBlock.FontSize" Value="18"/>
+                    <Setter Property="TextBlock.Foreground" Value="White"/>
+                    <Setter Property="Background" Value="#7B7B7E"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+
+        </DataGrid>
+
+        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreePokemonCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifiePokemonCommand}" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>
+        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffacePokemonCommand}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" FontFamily="Raleway" FontSize="18" Padding="20,7"/>
     </Grid>
 
 </Page>

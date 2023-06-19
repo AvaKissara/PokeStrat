@@ -12,12 +12,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using PokeStat.Vues.CrudType;
 
 namespace PokeStat.VuesModeles
 {
     public class GestionPokemonVueModel : INotifyPropertyChanged
     {
         // Déclaration des commandes utilisées dans la classe
+        public ICommand CreePokemonCommand { get; set; }
         public ICommand AjoutePokemonCommand { get; set; }
         public ICommand ModifiePokemonCommand { get; set; }
         public ICommand EffacePokemonCommand { get; set; }
@@ -40,6 +42,7 @@ namespace PokeStat.VuesModeles
 
         public GestionPokemonVueModel()
         {
+            CreePokemonCommand = new RelayCommand(CreePokemon);
             AjoutePokemonCommand = new RelayCommand(AjoutePokemon);
             ModifiePokemonCommand = new RelayCommand(ModifiePokemon);
             EffacePokemonCommand = new RelayCommand(EffacePokemon);
@@ -49,6 +52,11 @@ namespace PokeStat.VuesModeles
             RepPokemon repPokemon = new RepPokemon();
             List<MPokemon> pokemons = repPokemon.GetPokemons();
             DtPokedex = ConvertListToDataTable(pokemons);
+        }
+
+        private void CreePokemon()
+        {
+
         }
 
         private void AjoutePokemon()
@@ -75,23 +83,23 @@ namespace PokeStat.VuesModeles
             // Ajouter les colonnes à la DataTable
             dtPokedex.Columns.Add("id", typeof(int));
             dtPokedex.Columns.Add("Image", typeof(Bitmap));
-            dtPokedex.Columns.Add("Nom anglais", typeof(string));
-            dtPokedex.Columns.Add("Nom français", typeof(string));  
-            dtPokedex.Columns.Add("Numéro", typeof(string));
+            dtPokedex.Columns.Add("Name", typeof(string));
+            dtPokedex.Columns.Add("Nom", typeof(string));  
+            dtPokedex.Columns.Add("Num", typeof(string));
             dtPokedex.Columns.Add("Taille", typeof(string));
             dtPokedex.Columns.Add("Poids", typeof(double));
-            dtPokedex.Columns.Add("Expérience de base", typeof(int));
-            dtPokedex.Columns.Add("HP de base", typeof(int));
-            dtPokedex.Columns.Add("Attaque de base", typeof(int));
-            dtPokedex.Columns.Add("Défense de base", typeof(int));
-            dtPokedex.Columns.Add("Attaque spéciale de base", typeof(int));
-            dtPokedex.Columns.Add("Défense spéciale de base", typeof(int));
-            dtPokedex.Columns.Add("Vitesse de base", typeof(int));
+            dtPokedex.Columns.Add("Xp", typeof(int));
+            dtPokedex.Columns.Add("HP", typeof(int));
+            dtPokedex.Columns.Add("Attaque", typeof(int));
+            dtPokedex.Columns.Add("Défense", typeof(int));
+            dtPokedex.Columns.Add("Attaque spé", typeof(int));
+            dtPokedex.Columns.Add("Défense spé", typeof(int));
+            dtPokedex.Columns.Add("Vitesse", typeof(int));
             dtPokedex.Columns.Add("Légendaire", typeof(bool));
             dtPokedex.Columns.Add("Shiny", typeof(bool));
-            dtPokedex.Columns.Add("Nom de l'évolution", typeof(string));
-            dtPokedex.Columns.Add("Niveau d'évolution", typeof(int));
-            dtPokedex.Columns.Add("Nom de la version", typeof(string));
+            dtPokedex.Columns.Add("Evolution", typeof(string));
+            dtPokedex.Columns.Add("Niveau évo", typeof(int));
+            dtPokedex.Columns.Add("Version", typeof(string));
             dtPokedex.Columns[1].ColumnName = "Pokemon";
 
             // Ajouter les données à la DataTable
