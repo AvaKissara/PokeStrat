@@ -58,7 +58,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Connexion.cs" />
-    <Compile Include="Modeles\IPokemonCapacite.cs" />
+    <Compile Include="Modeles\ICapacite.cs" />
+    <Compile Include="Modeles\IPokemon.cs" />
     <Compile Include="Modeles\IPokemonTalent.cs" />
     <Compile Include="Modeles\MCapacite.cs" />
     <Compile Include="Modeles\MCategorie.cs" />
