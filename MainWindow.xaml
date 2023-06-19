@@ -4,16 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokeStat"
-        xmlns:views="clr-namespace:PokeStat.Vues"
+        xmlns:views="clr-namespace:PokeStat.Vues" xmlns:local1="clr-namespace:PokeStat.Vues.Layout"
         mc:Ignorable="d"
         Title="PokeStat" Height="450" Width="800">
-    
-    <Grid>
-        <Frame Name="MainFrame" NavigationUIVisibility="Hidden">
+
+    <Grid Background="#2D354D">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Navigation Bar -->
+        <local1:NavigationBarAdmin Grid.Row="0" />
+
+        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden">
             <Frame.Content>
-                <views:AccueilPage/>
+                <views:AccueilPage />
             </Frame.Content>
         </Frame>
-
     </Grid>
 </Window>

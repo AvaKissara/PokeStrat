@@ -17,12 +17,12 @@ using System.Windows.Shapes;
 namespace PokeStat.Vues.Layout
 {
     /// <summary>
-    /// Logique d'interaction pour NavigationBar.xaml
+    /// Logique d'interaction pour NavigationBarAdmin.xaml
     /// </summary>
-    public partial class NavigationBar : UserControl
+    public partial class NavigationBarAdmin : UserControl
     {
         private AccueilVueModel accueilVueModel;
-        public NavigationBar()
+        public NavigationBarAdmin()
         {
             InitializeComponent();
             accueilVueModel = new AccueilVueModel();

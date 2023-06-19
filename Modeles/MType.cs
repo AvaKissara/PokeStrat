@@ -40,5 +40,15 @@ namespace PokeStat.Modeles
             MType other = (MType)obj;
             return idType == other.idType && nomType == other.nomType;
         }
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 23 + idType.GetHashCode();
+                hash = hash * 23 + (nomType != null ? nomType.GetHashCode() : 0);
+                return hash;
+            }
+        }
     }
 }

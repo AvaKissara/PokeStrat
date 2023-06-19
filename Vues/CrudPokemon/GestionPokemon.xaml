@@ -45,7 +45,7 @@
 
         </DataGrid>
 
-        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreePokemonCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnAdd" Content="Ajouter" Command="{Binding AjoutePokemonCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
         <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifiePokemonCommand}" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>
         <Button Name="btnDel" Content="Supprimer" Command="{Binding EffacePokemonCommand}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" FontFamily="Raleway" FontSize="18" Padding="20,7"/>
     </Grid>

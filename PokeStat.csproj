@@ -82,8 +82,8 @@
     <Compile Include="Vues\AccueilPage.xaml.cs">
       <DependentUpon>AccueilPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vues\CrudPokemon\AjoutePokemon.xaml.cs">
-      <DependentUpon>AjoutePokemon.xaml</DependentUpon>
+    <Compile Include="Vues\CrudPokemon\CreePokemon.xaml.cs">
+      <DependentUpon>CreePokemon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vues\CrudPokemon\EffacePokemon.xaml.cs">
       <DependentUpon>EffacePokemon.xaml</DependentUpon>
@@ -106,6 +106,12 @@
     <Compile Include="Vues\Layout\NavigationBar.xaml.cs">
       <DependentUpon>NavigationBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vues\Layout\NavigationBarAdmin.xaml.cs">
+      <DependentUpon>NavigationBarAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\Layout\NavigationBarUser.xaml.cs">
+      <DependentUpon>NavigationBarUser.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -122,7 +128,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vues\CrudPokemon\AjoutePokemon.xaml">
+    <Page Include="Vues\CrudPokemon\CreePokemon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,6 +157,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vues\Layout\NavigationBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\Layout\NavigationBarAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\Layout\NavigationBarUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

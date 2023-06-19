@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokeStat.VuesModeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PokeStat.Vues.CrudPokemon
+namespace PokeStat.Vues.Layout
 {
     /// <summary>
-    /// Logique d'interaction pour AjoutPokemon.xaml
+    /// Logique d'interaction pour NavigationBarUser.xaml
     /// </summary>
-    public partial class AjoutePokemon : Page
+    public partial class NavigationBarUser : UserControl
     {
-        public AjoutePokemon()
+        private AccueilVueModel accueilVueModel;
+        public NavigationBarUser()
         {
             InitializeComponent();
+            accueilVueModel = new AccueilVueModel();
+            DataContext = accueilVueModel;
         }
     }
 }

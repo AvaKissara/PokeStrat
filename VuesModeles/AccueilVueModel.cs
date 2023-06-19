@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using PokeStat.Utilitaires;
+using PokeStat.Vues;
 using PokeStat.Vues.CrudPokemon;
 using PokeStat.Vues.CrudType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
@@ -45,14 +46,13 @@ namespace PokeStat.VuesModeles
         private void GestionPokemon() 
         {
             NavigationServices.NavigateToPage(new GestionPokemon());
-         
-            MessageBox.Show("Le bouton 'Gestion Pokemon' a été cliqué !");
         }
 
         private void GestionType()
         {
             NavigationServices.NavigateToPage(new GestionType());
         }
+     
 
         private void Close()
         {

@@ -1,18 +1,16 @@
 ﻿using PokeStat.Modeles;
 using PokeStat.Repositories;
 using PokeStat.Utilitaires;
+using PokeStat.Vues;
 using PokeStat.Vues.CrudPokemon;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Windows;
-using PokeStat.Vues.CrudType;
+using System.Windows.Input;
+using System.Windows.Controls;
+
 
 namespace PokeStat.VuesModeles
 {
@@ -23,6 +21,7 @@ namespace PokeStat.VuesModeles
         public ICommand AjoutePokemonCommand { get; set; }
         public ICommand ModifiePokemonCommand { get; set; }
         public ICommand EffacePokemonCommand { get; set; }
+        public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
         private DataTable dtPokedex;
@@ -46,6 +45,7 @@ namespace PokeStat.VuesModeles
             AjoutePokemonCommand = new RelayCommand(AjoutePokemon);
             ModifiePokemonCommand = new RelayCommand(ModifiePokemon);
             EffacePokemonCommand = new RelayCommand(EffacePokemon);
+            AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
 
 
@@ -56,12 +56,12 @@ namespace PokeStat.VuesModeles
 
         private void CreePokemon()
         {
-
+            NavigationServices.NavigateToPage(new CreePokemon());
         }
 
         private void AjoutePokemon()
         {
-            NavigationServices.NavigateToPage(new AjoutePokemon());
+            NavigationServices.NavigateToPage(new CreePokemon());
         }
 
         private void ModifiePokemon()
@@ -84,7 +84,7 @@ namespace PokeStat.VuesModeles
             dtPokedex.Columns.Add("id", typeof(int));
             dtPokedex.Columns.Add("Image", typeof(Bitmap));
             dtPokedex.Columns.Add("Name", typeof(string));
-            dtPokedex.Columns.Add("Nom", typeof(string));  
+            dtPokedex.Columns.Add("Nom", typeof(string));
             dtPokedex.Columns.Add("Num", typeof(string));
             dtPokedex.Columns.Add("Taille", typeof(string));
             dtPokedex.Columns.Add("Poids", typeof(double));
@@ -109,7 +109,7 @@ namespace PokeStat.VuesModeles
                 DataRow row;
                 row = dtPokedex.NewRow();
                 row[0] = pokemon.idPokemon;
-                row[1] = imgPokemon; 
+                row[1] = imgPokemon;
                 row[2] = pokemon.nomEngPokemon;
                 row[3] = pokemon.nomFraPokemon;
                 row[4] = pokemon.numPokemon;
@@ -131,6 +131,12 @@ namespace PokeStat.VuesModeles
             }
 
             return dtPokedex;
+        }
+        private void AccueilPage()
+        {
+            // Vers la page d'accueil
+            Page accueilPage = new AccueilPage();
+            NavigationServices.NavigateToPage(accueilPage);
         }
 
         private void Close()

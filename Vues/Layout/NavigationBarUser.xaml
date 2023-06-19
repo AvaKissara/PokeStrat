@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="PokeStat.Vues.Layout.NavigationBar"
+﻿<UserControl x:Class="PokeStat.Vues.Layout.NavigationBarUser"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PokeStat.Vues.Layout" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:AccueilVueModel}"
+             xmlns:local="clr-namespace:PokeStat.Vues.Layout"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -16,8 +16,8 @@
             <!-- Bouton de fermeture -->
             <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseCommand}"/>
 
-            <Button Content="Connexion" HorizontalAlignment="Right" Margin="0,26,40,0" VerticalAlignment="Top" Background="#7B7B7E" Foreground="White" FontFamily="Raleway" FontSize="18" Padding="20,7"/>
-            <Button Content="Inscription" HorizontalAlignment="Right" Margin="0,26,170,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>
+            <Button x:Name="btnGestionPokemon" Content="Gestion Pokemon" Command="{Binding GestionPokemonCommand}" HorizontalAlignment="Left" Margin="40,26,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway"  Foreground="White" FontSize="18" Padding="20,7"/>
+            <Button x:Name="btnGestionType" Content="Gestion Type" Command="{Binding GestionTypeCommand}" HorizontalAlignment="Left" Margin="226,26,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>
         </Grid>
     </Grid>
 </UserControl>
