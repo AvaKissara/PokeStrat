@@ -136,7 +136,7 @@ namespace PokeStat.VuesModeles
             ComboBox cmbType = new ComboBox();
             foreach (MType type in types)
             {
-                cmbType.Items.Add(type);
+                cmbType.Items.Add(type.nomType);
             }
 
             return cmbType;
