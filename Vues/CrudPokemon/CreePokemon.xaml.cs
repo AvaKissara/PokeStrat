@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -40,5 +41,17 @@ namespace PokeStat.Vues.CrudPokemon
             //List<MVersion> versions = repVersion.GetVersions();
             //cmbVersions.ItemsSource = versions;
         }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    OpenFileDialog openFileDialog = new OpenFileDialog();
+        //    openFileDialog.Filter = "Images (*.jpg; *.jpeg; *.png) | *.jpg; *.jpeg; *.png";
+
+        //    if (openFileDialog.ShowDialog() == DialogResult.OK)
+        //    {
+        //        string selectedImagePath = openFileDialog.FileName;
+        //        imgPreview.Source = new BitmapImage(new Uri(selectedImagePath));
+        //    }
+        //}
+
     }
 }

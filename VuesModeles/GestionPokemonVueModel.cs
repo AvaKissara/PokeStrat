@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 
 namespace PokeStat.VuesModeles
@@ -23,6 +24,19 @@ namespace PokeStat.VuesModeles
         public ICommand EffacePokemonCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
+        public ICommand OpenFileCommand { get; }
+
+
+        private string _selectedImagePath;
+        public string SelectedImagePath
+        {
+            get { return _selectedImagePath; }
+            set
+            {
+                _selectedImagePath = value;
+                OnPropertyChanged(nameof(SelectedImagePath));
+            }
+        }    
 
         private DataTable dtPokedex;
 
@@ -85,6 +99,7 @@ namespace PokeStat.VuesModeles
             EffacePokemonCommand = new RelayCommand(EffacePokemon);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
+            OpenFileCommand = new RelayCommand(OpenFile);
 
             repPokemon = new RepPokemon();
             repVersion = new RepVersion();
@@ -118,6 +133,32 @@ namespace PokeStat.VuesModeles
         {
 
         }
+
+        private void AccueilPage()
+        {
+            // Vers la page d'accueil
+            Page accueilPage = new AccueilPage();
+            NavigationServices.NavigateToPage(accueilPage);
+        }
+
+        private void Close()
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void OpenFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Images (*.jpg; *.jpeg; *.png) | *.jpg; *.jpeg; *.png";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedImagePath = openFileDialog.FileName;
+                // Faites quelque chose avec le chemin d'accès au fichier sélectionné, par exemple, affectez-le à une propriété de votre ViewModel
+                SelectedImagePath = selectedImagePath;
+            }
+        }
+
 
 
         //private ComboBox ConvertListMVersionToCombobox(List<MVersion> versions)
@@ -199,17 +240,7 @@ namespace PokeStat.VuesModeles
 
             return dtPokedex;
         }
-        private void AccueilPage()
-        {
-            // Vers la page d'accueil
-            Page accueilPage = new AccueilPage();
-            NavigationServices.NavigateToPage(accueilPage);
-        }
-
-        private void Close()
-        {
-            Application.Current.Shutdown();
-        }
+     
 
 
         // EVENT HANDLER
