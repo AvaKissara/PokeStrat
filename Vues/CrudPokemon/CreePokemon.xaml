@@ -52,14 +52,14 @@
             <CheckBox Content="Légendaire" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Center"/>
             <CheckBox Content="Shiny" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,0,70,0" VerticalAlignment="Center"/>
 
-            <StackPanel Margin="0,500,70,0" Width="120" HorizontalAlignment="Right">
-                <ComboBox Name="cmbVersion" Text="Version" FontFamily="Raleway"  Foreground="Black" FontSize="16" ItemsSource="{Binding CmbVersion, UpdateSourceTrigger=PropertyChanged}" />
-
+            <StackPanel Margin="0,500,70,0" Width="250" HorizontalAlignment="Right">
+                <ComboBox Name="cmbVersion" Text="Version" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbVersion}" DisplayMemberPath="nomVersion" />
             </StackPanel>
 
             <StackPanel Margin="70,500,0,0" Width="120" HorizontalAlignment="Left">
-                <ComboBox Name="cmbType" Text="Type 1" FontFamily="Raleway"  Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType}" />
+                <ComboBox Name="cmbType" Text="Type 1" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType}" DisplayMemberPath="nomType" />
             </StackPanel>
+
         </Grid>
     </Grid>
 </Page>

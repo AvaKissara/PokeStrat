@@ -39,8 +39,17 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private ComboBox cmbVersion;
-        public ComboBox CmbVersion
+      
+
+        RepPokemon repPokemon;
+
+        RepVersion repVersion;
+
+        RepType repType;
+
+
+        private List<MVersion> cmbVersion;
+        public List<MVersion> CmbVersion
         {
             get { return cmbVersion; }
             set
@@ -48,12 +57,13 @@ namespace PokeStat.VuesModeles
                 if (cmbVersion != value)
                 {
                     cmbVersion = value;
-                    OnPropertyChanged(nameof(cmbVersion));
+                    OnPropertyChanged(nameof(CmbVersion));
                 }
             }
         }
-        private ComboBox cmbType;
-        public ComboBox CmbType
+
+        private List<MType> cmbType;
+        public List<MType> CmbType
         {
             get { return cmbType; }
             set
@@ -65,18 +75,6 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
-      
-
-        RepPokemon repPokemon;
-
-        RepVersion repVersion;
-
-        RepType repType;
-
-        List<MVersion> versions;
-
-       
-
 
 
         public GestionPokemonVueModel()
@@ -88,16 +86,17 @@ namespace PokeStat.VuesModeles
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
 
-
             repPokemon = new RepPokemon();
             repVersion = new RepVersion();
             repType = new RepType();
             List<MPokemon> pokemons = repPokemon.GetPokemons();
             DtPokedex = ConvertListToDataTable(pokemons);
-            versions = repVersion.GetVersions();
-            CmbVersion = ConvertListMVersionToCombobox(versions);
+            repVersion = new RepVersion();
+            repType = new RepType();
+            List<MVersion> versions = repVersion.GetVersions();
+            CmbVersion = versions;
             List<MType> types = repType.GetTypes();
-            CmbType = ConvertListMTypeToCombobox(types);
+            CmbType = types;
         }
 
         private void CreePokemon()
@@ -121,26 +120,26 @@ namespace PokeStat.VuesModeles
         }
 
 
-        private ComboBox ConvertListMVersionToCombobox(List<MVersion> versions)
-        {
-            ComboBox cmbVersion = new ComboBox();
-            foreach(MVersion version in versions)
-            {
-                cmbVersion.Items.Add(version);
-            }
+        //private ComboBox ConvertListMVersionToCombobox(List<MVersion> versions)
+        //{
+        //    ComboBox cmbVersion = new ComboBox();
+        //    foreach(MVersion version in versions)
+        //    {
+        //        cmbVersion.Items.Add(version);
+        //    }
 
-            return cmbVersion;
-        }
-        private ComboBox ConvertListMTypeToCombobox(List<MType> types)
-        {
-            ComboBox cmbType = new ComboBox();
-            foreach (MType type in types)
-            {
-                cmbType.Items.Add(type.nomType);
-            }
+        //    return cmbVersion;
+        //}
+        //private ComboBox ConvertListMTypeToCombobox(List<MType> types)
+        //{
+        //    ComboBox cmbType = new ComboBox();
+        //    foreach (MType type in types)
+        //    {
+        //        cmbType.Items.Add(type.nomType);
+        //    }
 
-            return cmbType;
-        }
+        //    return cmbType;
+        //}
 
 
         // Convertir une liste de MPokemon en DataTable
