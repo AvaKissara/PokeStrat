@@ -13,10 +13,6 @@
             <!-- Titre de la vue -->
             <TextBlock Text="AJOUTER UN TYPE" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="26" Padding="6,4" Margin="0,40,0,0" Foreground="White"/>
 
-            <!-- Bouton de fermeture -->
-            <Button Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top"  Command="{Binding CloseCommand}"/>
-            <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="40,16,0,0" VerticalAlignment="Top" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
-
         </Grid>
 
         <Label Content="Nom du type:" HorizontalAlignment="Center" Margin="0,0,170,0" VerticalAlignment="Center" FontFamily="Raleway"  Foreground="White" FontSize="18"/>

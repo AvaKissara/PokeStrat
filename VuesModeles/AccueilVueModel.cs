@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using PokeStat.Utilitaires;
@@ -22,6 +23,7 @@ namespace PokeStat.VuesModeles
         public ICommand InscriptionCommand { get; set; }
         public ICommand GestionPokemonCommand { get; set; }
         public ICommand GestionTypeCommand { get; set; }
+        public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
         public AccueilVueModel()
@@ -30,6 +32,7 @@ namespace PokeStat.VuesModeles
             InscriptionCommand = new RelayCommand(Inscription);
             GestionPokemonCommand = new RelayCommand(GestionPokemon);
             GestionTypeCommand = new RelayCommand(GestionType);
+            AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
         }
 
@@ -52,7 +55,13 @@ namespace PokeStat.VuesModeles
         {
             NavigationServices.NavigateToPage(new GestionType());
         }
-     
+
+        private void AccueilPage()
+        {
+            // Vers la page d'accueil
+            Page accueilPage = new AccueilPage();
+            NavigationServices.NavigateToPage(accueilPage);
+        }
 
         private void Close()
         {

@@ -12,26 +12,65 @@
 
         <Grid>
             <TextBlock Text="AJOUTER UN POKÉMON" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="26" Padding="6,4" Foreground="White"/>
-            <Button Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseCommand}" />
-            <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="40,16,0,0" VerticalAlignment="Top" FontFamily="Raleway" Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
-
         </Grid>
 
+        <Grid Margin="100,100,110,0">
+            <Label Content="Image:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Center" Margin="80,100,0,0" VerticalAlignment="Top" />
+            <MediaElement HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="Image:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,100,0,0" VerticalAlignment="Top" />
-        <MediaElement HorizontalAlignment="Left" Margin="170,100,0,0" VerticalAlignment="Top" Width="120" />
+            <Label Content="Nom:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,150,0,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Left" Margin="200,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="Nom Français:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,150,0,0" VerticalAlignment="Top" />
-        <TextBox HorizontalAlignment="Left" Margin="170,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <Label Content="Name:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,200,0,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Left" Margin="200,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="Nom Anglais:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,200,0,0" VerticalAlignment="Top" />
-        <TextBox HorizontalAlignment="Left" Margin="170,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <Label Content="Numéro:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,250,0,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Left" Margin="200,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="Taille:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,250,0,0" VerticalAlignment="Top" />
-        <TextBox HorizontalAlignment="Left" Margin="170,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <Label Content="Taille:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,300,0,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Left" Margin="200,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="Poids:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,300,0,0" VerticalAlignment="Top" />
-        <TextBox HorizontalAlignment="Left" Margin="170,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <Label Content="Poids:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,350,0,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Left" Margin="200,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
 
+
+
+            <Label Content="Att:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,150,180,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="0,155,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+
+            <Label Content="Def:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="69,200,180,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="200,200,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+
+            <Label Content="Att Spe:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="69,250,180,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="200,250,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+
+            <Label Content="Def Spe:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="69,300,180,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="200,300,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+
+            <Label Content="Vit:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="69,350,180,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="200,350,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <CheckBox Content="Légendaire" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center"/>
+            <CheckBox Content="Shiny" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,0,80,0" VerticalAlignment="Center"/>
+
+            <StackPanel Margin="200,500,50,0" Width="100" HorizontalAlignment="Right">
+                <ComboBox Text="Version">
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Red">Rouge et Bleu</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Yellow">Jaune</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Silver">Or et Argent</TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

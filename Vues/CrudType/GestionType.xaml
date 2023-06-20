@@ -24,12 +24,6 @@
 
             <!-- Titre de la vue -->
             <TextBlock Grid.Column="0" Text="GESTION DES TYPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
-
-            <!-- Bouton de fermeture -->
-            <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseCommand}"/>
-            <!-- Bouton Accueil -->
-            <Button Name="btnAccueil" Content="Accueil" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="40,16,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway"  Foreground="White" FontSize="18" Padding="20,7"/>
-
         </Grid>
 
        
