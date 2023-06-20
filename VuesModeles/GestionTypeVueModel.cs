@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Runtime.InteropServices;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace PokeStat.VuesModeles
 {
@@ -50,7 +51,7 @@ namespace PokeStat.VuesModeles
         public bool IsSelectionne => LigneSelection != null;
 
 
-        RepType repType = new RepType();
+        public RepType repType;
 
         //Propriété de type DataTable stockant des objets MType
         private DataTable dtTypes;
@@ -134,6 +135,7 @@ namespace PokeStat.VuesModeles
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
 
+            repType = new RepType();
             // Récupération des données de types  depuis le repository
             List<MType> types = repType.GetTypes();
 

@@ -73,6 +73,7 @@
     <Compile Include="Modeles\MRegion.cs" />
     <Compile Include="Repositories\RepPokemon.cs" />
     <Compile Include="Repositories\RepType.cs" />
+    <Compile Include="Repositories\RepVersion.cs" />
     <Compile Include="Utilitaires\AuthenticationToVisibilityConverter.cs" />
     <Compile Include="Utilitaires\DataRowViewToMTypeConverter.cs" />
     <Compile Include="Utilitaires\NavigationServices.cs" />
@@ -188,6 +189,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="data\PokeStrat.bak" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

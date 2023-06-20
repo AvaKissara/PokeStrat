@@ -39,6 +39,46 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        private ComboBox cmbVersion;
+        public ComboBox CmbVersion
+        {
+            get { return cmbVersion; }
+            set
+            {
+                if (cmbVersion != value)
+                {
+                    cmbVersion = value;
+                    OnPropertyChanged(nameof(cmbVersion));
+                }
+            }
+        }
+        private ComboBox cmbType;
+        public ComboBox CmbType
+        {
+            get { return cmbType; }
+            set
+            {
+                if (cmbType != value)
+                {
+                    cmbType = value;
+                    OnPropertyChanged(nameof(CmbType));
+                }
+            }
+        }
+      
+
+        RepPokemon repPokemon;
+
+        RepVersion repVersion;
+
+        RepType repType;
+
+        List<MVersion> versions;
+
+       
+
+
+
         public GestionPokemonVueModel()
         {
             CreePokemonCommand = new RelayCommand(CreePokemon);
@@ -49,9 +89,15 @@ namespace PokeStat.VuesModeles
             CloseCommand = new RelayCommand(Close);
 
 
-            RepPokemon repPokemon = new RepPokemon();
+            repPokemon = new RepPokemon();
+            repVersion = new RepVersion();
+            repType = new RepType();
             List<MPokemon> pokemons = repPokemon.GetPokemons();
             DtPokedex = ConvertListToDataTable(pokemons);
+            versions = repVersion.GetVersions();
+            CmbVersion = ConvertListMVersionToCombobox(versions);
+            List<MType> types = repType.GetTypes();
+            CmbType = ConvertListMTypeToCombobox(types);
         }
 
         private void CreePokemon()
@@ -72,6 +118,28 @@ namespace PokeStat.VuesModeles
         private void EffacePokemon()
         {
 
+        }
+
+
+        private ComboBox ConvertListMVersionToCombobox(List<MVersion> versions)
+        {
+            ComboBox cmbVersion = new ComboBox();
+            foreach(MVersion version in versions)
+            {
+                cmbVersion.Items.Add(version);
+            }
+
+            return cmbVersion;
+        }
+        private ComboBox ConvertListMTypeToCombobox(List<MType> types)
+        {
+            ComboBox cmbType = new ComboBox();
+            foreach (MType type in types)
+            {
+                cmbType.Items.Add(type);
+            }
+
+            return cmbType;
         }
 
 

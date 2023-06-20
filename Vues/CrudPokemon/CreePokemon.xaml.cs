@@ -1,4 +1,6 @@
-﻿using PokeStat.Utilitaires;
+﻿using PokeStat.Modeles;
+using PokeStat.Repositories;
+using PokeStat.Utilitaires;
 using PokeStat.VuesModeles;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ namespace PokeStat.Vues.CrudPokemon
     /// </summary>
     public partial class CreePokemon : Page
     {
+        public RepVersion repVersion = new RepVersion();
         public Frame MainFrame;
         public GestionPokemonVueModel gestionPokemonVueModel;
         public CreePokemon()
@@ -33,6 +36,9 @@ namespace PokeStat.Vues.CrudPokemon
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
             NavigationServices.NavigateToPage(this);
+
+            //List<MVersion> versions = repVersion.GetVersions();
+            //cmbVersions.ItemsSource = versions;
         }
     }
 }
