@@ -22,6 +22,7 @@ namespace PokeStat.VuesModeles
         public ICommand AjoutePokemonCommand { get; set; }
         public ICommand ModifiePokemonCommand { get; set; }
         public ICommand EffacePokemonCommand { get; set; }
+        public ICommand GestionPokemonCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
         public ICommand OpenFileCommand { get; }
@@ -52,8 +53,7 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
-
-      
+     
 
         RepPokemon repPokemon;
 
@@ -97,6 +97,7 @@ namespace PokeStat.VuesModeles
             AjoutePokemonCommand = new RelayCommand(AjoutePokemon);
             ModifiePokemonCommand = new RelayCommand(ModifiePokemon);
             EffacePokemonCommand = new RelayCommand(EffacePokemon);
+            GestionPokemonCommand = new RelayCommand(GestionPokemon);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
             OpenFileCommand = new RelayCommand(OpenFile);
@@ -121,7 +122,7 @@ namespace PokeStat.VuesModeles
 
         private void AjoutePokemon()
         {
-            NavigationServices.NavigateToPage(new CreePokemon());
+            NavigationServices.NavigateToPage(new GestionPokemon());
         }
 
         private void ModifiePokemon()
@@ -132,6 +133,11 @@ namespace PokeStat.VuesModeles
         private void EffacePokemon()
         {
 
+        }
+
+        private void GestionPokemon() 
+        {
+            NavigationServices.NavigateToPage(new GestionPokemon());
         }
 
         private void AccueilPage()

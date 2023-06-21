@@ -66,7 +66,7 @@ namespace PokeStat.Repositories
             catch (Exception ex)
             {
                 // Gestion de l'exception
-                Console.WriteLine("Erreur lors de la récupération des types : " + ex.Message);
+                Console.WriteLine("Erreur lors de la récupération des versions : " + ex.Message);
             }
 
             // Fermeture de la connexion
@@ -74,5 +74,30 @@ namespace PokeStat.Repositories
 
             return ListMVersions;
         }
+
+        public void AddVersion(MVersion nouvelleVersion)
+        {
+            CheckConnexion();
+
+            try
+            {
+                SqlCommand RequestAddVersion = activeConnexion.CreateCommand();
+                RequestAddVersion.CommandText = "INSERT INTO Version (nom_version) VALUES (@nom_version)";
+
+                SqlParameter nom = RequestAddVersion.Parameters.Add("@nom_version", SqlDbType.VarChar);
+                nom.Value = nouvelleVersion.nomVersion;
+
+                int result = RequestAddVersion.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Gestion de l'exception
+                Console.WriteLine("Erreur lors de l'ajout du type : " + ex.Message);
+            }
+
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
+        }
+
     }
 }

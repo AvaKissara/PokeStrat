@@ -56,14 +56,19 @@
             <CheckBox Content="Légendaire" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Center"/>
             <CheckBox Content="Shiny" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,0,70,0" VerticalAlignment="Center"/>
 
+            <StackPanel Margin="70,500,0,0" Width="120" HorizontalAlignment="Left">
+                <ComboBox Name="cmbType" Text="Type 1" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType}" DisplayMemberPath="nomType" />
+            </StackPanel>
+            <StackPanel Margin="200,500,0,0" Width="120" HorizontalAlignment="Left">
+                <ComboBox Name="cmbType2" Text="Type 2" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType}" DisplayMemberPath="nomType" />
+            </StackPanel>
+
             <StackPanel Margin="0,500,70,0" Width="250" HorizontalAlignment="Right">
                 <ComboBox Name="cmbVersion" Text="Version" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbVersion}" DisplayMemberPath="nomVersion" />
             </StackPanel>
 
-            <StackPanel Margin="70,500,0,0" Width="120" HorizontalAlignment="Left">
-                <ComboBox Name="cmbType" Text="Type 1" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType}" DisplayMemberPath="nomType" />
-            </StackPanel>
-
+            <Button Name="btnValid" Content="Valider" Command="{Binding AjoutePokemonCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+            <Button Name="btnAnnul" Content="Annuler" Command="{Binding GestionPokemonCommand}" HorizontalAlignment="Center" Margin="120,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
         </Grid>
     </Grid>
 </Page>

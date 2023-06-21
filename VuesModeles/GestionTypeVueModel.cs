@@ -69,7 +69,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        //Propriété de type string utilisée pour contrôler la saisie d'un type
+        //Propriété de type booléen utilisée pour contrôler la saisie d'un type
         private bool isSaisieValide;
         public bool IsSaisieValide
         {
