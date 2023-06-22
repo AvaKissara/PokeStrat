@@ -68,7 +68,7 @@ namespace PokeStat.Repositories
                     int niveauEvo = pokemons.IsDBNull(19) ? 0 : pokemons.GetInt32(19);
 
                     MVersion version = null;
-                    if (!pokemons.IsDBNull(20)) // Vérifier si la colonne id_version peut être nulle
+                    if (!pokemons.IsDBNull(20)) 
                     {
                         int idVersion = pokemons.IsDBNull(20) ? 0 : pokemons.GetInt32(20);
                         string nomVersion = pokemons.IsDBNull(21) ? "" : $"{pokemons[21]}";
@@ -111,7 +111,9 @@ namespace PokeStat.Repositories
         {
             CheckConnexion();
 
-            
+            try
+            {
+
                 SqlCommand RequestAddPokemon = activeConnexion.CreateCommand();
                 RequestAddPokemon.CommandText = "INSERT INTO Pokemon (nom_eng_pok, nom_fra_pok, num_pok, taille_pok, poids_pok, base_experience, base_hp, base_att, base_def, base_sp_att, base_sp_def, base_vit, legendaire, shiny, pok_img, niv_evo, id_evo, id_version) VALUES (@nom_eng_pok, @nom_fra_pok, @num_pok, @taille_pok, @poids_pok, @base_experience, @base_hp, @base_att, @base_def, @base_sp_att, @base_sp_def, @base_vit, @legendaire, @shiny, @pok_img, @niv_evo, @id_evo, @id_version)";
 
@@ -156,35 +158,37 @@ namespace PokeStat.Repositories
                 idVers.Value = idVersion;
 
                 int result = RequestAddPokemon.ExecuteNonQuery();
-            
-       
+            }
+            catch (Exception ex)
+            {
+                // Gestion de l'exception
+                Console.WriteLine("Erreur lors de l'ajout du type : " + ex.Message);
+            }
+
 
             // Fermeture de la connexion
             this.activeConnexion.Close();
         }
 
-        //public void AddPokemonType(int IdPokemon, int IdVersion)
-        //{
-        //    CheckConnexion();
+        public void AddTypePokemon(int IdType, int IdPokemon)
+        {
+            CheckConnexion();
 
-        //    try
-        //    {
-        //        SqlCommand RequestAddPokemonType = activeConnexion.CreateCommand();
-        //        RequestAddPokemonType.CommandText = "INSERT INTO pokemon_type (nom_type) VALUES (@nom_type)";
+            SqlCommand RequestAddTypePokemon = activeConnexion.CreateCommand();
+            RequestAddTypePokemon.CommandText = "INSERT INTO pokemon_types (id_type, id_pok, emplac) VALUES (@id_type, @id_pok, @emplac)";
 
-        //        SqlParameter nom = RequestAddType.Parameters.Add("@nom_type", SqlDbType.VarChar);
-        //        nom.Value = nouveauType.nomType;
+            SqlParameter idType = RequestAddTypePokemon.Parameters.Add("@id_type", SqlDbType.Int);
+            SqlParameter idPok = RequestAddTypePokemon.Parameters.Add("@id_pok", SqlDbType.Int);
+            SqlParameter emplac = RequestAddTypePokemon.Parameters.Add("@emplac", SqlDbType.TinyInt);
+            idType.Value = IdType;
+            idPok.Value = IdPokemon;
+            emplac.Value = 3;
 
-        //        int result = RequestAddType.ExecuteNonQuery();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Gestion de l'exception
-        //        Console.WriteLine("Erreur lors de l'ajout du type : " + ex.Message);
-        //    }
+            int result = RequestAddTypePokemon.ExecuteNonQuery();
+       
 
-        //    // Fermeture de la connexion
-        //    this.activeConnexion.Close();
-        //}
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
+        }
     }
 }

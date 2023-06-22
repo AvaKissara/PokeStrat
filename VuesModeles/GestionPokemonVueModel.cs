@@ -77,8 +77,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-
-
         private DataTable dtPokedex;
 
         public DataTable DtPokedex
@@ -503,22 +501,22 @@ namespace PokeStat.VuesModeles
         {
             int idVersion;
             int idPok;
+            int idType;
             CheminImgPokemon = RelativeSelectedImagePath;
+
             MPokemon nouveauPokemon = new MPokemon(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
             List<MVersion> versions = repVersion.GetVersions();
-            //if (IsSaisieValide)
-            //{
+            List<MType> types = repType.GetTypes();      
             List<MPokemon> pokemons = repPokemon.GetPokemons();
 
-                // Vérifie si le nom du pokémons existe déjà dans la liste des pokémons
-                bool pokExiste = pokemons.Any(p => p.nomFraPokemon.Equals(nouveauPokemon.nomFraPokemon, StringComparison.OrdinalIgnoreCase));
+            bool pokExiste = pokemons.Any(p => p.nomFraPokemon.Equals(nouveauPokemon.nomFraPokemon, StringComparison.OrdinalIgnoreCase));
 
-                if (pokExiste)
-                {
-                    System.Windows.MessageBox.Show("Ce pokémon existe déjà !");
-                }
-                else
-                {
+            if (pokExiste)
+            {
+                System.Windows.MessageBox.Show("Ce pokémon existe déjà !");
+            }
+            else
+            {
                 
                 foreach (MVersion version in versions)
                 {
@@ -529,30 +527,23 @@ namespace PokeStat.VuesModeles
                     }
                 }
                
+                // Actualisation de la liste des pokémons
+                pokemons = repPokemon.GetPokemons();
+                DtPokedex = ConvertListToDataTable(pokemons);
 
-                    // Actualisation de la liste des pokémons
-                    pokemons = repPokemon.GetPokemons();
-                    DtPokedex = ConvertListToDataTable(pokemons);
+                System.Windows.MessageBox.Show("Le pokémon a bien été ajouté !");
+            }             
 
-                    System.Windows.MessageBox.Show("Le pokémon a bien été ajouté !");
-                    NavigationServices.NavigateToPage(new GestionPokemon());
-                }
-            //}
-            //else
-            //{
-            //    ErreurSaisie = "Veuillez corriger les erreurs de saisie.";
-            //}
-
-       
-
-            if (DtPokedex != null && DtPokedex.Rows.Count > 0)
-            {                          
-                if (pokemons.Count > 0)
+            foreach (MType type in types)
+            {
+                if (type.Equals(SelectedCmbTypeValue))
                 {
+                    idType = type.idType;
                     idPok = pokemons[pokemons.Count - 1].idPokemon;
+                    repPokemon.AddTypePokemon(idType, idPok);
                 }
-            }
-
+            }    
+            
             NavigationServices.NavigateToPage(new GestionPokemon());
         }
 
@@ -596,28 +587,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        //private ComboBox ConvertListMVersionToCombobox(List<MVersion> versions)
-        //{
-        //    ComboBox cmbVersion = new ComboBox();
-        //    foreach(MVersion version in versions)
-        //    {
-        //        cmbVersion.Items.Add(version);
-        //    }
-
-        //    return cmbVersion;
-        //}
-        //private ComboBox ConvertListMTypeToCombobox(List<MType> types)
-        //{
-        //    ComboBox cmbType = new ComboBox();
-        //    foreach (MType type in types)
-        //    {
-        //        cmbType.Items.Add(type.nomType);
-        //    }
-
-        //    return cmbType;
-        //}
-
-
         // Convertir une liste de MPokemon en DataTable
         private DataTable ConvertListToDataTable(List<MPokemon> pokemons)
         {
@@ -651,11 +620,8 @@ namespace PokeStat.VuesModeles
                 relativeDtImagePath = Path.GetFileName(pokemon.cheminImgPokemon);
                 string absoluteImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Ressources", relativeDtImagePath);
 
-
                 // Créez un objet BitmapImage à partir du chemin relatif
-
                 System.Drawing.Image imgPokemon = System.Drawing.Image.FromFile(absoluteImagePath);
-
 
                 DataRow row;
                 row = dtPokedex.NewRow();
