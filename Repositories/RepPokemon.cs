@@ -107,7 +107,7 @@ namespace PokeStat.Repositories
 
             return ListMPokemons;
         }
-        public void AddPokemon(MPokemon nouveauPokemon)
+        public void AddPokemon(MPokemon nouveauPokemon, int idVersion)
         {
             CheckConnexion();
 
@@ -153,7 +153,7 @@ namespace PokeStat.Repositories
                 img.Value = nouveauPokemon.cheminImgPokemon;
                 nivEvo.Value = (object)nouveauPokemon.nivEvolution ?? DBNull.Value;
                 idEvo.Value = (object)nouveauPokemon.evolution?.idPokemon ?? DBNull.Value;
-                idVers.Value = (object)nouveauPokemon.gen ?? DBNull.Value;
+                idVers.Value = idVersion;
 
                 int result = RequestAddPokemon.ExecuteNonQuery();
             
@@ -163,5 +163,28 @@ namespace PokeStat.Repositories
             this.activeConnexion.Close();
         }
 
+        //public void AddPokemonType(int IdPokemon, int IdVersion)
+        //{
+        //    CheckConnexion();
+
+        //    try
+        //    {
+        //        SqlCommand RequestAddPokemonType = activeConnexion.CreateCommand();
+        //        RequestAddPokemonType.CommandText = "INSERT INTO pokemon_type (nom_type) VALUES (@nom_type)";
+
+        //        SqlParameter nom = RequestAddType.Parameters.Add("@nom_type", SqlDbType.VarChar);
+        //        nom.Value = nouveauType.nomType;
+
+        //        int result = RequestAddType.ExecuteNonQuery();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Gestion de l'exception
+        //        Console.WriteLine("Erreur lors de l'ajout du type : " + ex.Message);
+        //    }
+
+        //    // Fermeture de la connexion
+        //    this.activeConnexion.Close();
+        //}
     }
 }

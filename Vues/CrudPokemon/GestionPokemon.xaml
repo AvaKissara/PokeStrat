@@ -18,10 +18,9 @@
             <TextBlock Grid.Column="0" Text="GESTION DES POKEMONS" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
         </Grid>
 
-        <DataGrid RowHeight="150"  ColumnWidth="*" ItemsSource="{Binding DtPokedex, UpdateSourceTrigger=PropertyChanged}" Margin="40,30,40,100" AutoGenerateColumns="False" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
+        <DataGrid RowHeight="100"  ColumnWidth="*" ItemsSource="{Binding DtPokedex, UpdateSourceTrigger=PropertyChanged}" Margin="30,30,40,100" AutoGenerateColumns="False" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
 
             <DataGrid.Resources>
-
                 <!-- Style de cellule -->
                 <Style TargetType="DataGridCell">
                     <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
@@ -32,7 +31,7 @@
                 <!-- Style d'en-tête de colonne -->
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
-                    <Setter Property="TextBlock.FontSize" Value="18"/>
+                    <Setter Property="TextBlock.FontSize" Value="16"/>
                     <Setter Property="TextBlock.Foreground" Value="White"/>
                     <Setter Property="Background" Value="#7B7B7E"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -40,16 +39,15 @@
             </DataGrid.Resources>
 
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Image" Width="Auto">
+                <DataGridTemplateColumn Header="Image">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Image}" Width="100" Height="70" />
+                            <Image Source="{Binding Image}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Nom" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Num" Binding="{Binding Num}" />
                 <DataGridTextColumn Header="Taille" Binding="{Binding Taille}" />
                 <DataGridTextColumn Header="Poids" Binding="{Binding Poids}" />
@@ -59,14 +57,12 @@
                 <DataGridTextColumn Header="Défense" Binding="{Binding Défense}" />
                 <DataGridTextColumn Header="Attaque spé" Binding="{Binding [Att. spé]}" />
                 <DataGridTextColumn Header="Défense spé" Binding="{Binding [Déf. spé]}" />
-                <DataGridTextColumn Header="Vitesse" Binding="{Binding Vitesse}" />
+                <DataGridTextColumn Header="Vitesse" Binding="{Binding Vit}" />
                 <DataGridCheckBoxColumn Header="Légendaire" Binding="{Binding Légendaire}" />
                 <DataGridCheckBoxColumn Header="Shiny" Binding="{Binding Shiny}" />
                 <DataGridTextColumn Header="Evolution" Binding="{Binding Evolution}" />
                 <DataGridTextColumn Header="Niveau évo" Binding="{Binding [Niveau évo]}" />
                 <DataGridTextColumn Header="Version" Binding="{Binding Version}" />
-
-                <!-- Ajoutez les autres colonnes ici -->
 
             </DataGrid.Columns>
         </DataGrid>

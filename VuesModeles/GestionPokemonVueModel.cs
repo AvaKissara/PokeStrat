@@ -33,7 +33,6 @@ namespace PokeStat.VuesModeles
         public ICommand OpenFileCommand { get; }
 
 
-        // Dans votre ViewModel
         private string selectedImagePath;
         public string SelectedImagePath
         {
@@ -62,6 +61,22 @@ namespace PokeStat.VuesModeles
                 return string.Empty;
             }
         }
+
+        private string relativeDtImagePath;
+        public string RelativeDtImagePath
+        {
+            get { return relativeDtImagePath; }
+            set
+            {
+                if (relativeDtImagePath != value)
+                {
+                    relativeDtImagePath = value;
+                    OnPropertyChanged(nameof(RelativeDtImagePath));
+ 
+                }
+            }
+        }
+
 
 
         private DataTable dtPokedex;
@@ -99,6 +114,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        
+
         private List<MType> cmbType;
         public List<MType> CmbType
         {
@@ -127,6 +144,21 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        private MType _selectedCmbTypeValue;
+
+        public MType SelectedCmbTypeValue
+        {
+            get { return _selectedCmbTypeValue; }
+            set
+            {
+                if (_selectedCmbTypeValue != value)
+                {
+                    _selectedCmbTypeValue = value;
+                    OnPropertyChanged(nameof(SelectedCmbTypeValue));
+                }
+            }
+        }
+
         private List<MPokemon> cmbEvo;
         public List<MPokemon> CmbEvo
         {
@@ -140,6 +172,7 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
+
         public int IdPok;
 
         private string cheminImgPokemon;
@@ -468,30 +501,40 @@ namespace PokeStat.VuesModeles
 
         private void AjoutePokemon()
         {
+            int idVersion;
+            int idPok;
             CheminImgPokemon = RelativeSelectedImagePath;
             MPokemon nouveauPokemon = new MPokemon(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
-
+            List<MVersion> versions = repVersion.GetVersions();
             //if (IsSaisieValide)
             //{
-                List<MPokemon> pokemons = repPokemon.GetPokemons();
+            List<MPokemon> pokemons = repPokemon.GetPokemons();
 
-                // Vérifie si le nom du type existe déjà dans la liste des types
+                // Vérifie si le nom du pokémons existe déjà dans la liste des pokémons
                 bool pokExiste = pokemons.Any(p => p.nomFraPokemon.Equals(nouveauPokemon.nomFraPokemon, StringComparison.OrdinalIgnoreCase));
 
                 if (pokExiste)
                 {
-                    System.Windows.MessageBox.Show("Ce type existe déjà !");
+                    System.Windows.MessageBox.Show("Ce pokémon existe déjà !");
                 }
                 else
                 {
-                    // Ajout d'un nouveau type au repository
-                    repPokemon.AddPokemon(nouveauPokemon);
+                
+                foreach (MVersion version in versions)
+                {
+                    if (version.Equals(Gen))
+                    {
+                        idVersion = version.idVersion;
+                        repPokemon.AddPokemon(nouveauPokemon, idVersion);
+                    }
+                }
+               
 
-                    // Actualisation de la liste des types
+                    // Actualisation de la liste des pokémons
                     pokemons = repPokemon.GetPokemons();
                     DtPokedex = ConvertListToDataTable(pokemons);
 
-                    System.Windows.MessageBox.Show("Le type a bien été ajouté !");
+                    System.Windows.MessageBox.Show("Le pokémon a bien été ajouté !");
                     NavigationServices.NavigateToPage(new GestionPokemon());
                 }
             //}
@@ -499,6 +542,17 @@ namespace PokeStat.VuesModeles
             //{
             //    ErreurSaisie = "Veuillez corriger les erreurs de saisie.";
             //}
+
+       
+
+            if (DtPokedex != null && DtPokedex.Rows.Count > 0)
+            {                          
+                if (pokemons.Count > 0)
+                {
+                    idPok = pokemons[pokemons.Count - 1].idPokemon;
+                }
+            }
+
             NavigationServices.NavigateToPage(new GestionPokemon());
         }
 
@@ -571,9 +625,9 @@ namespace PokeStat.VuesModeles
 
             // Ajouter les colonnes à la DataTable
             dtPokedex.Columns.Add("id", typeof(int));
-            dtPokedex.Columns.Add("Image", typeof(System.Drawing.Image));
-            dtPokedex.Columns.Add("Name", typeof(string));
+            dtPokedex.Columns.Add("Image", typeof(string));
             dtPokedex.Columns.Add("Nom", typeof(string));
+            dtPokedex.Columns.Add("Name", typeof(string));
             dtPokedex.Columns.Add("Num", typeof(string));
             dtPokedex.Columns.Add("Taille", typeof(string));
             dtPokedex.Columns.Add("Poids", typeof(double));
@@ -594,8 +648,8 @@ namespace PokeStat.VuesModeles
             // Ajouter les données à la DataTable
             foreach (var pokemon in pokemons)
             {
-                string relativeImagePath = Path.GetFileName(pokemon.cheminImgPokemon);
-                string absoluteImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Ressources", relativeImagePath);
+                relativeDtImagePath = Path.GetFileName(pokemon.cheminImgPokemon);
+                string absoluteImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Ressources", relativeDtImagePath);
 
 
                 // Créez un objet BitmapImage à partir du chemin relatif
@@ -606,9 +660,9 @@ namespace PokeStat.VuesModeles
                 DataRow row;
                 row = dtPokedex.NewRow();
                 row[0] = pokemon.idPokemon;
-                row[1] = imgPokemon;
-                row[2] = pokemon.nomEngPokemon;
-                row[3] = pokemon.nomFraPokemon;
+                row[1] = pokemon.cheminImgPokemon;
+                row[2] = pokemon.nomFraPokemon;
+                row[3] = pokemon.nomEngPokemon;
                 row[4] = pokemon.numPokemon;
                 row[5] = pokemon.taillePokemon;
                 row[6] = pokemon.poidsPokemon;

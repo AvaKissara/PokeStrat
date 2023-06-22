@@ -127,7 +127,7 @@
 
             <Label Content="Type 1:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,500,200,0"  VerticalAlignment="Top" />
             <StackPanel Margin="70,540,0,0" Width="120" HorizontalAlignment="Left">
-                <ComboBox Name="cmbType" Text="Type 1" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType}" DisplayMemberPath="nomType" />
+                <ComboBox Name="cmbType" Text="Type 1" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType}" DisplayMemberPath="nomType" SelectedItem="{Binding SelectedCmbTypeValue, Mode=TwoWay}" />
             </StackPanel>
 
             <Label Content="Type 2:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="200,500,0,0" VerticalAlignment="Top" />
@@ -141,7 +141,7 @@
             </StackPanel>
 
             <StackPanel Margin="0,550,70,0" Width="250" HorizontalAlignment="Right">
-                <ComboBox Name="cmbVersion" Text="Version" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbVersion}" DisplayMemberPath="nomVersion" />
+                <ComboBox Name="cmbVersion" Text="Version" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbVersion}" DisplayMemberPath="nomVersion" SelectedItem="{Binding Gen, Mode=TwoWay}" />
             </StackPanel>
 
             <Button Name="btnValid" Content="Valider" Command="{Binding AjoutePokemonCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
