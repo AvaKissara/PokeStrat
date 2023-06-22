@@ -186,7 +186,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-
         private void ModifieType()
         {
             List<MType> types = repType.GetTypes();
@@ -339,7 +338,6 @@ namespace PokeStat.VuesModeles
                 IsSaisieValide = true;
             }
         }
-
 
         // EVENT HANDLER
         public event PropertyChangedEventHandler PropertyChanged;

@@ -42,6 +42,8 @@ namespace PokeStat.Repositories
 
         public List<MPokemon> GetPokemons()
         {
+            CheckConnexion();
+
             List<MPokemon> ListMPokemons = new List<MPokemon>();
 
             SqlCommand RequestGetPokemons = activeConnexion.CreateCommand();
@@ -109,12 +111,11 @@ namespace PokeStat.Repositories
         {
             CheckConnexion();
 
-            try
-            {
+            
                 SqlCommand RequestAddPokemon = activeConnexion.CreateCommand();
-                RequestAddPokemon.CommandText = "INSERT INTO Pokemon (id_pok, nom_eng_pok, nom_fra_pok, num_pok, taille_pok, poids_pok, base_experience, base_hp, base_att, base_def, base_sp_att, base_sp_def, base_vit, legendaire, shiny, pok_img, niv_evo, id_evo, id_version) VALUES (@id_pok, @pok_img, @nom_eng_pok, @nom_fra_pok, @num_pok, @taille_pok, @poids_pok, @base_experience, @base_hp, @base_att, @base_def, @base_sp_att, @base_sp_def, @base_vit, @legendaire, @shiny, @pok_img, @niv_evo, @id_evo, @id_version)";
+                RequestAddPokemon.CommandText = "INSERT INTO Pokemon (nom_eng_pok, nom_fra_pok, num_pok, taille_pok, poids_pok, base_experience, base_hp, base_att, base_def, base_sp_att, base_sp_def, base_vit, legendaire, shiny, pok_img, niv_evo, id_evo, id_version) VALUES (@nom_eng_pok, @nom_fra_pok, @num_pok, @taille_pok, @poids_pok, @base_experience, @base_hp, @base_att, @base_def, @base_sp_att, @base_sp_def, @base_vit, @legendaire, @shiny, @pok_img, @niv_evo, @id_evo, @id_version)";
 
-                SqlParameter id = RequestAddPokemon.Parameters.Add("@id_pok", SqlDbType.Int);             
+            
                 SqlParameter name = RequestAddPokemon.Parameters.Add("@nom_eng_pok", SqlDbType.VarChar);         
                 SqlParameter nom = RequestAddPokemon.Parameters.Add("@nom_fra_pok", SqlDbType.VarChar);
                 SqlParameter num = RequestAddPokemon.Parameters.Add("@num_pok", SqlDbType.VarChar);
@@ -135,7 +136,6 @@ namespace PokeStat.Repositories
                 SqlParameter idVers = RequestAddPokemon.Parameters.Add("@id_version", SqlDbType.Int);
 
 
-                id.Value = nouveauPokemon.idPokemon;
                 name.Value = nouveauPokemon.nomEngPokemon;
                 nom.Value = nouveauPokemon.nomFraPokemon;
                 num.Value = nouveauPokemon.numPokemon;
@@ -153,15 +153,11 @@ namespace PokeStat.Repositories
                 img.Value = nouveauPokemon.cheminImgPokemon;
                 nivEvo.Value = (object)nouveauPokemon.nivEvolution ?? DBNull.Value;
                 idEvo.Value = (object)nouveauPokemon.evolution?.idPokemon ?? DBNull.Value;
-                idVers.Value = nouveauPokemon.gen;
+                idVers.Value = (object)nouveauPokemon.gen ?? DBNull.Value;
 
                 int result = RequestAddPokemon.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                // Gestion de l'exception
-                Console.WriteLine("Erreur lors de l'ajout du pokemon : " + ex.Message);
-            }
+            
+       
 
             // Fermeture de la connexion
             this.activeConnexion.Close();

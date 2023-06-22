@@ -63,6 +63,7 @@
     <Compile Include="Modeles\ITalent.cs" />
     <Compile Include="Modeles\MCapacite.cs" />
     <Compile Include="Modeles\MCategorie.cs" />
+    <Compile Include="Modeles\MNature.cs" />
     <Compile Include="Modeles\MPokemon.cs" />
     <Compile Include="Modeles\MStat.cs" />
     <Compile Include="Modeles\MTalent.cs" />
@@ -75,12 +76,14 @@
     <Compile Include="Repositories\RepType.cs" />
     <Compile Include="Repositories\RepVersion.cs" />
     <Compile Include="Utilitaires\AuthenticationToVisibilityConverter.cs" />
+    <Compile Include="Utilitaires\BitmapToImageSourceConverter.cs" />
     <Compile Include="Utilitaires\DataRowViewToMTypeConverter.cs" />
     <Compile Include="Utilitaires\NavigationServices.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />
     <Compile Include="VuesModeles\GestionPokemonVueModel.cs" />
     <Compile Include="VuesModeles\GestionTypeVueModel.cs" />
+    <Compile Include="VuesModeles\GestionVersionVueModel.cs" />
     <Compile Include="Vues\AccueilPage.xaml.cs">
       <DependentUpon>AccueilPage.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="Vues\CrudVersion\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\arceus.jpg">
@@ -298,6 +302,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Ressources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\draco_shiny.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\dracolosse.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

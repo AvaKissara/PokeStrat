@@ -16,54 +16,131 @@
 
         <Grid Margin="100,100,100,0">
             <Label Content="Image:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" />
-
-            <Button Content="Parcourir" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="16" Padding="10,7"  HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Width="120"  Command="{Binding OpenFileCommand}" />
-
+            <Button Content="Parcourir" FontFamily="Raleway" Background="#7B7B7E" Foreground="White" FontSize="16" Padding="10,7" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Width="120" Command="{Binding OpenFileCommand}" />
             <Image Name="imgPreview" Source="{Binding SelectedImagePath}" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" Width="200" Height="200" />
+            <TextBlock Text="{Binding RelativeSelectedImagePath}" HorizontalAlignment="Center" Margin="0,420,0,0" VerticalAlignment="Top" />
+
 
 
             <Label Content="Nom:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,150,0,0" VerticalAlignment="Top" />
-            <TextBox Name="tbNomPok" HorizontalAlignment="Left" Margin="200,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox Name="tbNomPok" HorizontalAlignment="Left" Margin="200,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+                <TextBox.Text>
+                    <Binding Path="NomFraPokemon" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                </Binding>
+                </TextBox.Text>
+            </TextBox>
+
 
             <Label Content="Name:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,200,0,0" VerticalAlignment="Top" />
-            <TextBox Name="tbNameType" HorizontalAlignment="Left" Margin="200,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox Name="tbNameType" HorizontalAlignment="Left" Margin="200,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" >
+                <TextBox.Text>
+                    <Binding Path="NomEngPokemon" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
             <Label Content="Numéro:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="69,250,0,0" VerticalAlignment="Top" />
-            <TextBox Name="tbNumPok" HorizontalAlignment="Left" Margin="200,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox Name="tbNumPok" HorizontalAlignment="Left" Margin="200,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" >
+                <TextBox.Text>
+                    <Binding Path="NumPokemon" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+
 
             <Label Content="Taille:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,300,0,0" VerticalAlignment="Top" />
-            <TextBox HorizontalAlignment="Left" Margin="200,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox HorizontalAlignment="Left" Margin="200,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" >
+                <TextBox.Text>
+                    <Binding Path="TaillePokemon" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
 
             <Label Content="Poids:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,350,0,0" VerticalAlignment="Top" />
-            <TextBox HorizontalAlignment="Left" Margin="200,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <TextBox HorizontalAlignment="Left" Margin="200,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+                <TextBox.Text>
+                    <Binding Path="PoidsPokemon" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <Label Content="PV:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,150,200,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="0,155,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" >
+                <TextBox.Text>
+                    <Binding Path="PV" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+
+            <Label Content="Att:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,200,200,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="0,205,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" >
+                <TextBox.Text>
+                    <Binding Path="Attaque" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
 
 
-            <Label Content="Att:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,150,200,0" VerticalAlignment="Top" />
-            <TextBox HorizontalAlignment="Right" Margin="0,155,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <Label Content="Def:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,250,200,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="200,250,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" >
+                <TextBox.Text>
+                    <Binding Path="Defense" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
-            <Label Content="Def:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,200,200,0" VerticalAlignment="Top" />
-            <TextBox HorizontalAlignment="Right" Margin="200,200,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
 
-            <Label Content="Att Spe:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,250,200,0" VerticalAlignment="Top" />
-            <TextBox HorizontalAlignment="Right" Margin="200,250,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
 
-            <Label Content="Def Spe:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="70,300,200,0" VerticalAlignment="Top" />
-            <TextBox HorizontalAlignment="Right" Margin="200,300,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+            <Label Content="Att Spe:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,300,200,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="200,300,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" >
+                <TextBox.Text>
+                    <Binding Path="AttSpe" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
-            <Label Content="Vit:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,350,200,0" VerticalAlignment="Top" />
-            <TextBox HorizontalAlignment="Right" Margin="200,350,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-            <CheckBox Content="Légendaire" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Center"/>
-            <CheckBox Content="Shiny" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,0,70,0" VerticalAlignment="Center"/>
 
-            <StackPanel Margin="70,500,0,0" Width="120" HorizontalAlignment="Left">
+
+            <Label Content="Def Spe:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="70,350,200,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="200,350,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+                <TextBox.Text>
+                    <Binding Path="DefSpe" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <Label Content="Vit:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,400,200,0" VerticalAlignment="Top" />
+            <TextBox HorizontalAlignment="Right" Margin="200,400,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+                <TextBox.Text>
+                    <Binding Path="Vitesse" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <CheckBox Content="Légendaire" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,430,0,0" VerticalAlignment="Top" IsChecked="{Binding Legendaire}" />
+            <CheckBox Content="Shiny" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,480,70,0" VerticalAlignment="Top" IsChecked="{Binding Shiny}" />
+
+
+            <Label Content="Type 1:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,500,200,0"  VerticalAlignment="Top" />
+            <StackPanel Margin="70,540,0,0" Width="120" HorizontalAlignment="Left">
                 <ComboBox Name="cmbType" Text="Type 1" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType}" DisplayMemberPath="nomType" />
             </StackPanel>
-            <StackPanel Margin="200,500,0,0" Width="120" HorizontalAlignment="Left">
-                <ComboBox Name="cmbType2" Text="Type 2" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType}" DisplayMemberPath="nomType" />
+
+            <Label Content="Type 2:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="200,500,0,0" VerticalAlignment="Top" />
+            <StackPanel Margin="200,540,0,0" Width="120" HorizontalAlignment="Left">
+                <ComboBox Name="cmbType2" Text="Type 2" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbType2}" DisplayMemberPath="nomType" />
             </StackPanel>
 
-            <StackPanel Margin="0,500,70,0" Width="250" HorizontalAlignment="Right">
+            <Label Content="Evolution:" FontFamily="Raleway"  Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,600,0,0"  />
+            <StackPanel Margin="70,640,0,0" Width="120" HorizontalAlignment="Left">
+                <ComboBox Name="cmbEvo" Text="Type 2" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbEvo}" DisplayMemberPath="nomFraPokemon" />
+            </StackPanel>
+
+            <StackPanel Margin="0,550,70,0" Width="250" HorizontalAlignment="Right">
                 <ComboBox Name="cmbVersion" Text="Version" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbVersion}" DisplayMemberPath="nomVersion" />
             </StackPanel>
 
