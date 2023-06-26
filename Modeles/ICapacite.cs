@@ -12,6 +12,5 @@ namespace PokeStat.Modeles
         MType TypeCapacite { get; set; }
         List<MCategorie> CatCapacite { get; set; }
 
-  
     }
 }

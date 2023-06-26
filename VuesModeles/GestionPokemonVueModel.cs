@@ -554,9 +554,12 @@ namespace PokeStat.VuesModeles
             {
                 if (type.Equals(SelectedCmbTypeValue))
                 {
-                    idType = type.idType;
-                    idPok = pokemons[pokemons.Count - 1].idPokemon;
-                    repPokemon.AddTypePokemon(idType, idPok);
+                    if (type.Equals(SelectedCmbType2Value))
+                    {
+                        idType = type.idType;
+                        idPok = pokemons[pokemons.Count - 1].idPokemon;
+                        repPokemon.AddTypePokemon(idType, idPok);
+                    }
                 }
             } 
             
