@@ -182,7 +182,7 @@ namespace PokeStat.Repositories
             SqlParameter emplac = RequestAddTypePokemon.Parameters.Add("@emplac", SqlDbType.TinyInt);
             idType.Value = IdType;
             idPok.Value = IdPokemon;
-            emplac.Value = 3;
+            emplac.Value = 7;
 
             int result = RequestAddTypePokemon.ExecuteNonQuery();
        

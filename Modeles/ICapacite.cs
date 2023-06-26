@@ -9,8 +9,9 @@ namespace PokeStat.Modeles
     public interface ICapacite
     {
         int IdCapacite { get; }
-        string NomCapacite { get; set; }
         MType TypeCapacite { get; set; }
         List<MCategorie> CatCapacite { get; set; }
+
+  
     }
 }

@@ -17,6 +17,9 @@ using System;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.Windows.Shapes;
+using PokeStat.Properties;
+using System.Xml.Linq;
 
 namespace PokeStat.VuesModeles
 {
@@ -54,7 +57,7 @@ namespace PokeStat.VuesModeles
             {
                 if (!string.IsNullOrEmpty(SelectedImagePath))
                 {
-                    string fileName = Path.GetFileName(SelectedImagePath);
+                    string fileName = System.IO.Path.GetFileName(SelectedImagePath);
                     return fileName;
                 }
 
@@ -72,7 +75,21 @@ namespace PokeStat.VuesModeles
                 {
                     relativeDtImagePath = value;
                     OnPropertyChanged(nameof(RelativeDtImagePath));
- 
+                }
+            }
+        }
+
+
+        string absoluDtImagePath;
+        public string AbsoluDtImagePath
+        {
+            get { return absoluDtImagePath; }
+            set
+            {
+                if (absoluDtImagePath != value)
+                {
+                    absoluDtImagePath = value;
+                    OnPropertyChanged(nameof(AbsoluDtImagePath));
                 }
             }
         }
@@ -113,7 +130,6 @@ namespace PokeStat.VuesModeles
         }
 
         
-
         private List<MType> cmbType;
         public List<MType> CmbType
         {
@@ -542,7 +558,7 @@ namespace PokeStat.VuesModeles
                     idPok = pokemons[pokemons.Count - 1].idPokemon;
                     repPokemon.AddTypePokemon(idType, idPok);
                 }
-            }    
+            } 
             
             NavigationServices.NavigateToPage(new GestionPokemon());
         }
@@ -617,16 +633,22 @@ namespace PokeStat.VuesModeles
             // Ajouter les données à la DataTable
             foreach (var pokemon in pokemons)
             {
-                relativeDtImagePath = Path.GetFileName(pokemon.cheminImgPokemon);
-                string absoluteImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Ressources", relativeDtImagePath);
+
+                //string absoluteImagePath = GetFullPath(rela);
+                //absoluDtImagePath = Environment.CurrentDirectory;
+                //relativeDtImagePath = pokemon.cheminImgPokemon;
+                //Environment.CurrentDirectory = "C:/Users/Lila%20Badi/Documents/GitHub/AvaKissara/PokeStat/Ressources/";
+                string basePath = @"C:/Users/Lila Badi/Documents/GitHub/AvaKissara/PokeStat/Ressources/";
+                //string fullPath = System.IO.Path.GetFullPath("C:\Users/Lila%20Badi/Documents/GitHub/AvaKissara/PokeStat/Ressources/" + relativeDtImagePath);
+                absoluDtImagePath = System.IO.Path.Combine(basePath, pokemon.cheminImgPokemon);
 
                 // Créez un objet BitmapImage à partir du chemin relatif
-                System.Drawing.Image imgPokemon = System.Drawing.Image.FromFile(absoluteImagePath);
+                //System.Drawing.Image imgPokemon = System.Drawing.Image.FromFile(absoluteImagePath);
 
                 DataRow row;
                 row = dtPokedex.NewRow();
                 row[0] = pokemon.idPokemon;
-                row[1] = pokemon.cheminImgPokemon;
+                row[1] = absoluDtImagePath;
                 row[2] = pokemon.nomFraPokemon;
                 row[3] = pokemon.nomEngPokemon;
                 row[4] = pokemon.numPokemon;
