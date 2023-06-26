@@ -10,13 +10,13 @@ namespace PokeStat.Modeles
     {
         public int idVersion { get; }
         public string nomVersion { get; set; }
-        public int numGen { get; set; }
+        public int genId { get; set; }
 
-        public MVersion(int IdVersion, string NomVersion, int NumGen) 
+        public MVersion(int IdVersion, string NomVersion, int GenId) 
         {
             this.idVersion = IdVersion;
             this.nomVersion = NomVersion;
-            this.numGen = NumGen;
+            this.genId = genId;
         }
 
 

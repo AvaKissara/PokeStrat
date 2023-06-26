@@ -47,7 +47,7 @@ namespace PokeStat.Repositories
             List<MPokemon> ListMPokemons = new List<MPokemon>();
 
             SqlCommand RequestGetPokemons = activeConnexion.CreateCommand();
-            RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img, P.nom_eng_pok, P.nom_fra_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_experience, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P2.id_pok as id_evo, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, P.niv_evo, V.id_version, V.nom_version, V.num_gen FROM Pokemon AS P LEFT JOIN Version as V ON P.id_version = V.id_version LEFT JOIN Pokemon P2 ON P.id_evo = P2.id_pok";
+            RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img, P.nom_eng_pok, P.nom_fra_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_experience, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P2.id_pok as evo_id, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, P.niv_evo, G.id_gen, G.nom_gen FROM Pokemons AS P \r\nLEFT JOIN Generations as G ON P.gen_id = G.id_gen \r\nLEFT JOIN Pokemons P2 ON P.evo_id = P2.id_pok\r\n";
 
             using (SqlDataReader pokemons = RequestGetPokemons.ExecuteReader())
             {
@@ -67,13 +67,13 @@ namespace PokeStat.Repositories
 
                     int niveauEvo = pokemons.IsDBNull(19) ? 0 : pokemons.GetInt32(19);
 
-                    MVersion version = null;
+                    MGeneration gen = null;
                     if (!pokemons.IsDBNull(20)) 
                     {
-                        int idVersion = pokemons.IsDBNull(20) ? 0 : pokemons.GetInt32(20);
-                        string nomVersion = pokemons.IsDBNull(21) ? "" : $"{pokemons[21]}";
-                        int numVersion = pokemons.IsDBNull(22) ? 0 : pokemons.GetInt32(22);
-                        version = new MVersion(idVersion, nomVersion, numVersion);
+                        int idGen = pokemons.IsDBNull(20) ? 0 : pokemons.GetInt32(20);
+                        string nomGen = pokemons.IsDBNull(21) ? "" : $"{pokemons[21]}";
+                        int numGen = pokemons.IsDBNull(22) ? 0 : pokemons.GetInt32(22);
+                        gen = new MGeneration(idGen, nomGen);
                     }
 
                     MPokemon unPokemon = new MPokemon(
@@ -95,7 +95,7 @@ namespace PokeStat.Repositories
                         Convert.ToBoolean(pokemons.GetValue(15)),
                         evolution,
                         niveauEvo,
-                        version
+                        gen
                     );
 
                     ListMPokemons.Add(unPokemon);
@@ -107,7 +107,7 @@ namespace PokeStat.Repositories
 
             return ListMPokemons;
         }
-        public void AddPokemon(MPokemon nouveauPokemon, int idVersion)
+        public void AddPokemon(MPokemon nouveauPokemon, int idGen)
         {
             CheckConnexion();
 
@@ -115,7 +115,7 @@ namespace PokeStat.Repositories
             {
 
                 SqlCommand RequestAddPokemon = activeConnexion.CreateCommand();
-                RequestAddPokemon.CommandText = "INSERT INTO Pokemon (nom_eng_pok, nom_fra_pok, num_pok, taille_pok, poids_pok, base_experience, base_hp, base_att, base_def, base_sp_att, base_sp_def, base_vit, legendaire, shiny, pok_img, niv_evo, id_evo, id_version) VALUES (@nom_eng_pok, @nom_fra_pok, @num_pok, @taille_pok, @poids_pok, @base_experience, @base_hp, @base_att, @base_def, @base_sp_att, @base_sp_def, @base_vit, @legendaire, @shiny, @pok_img, @niv_evo, @id_evo, @id_version)";
+                RequestAddPokemon.CommandText = "INSERT INTO Pokemons (nom_eng_pok, nom_fra_pok, num_pok, taille_pok, poids_pok, base_experience, base_hp, base_att, base_def, base_sp_att, base_sp_def, base_vit, legendaire, shiny, pok_img, niv_evo, id_evo, id_gen) VALUES (@nom_eng_pok, @nom_fra_pok, @num_pok, @taille_pok, @poids_pok, @base_experience, @base_hp, @base_att, @base_def, @base_sp_att, @base_sp_def, @base_vit, @legendaire, @shiny, @pok_img, @niv_evo, @evo_id, @gen_id)";
 
             
                 SqlParameter name = RequestAddPokemon.Parameters.Add("@nom_eng_pok", SqlDbType.VarChar);         
@@ -134,8 +134,8 @@ namespace PokeStat.Repositories
                 SqlParameter shiny = RequestAddPokemon.Parameters.Add("@shiny", SqlDbType.Bit);
                 SqlParameter img = RequestAddPokemon.Parameters.Add("@pok_img", SqlDbType.VarChar);
                 SqlParameter nivEvo = RequestAddPokemon.Parameters.Add("@niv_evo", SqlDbType.Int);                   
-                SqlParameter idEvo = RequestAddPokemon.Parameters.Add("@id_evo", SqlDbType.Int);
-                SqlParameter idVers = RequestAddPokemon.Parameters.Add("@id_version", SqlDbType.Int);
+                SqlParameter idEvo = RequestAddPokemon.Parameters.Add("@evo_id", SqlDbType.Int);
+                SqlParameter Gen = RequestAddPokemon.Parameters.Add("@gen_id", SqlDbType.Int);
 
 
                 name.Value = nouveauPokemon.nomEngPokemon;
@@ -155,7 +155,7 @@ namespace PokeStat.Repositories
                 img.Value = nouveauPokemon.cheminImgPokemon;
                 nivEvo.Value = (object)nouveauPokemon.nivEvolution ?? DBNull.Value;
                 idEvo.Value = (object)nouveauPokemon.evolution?.idPokemon ?? DBNull.Value;
-                idVers.Value = idVersion;
+                Gen.Value = idGen;
 
                 int result = RequestAddPokemon.ExecuteNonQuery();
             }
@@ -175,14 +175,14 @@ namespace PokeStat.Repositories
             CheckConnexion();
 
             SqlCommand RequestAddTypePokemon = activeConnexion.CreateCommand();
-            RequestAddTypePokemon.CommandText = "INSERT INTO pokemon_types (id_type, id_pok, emplac) VALUES (@id_type, @id_pok, @emplac)";
+            RequestAddTypePokemon.CommandText = "INSERT INTO pokemon_types (type_id, pok_id, emplac) VALUES (@type_id, @pok_id, @emplac)";
 
-            SqlParameter idType = RequestAddTypePokemon.Parameters.Add("@id_type", SqlDbType.Int);
-            SqlParameter idPok = RequestAddTypePokemon.Parameters.Add("@id_pok", SqlDbType.Int);
+            SqlParameter idType = RequestAddTypePokemon.Parameters.Add("@type_id", SqlDbType.Int);
+            SqlParameter idPok = RequestAddTypePokemon.Parameters.Add("@pok_id", SqlDbType.Int);
             SqlParameter emplac = RequestAddTypePokemon.Parameters.Add("@emplac", SqlDbType.TinyInt);
             idType.Value = IdType;
             idPok.Value = IdPokemon;
-            emplac.Value = 7;
+            emplac.Value = 3;
 
             int result = RequestAddTypePokemon.ExecuteNonQuery();
        

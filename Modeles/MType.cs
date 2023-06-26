@@ -32,7 +32,7 @@ namespace PokeStat.Modeles
         //}
 
        
-        public override bool Equals(T obj)
+        public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
                 return false;
