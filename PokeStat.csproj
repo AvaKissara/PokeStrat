@@ -63,6 +63,7 @@
     <Compile Include="Modeles\ITalent.cs" />
     <Compile Include="Modeles\MCapacite.cs" />
     <Compile Include="Modeles\MCategorie.cs" />
+    <Compile Include="Modeles\MGeneration.cs" />
     <Compile Include="Modeles\MNature.cs" />
     <Compile Include="Modeles\MPokemon.cs" />
     <Compile Include="Modeles\MStat.cs" />

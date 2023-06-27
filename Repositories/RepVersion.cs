@@ -47,7 +47,7 @@ namespace PokeStat.Repositories
             try
             {
                 SqlCommand RequestGetVersions = activeConnexion.CreateCommand();
-                RequestGetVersions.CommandText = "SELECT * FROM Version";
+                RequestGetVersions.CommandText = "SELECT * FROM Versions";
 
                 using (SqlDataReader versions = RequestGetVersions.ExecuteReader())
                 {
@@ -82,10 +82,12 @@ namespace PokeStat.Repositories
             try
             {
                 SqlCommand RequestAddVersion = activeConnexion.CreateCommand();
-                RequestAddVersion.CommandText = "INSERT INTO Version (nom_version) VALUES (@nom_version)";
+                RequestAddVersion.CommandText = "INSERT INTO Versions (nom_version,gen_id) VALUES (@nom_version,@gen_id)";
 
                 SqlParameter nom = RequestAddVersion.Parameters.Add("@nom_version", SqlDbType.VarChar);
+                SqlParameter gen = RequestAddVersion.Parameters.Add("@gen_id", SqlDbType.Int);
                 nom.Value = nouvelleVersion.nomVersion;
+                gen.Value = nouvelleVersion.genId;
 
                 int result = RequestAddVersion.ExecuteNonQuery();
             }

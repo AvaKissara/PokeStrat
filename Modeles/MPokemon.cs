@@ -31,10 +31,10 @@ namespace PokeStat.Modeles
         public int nivEvolution { get; set; }
         public List<MType> typesPokemon { get; set; }
         public MPokemon evolution { get; set; }
-        public MVersion gen { get; set; }
+        public MGeneration gen { get; set; }
         public string nature { get; set; }
 
-        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MVersion Gen)
+        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MGeneration Gen)
         {
             this.idPokemon = IdPokemon;
             this.cheminImgPokemon = CheminImgPokemon;

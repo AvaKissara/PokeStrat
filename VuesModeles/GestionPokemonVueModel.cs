@@ -515,13 +515,13 @@ namespace PokeStat.VuesModeles
 
         private void AjoutePokemon()
         {
-            int idVersion;
+            int idGen;
             int idPok;
             int idType;
             CheminImgPokemon = RelativeSelectedImagePath;
 
             MPokemon nouveauPokemon = new MPokemon(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
-            List<MVersion> versions = repVersion.GetVersions();
+            List<MGeneration> versions = repGeneration.GetGens();
             List<MType> types = repType.GetTypes();      
             List<MPokemon> pokemons = repPokemon.GetPokemons();
 
@@ -534,12 +534,12 @@ namespace PokeStat.VuesModeles
             else
             {
                 
-                foreach (MVersion version in versions)
+                foreach (MGeneration version in versions)
                 {
                     if (version.Equals(Gen))
                     {
-                        idVersion = version.idVersion;
-                        repPokemon.AddPokemon(nouveauPokemon, idVersion);
+                        idGen = version.idGen;
+                        repPokemon.AddPokemon(nouveauPokemon, idGen);
                     }
                 }
                
@@ -668,7 +668,7 @@ namespace PokeStat.VuesModeles
                 row[15] = pokemon.shiny;
                 row[16] = pokemon.evolution?.nomFraPokemon;
                 row[17] = pokemon?.nivEvolution;
-                row[18] = pokemon.gen.nomVersion;
+                row[18] = pokemon.gen.nomGen;
                 dtPokedex.Rows.Add(row);
             }
 
