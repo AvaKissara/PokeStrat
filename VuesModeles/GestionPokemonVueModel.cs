@@ -111,25 +111,24 @@ namespace PokeStat.VuesModeles
 
         RepPokemon repPokemon;
 
-        RepVersion repVersion;
+        RepGeneration repGen;
 
         RepType repType;
 
-        private List<MVersion> cmbVersion;
-        public List<MVersion> CmbVersion
+        private List<MGeneration> cmbGen;
+        public List<MGeneration> CmbGen
         {
-            get { return cmbVersion; }
+            get { return cmbGen; }
             set
             {
-                if (cmbVersion != value)
+                if (cmbGen != value)
                 {
-                    cmbVersion = value;
-                    OnPropertyChanged(nameof(CmbVersion));
+                    cmbGen = value;
+                    OnPropertyChanged(nameof(CmbGen));
                 }
             }
         }
-
-        
+       
         private List<MType> cmbType;
         public List<MType> CmbType
         {
@@ -443,8 +442,8 @@ namespace PokeStat.VuesModeles
         }
 
 
-        private MVersion gen;
-        public MVersion Gen
+        private MGeneration gen;
+        public MGeneration Gen
         {
             get { return gen; }
             set
@@ -494,14 +493,14 @@ namespace PokeStat.VuesModeles
             OpenFileCommand = new RelayCommand(OpenFile);
 
             repPokemon = new RepPokemon();
-            repVersion = new RepVersion();
+            repGen= new RepGeneration();
             repType = new RepType();
             List<MPokemon> pokemons = repPokemon.GetPokemons();
             DtPokedex = ConvertListToDataTable(pokemons);
-            repVersion = new RepVersion();
+            repGen = new RepGeneration();
             repType = new RepType();
-            List<MVersion> versions = repVersion.GetVersions();
-            CmbVersion = versions;
+            List<MGeneration> generations = repGen.GetGenerations();
+            CmbGen = generations;
             List<MType> types = repType.GetTypes();
             CmbType = types;
             CmbType2 = types;
@@ -521,7 +520,7 @@ namespace PokeStat.VuesModeles
             CheminImgPokemon = RelativeSelectedImagePath;
 
             MPokemon nouveauPokemon = new MPokemon(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
-            List<MGeneration> versions = repGeneration.GetGens();
+            List<MGeneration> generations = repGen.GetGenerations();
             List<MType> types = repType.GetTypes();      
             List<MPokemon> pokemons = repPokemon.GetPokemons();
 
@@ -534,11 +533,11 @@ namespace PokeStat.VuesModeles
             else
             {
                 
-                foreach (MGeneration version in versions)
+                foreach (MGeneration gen in generations)
                 {
-                    if (version.Equals(Gen))
+                    if (gen.Equals(Gen))
                     {
-                        idGen = version.idGen;
+                        idGen = gen.idGen;
                         repPokemon.AddPokemon(nouveauPokemon, idGen);
                     }
                 }
@@ -553,13 +552,10 @@ namespace PokeStat.VuesModeles
             foreach (MType type in types)
             {
                 if (type.Equals(SelectedCmbTypeValue))
-                {
-                    if (type.Equals(SelectedCmbType2Value))
-                    {
-                        idType = type.idType;
-                        idPok = pokemons[pokemons.Count - 1].idPokemon;
-                        repPokemon.AddTypePokemon(idType, idPok);
-                    }
+                {                   
+                    idType = type.idType;
+                    idPok = pokemons[pokemons.Count - 1].idPokemon;
+                    repPokemon.AddTypePokemon(idType, idPok);                   
                 }
             } 
             
@@ -630,7 +626,7 @@ namespace PokeStat.VuesModeles
             dtPokedex.Columns.Add("Shiny", typeof(bool));
             dtPokedex.Columns.Add("Evolution", typeof(string));
             dtPokedex.Columns.Add("Niveau évo", typeof(int));
-            dtPokedex.Columns.Add("Version", typeof(string));
+            dtPokedex.Columns.Add("Gen", typeof(string));
             dtPokedex.Columns[1].ColumnName = "Pokemon";
 
             // Ajouter les données à la DataTable

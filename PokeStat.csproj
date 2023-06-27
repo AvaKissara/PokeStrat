@@ -73,6 +73,7 @@
     <Compile Include="Modeles\PokemonCapacite.cs" />
     <Compile Include="Modeles\PokemonTalent.cs" />
     <Compile Include="Modeles\MRegion.cs" />
+    <Compile Include="Repositories\RepGeneration.cs" />
     <Compile Include="Repositories\RepPokemon.cs" />
     <Compile Include="Repositories\RepType.cs" />
     <Compile Include="Repositories\RepVersion.cs" />

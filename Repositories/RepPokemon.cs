@@ -72,7 +72,6 @@ namespace PokeStat.Repositories
                     {
                         int idGen = pokemons.IsDBNull(20) ? 0 : pokemons.GetInt32(20);
                         string nomGen = pokemons.IsDBNull(21) ? "" : $"{pokemons[21]}";
-                        int numGen = pokemons.IsDBNull(22) ? 0 : pokemons.GetInt32(22);
                         gen = new MGeneration(idGen, nomGen);
                     }
 
@@ -175,7 +174,7 @@ namespace PokeStat.Repositories
             CheckConnexion();
 
             SqlCommand RequestAddTypePokemon = activeConnexion.CreateCommand();
-            RequestAddTypePokemon.CommandText = "INSERT INTO pokemon_types (type_id, pok_id, emplac) VALUES (@type_id, @pok_id, @emplac)";
+            RequestAddTypePokemon.CommandText = "INSERT INTO pokemon_type (type_id, pok_id, emplac) VALUES (@type_id, @pok_id, @emplac)";
 
             SqlParameter idType = RequestAddTypePokemon.Parameters.Add("@type_id", SqlDbType.Int);
             SqlParameter idPok = RequestAddTypePokemon.Parameters.Add("@pok_id", SqlDbType.Int);

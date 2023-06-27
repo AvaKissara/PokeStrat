@@ -18,7 +18,7 @@
             <TextBlock Grid.Column="0" Text="GESTION DES POKEMONS" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
         </Grid>
 
-        <DataGrid RowHeight="300"  ColumnWidth="*" ItemsSource="{Binding DtPokedex, UpdateSourceTrigger=PropertyChanged}" Margin="30,30,40,100" AutoGenerateColumns="False" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
+        <DataGrid RowHeight="100"  ColumnWidth="*" ItemsSource="{Binding DtPokedex, UpdateSourceTrigger=PropertyChanged}" Margin="30,30,40,100" AutoGenerateColumns="False" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
 
             <DataGrid.Resources>
                 <!-- Style de cellule -->
@@ -42,7 +42,7 @@
                 <DataGridTemplateColumn Header="Image">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding absoluDtImagePath}" />
+                            <Image Source="{Binding Image}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -57,13 +57,12 @@
                 <DataGridTextColumn Header="Défense" Binding="{Binding Défense}" />
                 <DataGridTextColumn Header="Attaque spé" Binding="{Binding [Att. spé]}" />
                 <DataGridTextColumn Header="Défense spé" Binding="{Binding [Déf. spé]}" />
-                <DataGridTextColumn Header="Vitesse" Binding="{Binding Vit}" />
+                <DataGridTextColumn Header="Vitesse" Binding="{Binding Vitesse}" />
                 <DataGridCheckBoxColumn Header="Légendaire" Binding="{Binding Légendaire}" />
                 <DataGridCheckBoxColumn Header="Shiny" Binding="{Binding Shiny}" />
                 <DataGridTextColumn Header="Evolution" Binding="{Binding Evolution}" />
                 <DataGridTextColumn Header="Niveau évo" Binding="{Binding [Niveau évo]}" />
-                <DataGridTextColumn Header="Version" Binding="{Binding Version}" />
-
+                <DataGridTextColumn Header="Generation" Binding="{Binding Gen}" />
             </DataGrid.Columns>
         </DataGrid>
 
