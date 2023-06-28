@@ -24,6 +24,5 @@ namespace PokeStat.Modeles
             this.dateMatch = DateMatch;
         }
     }
-
  
 }

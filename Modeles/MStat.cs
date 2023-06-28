@@ -8,28 +8,13 @@ namespace PokeStat.Modeles
 {
     public class MStat
     {
-        public int pv { get; set; }
-        public int attaque { get; set; }
-        public int defense { get; set; }
-        public int attSpe { get; set; }
-        public int defSpe { get; set; }
-        public int vitesse { get; set; }
-        public int pp { get; set; }
-        public int puiss { get; set; }
-        public int pre { get; set; }
-
-
-        public MStat(int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, int Pp, int Puiss, int Pre)
+      public int idStat { get; set; }
+      public string nomStat { get; set; }
+      
+        public MStat(int IdStat, string NomStat)
         {
-            this.pv = PV;
-            this.attaque = Attaque;
-            this.defense = Defense;
-            this.attSpe = AttSpe;
-            this.defSpe = DefSpe;
-            this.vitesse = Vitesse;
-            this.pp = Pp;
-            this.puiss = Puiss;
-            this.pre = Pre;
+            this.idStat = IdStat;
+            this.nomStat = NomStat;
         }
     }
 }
