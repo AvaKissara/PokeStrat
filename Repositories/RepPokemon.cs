@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Repositories
 {
-    public class RepPokemon
+    public class RepPokemon : IRepository<MPokemon>
     {
         private SqlConnection activeConnexion;
 
@@ -40,7 +40,7 @@ namespace PokeStat.Repositories
             }
         }
 
-        public List<MPokemon> GetPokemons()
+        public List<MPokemon> GetAll()
         {
             CheckConnexion();
 
@@ -106,7 +106,23 @@ namespace PokeStat.Repositories
 
             return ListMPokemons;
         }
-        public void AddPokemon(MPokemon nouveauPokemon, int idGen)
+
+        public void Add(MPokemon entreePokemon)
+        {
+            if (entreePokemon is MPokemon nouveauPokemon)
+            {
+                int idGen = nouveauPokemon.gen.idGen;
+
+                Add(nouveauPokemon, idGen);
+            }
+            else
+            {
+                throw new ArgumentException("L'entrée n'est pas de type MPokemon");
+            }
+        }
+
+
+        public void Add(MPokemon nouveauPokemon, int idGen)
         {
             CheckConnexion();
 
@@ -188,6 +204,17 @@ namespace PokeStat.Repositories
 
             // Fermeture de la connexion
             this.activeConnexion.Close();
+        }
+
+  
+
+        public void Update(MPokemon MModele)
+        {
+        }
+
+
+        public void Delete(int idMModele)
+        {
         }
     }
 }

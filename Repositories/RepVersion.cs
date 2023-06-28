@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Repositories
 {
-    public class RepVersion
+    public class RepVersion : IRepository<MVersion>
     {
         private SqlConnection activeConnexion;
 
@@ -38,7 +38,7 @@ namespace PokeStat.Repositories
                 activeConnexion.Open();
             }
         }
-        public List<MVersion> GetVersions()
+        public List<MVersion> GetAll()
         {
             CheckConnexion();
 
@@ -75,7 +75,7 @@ namespace PokeStat.Repositories
             return ListMVersions;
         }
 
-        public void AddVersion(MVersion nouvelleVersion)
+        public void Add(MVersion nouvelleVersion)
         {
             CheckConnexion();
 
@@ -101,5 +101,12 @@ namespace PokeStat.Repositories
             this.activeConnexion.Close();
         }
 
+        public void Update(MVersion MModele)
+        {
+        }
+
+        public void Delete(int idMModele)
+        {
+        }
     }
 }

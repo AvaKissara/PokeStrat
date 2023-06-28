@@ -36,6 +36,11 @@ namespace PokeStat.VuesModeles
         public ICommand OpenFileCommand { get; }
 
 
+        RepPokemon repPokemon;
+        RepGeneration repGen;
+        RepType repType;
+
+
         private string selectedImagePath;
         public string SelectedImagePath
         {
@@ -107,13 +112,9 @@ namespace PokeStat.VuesModeles
                     OnPropertyChanged(nameof(DtPokedex));
                 }
             }
-        }    
+        }
 
-        RepPokemon repPokemon;
-
-        RepGeneration repGen;
-
-        RepType repType;
+ 
 
         private List<MGeneration> cmbGen;
         public List<MGeneration> CmbGen
@@ -493,15 +494,15 @@ namespace PokeStat.VuesModeles
             OpenFileCommand = new RelayCommand(OpenFile);
 
             repPokemon = new RepPokemon();
-            repGen= new RepGeneration();
+            repGen = new RepGeneration();
             repType = new RepType();
-            List<MPokemon> pokemons = repPokemon.GetPokemons();
+            List<MPokemon> pokemons = repPokemon.GetAll();
             DtPokedex = ConvertListToDataTable(pokemons);
             repGen = new RepGeneration();
             repType = new RepType();
-            List<MGeneration> generations = repGen.GetGenerations();
+            List<MGeneration> generations = repGen.GetAll();
             CmbGen = generations;
-            List<MType> types = repType.GetTypes();
+            List<MType> types = repType.GetAll();
             CmbType = types;
             CmbType2 = types;
             CmbEvo = pokemons;
@@ -514,15 +515,14 @@ namespace PokeStat.VuesModeles
 
         private void AjoutePokemon()
         {
-            int idGen;
             int idPok;
             int idType;
             CheminImgPokemon = RelativeSelectedImagePath;
 
             MPokemon nouveauPokemon = new MPokemon(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
-            List<MGeneration> generations = repGen.GetGenerations();
-            List<MType> types = repType.GetTypes();      
-            List<MPokemon> pokemons = repPokemon.GetPokemons();
+            List<MGeneration> generations = repGen.GetAll();
+            List<MType> types = repType.GetAll();      
+            List<MPokemon> pokemons = repPokemon.GetAll();
 
             bool pokExiste = pokemons.Any(p => p.nomFraPokemon.Equals(nouveauPokemon.nomFraPokemon, StringComparison.OrdinalIgnoreCase));
 
@@ -537,13 +537,12 @@ namespace PokeStat.VuesModeles
                 {
                     if (gen.Equals(Gen))
                     {
-                        idGen = gen.idGen;
-                        repPokemon.AddPokemon(nouveauPokemon, idGen);
+                        repPokemon.Add(nouveauPokemon);
                     }
                 }
                
                 // Actualisation de la liste des pokémons
-                pokemons = repPokemon.GetPokemons();
+                pokemons = repPokemon.GetAll();
                 DtPokedex = ConvertListToDataTable(pokemons);
 
                 System.Windows.MessageBox.Show("Le pokémon a bien été ajouté !");

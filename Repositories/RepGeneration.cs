@@ -9,7 +9,7 @@ using PokeStat.Modeles;
 
 namespace PokeStat.Repositories
 {
-    public class RepGeneration
+    public class RepGeneration : IRepository<MGeneration>
     {
         private SqlConnection activeConnexion;
 
@@ -39,7 +39,7 @@ namespace PokeStat.Repositories
             }
         }
 
-        public List<MGeneration> GetGenerations()
+        public List<MGeneration> GetAll()
         {
             CheckConnexion();
 
@@ -100,5 +100,16 @@ namespace PokeStat.Repositories
             this.activeConnexion.Close();
         }
 
+        public void Add(MGeneration MModele)
+        {
+        }
+
+        public void Update(MGeneration MModele)
+        {
+        }
+
+        public void Delete(int idMModele)
+        {
+        }
     }
 }

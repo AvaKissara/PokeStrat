@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace PokeStat.Repositories
 {
-    public class RepType
+    public class RepType : IRepository<MType>
     {
         private SqlConnection activeConnexion;
 
@@ -37,7 +37,7 @@ namespace PokeStat.Repositories
             }
         }
 
-        public List<MType> GetTypes()
+        public List<MType> GetAll()
         {
             CheckConnexion();
 
@@ -73,7 +73,7 @@ namespace PokeStat.Repositories
             return ListMTypes;
         }
 
-        public void AddType(MType nouveauType)
+        public void Add(MType nouveauType)
         {
             CheckConnexion();
 
@@ -97,7 +97,7 @@ namespace PokeStat.Repositories
             this.activeConnexion.Close();
         }
 
-        public void DeleteType(int idSuppr)
+        public void Delete(int idSuppr)
         {
             CheckConnexion();
 
@@ -121,7 +121,7 @@ namespace PokeStat.Repositories
             this.activeConnexion.Close();
         }
 
-        public void UpdateType(MType modifType)
+        public void Update(MType modifType)
         {
             CheckConnexion();
 
