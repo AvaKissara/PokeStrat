@@ -23,22 +23,23 @@ using System.Xml.Linq;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionPokemonVueModel : INotifyPropertyChanged
+    public class GestionPokemonVueModel : IVueModele
     {
         // Déclaration des commandes utilisées dans la classe
-        public ICommand CreePokemonCommand { get; set; }
-        public ICommand AjoutePokemonCommand { get; set; }
-        public ICommand ModifiePokemonCommand { get; set; }
-        public ICommand EffacePokemonCommand { get; set; }
-        public ICommand GestionPokemonCommand { get; set; }
+        public ICommand CreeCommand { get; set; }
+        public ICommand AjouteCommand { get; set; }
+        public ICommand ModifieCommand { get; set; }
+        public ICommand MajCommand { get; set; }
+        public ICommand EffaceCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
+        public ICommand GestionCommand { get; set; }
         public ICommand CloseCommand { get; }
         public ICommand OpenFileCommand { get; }
 
 
-        RepPokemon repPokemon;
-        RepGeneration repGen;
-        RepType repType;
+        private readonly RepPokemon repPokemon;
+        private readonly RepGeneration repGen;
+        private readonly RepType repType;
 
 
         private string selectedImagePath;
@@ -484,11 +485,11 @@ namespace PokeStat.VuesModeles
 
         public GestionPokemonVueModel()
         {
-            CreePokemonCommand = new RelayCommand(CreePokemon);
-            AjoutePokemonCommand = new RelayCommand(AjoutePokemon);
-            ModifiePokemonCommand = new RelayCommand(ModifiePokemon);
-            EffacePokemonCommand = new RelayCommand(EffacePokemon);
-            GestionPokemonCommand = new RelayCommand(GestionPokemon);
+            CreeCommand = new RelayCommand(CreePokemon);
+            AjouteCommand = new RelayCommand(AjoutePokemon);
+            ModifieCommand = new RelayCommand(ModifiePokemon);
+            EffaceCommand = new RelayCommand(EffacePokemon);
+            GestionCommand = new RelayCommand(GestionPokemon);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
             OpenFileCommand = new RelayCommand(OpenFile);

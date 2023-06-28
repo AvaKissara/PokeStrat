@@ -20,16 +20,16 @@ using System.Drawing.Imaging;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionTypeVueModel : INotifyPropertyChanged
+    public class GestionTypeVueModel : IVueModele
     {
         // Déclaration des commandes utilisées dans la classe
-        public ICommand CreeTypeCommand { get; set; }
-        public ICommand AjouteTypeCommand { get; set; }
-        public ICommand ModifieTypeCommand { get; set; }
-        public ICommand MajTypeCommand { get; set; }
-        public ICommand EffaceTypeCommand { get; set; }
+        public ICommand CreeCommand { get; set; }
+        public ICommand AjouteCommand { get; set; }
+        public ICommand ModifieCommand { get; set; }
+        public ICommand MajCommand { get; set; }
+        public ICommand EffaceCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
-        public ICommand GestionTypeCommand { get; set; }
+        public ICommand GestionCommand { get; set; }
         public ICommand CloseCommand { get; }
 
         //Propriété de type MType corrrespondant à l'élément actuellement sélectionné dans la liste des types.
@@ -126,18 +126,18 @@ namespace PokeStat.VuesModeles
         public GestionTypeVueModel()
         {
             // Initialisation des commandes
-            CreeTypeCommand = new RelayCommand(CreeType);
-            AjouteTypeCommand = new RelayCommand(AjouteType);
-            ModifieTypeCommand = new RelayCommand(ModifieType);
-            MajTypeCommand = new RelayCommand(MajType);
-            EffaceTypeCommand = new RelayCommand(EffaceType);
-            GestionTypeCommand = new RelayCommand(GestionType);
+            CreeCommand = new RelayCommand(CreeType);
+            AjouteCommand = new RelayCommand(AjouteType);
+            ModifieCommand = new RelayCommand(ModifieType);
+            MajCommand = new RelayCommand(MajType);
+            EffaceCommand = new RelayCommand(EffaceType);
+            GestionCommand = new RelayCommand(GestionType);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
 
             repType = new RepType();
             // Récupération des données de types  depuis le repository
-            List<MType> types = repType.GetTypes();
+            List<MType> types = repType.GetAll();
 
             // Conversion de la liste de types en DataTable
             DtTypes = ConvertListToDataTable(types);
@@ -158,7 +158,7 @@ namespace PokeStat.VuesModeles
            
             if (IsSaisieValide)
             {
-                List<MType> types = repType.GetTypes();
+                List<MType> types = repType.GetAll();
 
                 // Vérifie si le nom du type existe déjà dans la liste des types
                 bool typeExiste = types.Any(t => t.nomType.Equals(nouveauType.nomType, StringComparison.OrdinalIgnoreCase));
@@ -170,10 +170,10 @@ namespace PokeStat.VuesModeles
                 else
                 {
                     // Ajout d'un nouveau type au repository
-                    repType.AddType(nouveauType);
+                    repType.Add(nouveauType);
 
                     // Actualisation de la liste des types
-                    types = repType.GetTypes();
+                    types = repType.GetAll();
                     DtTypes = ConvertListToDataTable(types);
 
                     MessageBox.Show("Le type a bien été ajouté !");
@@ -188,7 +188,7 @@ namespace PokeStat.VuesModeles
 
         private void ModifieType()
         {
-            List<MType> types = repType.GetTypes();
+            List<MType> types = repType.GetAll();
            
             if (DtTypes != null && DtTypes.Rows.Count > 0)
             { 
@@ -211,7 +211,7 @@ namespace PokeStat.VuesModeles
         {
             if (IsSaisieValide)
             {
-                List<MType> types = repType.GetTypes();
+                List<MType> types = repType.GetAll();
                 // Mise à jour du nom du type avec la saisie de l'admin
                 LigneSelection.nomType = nomType;
                 // Vérifie si le nom du type existe déjà dans la liste des types
@@ -223,10 +223,10 @@ namespace PokeStat.VuesModeles
                 }
                 else
                 {
-                    repType.UpdateType(LigneSelection);
+                    repType.Update(LigneSelection);
 
                 // Actualisation de la liste des types
-                types = repType.GetTypes();
+                types = repType.GetAll();
                 DtTypes = ConvertListToDataTable(types);
 
                 // Message de confirmation
@@ -244,7 +244,7 @@ namespace PokeStat.VuesModeles
 
         private void EffaceType()
         {
-            List<MType> types = repType.GetTypes();
+            List<MType> types = repType.GetAll();
 
             if (DtTypes != null && DtTypes.Rows.Count > 0)
             {
@@ -261,10 +261,10 @@ namespace PokeStat.VuesModeles
                     if (result == MessageBoxResult.Yes)
                     {
                         // Envoi le type à supprimer vers le Repository
-                        repType.DeleteType(idTypeAEfface);
+                        repType.Delete(idTypeAEfface);
 
                         // Actualisation de la liste des types
-                        types = repType.GetTypes();
+                        types = repType.GetAll();
                         DtTypes = ConvertListToDataTable(types);
                     }
                 }
