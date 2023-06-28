@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PokeStat.Utilitaires;
+using PokeStat.VuesModeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,17 @@ namespace PokeStat.Vues.CrudVersion
     /// </summary>
     public partial class GestionVersion : Page
     {
+        public Frame MainFrame;
+        private GestionVersionVueModel gestionVersionVueModel;
         public GestionVersion()
         {
             InitializeComponent();
+            gestionVersionVueModel = new GestionVersionVueModel();
+            DataContext = gestionVersionVueModel;
+
+            Frame mainFrame = NavigationServices.GetMainFrame();
+            NavigationServices.Initialize(mainFrame);
+            NavigationServices.NavigateToPage(this);
         }
     }
 }

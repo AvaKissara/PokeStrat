@@ -24,6 +24,7 @@
             <Button Content="Inscription" HorizontalAlignment="Right" Margin="0,30,175,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>
             <Button x:Name="btnGestionPokemon" Content="Gestion Pokemon" Command="{Binding GestionPokemonCommand}" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway"  Foreground="White" FontSize="18" Padding="20,7"/>
             <Button x:Name="btnGestionType" Content="Gestion Type" Command="{Binding GestionTypeCommand}" HorizontalAlignment="Left" Margin="226,30,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>
+            <Button x:Name="btnGestionVersion" Content="Gestion Version" Command="{Binding GestionVersionCommand}" HorizontalAlignment="Left" Margin="375,30,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>
         </Grid>
     </Grid>
 </UserControl>

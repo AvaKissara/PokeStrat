@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
 {
-    public interface IVueModele : INotifyPropertyChanged
+    public interface IVueModele<TElement, TData> : INotifyPropertyChanged
     {
         // Commandes
         ICommand GestionCommand { get; set; }
@@ -22,5 +22,14 @@ namespace PokeStat.VuesModeles
         ICommand AccueilPageCommand { get; set; }
         ICommand CloseCommand { get; }
 
+        // Propriété de sélection de ligne
+        TElement LigneSelection { get; set; }
+
+        // Propriété de DataTable
+        TData DtData { get; set; }
+
+        // Propriétés de contrôle de saisie
+        bool IsSaisieValide { get; set; }
+        string ErreurSaisie { get; set; }
     }
 }

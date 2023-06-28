@@ -26,7 +26,7 @@
 
        
         <!-- DataGridView -->
-        <DataGrid ColumnWidth="*" ItemsSource="{Binding DtTypes, UpdateSourceTrigger=PropertyChanged}"
+        <DataGrid ColumnWidth="*" ItemsSource="{Binding DtData, UpdateSourceTrigger=PropertyChanged}"
           SelectedItem="{Binding LigneSelection, Converter={StaticResource DataRowViewToMTypeConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
           Margin="40,30,40,100" AutoGenerateColumns="True" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
 

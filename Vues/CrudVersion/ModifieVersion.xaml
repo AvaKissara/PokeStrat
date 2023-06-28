@@ -3,12 +3,42 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PokeStat.Vues.CrudVersion"
+      xmlns:local="clr-namespace:PokeStat.Vues.CrudVersion" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionVersionVueModel}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ModifieVersion">
+    <Grid Background="#2D354D">
+        <Grid>
+            <!-- Titre de la vue -->
+            <TextBlock Text="MODIFIER UNE VERSION" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="26" Padding="6,4" Margin="0,40,0,0" Foreground="White"/>
 
-    <Grid>
-        
+        </Grid>
+
+        <Label Content="Nom de la version:" HorizontalAlignment="Center" Margin="0,0,190,0" VerticalAlignment="Center" FontFamily="Raleway"  Foreground="White" FontSize="18"/>
+        <TextBox Name="tbNomVersion" HorizontalAlignment="Center" Margin="100,4,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" >
+            <TextBox.Text>
+                <Binding Path="NomVers" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label Content="Id de la génération:" HorizontalAlignment="Center" Margin="0,120,190,0" VerticalAlignment="Center" FontFamily="Raleway"  Foreground="White" FontSize="18"/>
+        <TextBox Name="tbIdGen" HorizontalAlignment="Center" Margin="100,120,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" >
+            <TextBox.Text>
+                <Binding Path="IdGen" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+
+        <TextBlock Text="{Binding ErreurSaisie}"
+           Foreground="Red"
+           FontSize="18"
+           HorizontalAlignment="Center"
+           Margin="0,5,0,180"
+           VerticalAlignment="Bottom" />
+
+        <Button Name="btnValid" Content="Valider" Command="{Binding AjouteCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnAnnul" Content="Annuler" Command="{Binding GestionCommand}" HorizontalAlignment="Center" Margin="120,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+
     </Grid>
 </Page>

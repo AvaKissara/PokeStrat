@@ -144,8 +144,8 @@
                 <ComboBox Name="cmbVersion" Text="Version" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbGen}" DisplayMemberPath="nomGen" SelectedItem="{Binding Gen, Mode=TwoWay}" />
             </StackPanel>
 
-            <Button Name="btnValid" Content="Valider" Command="{Binding AjoutePokemonCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
-            <Button Name="btnAnnul" Content="Annuler" Command="{Binding GestionPokemonCommand}" HorizontalAlignment="Center" Margin="120,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+            <Button Name="btnValid" Content="Valider" Command="{Binding AjouteCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+            <Button Name="btnAnnul" Content="Annuler" Command="{Binding GestionCommand}" HorizontalAlignment="Center" Margin="120,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
         </Grid>
     </Grid>
 </Page>

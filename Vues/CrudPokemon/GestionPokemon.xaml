@@ -18,7 +18,7 @@
             <TextBlock Grid.Column="0" Text="GESTION DES POKEMONS" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
         </Grid>
 
-        <DataGrid RowHeight="100"  ColumnWidth="*" ItemsSource="{Binding DtPokedex, UpdateSourceTrigger=PropertyChanged}" Margin="30,30,40,100" AutoGenerateColumns="False" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
+        <DataGrid RowHeight="100"  ColumnWidth="*" ItemsSource="{Binding DtData, UpdateSourceTrigger=PropertyChanged}" Margin="30,30,40,100" AutoGenerateColumns="False" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
 
             <DataGrid.Resources>
                 <!-- Style de cellule -->
@@ -66,9 +66,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreePokemonCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
-        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifiePokemonCommand}" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>
-        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffacePokemonCommand}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" FontFamily="Raleway" FontSize="18" Padding="20,7"/>
+        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieCommand}" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>
+        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceCommand}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" FontFamily="Raleway" FontSize="18" Padding="20,7"/>
     </Grid>
 
 </Page>

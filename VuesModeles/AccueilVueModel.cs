@@ -12,6 +12,7 @@ using PokeStat.Utilitaires;
 using PokeStat.Vues;
 using PokeStat.Vues.CrudPokemon;
 using PokeStat.Vues.CrudType;
+using PokeStat.Vues.CrudVersion;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace PokeStat.VuesModeles
@@ -23,6 +24,7 @@ namespace PokeStat.VuesModeles
         public ICommand InscriptionCommand { get; set; }
         public ICommand GestionPokemonCommand { get; set; }
         public ICommand GestionTypeCommand { get; set; }
+        public ICommand GestionVersionCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
@@ -32,6 +34,7 @@ namespace PokeStat.VuesModeles
             InscriptionCommand = new RelayCommand(Inscription);
             GestionPokemonCommand = new RelayCommand(GestionPokemon);
             GestionTypeCommand = new RelayCommand(GestionType);
+            GestionVersionCommand = new RelayCommand(GestionVersion);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
         }
@@ -63,6 +66,10 @@ namespace PokeStat.VuesModeles
             NavigationServices.NavigateToPage(accueilPage);
         }
 
+        public void GestionVersion()
+        {
+            NavigationServices.NavigateToPage(new GestionVersion());
+        }
         private void Close()
         {
             Application.Current.Shutdown();

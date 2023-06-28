@@ -87,6 +87,7 @@
     <Compile Include="Utilitaires\AuthenticationToVisibilityConverter.cs" />
     <Compile Include="Utilitaires\BitmapToImageSourceConverter.cs" />
     <Compile Include="Utilitaires\DataRowViewToMTypeConverter.cs" />
+    <Compile Include="Utilitaires\DataTableTool.cs" />
     <Compile Include="Utilitaires\NavigationServices.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />

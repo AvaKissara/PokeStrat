@@ -105,8 +105,28 @@ namespace PokeStat.Repositories
         {
         }
 
-        public void Delete(int idMModele)
+        public void Delete(int idSuppr)
         {
+            CheckConnexion();
+
+            try
+            {
+                SqlCommand RequestDeleteVersion = activeConnexion.CreateCommand();
+                RequestDeleteVersion.CommandText = "DELETE FROM Versions WHERE id_ = @id_version";
+
+                SqlParameter id = RequestDeleteVersion.Parameters.Add("@id_version", SqlDbType.Int);
+                id.Value = idSuppr;
+
+                int result = RequestDeleteVersion.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Gestion de l'exception
+                Console.WriteLine("Erreur lors de la suppression du type : " + ex.Message);
+            }
+
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
         }
     }
 }

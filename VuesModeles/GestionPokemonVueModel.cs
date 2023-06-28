@@ -20,10 +20,11 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using PokeStat.Properties;
 using System.Xml.Linq;
+using System.Windows.Markup;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionPokemonVueModel : IVueModele
+    public class GestionPokemonVueModel : IVueModele<MPokemon, DataTable>
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand CreeCommand { get; set; }
@@ -40,6 +41,24 @@ namespace PokeStat.VuesModeles
         private readonly RepPokemon repPokemon;
         private readonly RepGeneration repGen;
         private readonly RepType repType;
+
+        //Propriété de type MPokemon corrrespondant à l'élément actuellement sélectionné dans la liste des types.
+        private MPokemon _ligneSelection;
+        public MPokemon LigneSelection
+        {
+            get { return _ligneSelection; }
+            set
+            {
+                if (_ligneSelection != value)
+                {
+                    _ligneSelection = value;
+                    OnPropertyChanged(nameof(LigneSelection));
+                    // indique si un élément est sélectionné ou non
+                    OnPropertyChanged(nameof(IsSelectionne));
+                }
+            }
+        }
+        public bool IsSelectionne => LigneSelection != null;
 
 
         private string selectedImagePath;
@@ -100,22 +119,21 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private DataTable dtPokedex;
+        private DataTable dtData;
 
-        public DataTable DtPokedex
+        public DataTable DtData
         {
-            get { return dtPokedex; }
+            get { return dtData; }
             set
             {
-                if (dtPokedex != value)
+                if (dtData != value)
                 {
-                    dtPokedex = value;
-                    OnPropertyChanged(nameof(DtPokedex));
+                    dtData = value;
+                    OnPropertyChanged(nameof(DtData));
                 }
             }
         }
 
- 
 
         private List<MGeneration> cmbGen;
         public List<MGeneration> CmbGen
@@ -498,7 +516,7 @@ namespace PokeStat.VuesModeles
             repGen = new RepGeneration();
             repType = new RepType();
             List<MPokemon> pokemons = repPokemon.GetAll();
-            DtPokedex = ConvertListToDataTable(pokemons);
+            DtData = ConvertListToDataTable(pokemons);
             repGen = new RepGeneration();
             repType = new RepType();
             List<MGeneration> generations = repGen.GetAll();
@@ -544,7 +562,7 @@ namespace PokeStat.VuesModeles
                
                 // Actualisation de la liste des pokémons
                 pokemons = repPokemon.GetAll();
-                DtPokedex = ConvertListToDataTable(pokemons);
+                DtData = ConvertListToDataTable(pokemons);
 
                 System.Windows.MessageBox.Show("Le pokémon a bien été ajouté !");
             }             
@@ -605,29 +623,29 @@ namespace PokeStat.VuesModeles
         // Convertir une liste de MPokemon en DataTable
         private DataTable ConvertListToDataTable(List<MPokemon> pokemons)
         {
-            DataTable dtPokedex = new DataTable();
+            DataTable dtData = new DataTable();
 
             // Ajouter les colonnes à la DataTable
-            dtPokedex.Columns.Add("id", typeof(int));
-            dtPokedex.Columns.Add("Image", typeof(string));
-            dtPokedex.Columns.Add("Nom", typeof(string));
-            dtPokedex.Columns.Add("Name", typeof(string));
-            dtPokedex.Columns.Add("Num", typeof(string));
-            dtPokedex.Columns.Add("Taille", typeof(string));
-            dtPokedex.Columns.Add("Poids", typeof(double));
-            dtPokedex.Columns.Add("Xp", typeof(int));
-            dtPokedex.Columns.Add("HP", typeof(int));
-            dtPokedex.Columns.Add("Attaque", typeof(int));
-            dtPokedex.Columns.Add("Défense", typeof(int));
-            dtPokedex.Columns.Add("Att. spé", typeof(int));
-            dtPokedex.Columns.Add("Déf. spé", typeof(int));
-            dtPokedex.Columns.Add("Vitesse", typeof(int));
-            dtPokedex.Columns.Add("Légendaire", typeof(bool));
-            dtPokedex.Columns.Add("Shiny", typeof(bool));
-            dtPokedex.Columns.Add("Evolution", typeof(string));
-            dtPokedex.Columns.Add("Niveau évo", typeof(int));
-            dtPokedex.Columns.Add("Gen", typeof(string));
-            dtPokedex.Columns[1].ColumnName = "Pokemon";
+            dtData.Columns.Add("id", typeof(int));
+            dtData.Columns.Add("Image", typeof(string));
+            dtData.Columns.Add("Nom", typeof(string));
+            dtData.Columns.Add("Name", typeof(string));
+            dtData.Columns.Add("Num", typeof(string));
+            dtData.Columns.Add("Taille", typeof(string));
+            dtData.Columns.Add("Poids", typeof(double));
+            dtData.Columns.Add("Xp", typeof(int));
+            dtData.Columns.Add("HP", typeof(int));
+            dtData.Columns.Add("Attaque", typeof(int));
+            dtData.Columns.Add("Défense", typeof(int));
+            dtData.Columns.Add("Att. spé", typeof(int));
+            dtData.Columns.Add("Déf. spé", typeof(int));
+            dtData.Columns.Add("Vitesse", typeof(int));
+            dtData.Columns.Add("Légendaire", typeof(bool));
+            dtData.Columns.Add("Shiny", typeof(bool));
+            dtData.Columns.Add("Evolution", typeof(string));
+            dtData.Columns.Add("Niveau évo", typeof(int));
+            dtData.Columns.Add("Gen", typeof(string));
+            dtData.Columns[1].ColumnName = "Pokemon";
 
             // Ajouter les données à la DataTable
             foreach (var pokemon in pokemons)
@@ -645,7 +663,7 @@ namespace PokeStat.VuesModeles
                 //System.Drawing.Image imgPokemon = System.Drawing.Image.FromFile(absoluteImagePath);
 
                 DataRow row;
-                row = dtPokedex.NewRow();
+                row = dtData.NewRow();
                 row[0] = pokemon.idPokemon;
                 row[1] = absoluDtImagePath;
                 row[2] = pokemon.nomFraPokemon;
@@ -665,10 +683,10 @@ namespace PokeStat.VuesModeles
                 row[16] = pokemon.evolution?.nomFraPokemon;
                 row[17] = pokemon?.nivEvolution;
                 row[18] = pokemon.gen.nomGen;
-                dtPokedex.Rows.Add(row);
+                dtData.Rows.Add(row);
             }
 
-            return dtPokedex;
+            return dtData;
         }
 
         /// <summary>

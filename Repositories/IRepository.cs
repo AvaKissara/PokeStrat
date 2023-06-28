@@ -11,6 +11,6 @@ namespace PokeStat.Repositories
         List<T> GetAll();
         void Add(T MModele);
         void Update(T MModele);
-        void Delete(int idMModele);
+        void Delete(int idSuppr);
     }
 }
