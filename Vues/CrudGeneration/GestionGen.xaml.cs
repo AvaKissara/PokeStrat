@@ -15,20 +15,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PokeStat.Vues.CrudVersion
+namespace PokeStat.Vues.CrudGeneration
 {
     /// <summary>
-    /// Logique d'interaction pour ModifieVersion.xaml
+    /// Logique d'interaction pour GestionGen.xaml
     /// </summary>
-    public partial class ModifieVersion : Page
+    public partial class GestionGen : Page
     {
         public Frame MainFrame;
-        private GestionVersionVueModel gestionVersionVueModel;
-        public ModifieVersion()
+        private GestionGenVueModele gestionGenVueModel;
+        public GestionGen()
         {
             InitializeComponent();
-            gestionVersionVueModel = new GestionVersionVueModel();
-            DataContext = gestionVersionVueModel;
+            gestionGenVueModel = new GestionGenVueModele();
+            DataContext = gestionGenVueModel;
 
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);

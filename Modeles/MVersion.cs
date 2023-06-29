@@ -23,6 +23,7 @@ namespace PokeStat.Modeles
             this.nomVersion = NomVersion;
             this.gen = Gen;
         }
+        public MVersion() { }
 
 
         public override bool Equals(object objTest)

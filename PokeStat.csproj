@@ -94,12 +94,22 @@
     <Compile Include="Utilitaires\NavigationServices.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />
+    <Compile Include="VuesModeles\GestionGenVueModele.cs" />
     <Compile Include="VuesModeles\GestionPokemonVueModel.cs" />
     <Compile Include="VuesModeles\GestionTypeVueModel.cs" />
     <Compile Include="VuesModeles\GestionVersionVueModel.cs" />
     <Compile Include="VuesModeles\IVueModele.cs" />
     <Compile Include="Vues\AccueilPage.xaml.cs">
       <DependentUpon>AccueilPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\CrudGeneration\CreeGen.xaml.cs">
+      <DependentUpon>CreeGen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\CrudGeneration\GestionGen.xaml.cs">
+      <DependentUpon>GestionGen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\CrudGeneration\ModifieGen.xaml.cs">
+      <DependentUpon>ModifieGen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vues\CrudPokemon\CreePokemon.xaml.cs">
       <DependentUpon>CreePokemon.xaml</DependentUpon>
@@ -150,6 +160,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Vues\AccueilPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudGeneration\CreeGen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudGeneration\GestionGen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudGeneration\ModifieGen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 using System.Windows.Controls;
 using PokeStat.Vues.CrudVersion;
 using System.Data;
@@ -114,8 +113,6 @@ namespace PokeStat.VuesModeles
 
         public int IdVers;
 
-        Dictionary<string, string> columnMappings;
-
         private List<MGeneration> cmbGen;
         public List<MGeneration> CmbGen
         {
@@ -142,6 +139,20 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
+
+        private int IdGen;
+        public int idGen 
+        { get { return idGen; }
+            set
+            {
+                if (idGen != value)
+                {
+                    idGen = value;
+                    OnPropertyChanged(nameof(IdGen));
+                }
+            }
+        }
+        //public string nomGen { get; set; }  
 
         private List<DataRowView> dataRowViews;
         public List<DataRowView> DataRowViews
@@ -174,7 +185,6 @@ namespace PokeStat.VuesModeles
             repGen = new RepGeneration();
             List<MGeneration> generations = repGen.GetAll();
             CmbGen = generations;
-            // Initialisation de la liste des DataRowView
             dataRowViews = new List<DataRowView>();
         }
 

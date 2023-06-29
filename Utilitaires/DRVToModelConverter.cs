@@ -17,17 +17,28 @@ namespace PokeStat.Utilitaires
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is DataGrid dataGrid)
+            // Vérifier si la valeur est nulle ou n'est pas du type attendu
+            if (value == null || !(value is DataGrid))
             {
-                if (dataGrid.SelectedItem is DataRowView selectedRow)
-                {
-                    // Convertir la DataRowView en type spécifié
-                    return selectedRow.Row;
-                }
+                // Retourner une valeur par défaut appropriée pour votre cas
+                return null; // ou une autre valeur par défaut que vous souhaitez
             }
 
-            return null;
+            var dataGrid = (DataGrid)value;
+
+            // Vérifier si un élément est sélectionné dans la DataGrid
+            if (dataGrid.SelectedItem == null || !(dataGrid.SelectedItem is DataRowView))
+            {
+                // Retourner une valeur par défaut appropriée pour votre cas
+                return null; // ou une autre valeur par défaut que vous souhaitez
+            }
+
+            var selectedRow = (DataRowView)dataGrid.SelectedItem;
+
+            // Convertir la DataRowView en type spécifié
+            return selectedRow.Row;
         }
+
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -42,68 +53,24 @@ namespace PokeStat.Utilitaires
 
                 if (desiredType != null)
                 {
-                    object[] values = dataRowView.Row.ItemArray;
-
                     object convertedValue = Activator.CreateInstance(desiredType);
 
                     PropertyInfo[] properties = desiredType.GetProperties();
 
-                    for (int i = 0; i < values.Length && i < properties.Length; i++)
+                    for (int i = 0; i < properties.Length; i++)
                     {
                         PropertyInfo property = properties[i];
 
-                        if (property.CanWrite)
+                        if (property.CanWrite && dataRowView.Row.Table.Columns.Contains(property.Name))
                         {
-                            object propertyValue = values[i];
-                            Type propertyType = property.PropertyType;
+                            object propertyValue = dataRowView.Row[property.Name];
 
-                            // Vérifier si la valeur est null
-                            if (propertyValue == DBNull.Value)
+                            if (propertyValue != DBNull.Value)
                             {
-                                property.SetValue(convertedValue, null);
-                                continue;
-                            }
-
-                            // Vérifier si le type de propriété est nullable
-                            if (Nullable.GetUnderlyingType(propertyType) != null)
-                            {
-                                propertyType = Nullable.GetUnderlyingType(propertyType);
-                            }
-
-                            // Convertir la valeur en fonction du type de propriété
-                            try
-                            {
-                                object convertedPropertyValue = Convert.ChangeType(propertyValue, propertyType);
-                                property.SetValue(convertedValue, convertedPropertyValue);
-                            }
-                            catch (InvalidCastException)
-                            {
-                                // Gérer les conversions de types spécifiques ici
-                                // Exemple : si la propriété est de type decimal et la valeur est de type string
-                                if (propertyType == typeof(decimal) && propertyValue is string)
-                                {
-                                    decimal decimalValue;
-                                    if (decimal.TryParse((string)propertyValue, out decimalValue))
-                                    {
-                                        property.SetValue(convertedValue, decimalValue);
-                                    }
-                                    else
-                                    {
-                                        // Gérer l'erreur de conversion
-                                    }
-                                }
-                                else
-                                {
-                                    // Gérer les autres types de conversion ou lancer une exception
-                                    throw;
-                                }
+                                property.SetValue(convertedValue, propertyValue);
                             }
                         }
                     }
-
-                    string json = JsonConvert.SerializeObject(convertedValue);
-
-                    // ...
 
                     return convertedValue;
                 }
@@ -115,7 +82,6 @@ namespace PokeStat.Utilitaires
 
             return null;
         }
-
 
     }
 }

@@ -20,6 +20,8 @@ namespace PokeStat.Modeles
         {
             this.nomGen = NomGen;
         }
+        public MGeneration() { }
+
         public override bool Equals(object objTest)
         {
             if (objTest == null || GetType() != objTest.GetType())

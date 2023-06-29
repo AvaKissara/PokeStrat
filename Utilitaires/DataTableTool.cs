@@ -34,6 +34,7 @@ namespace PokeStat.Utilitaires
                 FillDataRow(model, row);
                 dataTable.Rows.Add(row);
             }
+            
 
             return dataTable;
         }
@@ -82,18 +83,17 @@ namespace PokeStat.Utilitaires
 
             foreach (PropertyInfo property in properties)
             {
-                if (IsComplexType(property.PropertyType))
+                string columnName = $"{prefix}{property.Name}";
+
+                if (row.Table.Columns.Contains(columnName))
                 {
-                    FillComplexTypeProperties(property.PropertyType, property.GetValue(complexObject, null), row, $"{prefix}{property.Name}.");
-                }
-                else
-                {
-                    string columnName = $"{prefix}{property.Name}";
                     object value = property.GetValue(complexObject, null);
                     row[columnName] = value ?? DBNull.Value;
                 }
             }
         }
+
+
 
         private static bool IsComplexType(Type type)
         {
