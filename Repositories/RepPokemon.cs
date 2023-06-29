@@ -68,7 +68,7 @@ namespace PokeStat.Repositories
                     int niveauEvo = pokemons.IsDBNull(19) ? 0 : pokemons.GetInt32(19);
 
                     MGeneration gen = null;
-                    if (!pokemons.IsDBNull(20)) 
+                    if (!pokemons.IsDBNull(20))
                     {
                         int idGen = pokemons.IsDBNull(20) ? 0 : pokemons.GetInt32(20);
                         string nomGen = pokemons.IsDBNull(21) ? "" : $"{pokemons[21]}";

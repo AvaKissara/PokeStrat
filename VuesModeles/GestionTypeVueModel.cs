@@ -18,6 +18,8 @@ using System.Runtime.InteropServices;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Xml.Linq;
+using System.Globalization;
+using static System.Resources.ResXFileRef;
 
 namespace PokeStat.VuesModeles
 {
@@ -124,6 +126,7 @@ namespace PokeStat.VuesModeles
             return dataRowViews.Find(rv => (int)rv["ID"] == id);
         }
 
+
         public GestionTypeVueModel()
         {
             // Initialisation des commandes
@@ -141,11 +144,27 @@ namespace PokeStat.VuesModeles
             List<MType> types = repType.GetAll();
 
             // Conversion de la liste de types en DataTable
-            DtData = ConvertListToDataTable(types);
+            dtData = DataTableTool.ConvertListToDataTable(types);
 
             // Initialisation de la liste des DataRowView
             dataRowViews = new List<DataRowView>();
+
         }
+        private MType ConvertDataRowViewToModel(DataRowView dataRowView)
+        {
+            // Effectuez ici la conversion de DataRowView en MType
+            // En utilisant les propriétés appropriées de DataRowView pour initialiser les propriétés de MType
+            MType model = new MType();
+
+            // Exemple de conversion d'une colonne nommée "gen" en une propriété "Gen" de type string dans MType
+            model.idType = (int)dataRowView["idType"];
+            model.nomType = dataRowView["nomType"].ToString();
+
+            // Effectuez les conversions pour les autres propriétés de MType
+
+            return model;
+        }
+
 
         private void CreeType()
         {
@@ -156,7 +175,7 @@ namespace PokeStat.VuesModeles
         private void AjouteType()
         {
             MType nouveauType = new MType(NomType);
-           
+
             if (IsSaisieValide)
             {
                 List<MType> types = repType.GetAll();
@@ -175,7 +194,9 @@ namespace PokeStat.VuesModeles
 
                     // Actualisation de la liste des types
                     types = repType.GetAll();
-                    DtData = ConvertListToDataTable(types);
+                    //DtData = ConvertListToDataTable(types);
+                    dtData = DataTableTool.ConvertListToDataTable(types);
+                    
 
                     MessageBox.Show("Le type a bien été ajouté !");
                     NavigationServices.NavigateToPage(new GestionType());
@@ -186,6 +207,7 @@ namespace PokeStat.VuesModeles
                 ErreurSaisie = "Veuillez corriger les erreurs de saisie.";
             }
         }
+
 
         private void ModifieType()
         {
@@ -228,7 +250,7 @@ namespace PokeStat.VuesModeles
 
                 // Actualisation de la liste des types
                 types = repType.GetAll();
-                DtData = ConvertListToDataTable(types);
+                DtData = DataTableTool.ConvertListToDataTable(types);
 
                 // Message de confirmation
                 MessageBox.Show("Le type a bien été modifié !");
@@ -266,7 +288,7 @@ namespace PokeStat.VuesModeles
 
                         // Actualisation de la liste des types
                         types = repType.GetAll();
-                        DtData = ConvertListToDataTable(types);
+                        DtData = DataTableTool.ConvertListToDataTable(types);
                     }
                 }
                 else
@@ -289,28 +311,6 @@ namespace PokeStat.VuesModeles
             NavigationServices.NavigateToPage(accueilPage);
         }
 
-        /// <summary>
-        /// Conversion d'une liste de MType en DataTable
-        /// </summary>
-        /// <param name="types"></param>
-        /// <returns></returns>
-        private DataTable ConvertListToDataTable(List<MType> types)
-        {
-            DataTable dtType = new DataTable();
-            dtType.Columns.Add("ID", typeof(int));
-            dtType.Columns.Add("NOM", typeof(string));
-
-            foreach (var type in types)
-            {
-                DataRow row;
-                row = dtType.NewRow();
-                row[0] = type.idType;
-                row[1] = type.nomType;
-                dtType.Rows.Add(row);
-            }
-
-            return dtType;
-        }
 
         private void Close()
         {

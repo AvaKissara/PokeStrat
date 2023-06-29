@@ -1,39 +1,103 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
+using System.Linq;
+using System.Reflection;
 
 namespace PokeStat.Utilitaires
 {
     public static class DataTableTool
     {
-        public static DataTable ConvertListToDataTable<T>(List<T> modeles, Dictionary<string, string> columnMappings)
+        public static DataTable ConvertListToDataTable<T>(List<T> models)
         {
-            DataTable dtData = new DataTable();
+            if (models == null || models.Count == 0)
+                throw new ArgumentException("La liste de modèles ne peut pas être nulle ou vide.");
 
-            // Ajoute les colonnes au DataTable en utilisant les mappings spécifiés
-            foreach (var columnMapping in columnMappings)
+            DataTable dataTable = new DataTable();
+            PropertyInfo[] properties = typeof(T).GetProperties();
+
+            foreach (PropertyInfo property in properties)
             {
-                dtData.Columns.Add(columnMapping.Key, typeof(T).GetProperty(columnMapping.Value).PropertyType);
-            }
-
-            // Ajoute les éléments à chaque ligne du DataTable
-            foreach (var modele in modeles)
-            {
-                DataRow row = dtData.NewRow();
-
-                foreach (var columnMapping in columnMappings)
+                if (IsComplexType(property.PropertyType))
                 {
-                    row[columnMapping.Key] = typeof(T).GetProperty(columnMapping.Value).GetValue(modele);
+                    AddComplexTypeColumns(property.PropertyType, property.Name, dataTable);
                 }
-
-                dtData.Rows.Add(row);
+                else
+                {
+                    dataTable.Columns.Add(property.Name, Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType);
+                }
             }
 
-            return dtData;
+            foreach (T model in models)
+            {
+                DataRow row = dataTable.NewRow();
+                FillDataRow(model, row);
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
+        }
+
+        private static void AddComplexTypeColumns(Type type, string prefix, DataTable dataTable)
+        {
+            PropertyInfo[] properties = type.GetProperties();
+
+            foreach (PropertyInfo property in properties)
+            {
+                string columnName = $"{prefix}.{property.Name}";
+
+                if (IsComplexType(property.PropertyType))
+                {
+                    AddComplexTypeColumns(property.PropertyType, columnName, dataTable);
+                }
+                else
+                {
+                    dataTable.Columns.Add(columnName, Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType);
+                }
+            }
+        }
+
+        private static void FillDataRow<T>(T model, DataRow row, string prefix = "")
+        {
+            PropertyInfo[] properties = typeof(T).GetProperties();
+
+            foreach (PropertyInfo property in properties)
+            {
+                if (IsComplexType(property.PropertyType))
+                {
+                    FillComplexTypeProperties(property.PropertyType, property.GetValue(model), row, $"{property.Name}.");
+                }
+                else
+                {
+                    string columnName = string.IsNullOrEmpty(prefix) ? property.Name : $"{prefix}{property.Name}";
+                    object value = property.GetValue(model);
+                    row[columnName] = value ?? DBNull.Value;
+                }
+            }
+        }
+
+        private static void FillComplexTypeProperties(Type type, object complexObject, DataRow row, string prefix)
+        {
+            PropertyInfo[] properties = type.GetProperties();
+
+            foreach (PropertyInfo property in properties)
+            {
+                if (IsComplexType(property.PropertyType))
+                {
+                    FillComplexTypeProperties(property.PropertyType, property.GetValue(complexObject, null), row, $"{prefix}{property.Name}.");
+                }
+                else
+                {
+                    string columnName = $"{prefix}{property.Name}";
+                    object value = property.GetValue(complexObject, null);
+                    row[columnName] = value ?? DBNull.Value;
+                }
+            }
+        }
+
+        private static bool IsComplexType(Type type)
+        {
+            return !type.IsValueType && type != typeof(string);
         }
     }
 }
-

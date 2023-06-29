@@ -16,6 +16,27 @@ namespace PokeStat.Modeles
             this.idGen = IdGen; 
             this.nomGen = NomGen; 
         }
+        public MGeneration(string NomGen)
+        {
+            this.nomGen = NomGen;
+        }
+        public override bool Equals(object objTest)
+        {
+            if (objTest == null || GetType() != objTest.GetType())
+                return false;
 
+            MGeneration objRef = (MGeneration)objTest;
+            return idGen == objRef.idGen && nomGen == objRef.nomGen;
+        }
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 23 + idGen.GetHashCode();
+                hash = hash * 23 + (nomGen != null ? nomGen.GetHashCode() : 0);
+                return hash;
+            }
+        }
     }
 }

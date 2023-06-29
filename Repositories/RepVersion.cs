@@ -47,16 +47,23 @@ namespace PokeStat.Repositories
             try
             {
                 SqlCommand RequestGetVersions = activeConnexion.CreateCommand();
-                RequestGetVersions.CommandText = "SELECT * FROM Versions";
+                RequestGetVersions.CommandText = "SELECT id_version, nom_version, gen_id, nom_gen FROM Versions as V LEFT JOIN Generations as G ON V.gen_id = G.id_gen";
 
                 using (SqlDataReader versions = RequestGetVersions.ExecuteReader())
                 {
                     while (versions.Read())
                     {
+                        MGeneration gen = null;
+                        if (!versions.IsDBNull(2))
+                        {
+                            int idGen = versions.IsDBNull(2) ? 0 : versions.GetInt32(2);
+                            string nomGen = nomGen = versions.IsDBNull(3) ? "" : $"{versions[3]}";
+                            gen = new MGeneration(idGen, nomGen);
+                        }
                         MVersion uneVersion = new MVersion(
                             versions.GetInt32(0),
                             $"{versions[1]}",
-                            versions.GetInt32(2)
+                            gen
                         );
 
                         ListMVersions.Add(uneVersion);
@@ -74,27 +81,40 @@ namespace PokeStat.Repositories
 
             return ListMVersions;
         }
+        public void Add(MVersion entreeVersion)
+        {
+            if (entreeVersion is MVersion nouvelleVersion)
+            {
+                int idGen = nouvelleVersion.gen.idGen;
 
-        public void Add(MVersion nouvelleVersion)
+                Add(nouvelleVersion, idGen);
+            }
+            else
+            {
+                throw new ArgumentException("L'entrée n'est pas de type MVersion");
+            }
+        }
+
+        public void Add(MVersion nouvelleVersion, int idGen)
         {
             CheckConnexion();
 
             try
             {
                 SqlCommand RequestAddVersion = activeConnexion.CreateCommand();
-                RequestAddVersion.CommandText = "INSERT INTO Versions (nom_version,gen_id) VALUES (@nom_version,@gen_id)";
+                RequestAddVersion.CommandText = "INSERT INTO Versions (nom_version, gen_id) VALUES (@nom_version, @gen_id)";
 
                 SqlParameter nom = RequestAddVersion.Parameters.Add("@nom_version", SqlDbType.VarChar);
                 SqlParameter gen = RequestAddVersion.Parameters.Add("@gen_id", SqlDbType.Int);
                 nom.Value = nouvelleVersion.nomVersion;
-                gen.Value = nouvelleVersion.genId;
+                gen.Value = idGen;
 
                 int result = RequestAddVersion.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 // Gestion de l'exception
-                Console.WriteLine("Erreur lors de l'ajout du type : " + ex.Message);
+                Console.WriteLine("Erreur lors de l'ajout de la version : " + ex.Message);
             }
 
             // Fermeture de la connexion

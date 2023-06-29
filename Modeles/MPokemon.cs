@@ -63,5 +63,7 @@ namespace PokeStat.Modeles
             this.cheminImgPokemon = CheminImgPokemon;
             this.nomFraPokemon = NomFraPokemon;
         }
+        public MPokemon()
+        { }
     }
 }

@@ -10,23 +10,28 @@ namespace PokeStat.Modeles
     {
         public int idVersion { get; }
         public string nomVersion { get; set; }
-        public int genId { get; set; }
+        public MGeneration gen{ get; set; }
 
-        public MVersion(int IdVersion, string NomVersion, int GenId) 
+        public MVersion(int IdVersion, string NomVersion, MGeneration Gen) 
         {
             this.idVersion = IdVersion;
             this.nomVersion = NomVersion;
-            this.genId = genId;
+            this.gen = Gen;
+        }
+        public MVersion(string NomVersion, MGeneration Gen)
+        {
+            this.nomVersion = NomVersion;
+            this.gen = Gen;
         }
 
 
-        public override bool Equals(object obj)
+        public override bool Equals(object objTest)
         {
-            if (obj == null || GetType() != obj.GetType())
+            if (objTest == null || GetType() != objTest.GetType())
                 return false;
 
-            MVersion other = (MVersion)obj;
-            return idVersion == other.idVersion && nomVersion == other.nomVersion;
+            MVersion objRef = (MVersion)objTest;
+            return idVersion == objRef.idVersion && nomVersion == objRef.nomVersion;
         }
         public override int GetHashCode()
         {

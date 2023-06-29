@@ -14,6 +14,10 @@ using System.Windows.Controls;
 using PokeStat.Vues.CrudVersion;
 using System.Data;
 using PokeStat.Repositories;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using PokeStat.Vues.CrudPokemon;
 
 namespace PokeStat.VuesModeles
 {
@@ -30,6 +34,8 @@ namespace PokeStat.VuesModeles
         public ICommand CloseCommand { get; }
         public ICommand OpenFileCommand { get; }
 
+
+        
 
         //Propriété de type MVersion corrrespondant à l'élément actuellement sélectionné dans la liste des types.
         private MVersion _ligneSelection;
@@ -50,8 +56,9 @@ namespace PokeStat.VuesModeles
         public bool IsSelectionne => LigneSelection != null;
 
         private readonly RepVersion repVersion;
+        private readonly RepGeneration repGen;
 
-        //Propriété de type DataTable stockant des objets MType
+        //Propriété de type DataTable stockant des objets MVersion
         private DataTable dtData;
 
         public DataTable DtData
@@ -67,7 +74,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        //Propriété de type booléen utilisée pour contrôler la saisie d'un type
+        //Propriété de type booléen utilisée pour contrôler la saisie d'une version
         private bool isSaisieValide;
         public bool IsSaisieValide
         {
@@ -105,20 +112,48 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private int idGen;
-        public int IdGen
+        public int IdVers;
+
+        Dictionary<string, string> columnMappings;
+
+        private List<MGeneration> cmbGen;
+        public List<MGeneration> CmbGen
         {
-            get { return idGen; }
+            get { return cmbGen; }
             set
             {
-                if (idGen != value)
+                if (cmbGen != value)
                 {
-                    idGen = value;
-                    OnPropertyChanged(nameof(IdGen));
+                    cmbGen = value;
+                    OnPropertyChanged(nameof(CmbGen));
                 }
             }
         }
-        public int IdVers;
+        private MGeneration gen;
+        public MGeneration Gen
+        {
+            get { return gen; }
+            set
+            {
+                if (gen != value)
+                {
+                    gen = value;
+                    OnPropertyChanged(nameof(Gen));
+                }
+            }
+        }
+
+        private List<DataRowView> dataRowViews;
+        public List<DataRowView> DataRowViews
+        {
+            get { return dataRowViews; }
+        }
+
+        public DataRowView FindDataRowViewById(int id)
+        {
+            return dataRowViews.Find(rv => (int)rv["ID"] == id);
+        }
+
 
         public GestionVersionVueModel()
         {
@@ -134,13 +169,13 @@ namespace PokeStat.VuesModeles
 
             repVersion = new RepVersion();
             List<MVersion> versions = repVersion.GetAll();
-            Dictionary<string, string> columnMappings = new Dictionary<string, string>()
-            {
-                { "ID", "idVersion" },
-                { "NOM", "nomVersion" },
-                { "GENERATION", "genId" }
-            };
-            dtData = DataTableTool.ConvertListToDataTable(versions, columnMappings);
+       
+            dtData = DataTableTool.ConvertListToDataTable(versions);
+            repGen = new RepGeneration();
+            List<MGeneration> generations = repGen.GetAll();
+            CmbGen = generations;
+            // Initialisation de la liste des DataRowView
+            dataRowViews = new List<DataRowView>();
         }
 
 
@@ -151,6 +186,43 @@ namespace PokeStat.VuesModeles
         
         public void AjouteVersion() 
         {
+            MVersion nouvelleVersion = new MVersion(NomVers, Gen);
+
+            //if (IsSaisieValide)
+            //{
+                List<MVersion> versions = repVersion.GetAll();
+                List<MGeneration> generations = repGen.GetAll();
+
+            // Vérifie si le nom du type existe déjà dans la liste des types
+            bool versionExiste = versions.Any(v => v.nomVersion.Equals(nouvelleVersion.nomVersion, StringComparison.OrdinalIgnoreCase));
+
+                if (versionExiste)
+                {
+                    MessageBox.Show("Cette version existe déjà !");
+                }
+                else
+                {
+                    foreach (MGeneration gen in generations)
+                    {
+                        if (gen.Equals(Gen))
+                        {
+                            // Ajout d'un nouveau type au repository
+                            repVersion.Add(nouvelleVersion);
+                        }
+                    }          
+
+                    // Actualisation de la liste des types
+                    versions = repVersion.GetAll();
+                    dtData = DataTableTool.ConvertListToDataTable(versions);
+
+                    MessageBox.Show("La version a bien été ajouté !");
+                    NavigationServices.NavigateToPage(new GestionVersion());
+                }
+            //}
+            //else
+            //{
+            //    ErreurSaisie = "Veuillez corriger les erreurs de saisie.";
+            //}
             NavigationServices.NavigateToPage(new GestionVersion());
         }
 

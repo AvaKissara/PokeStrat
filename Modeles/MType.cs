@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace PokeStat.Modeles
     public class MType
     {
         public int idType { get; set; }
+
         public string nomType { get; set; }
 
         //public  int emplacement { get; set; }
@@ -24,14 +26,12 @@ namespace PokeStat.Modeles
             this.nomType = NomType;
         }
 
-        //public MType(int IdType, string NomType, int Emplacement)
-        //{
-        //    this.idType = IdType;
-        //    this.nomType = NomType;
-        //    this.emplacement = Emplacement;
-        //}
+        public MType()
+        {
+         
+        }
 
-       
+
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())

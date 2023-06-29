@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokeStat"
-        xmlns:views="clr-namespace:PokeStat.Vues" xmlns:local1="clr-namespace:PokeStat.Vues.Layout" 
+        xmlns:views="clr-namespace:PokeStat.Vues"
+        xmlns:local1="clr-namespace:PokeStat.Vues.Layout"
+        xmlns:converters="clr-namespace:PokeStat.Utilitaires"
         mc:Ignorable="d"
         Title="PokeStat" Height="450" Width="800">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Vues/DicoRes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Ajoutez d'autres dictionnaires de ressources ici si nécessaire -->
+
+        </ResourceDictionary>
+    </Window.Resources>
 
     <Grid Background="#2D354D">
         <Grid.RowDefinitions>
@@ -15,12 +28,9 @@
         </Grid.RowDefinitions>
 
         <!-- Navigation Bar -->
-        <local1:NavigationBarAdmin Grid.Row="0" />
+        <ContentControl Grid.Row="0" Content="{StaticResource NavigationBarAdmin}" />
 
-        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden">
-            <Frame.Content>
-                <views:AccueilPage />
-            </Frame.Content>
-        </Frame>
+        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="Vues/AccueilPage.xaml" />
+
     </Grid>
 </Window>

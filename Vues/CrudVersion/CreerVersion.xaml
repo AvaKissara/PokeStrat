@@ -22,14 +22,11 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Label Content="id de la génération:" HorizontalAlignment="Center" Margin="0,120,190,0" VerticalAlignment="Center" FontFamily="Raleway"  Foreground="White" FontSize="18"/>
-        <TextBox Name="tbIdGen" HorizontalAlignment="Center" Margin="100,120,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" >
-            <TextBox.Text>
-                <Binding Path="IdGen" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True">
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-
+        <Label Content="Génération:" HorizontalAlignment="Center" Margin="0,120,190,0" VerticalAlignment="Center" FontFamily="Raleway"  Foreground="White" FontSize="18"/>
+        
+        <StackPanel  HorizontalAlignment="Center" Margin="100,120,0,0" VerticalAlignment="Center" Width="120">
+            <ComboBox Name="cmbGen" Text="Version" FontFamily="Raleway" Foreground="Black" FontSize="16" ItemsSource="{Binding CmbGen}" DisplayMemberPath="nomGen" SelectedItem="{Binding Gen, Mode=TwoWay}" />
+        </StackPanel>
 
         <TextBlock Text="{Binding ErreurSaisie}"
            Foreground="Red"
