@@ -61,14 +61,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Connexion.cs" />
-    <Compile Include="Modeles\ICapacite.cs" />
-    <Compile Include="Modeles\IPokemon.cs" />
-    <Compile Include="Modeles\ITalent.cs" />
     <Compile Include="Modeles\MCapacite.cs" />
     <Compile Include="Modeles\MCategorie.cs" />
     <Compile Include="Modeles\MEquipe.cs" />
+    <Compile Include="Modeles\MEquipier.cs" />
     <Compile Include="Modeles\MGeneration.cs" />
     <Compile Include="Modeles\MHabitat.cs" />
+    <Compile Include="Modeles\MMatch.cs" />
     <Compile Include="Modeles\MMeteo.cs" />
     <Compile Include="Modeles\MNature.cs" />
     <Compile Include="Modeles\MObjet.cs" />
@@ -80,8 +79,6 @@
     <Compile Include="Modeles\MUser.cs" />
     <Compile Include="Modeles\MVersion.cs" />
     <Compile Include="Modeles\MType.cs" />
-    <Compile Include="Modeles\PokemonCapacite.cs" />
-    <Compile Include="Modeles\PokemonTalent.cs" />
     <Compile Include="Modeles\MRegion.cs" />
     <Compile Include="Modeles\TypeObj.cs" />
     <Compile Include="Repositories\IRepository.cs" />
