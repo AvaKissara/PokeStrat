@@ -17,7 +17,7 @@ namespace PokeStat.Utilitaires
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            // Vérifier si la valeur est nulle ou n'est pas du type attendu
+            // Vérifie si la valeur est nulle ou n'est pas du type attendu
             if (value == null || !(value is DataGrid))
             {
                 // Retourner une valeur par défaut appropriée pour votre cas
@@ -26,7 +26,7 @@ namespace PokeStat.Utilitaires
 
             var dataGrid = (DataGrid)value;
 
-            // Vérifier si un élément est sélectionné dans la DataGrid
+            // Vérifie si un élément est sélectionné dans la DataGrid
             if (dataGrid.SelectedItem == null || !(dataGrid.SelectedItem is DataRowView))
             {
                 // Retourner une valeur par défaut appropriée pour votre cas
@@ -35,7 +35,7 @@ namespace PokeStat.Utilitaires
 
             var selectedRow = (DataRowView)dataGrid.SelectedItem;
 
-            // Convertir la DataRowView en type spécifié
+            // Convertit la DataRowView en type spécifié
             return selectedRow.Row;
         }
 

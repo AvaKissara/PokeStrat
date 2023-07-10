@@ -178,14 +178,15 @@ namespace PokeStat.VuesModeles
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
 
+            
             repVersion = new RepVersion();
             List<MVersion> versions = repVersion.GetAll();
-       
+
+            //dtData = new DataTable();
             dtData = DataTableTool.ConvertListToDataTable(versions);
             repGen = new RepGeneration();
             List<MGeneration> generations = repGen.GetAll();
             CmbGen = generations;
-            dataRowViews = new List<DataRowView>();
         }
 
 

@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Modeles
 {
-    internal class MObjet
+    public class MObjet
     {
+        public int idObjet { get; }
+        public string nomObjet { get; set; }
+        public string descObjet { get; set; }
+
+        public MObjet(int IdObjet, string NomObjet, string DescObjet) 
+        {
+            this.idObjet = IdObjet;
+            this.nomObjet = NomObjet;
+            this.descObjet = DescObjet;
+        }
     }
 }

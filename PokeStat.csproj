@@ -74,6 +74,7 @@
     <Compile Include="Modeles\MObjet.cs" />
     <Compile Include="Modeles\MPokemon.cs" />
     <Compile Include="Modeles\MStat.cs" />
+    <Compile Include="Modeles\MStatut.cs" />
     <Compile Include="Modeles\MTalent.cs" />
     <Compile Include="Modeles\MTerrain.cs" />
     <Compile Include="Modeles\MUser.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Modeles\PokemonCapacite.cs" />
     <Compile Include="Modeles\PokemonTalent.cs" />
     <Compile Include="Modeles\MRegion.cs" />
+    <Compile Include="Modeles\TypeObj.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\RepGeneration.cs" />
     <Compile Include="Repositories\RepPokemon.cs" />
