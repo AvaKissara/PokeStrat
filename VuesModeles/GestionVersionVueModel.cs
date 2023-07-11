@@ -154,16 +154,16 @@ namespace PokeStat.VuesModeles
         }
         //public string nomGen { get; set; }  
 
-        private List<DataRowView> dataRowViews;
-        public List<DataRowView> DataRowViews
-        {
-            get { return dataRowViews; }
-        }
+        //private List<DataRowView> dataRowViews;
+        //public List<DataRowView> DataRowViews
+        //{
+        //    get { return dataRowViews; }
+        //}
 
-        public DataRowView FindDataRowViewById(int id)
-        {
-            return dataRowViews.Find(rv => (int)rv["ID"] == id);
-        }
+        //public DataRowView FindDataRowViewById(int id)
+        //{
+        //    return dataRowViews.Find(rv => (int)rv["ID"] == id);
+        //}
 
 
         public GestionVersionVueModel()
@@ -182,7 +182,6 @@ namespace PokeStat.VuesModeles
             repVersion = new RepVersion();
             List<MVersion> versions = repVersion.GetAll();
 
-            //dtData = new DataTable();
             dtData = DataTableTool.ConvertListToDataTable(versions);
             repGen = new RepGeneration();
             List<MGeneration> generations = repGen.GetAll();

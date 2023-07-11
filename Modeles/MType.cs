@@ -13,7 +13,7 @@ namespace PokeStat.Modeles
 
         public string nomType { get; set; }
 
-        //public  int emplacement { get; set; }
+        public int emplacement { get; set; }
 
 
         public MType(string NomType)

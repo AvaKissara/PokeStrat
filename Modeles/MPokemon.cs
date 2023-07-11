@@ -16,16 +16,13 @@ namespace PokeStat.Modeles
         public string numPokemon { get; set; }
         public decimal taillePokemon { get; set; }
         public decimal poidsPokemon { get; set; }
-        public int niveau { get; set; }
-        public int ev { get; set; }
-        public int iv { get; set; }
         public int baseXp { get; set; }
-        public int pv { get; set; }
-        public int attaque { get; set; }
-        public int defense { get; set; }
-        public int attSpe { get; set; }
-        public int defSpe { get; set; }
-        public int vitesse { get; set; }
+        public int basePv { get; set; }
+        public int baseAttaque { get; set; }
+        public int baseDefense { get; set; }
+        public int baseAttSpe { get; set; }
+        public int baseDefSpe { get; set; }
+        public int baseVit { get; set; }
         public bool legendaire { get; set; }
         public bool shiny { get; set; }
         public int nivEvolution { get; set; }
@@ -33,8 +30,9 @@ namespace PokeStat.Modeles
         public MPokemon evolution { get; set; }
         public MGeneration gen { get; set; }
         public string nature { get; set; }
-
-        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MGeneration Gen)
+        public List<MCapacite> poolCapacites { get; set; }
+        public List<MTalent> talentPokemon { get; set; }
+        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MGeneration Gen)
         {
             this.idPokemon = IdPokemon;
             this.cheminImgPokemon = CheminImgPokemon;
@@ -44,12 +42,12 @@ namespace PokeStat.Modeles
             this.taillePokemon = TaillePokemon;
             this.poidsPokemon = PoidsPokemon;
             this.baseXp = BaseXp;
-            this.pv = PV;
-            this.attaque = Attaque;
-            this.defense = Defense;
-            this.attSpe = AttSpe;
-            this.defSpe = DefSpe;
-            this.vitesse = Vitesse;
+            this.basePv = BasePV;
+            this.baseAttaque = BaseAttaque;
+            this.baseDefense = BaseDefense;
+            this.baseAttSpe = BaseAttSpe;
+            this.baseDefSpe = BaseDefSpe;
+            this.baseVit = BaseVit;
             this.legendaire = Legendaire;
             this.shiny = Shiny;
             this.evolution = Evolution;
