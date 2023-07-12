@@ -15,6 +15,9 @@ namespace PokeStat.Modeles
 
         public int emplacement { get; set; }
 
+        const int MaxTypeId = 18; //à rendre variable
+
+        double[,] grilleDommage = new double[MaxTypeId, MaxTypeId];
 
         public MType(string NomType)
         {
@@ -31,6 +34,25 @@ namespace PokeStat.Modeles
          
         }
 
+        public void PeuplerDicoType()
+        {
+            // Initialisation de la matrice avec des coefficients de dommage par défaut
+            // Par exemple, un coefficient de dommage de 1.0 pour les combinaisons attaquant/cible identiques
+            for (int i = 0; i < MaxTypeId; i++)
+            {
+                for (int j = 0; j < MaxTypeId; j++)
+                {
+                    if (i == j)
+                    {
+                        grilleDommage[i, j] = 1.0;
+                    }
+                    else
+                    {
+                        grilleDommage[i, j] = 0.0;
+                    }
+                }
+            }
+        }
 
         public override bool Equals(object obj)
         {
