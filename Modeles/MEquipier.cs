@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Modeles
 {
-    public class Equipier : MPokemon
+    public class MEquipier : MPokemon
     {
         public int idEquipier { get; set; }
         public string nomEquipier { get; set; }
@@ -19,7 +19,7 @@ namespace PokeStat.Modeles
         public List<MCapacite> setCapacites { get; set; }
         public MTalent talentEquipier { get; set; }
 
-        public Equipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MGeneration Gen, int IdEquipier, string NomEquipier, int NiveauEquipier)
+        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MGeneration Gen, int IdEquipier, string NomEquipier, int NiveauEquipier)
             : base(IdPokemon, CheminImgPokemon, NomFraPokemon, nomEngPokemon, NumPokemon, TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen)
         {
             this.idEquipier = IdEquipier;
@@ -27,10 +27,10 @@ namespace PokeStat.Modeles
             this.niveauEquipier = NiveauEquipier;
         }
 
-        public Equipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon)
+        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon)
             : base(IdPokemon, CheminImgPokemon, NomFraPokemon)
         {
-            // Les autres propriétés spécifiques à Equipier resteront à leur valeur par défaut
+           
         }
 
     }

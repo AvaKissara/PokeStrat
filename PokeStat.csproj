@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Connexion.cs" />
+    <Compile Include="Modeles\MAction.cs" />
     <Compile Include="Modeles\MCapacite.cs" />
     <Compile Include="Modeles\MCategorie.cs" />
     <Compile Include="Modeles\MEquipe.cs" />

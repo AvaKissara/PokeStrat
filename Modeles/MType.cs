@@ -36,8 +36,8 @@ namespace PokeStat.Modeles
 
         public void PeuplerDicoType()
         {
-            // Initialisation de la matrice avec des coefficients de dommage par défaut
-            // Par exemple, un coefficient de dommage de 1.0 pour les combinaisons attaquant/cible identiques
+            // Initialisation de la grille avec des coefficients de dommage par défaut
+            // coefficient de dommage de 1.0 pour les combinaisons attaquant/cible identiques
             for (int i = 0; i < MaxTypeId; i++)
             {
                 for (int j = 0; j < MaxTypeId; j++)
