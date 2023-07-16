@@ -62,7 +62,7 @@ namespace PokeStat.Repositories
                         int idEvo = pokemons.IsDBNull(16) ? 0 : pokemons.GetInt32(16);
                         string imgEvo = pokemons.IsDBNull(17) ? "" : $"{pokemons[17]}";
                         string nomEvo = pokemons.IsDBNull(18) ? "" : $"{pokemons[18]}";
-                        evolution = new MPokemon(idEvo, imgEvo, nomEvo);
+                        evolution = new MSpecimen(idEvo, imgEvo, nomEvo);
                     }
 
                     int niveauEvo = pokemons.IsDBNull(19) ? 0 : pokemons.GetInt32(19);
@@ -75,7 +75,7 @@ namespace PokeStat.Repositories
                         gen = new MGeneration(idGen, nomGen);
                     }
 
-                    MPokemon unPokemon = new MPokemon(
+                    MSpecimen unPokemon = new MSpecimen(
                         pokemons.GetInt32(0),
                         $"{pokemons[1]}",
                         $"{pokemons[2]}",

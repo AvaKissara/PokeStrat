@@ -30,6 +30,7 @@ namespace PokeStat.Modeles
             MGeneration objRef = (MGeneration)objTest;
             return idGen == objRef.idGen && nomGen == objRef.nomGen;
         }
+
         public override int GetHashCode()
         {
             unchecked

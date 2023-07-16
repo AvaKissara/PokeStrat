@@ -9,7 +9,7 @@ namespace PokeStat.Modeles
     public class TypeObj
     {
         public int idTypeObj { get; }
-        public string nomTypeObj { get; set;  }
+        public string nomTypeObj { get; set; }
         public string descTypeObj { get; set; }
         public TypeObj(int IdTypeObj, string NomTypeObj, string DescTypeObj) 
         { 

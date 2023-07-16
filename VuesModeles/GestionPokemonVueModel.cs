@@ -538,7 +538,7 @@ namespace PokeStat.VuesModeles
             int idType;
             CheminImgPokemon = RelativeSelectedImagePath;
 
-            MPokemon nouveauPokemon = new MPokemon(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
+            MPokemon nouveauPokemon = new MSpecimen(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
             List<MGeneration> generations = repGen.GetAll();
             List<MType> types = repType.GetAll();      
             List<MPokemon> pokemons = repPokemon.GetAll();

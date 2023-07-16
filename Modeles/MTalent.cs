@@ -12,6 +12,7 @@ namespace PokeStat.Modeles
         public string nomTalent { get; set; }
         public MVersion versionTalent { get; set; }
         public string descTalent { get; set; }
+        public MTerrain effetTerrain { get; set; }
 
         public MTalent(int IdTalent, string NomTalent, string DescTalent)
         {

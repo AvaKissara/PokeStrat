@@ -73,6 +73,7 @@
     <Compile Include="Modeles\MNature.cs" />
     <Compile Include="Modeles\MObjet.cs" />
     <Compile Include="Modeles\MPokemon.cs" />
+    <Compile Include="Modeles\MSpecimen.cs" />
     <Compile Include="Modeles\MStat.cs" />
     <Compile Include="Modeles\MStatut.cs" />
     <Compile Include="Modeles\MTalent.cs" />
