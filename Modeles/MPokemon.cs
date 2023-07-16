@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Modeles
 {
-    public class MPokemon
+    public abstract class MPokemon
     {  
         public int idPokemon { get; }
         public string cheminImgPokemon { get; set; }
@@ -29,7 +29,6 @@ namespace PokeStat.Modeles
         public List<MType> typesPokemon { get; set; }
         public MPokemon evolution { get; set; }
         public MGeneration gen { get; set; }
-        public string nature { get; set; }
         public List<MCapacite> poolCapacites { get; set; }
         public List<MTalent> talentPokemon { get; set; }
         public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MGeneration Gen)
@@ -61,6 +60,7 @@ namespace PokeStat.Modeles
             this.cheminImgPokemon = CheminImgPokemon;
             this.nomFraPokemon = NomFraPokemon;
         }
+
         public MPokemon()
         { }
     }

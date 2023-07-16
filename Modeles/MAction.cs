@@ -14,6 +14,13 @@ namespace PokeStat.Modeles
         public double val { get; set; }
         public int tour { get; set; }
         public MMatch match { get; set; }
+        public MEquipier participant { get; set; }
         public MStat statCible { get; set; }
+        public MStatut statutParticipant { get; set; }
+        public MMeteo meteo { get; set; }
+        public MTerrain terrain { get; set; }
+        public MObjet objet { get; set; }
+        public MCapacite capacite { get; set; }
+        public MType typeParticipant { get; set; }
     }
 }
