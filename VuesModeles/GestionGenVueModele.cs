@@ -18,7 +18,7 @@ using PokeStat.Vues.CrudGeneration;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionGenVueModele : IVueModele<MVersion, DataTable>
+    public class GestionGenVueModele : IVueModele<MGeneration, DataTable>
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand CreeCommand { get; set; }
@@ -31,9 +31,9 @@ namespace PokeStat.VuesModeles
         public ICommand CloseCommand { get; }
         public ICommand OpenFileCommand { get; }
 
-        //Propriété de type MVersion corrrespondant à l'élément actuellement sélectionné dans la liste des types.
-        private MVersion _ligneSelection;
-        public MVersion LigneSelection
+        //Propriété de type MGeneration corrrespondant à l'élément actuellement sélectionné dans la liste des types.
+        private MGeneration _ligneSelection;
+        public MGeneration LigneSelection
         {
             get { return _ligneSelection; }
             set

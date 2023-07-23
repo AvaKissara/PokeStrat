@@ -10,6 +10,7 @@ namespace PokeStat.Modeles
     {
         public int idTerrain { get; set; }
         public string nomTerrain { get; set; }
+        public string descTerrain { get; set; }
 
         public MTerrain(int IdTerrain, string NomTerrain) 
         {

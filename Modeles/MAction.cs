@@ -8,7 +8,7 @@ namespace PokeStat.Modeles
 {
     public class MAction
     {
-        public int idAction { get; }
+        public int idAction { get; set; }
         public bool baisse { get; set; }
         public bool augmente { get; set; }
         public double val { get; set; }

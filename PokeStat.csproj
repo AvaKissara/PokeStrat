@@ -98,6 +98,7 @@
     <Compile Include="VuesModeles\GestionGenVueModele.cs" />
     <Compile Include="VuesModeles\GestionPokemonVueModel.cs" />
     <Compile Include="VuesModeles\GestionTypeVueModel.cs" />
+    <Compile Include="VuesModeles\GestionUserVueModele.cs" />
     <Compile Include="VuesModeles\GestionVersionVueModel.cs" />
     <Compile Include="VuesModeles\IVueModele.cs" />
     <Compile Include="Vues\AccueilPage.xaml.cs">
@@ -129,6 +130,15 @@
     </Compile>
     <Compile Include="Vues\CrudType\ModifieType.xaml.cs">
       <DependentUpon>ModifieType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\CrudUser\CreeUser.xaml.cs">
+      <DependentUpon>CreeUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\CrudUser\GestionUser.xaml.cs">
+      <DependentUpon>GestionUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\CrudUser\ModifieUser.xaml.cs">
+      <DependentUpon>ModifieUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vues\CrudVersion\CreerVersion.xaml.cs">
       <DependentUpon>CreerVersion.xaml</DependentUpon>
@@ -197,6 +207,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vues\CrudType\ModifieType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudUser\CreeUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudUser\GestionUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudUser\ModifieUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

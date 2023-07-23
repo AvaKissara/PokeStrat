@@ -1,0 +1,54 @@
+﻿<Page x:Class="PokeStat.Vues.CrudUser.CreeUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PokeStat.Vues.CrudUser"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CreeUser">
+
+    <Grid Background="#2D354D">
+        <!-- ... Votre contenu actuel ... -->
+
+        <Label Content="Nom:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,150,0,0" VerticalAlignment="Top" />
+        <TextBox Name="tbNomUser" HorizontalAlignment="Left" Margin="200,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
+            <TextBox.Text>
+                <Binding Path="NomUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Prénom:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,150,200,0" VerticalAlignment="Top" />
+        <TextBox Name="tbPrenomUser" HorizontalAlignment="Right" Margin="0,155,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
+            <TextBox.Text>
+                <Binding Path="PrenomUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Pseudo:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,200,0,0" VerticalAlignment="Top" />
+        <TextBox Name="tbPseudoUser" HorizontalAlignment="Left" Margin="200,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
+            <TextBox.Text>
+                <Binding Path="PseudoUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Email:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,200,200,0" VerticalAlignment="Top" />
+        <TextBox Name="tbMailUser" HorizontalAlignment="Right" Margin="0,205,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
+            <TextBox.Text>
+                <Binding Path="MailUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Mot de passe:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,250,0,0" VerticalAlignment="Top" />
+        <PasswordBox Name="pbMdpUser" HorizontalAlignment="Left" Margin="200,255,0,0" VerticalAlignment="Top" Width="200" Password="{Binding MdpUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Content="Confirmer le mot de passe:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,250,70,0" VerticalAlignment="Top" />
+        <PasswordBox Name="pbConfirmerMdp" HorizontalAlignment="Right" Margin="0,255,70,0" VerticalAlignment="Top" Width="200" />
+
+        <!-- ... Autres champs de la classe MUser ... -->
+
+        <!-- Bouton de soumission -->
+        <Button Name="btnInscription" Content="S'inscrire" Command="{Binding InscriptionCommand}" HorizontalAlignment="Center" Margin="0,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway" Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7" IsEnabled="{Binding CanInscription}" />
+        <Button Name="btnAnnuler" Content="Annuler" Command="{Binding AnnulerCommand}" HorizontalAlignment="Center" Margin="0,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway" Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7" />
+    </Grid>
+</Page>
