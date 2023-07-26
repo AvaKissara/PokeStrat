@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.ComponentModel;
+using PokeStat.Repositories;
+using System.Security;
 
 namespace PokeStat.VuesModeles
 {
@@ -26,6 +28,7 @@ namespace PokeStat.VuesModeles
         public ICommand GestionCommand { get; set; }
         public ICommand CloseCommand { get; }
 
+        private readonly RepUser repUser;
 
         //Propriété de type MUser corrrespondant à l'élément actuellement sélectionné dans la liste des types.
         private MUser _ligneSelection;
@@ -83,6 +86,28 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
+        private SecureString mdpUser;
+        public SecureString MdpUser
+        {
+            get { return mdpUser; }
+            set
+            {
+                mdpUser = value;
+                OnPropertyChanged(nameof(MdpUser));
+            }
+        }
+
+        private SecureString confirmMdp;
+        public SecureString ConfirmMdp
+        {
+            get { return confirmMdp; }
+            set
+            {
+                confirmMdp = value;
+                OnPropertyChanged(nameof(ConfirmMdp));
+            }
+        }
+
 
         public GestionUserVueModele() 
         {

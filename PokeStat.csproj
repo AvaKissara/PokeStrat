@@ -87,6 +87,7 @@
     <Compile Include="Repositories\RepGeneration.cs" />
     <Compile Include="Repositories\RepPokemon.cs" />
     <Compile Include="Repositories\RepType.cs" />
+    <Compile Include="Repositories\RepUser.cs" />
     <Compile Include="Repositories\RepVersion.cs" />
     <Compile Include="Utilitaires\AuthenticationToVisibilityConverter.cs" />
     <Compile Include="Utilitaires\BitmapToImageSourceConverter.cs" />
