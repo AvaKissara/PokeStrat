@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,10 +86,34 @@ namespace PokeStat.Repositories
 
             return ListMUsers;
         }
-        public void Add(MUser MModele)
+        public void Add(MUser nouvelUser)
         {
-            //INSERT INTO Users(nom_user, prenom_user, pseudo, mail_user, mdp_user, actualise_le, date_id)
-            //VALUES('Badi', 'Lila', 'Kissara', 'avakissara@gmail.com', 'test', GETDATE(), CONVERT(DATETIME, '2023-07-24 00:04:32.733', 121));
+            CheckConnexion();
+
+            try
+            {
+                SqlCommand RequestAddUsers = activeConnexion.CreateCommand();
+               
+                RequestAddUsers.CommandText = "INSERT INTO Users(nom_user, prenom_user, pseudo, mail_user, mdp_user, actualise_le, date_id) VALUES(@nom_user, @prenom_user, @pseudo, @mail_user, @mdp_user, @actualise_le, @date_id)";
+                RequestAddUsers.Parameters.AddWithValue("@nom_user", nouvelUser.nomUser);
+                RequestAddUsers.Parameters.AddWithValue("@prenom_user", nouvelUser.prenomUser);
+                RequestAddUsers.Parameters.AddWithValue("@pseudo", nouvelUser.pseudoUser);
+                RequestAddUsers.Parameters.AddWithValue("@mail_user", nouvelUser.mailUser);
+                RequestAddUsers.Parameters.AddWithValue("@mdp_user", nouvelUser.mdpUser);
+                RequestAddUsers.Parameters.AddWithValue("@actualise_le", DateTime.Now);
+
+                // Parse the date string and convert it to DateTime for the "date_id" parameter
+                string dateString = "2023-07-24 00:04:32.733";
+                DateTime dateId = DateTime.ParseExact(dateString, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                RequestAddUsers.Parameters.AddWithValue("@date_id", dateId);
+
+                int result = RequestAddUsers.ExecuteNonQuery();          
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                Console.WriteLine("Error while adding User: " + ex.Message);
+            }
         }
 
         public void Delete(int idSuppr)

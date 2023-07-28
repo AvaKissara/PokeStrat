@@ -126,8 +126,8 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
-        private MGeneration gen;
-        public MGeneration Gen
+
+        public MGeneration gen
         {
             get { return gen; }
             set
@@ -135,12 +135,13 @@ namespace PokeStat.VuesModeles
                 if (gen != value)
                 {
                     gen = value;
-                    OnPropertyChanged(nameof(Gen));
+                    OnPropertyChanged(nameof(gen));
                 }
             }
         }
+  
 
-        private int IdGen;
+
         public int idGen 
         { get { return idGen; }
             set
@@ -148,7 +149,7 @@ namespace PokeStat.VuesModeles
                 if (idGen != value)
                 {
                     idGen = value;
-                    OnPropertyChanged(nameof(IdGen));
+                    OnPropertyChanged(nameof(idGen));
                 }
             }
         }
@@ -196,7 +197,7 @@ namespace PokeStat.VuesModeles
         
         public void AjouteVersion() 
         {
-            MVersion nouvelleVersion = new MVersion(NomVers, Gen);
+            MVersion nouvelleVersion = new MVersion(NomVers, gen);
 
             //if (IsSaisieValide)
             //{
@@ -214,7 +215,7 @@ namespace PokeStat.VuesModeles
                 {
                     foreach (MGeneration gen in generations)
                     {
-                        if (gen.Equals(Gen))
+                        if (gen.Equals(gen))
                         {
                             // Ajout d'un nouveau type au repository
                             repVersion.Add(nouvelleVersion);

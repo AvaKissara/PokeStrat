@@ -46,8 +46,10 @@
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 </Style>
             </DataGrid.Resources>
+            
 
         </DataGrid>
+        
 
         <!-- Bouton Ajouter -->
         <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>

@@ -51,7 +51,7 @@ namespace PokeStat.VuesModeles
 
         private readonly RepGeneration repGen;
 
-        private int IdGen;
+
         public int idGen
         {
             get { return idGen; }
@@ -60,7 +60,7 @@ namespace PokeStat.VuesModeles
                 if (idGen != value)
                 {
                     idGen = value;
-                    OnPropertyChanged(nameof(IdGen));
+                    OnPropertyChanged(nameof(idGen));
                 }
             }
         }
@@ -105,7 +105,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private string NomGen;
         public string nomGen
         {
             get { return nomGen; }
@@ -114,7 +113,7 @@ namespace PokeStat.VuesModeles
                 if (nomGen != value)
                 {
                     nomGen = value;
-                    OnPropertyChanged(nameof(NomGen));
+                    OnPropertyChanged(nameof(nomGen));
                 }
             }
         }
@@ -146,7 +145,7 @@ namespace PokeStat.VuesModeles
 
         public void AjouteGen()
         {
-            MGeneration nouvelleGen = new MGeneration(NomGen);
+            MGeneration nouvelleGen = new MGeneration(nomGen);
 
             //if (IsSaisieValide)
             //{

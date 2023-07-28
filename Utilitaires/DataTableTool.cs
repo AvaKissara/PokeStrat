@@ -34,18 +34,17 @@ namespace PokeStat.Utilitaires
                 FillDataRow(model, row);
                 dataTable.Rows.Add(row);
             }
-            
 
             return dataTable;
         }
 
-        private static void AddComplexTypeColumns(Type type, string prefix, DataTable dataTable)
+        private static void AddComplexTypeColumns(Type type, string columnName,  DataTable dataTable)
         {
             PropertyInfo[] properties = type.GetProperties();
 
             foreach (PropertyInfo property in properties)
             {
-                string columnName = $"{prefix}.{property.Name}";
+                columnName = property.Name;
 
                 if (IsComplexType(property.PropertyType))
                 {
@@ -58,7 +57,7 @@ namespace PokeStat.Utilitaires
             }
         }
 
-        private static void FillDataRow<T>(T model, DataRow row, string prefix = "")
+        private static void FillDataRow<T>(T model, DataRow row)
         {
             PropertyInfo[] properties = typeof(T).GetProperties();
 
@@ -66,24 +65,24 @@ namespace PokeStat.Utilitaires
             {
                 if (IsComplexType(property.PropertyType))
                 {
-                    FillComplexTypeProperties(property.PropertyType, property.GetValue(model), row, $"{property.Name}.");
+                    FillComplexTypeProperties(property.PropertyType, property.GetValue(model), row, property.Name);
                 }
                 else
                 {
-                    string columnName = string.IsNullOrEmpty(prefix) ? property.Name : $"{prefix}{property.Name}";
+                    string columnName =  property.Name;
                     object value = property.GetValue(model);
                     row[columnName] = value ?? DBNull.Value;
                 }
             }
         }
 
-        private static void FillComplexTypeProperties(Type type, object complexObject, DataRow row, string prefix)
+        private static void FillComplexTypeProperties(Type type, object complexObject, DataRow row, string name)
         {
             PropertyInfo[] properties = type.GetProperties();
 
             foreach (PropertyInfo property in properties)
             {
-                string columnName = $"{prefix}{property.Name}";
+                string columnName = property.Name;
 
                 if (row.Table.Columns.Contains(columnName))
                 {
@@ -92,8 +91,6 @@ namespace PokeStat.Utilitaires
                 }
             }
         }
-
-
 
         private static bool IsComplexType(Type type)
         {
