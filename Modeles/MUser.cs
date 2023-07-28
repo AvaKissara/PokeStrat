@@ -15,10 +15,10 @@ namespace PokeStat.Modeles
         public string pseudoUser { get; set; }
         public string mailUser { get; set; }
         public string mdpUser { get; set; }
-        public DateTime actualisé_le { get; set; }  
-        public DateTime cree_le { get; set; }
+        public DateTime actualise { get; set; }  
+        public DateTime cree { get; set; }
 
-        public MUser(int IdUser, string NomUser, string PrenomUser, string PseudoUser, string MailUser, string MdpUser, DateTime Actualise_le,  DateTime Cree_le) 
+        public MUser(int IdUser, string NomUser, string PrenomUser, string PseudoUser, string MailUser, string MdpUser, DateTime Actualise,  DateTime Cree) 
         {
             this.idUser = IdUser;
             this.nomUser = NomUser;
@@ -26,8 +26,8 @@ namespace PokeStat.Modeles
             this.pseudoUser = PseudoUser;
             this.mailUser = MailUser;
             this.mdpUser = MdpUser;
-            this.actualisé_le = Actualise_le;
-            this.cree_le= Cree_le;
+            this.actualise = Actualise;
+            this.cree= Cree;
         }
     }
 }

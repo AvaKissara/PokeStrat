@@ -73,7 +73,7 @@ namespace PokeStat.VuesModeles
 
         public void GestionUser()
         {
-            NavigationServices.NavigateToPage(new CreeUser());
+            NavigationServices.NavigateToPage(new GestionUser());
         }
 
         private void AccueilPage()

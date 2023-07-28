@@ -3,12 +3,78 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PokeStat.Vues.CrudUser"
+      xmlns:local="clr-namespace:PokeStat.Vues.CrudUser" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" xmlns:converters="clr-namespace:PokeStat.Utilitaires" d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionUserVueModele}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GestionUser">
 
-    <Grid>
-        
+    <Page.Resources>
+        <converters:DRVToModelConverter x:Key="DRVToModelConverter" />
+    </Page.Resources>
+
+    <Grid Background="#2D354D">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Titre de la vue -->
+            <TextBlock Grid.Column="0" Text="GESTION DES VERSIONS" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
+        </Grid>
+
+
+        <!-- DataGridView -->
+        <DataGrid ColumnWidth="*" ItemsSource="{Binding DtData, UpdateSourceTrigger=PropertyChanged}"
+           SelectedValue="{Binding LigneSelection, Converter={StaticResource DRVToModelConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+          Margin="40,30,40,100" AutoGenerateColumns="True" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
+
+            <DataGrid.Resources>
+                <!-- Style de cellule -->
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
+                    <Setter Property="TextBlock.FontSize" Value="16"/>
+                    <Setter Property="TextBlock.Foreground" Value="Black"/>
+                </Style>
+
+                <!-- Style d'en-tête de colonne -->
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
+                    <Setter Property="TextBlock.FontSize" Value="18"/>
+                    <Setter Property="TextBlock.Foreground" Value="White"/>
+                    <Setter Property="Background" Value="#7B7B7E"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+
+
+        </DataGrid>
+
+
+        <!-- Bouton Ajouter -->
+        <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
+
+        <!-- Bouton Modifier -->
+        <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway" VerticalAlignment="Bottom" FontSize="18" Padding="20,7">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#7B7B7E" />
+                    <Setter Property="Foreground" Value="White" />
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Bouton Supprimer -->
+        <Button Name="btnDel" Content="Supprimer" Command="{Binding EffaceCommand}" IsEnabled="{Binding IsSelectionne}" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" FontFamily="Raleway" FontSize="18" Padding="20,7">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#7B7B7E" />
+                    <Setter Property="Foreground" Value="White" />
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- Champ de texte pour l'id du type sélectionné -->
+        <TextBox HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="300,10,0,40" Background="#7B7B7E" Foreground="White" Width="40" Height="40" BorderBrush="Black" BorderThickness="1"/>
     </Grid>
 </Page>

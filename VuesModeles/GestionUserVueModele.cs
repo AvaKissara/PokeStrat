@@ -118,6 +118,10 @@ namespace PokeStat.VuesModeles
             GestionCommand = new RelayCommand(GestionUser);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
+
+            repUser = new RepUser();
+            List<MUser> users = repUser.GetAll();
+            DtData = DataTableTool.ConvertListToDataTable(users);
         }
 
         private void CreeUser()

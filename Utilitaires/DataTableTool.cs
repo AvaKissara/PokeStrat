@@ -65,7 +65,7 @@ namespace PokeStat.Utilitaires
             {
                 if (IsComplexType(property.PropertyType))
                 {
-                    FillComplexTypeProperties(property.PropertyType, property.GetValue(model), row, property.Name);
+                    FillComplexTypeProperties(property.PropertyType, property.GetValue(model), row);
                 }
                 else
                 {
@@ -76,7 +76,7 @@ namespace PokeStat.Utilitaires
             }
         }
 
-        private static void FillComplexTypeProperties(Type type, object complexObject, DataRow row, string name)
+        private static void FillComplexTypeProperties(Type type, object complexObject, DataRow row)
         {
             PropertyInfo[] properties = type.GetProperties();
 

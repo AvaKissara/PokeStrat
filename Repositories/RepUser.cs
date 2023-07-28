@@ -47,40 +47,38 @@ namespace PokeStat.Repositories
             CheckConnexion();
 
             List<MUser> ListMUsers = new List<MUser>();
-
-            SqlCommand RequestGetUsers = activeConnexion.CreateCommand();
-            using (SqlDataReader pokemons = RequestGetUsers.ExecuteReader())
+       
+            try
             {
-                try
+
+                SqlCommand RequestGetUsers = activeConnexion.CreateCommand();
+                RequestGetUsers.CommandText = "SELECT * FROM Users";
+
+                using (SqlDataReader users = RequestGetUsers.ExecuteReader())
                 {
-    
-                    RequestGetUsers.CommandText = "SELECT * FROM Users";
-
-                    using (SqlDataReader users = RequestGetUsers.ExecuteReader())
+                    while (users.Read())
                     {
-                        while (users.Read())
-                        {
-                            MUser unUser = new MUser(
-                                users.GetInt32(0),
-                                $"{users[1]}",
-                                $"{users[2]}",
-                                $"{users[3]}",
-                                $"{users[4]}",
-                                $"{users[5]}",
-                                DateTime.Parse($"{users[6]}"),
-                                DateTime.Parse($"{users[7]}"));
+                        MUser unUser = new MUser(
+                            users.GetInt32(0),
+                            $"{users[1]}",
+                            $"{users[2]}",
+                            $"{users[3]}",
+                            $"{users[4]}",
+                            $"{users[5]}",
+                            DateTime.Parse($"{users[6]}"),
+                            DateTime.Parse($"{users[7]}"));
 
-                            ListMUsers.Add(unUser);
-                        }
+                        ListMUsers.Add(unUser);
                     }
                 }
-                catch (Exception ex)
-                {
-                    // Gestion de l'exception
-                    Console.WriteLine("Erreur lors de la récupération des generations : " + ex.Message);
-                }
-
             }
+            catch (Exception ex)
+            {
+                // Gestion de l'exception
+                Console.WriteLine("Erreur lors de la récupération des generations : " + ex.Message);
+            }
+
+            
             // Fermeture de la connexion
             this.activeConnexion.Close();
 
