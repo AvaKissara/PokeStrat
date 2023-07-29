@@ -141,7 +141,6 @@ namespace PokeStat.VuesModeles
         }
   
 
-
         public int idGen 
         { get { return idGen; }
             set
@@ -153,18 +152,7 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
-        //public string nomGen { get; set; }  
 
-        //private List<DataRowView> dataRowViews;
-        //public List<DataRowView> DataRowViews
-        //{
-        //    get { return dataRowViews; }
-        //}
-
-        //public DataRowView FindDataRowViewById(int id)
-        //{
-        //    return dataRowViews.Find(rv => (int)rv["ID"] == id);
-        //}
 
 
         public GestionVersionVueModel()

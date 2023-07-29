@@ -39,7 +39,7 @@ namespace PokeStat.Utilitaires
             return selectedRow.Row;
         }
 
-
+         
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is DataRowView dataRowView)

@@ -86,6 +86,51 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
+
+        private string nomUser;
+        public string NomUser
+        {
+            get { return nomUser; }
+            set
+            {
+                nomUser = value;
+                OnPropertyChanged(nameof(NomUser));
+            }
+        }
+
+        private string prenomUser;
+        public string PrenomUser
+        {
+            get { return prenomUser; }
+            set
+            {
+                prenomUser = value;
+                OnPropertyChanged(nameof(PrenomUser));
+            }
+        }
+
+        private string pseudoUser;
+        public string PseudoUser
+        {
+            get { return pseudoUser; }
+            set
+            {
+                pseudoUser = value;
+                OnPropertyChanged(nameof(PseudoUser));
+            }
+        }
+
+        private string mailUser;
+        public string MailUser
+        {
+            get { return mailUser; }
+            set
+            {
+                mailUser = value;
+                OnPropertyChanged(nameof(MailUser));
+            }
+        }
+
         private SecureString mdpUser;
         public SecureString MdpUser
         {
@@ -108,6 +153,29 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        public int idUser;
+
+        private DateTime actualise;
+        public DateTime Actualise
+        {
+            get { return actualise; }
+            set 
+            { 
+                actualise = value;
+                OnPropertyChanged(nameof(Actualise));
+            }
+        }
+
+        private MDate cree;
+        public MDate Cree
+        {
+            get { return cree; }
+            set
+            {
+                cree = value;
+                OnPropertyChanged(nameof(Cree));
+            }
+        }
 
         public GestionUserVueModele() 
         {
@@ -131,6 +199,9 @@ namespace PokeStat.VuesModeles
 
         private void AjouteUser() 
         {
+            MUser nouvelUser = new MUser(idUser, NomUser, PrenomUser, PseudoUser, MailUser, MdpUser, Actualise, Cree.idDate);
+            List<MUser> users = repUser.GetAll();
+            bool userExiste = users.Any(v => v.mailUser.Equals(nouvelUser.mailUser, StringComparison.OrdinalIgnoreCase));
 
         }
 
