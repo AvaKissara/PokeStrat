@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using PokeStat.Repositories;
 using System.Security;
+using System.Windows;
 
 namespace PokeStat.VuesModeles
 {
@@ -166,8 +167,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private MDate cree;
-        public MDate Cree
+        private DateTime cree;
+        public DateTime Cree
         {
             get { return cree; }
             set
@@ -199,9 +200,17 @@ namespace PokeStat.VuesModeles
 
         private void AjouteUser() 
         {
-            MUser nouvelUser = new MUser(idUser, NomUser, PrenomUser, PseudoUser, MailUser, MdpUser, Actualise, Cree.idDate);
+            MDate cree = new MDate(Cree);
+
+            MUser nouvelUser = new MUser(idUser, NomUser, PrenomUser, PseudoUser, MailUser, MdpUser, Actualise, Cree);
             List<MUser> users = repUser.GetAll();
+
             bool userExiste = users.Any(v => v.mailUser.Equals(nouvelUser.mailUser, StringComparison.OrdinalIgnoreCase));
+
+            if(userExiste)
+            {
+                MessageBox.Show("Cet utilisateur existe déjà!");
+            }
 
         }
 

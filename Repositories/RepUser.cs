@@ -84,6 +84,7 @@ namespace PokeStat.Repositories
 
             return ListMUsers;
         }
+
         public void Add(MUser nouvelUser)
         {
             CheckConnexion();

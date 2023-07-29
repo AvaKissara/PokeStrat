@@ -64,6 +64,7 @@
     <Compile Include="Modeles\MAction.cs" />
     <Compile Include="Modeles\MCapacite.cs" />
     <Compile Include="Modeles\MCategorie.cs" />
+    <Compile Include="Modeles\MDate.cs" />
     <Compile Include="Modeles\MEquipe.cs" />
     <Compile Include="Modeles\MEquipier.cs" />
     <Compile Include="Modeles\MGeneration.cs" />

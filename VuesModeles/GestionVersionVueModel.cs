@@ -192,7 +192,7 @@ namespace PokeStat.VuesModeles
                 List<MVersion> versions = repVersion.GetAll();
                 List<MGeneration> generations = repGen.GetAll();
 
-            // Vérifie si le nom du type existe déjà dans la liste des types
+            // Vérifie si le nom du type existe déjà dans la liste des versions
             bool versionExiste = versions.Any(v => v.nomVersion.Equals(nouvelleVersion.nomVersion, StringComparison.OrdinalIgnoreCase));
 
                 if (versionExiste)
