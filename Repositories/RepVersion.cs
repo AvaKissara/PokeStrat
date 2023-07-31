@@ -25,13 +25,13 @@ namespace PokeStat.Repositories
                 Console.WriteLine("Erreur lors de la connexion à la base de données : " + ex.Message);
             }
         }
-        private void DbConnecter()
+        public void DbConnecter()
         {
             Connexion con = new Connexion();
             this.activeConnexion = con.GetConnexion();
         }
 
-        private void CheckConnexion()
+        public void CheckConnexion()
         {
             if (activeConnexion.State == ConnectionState.Closed)
             {

@@ -27,12 +27,12 @@ namespace PokeStat.Repositories
             }
         }
 
-        private void DbConnecter()
+        public void DbConnecter()
         {
             Connexion con = new Connexion();
             this.activeConnexion = con.GetConnexion();
         }
-        private void CheckConnexion()
+        public void CheckConnexion()
         {
             if (activeConnexion.State == ConnectionState.Closed)
             {

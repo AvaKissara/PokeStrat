@@ -8,6 +8,8 @@ namespace PokeStat.Repositories
 {
     public interface IRepository<T> where T : class
     {
+        void DbConnecter();
+        void CheckConnexion();
         List<T> GetAll();
         void Add(T MModele);
         void Update(T MModele);

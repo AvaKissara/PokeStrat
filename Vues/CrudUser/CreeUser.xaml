@@ -47,7 +47,7 @@
         <PasswordBox Name="pbConfirmerMdp" HorizontalAlignment="Right" Margin="0,355,70,0" VerticalAlignment="Top" Width="200" />
 
         <!-- Bouton de soumission -->
-        <Button Name="btnInscription" Content="S'inscrire" Command="{Binding AjouteCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7" IsEnabled="{Binding CanInscription}"/>
+        <Button Name="btnInscription" Content="S'inscrire" Command="{Binding AjouteCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7" />
         <Button Name="btnAnnul" Content="Annuler" Command="{Binding GestionCommand}" HorizontalAlignment="Center" Margin="120,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
     </Grid>
 </Page>

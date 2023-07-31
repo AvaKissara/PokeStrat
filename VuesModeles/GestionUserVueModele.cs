@@ -30,6 +30,7 @@ namespace PokeStat.VuesModeles
         public ICommand CloseCommand { get; }
 
         private readonly RepUser repUser;
+        private readonly RepDate repDate;
 
         //Propriété de type MUser corrrespondant à l'élément actuellement sélectionné dans la liste des types.
         private MUser _ligneSelection;
@@ -189,6 +190,7 @@ namespace PokeStat.VuesModeles
             CloseCommand = new RelayCommand(Close);
 
             repUser = new RepUser();
+            repDate = new RepDate();
             List<MUser> users = repUser.GetAll();
             DtData = DataTableTool.ConvertListToDataTable(users);
         }
@@ -205,13 +207,17 @@ namespace PokeStat.VuesModeles
             MUser nouvelUser = new MUser(idUser, NomUser, PrenomUser, PseudoUser, MailUser, MdpUser, Actualise, Cree);
             List<MUser> users = repUser.GetAll();
 
-            bool userExiste = users.Any(v => v.mailUser.Equals(nouvelUser.mailUser, StringComparison.OrdinalIgnoreCase));
+            bool userExiste = users.Any(u => u.mailUser.Equals(nouvelUser.mailUser, StringComparison.OrdinalIgnoreCase));
 
             if(userExiste)
             {
                 MessageBox.Show("Cet utilisateur existe déjà!");
             }
-
+            else
+            {
+                repDate.Add(cree);
+                repUser.Add(nouvelUser);
+            }
         }
 
         private void ModifieUser() 

@@ -30,5 +30,15 @@ namespace PokeStat.Modeles
             this.actualise = Actualise;
             this.cree= Cree;
         }
+        public MUser(int IdUser, string NomUser, string PrenomUser, string PseudoUser, string MailUser, DateTime Actualise, DateTime Cree)
+        {
+            this.idUser = IdUser;
+            this.nomUser = NomUser;
+            this.prenomUser = PrenomUser;
+            this.pseudoUser = PseudoUser;
+            this.mailUser = MailUser;
+            this.actualise = Actualise;
+            this.cree = Cree;
+        }
     }
 }

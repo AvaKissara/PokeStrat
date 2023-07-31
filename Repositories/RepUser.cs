@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,13 +30,13 @@ namespace PokeStat.Repositories
             }
         }
 
-        private void DbConnecter()
+        public void DbConnecter()
         {
             Connexion con = new Connexion();
             this.activeConnexion = con.GetConnexion();
         }
 
-        private void CheckConnexion()
+        public void CheckConnexion()
         {
             if (activeConnexion.State == ConnectionState.Closed)
             {
@@ -53,18 +55,19 @@ namespace PokeStat.Repositories
 
                 SqlCommand RequestGetUsers = activeConnexion.CreateCommand();
                 RequestGetUsers.CommandText = "SELECT * FROM Users";
-
+               
                 using (SqlDataReader users = RequestGetUsers.ExecuteReader())
                 {
                     while (users.Read())
                     {
+                        SecureString mdp = new NetworkCredential("", $"{users[5]}").SecurePassword;
                         MUser unUser = new MUser(
                             users.GetInt32(0),
                             $"{users[1]}",
                             $"{users[2]}",
                             $"{users[3]}",
                             $"{users[4]}",
-                            $"{users[5]}",
+                            mdp,
                             DateTime.Parse($"{users[6]}"),
                             DateTime.Parse($"{users[7]}"));
 
