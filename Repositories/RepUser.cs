@@ -94,20 +94,29 @@ namespace PokeStat.Repositories
 
             try
             {
-                SqlCommand RequestAddUsers = activeConnexion.CreateCommand();
-               
+                SqlCommand RequestAddUsers = activeConnexion.CreateCommand();              
+                
                 RequestAddUsers.CommandText = "INSERT INTO Users(nom_user, prenom_user, pseudo, mail_user, mdp_user, actualise_le, date_id) VALUES(@nom_user, @prenom_user, @pseudo, @mail_user, @mdp_user, @actualise_le, @date_id)";
-                RequestAddUsers.Parameters.AddWithValue("@nom_user", nouvelUser.nomUser);
-                RequestAddUsers.Parameters.AddWithValue("@prenom_user", nouvelUser.prenomUser);
-                RequestAddUsers.Parameters.AddWithValue("@pseudo", nouvelUser.pseudoUser);
-                RequestAddUsers.Parameters.AddWithValue("@mail_user", nouvelUser.mailUser);
-                RequestAddUsers.Parameters.AddWithValue("@mdp_user", nouvelUser.mdpUser);
-                RequestAddUsers.Parameters.AddWithValue("@actualise_le", DateTime.Now);
 
-                // Parse the date string and convert it to DateTime for the "date_id" parameter
+                SqlParameter nom = RequestAddUsers.Parameters.Add("@nom_user", SqlDbType.VarChar);             
+                SqlParameter prenom = RequestAddUsers.Parameters.Add("@prenom_user", SqlDbType.VarChar);           
+                SqlParameter pseuso = RequestAddUsers.Parameters.Add("@pseudo", SqlDbType.VarChar);              
+                SqlParameter mail = RequestAddUsers.Parameters.Add("@mail_user", SqlDbType.VarChar);               
+                SqlParameter mdp = RequestAddUsers.Parameters.Add("@mdp_user", SqlDbType.VarChar);               
+                SqlParameter actualise = RequestAddUsers.Parameters.Add("@actualise_le", SqlDbType.DateTime);              
+                SqlParameter cree = RequestAddUsers.Parameters.Add("@date_id", SqlDbType.DateTime);
+
+                nom.Value = nouvelUser.nomUser;
+                prenom.Value = nouvelUser.prenomUser;
+                pseuso.Value = nouvelUser.pseudoUser;
+                mail.Value = nouvelUser.mailUser;
+                mdp.Value = nouvelUser.mdpUser;
+                actualise.Value = DateTime.Now;
+                cree.Value = nouvelUser.cree;
+                /* Parse the date string and convert it to DateTime for the "date_id" parameter
                 string dateString = "2023-07-24 00:04:32.733";
                 DateTime dateId = DateTime.ParseExact(dateString, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
-                RequestAddUsers.Parameters.AddWithValue("@date_id", dateId);
+                RequestAddUsers.Parameters.AddWithValue("@date_id", dateId);*/
 
                 int result = RequestAddUsers.ExecuteNonQuery();          
             }

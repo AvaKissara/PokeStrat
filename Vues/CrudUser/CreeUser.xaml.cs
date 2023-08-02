@@ -34,5 +34,6 @@ namespace PokeStat.Vues.CrudUser
             NavigationServices.Initialize(mainFrame);
             NavigationServices.NavigateToPage(this);
         }
+
     }
 }

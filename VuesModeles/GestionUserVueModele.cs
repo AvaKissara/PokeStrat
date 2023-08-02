@@ -14,6 +14,7 @@ using System.ComponentModel;
 using PokeStat.Repositories;
 using System.Security;
 using System.Windows;
+using PokeStat.Vues.CrudVersion;
 
 namespace PokeStat.VuesModeles
 {
@@ -221,6 +222,12 @@ namespace PokeStat.VuesModeles
                 repDate.Add(cree);
                 repUser.Add(nouvelUser);
             }
+            // Actualisation de la liste des types
+            users = repUser.GetAll();
+            dtData = DataTableTool.ConvertListToDataTable(users);
+
+            MessageBox.Show("La version a bien été ajouté !");
+            NavigationServices.NavigateToPage(new GestionUser());
         }
 
         private void ModifieUser() 

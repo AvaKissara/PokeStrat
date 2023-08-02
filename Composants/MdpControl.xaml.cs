@@ -46,7 +46,12 @@ namespace PokeStat.Composants
         public MdpControl()
         {
             InitializeComponent();
+            passwordBox.GotFocus += PasswordBox_Focus;
+        }
 
+        private void PasswordBox_Focus(object sender, RoutedEventArgs e)
+        {
+            passwordBox.Clear();
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
