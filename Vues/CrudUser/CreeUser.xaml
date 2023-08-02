@@ -4,9 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PokeStat.Vues.CrudUser" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionUserVueModele}"
+      xmlns:composants="clr-namespace:PokeStat.Composants"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CreeUser">
+    
 
     <Grid Background="#2D354D">
         <Grid>
@@ -41,10 +43,10 @@
         </TextBox>
 
         <Label Content="Mot de passe:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,350,0,0" VerticalAlignment="Top" />
-        <PasswordBox Name="pbMdpUser" HorizontalAlignment="Left" Margin="200,355,0,0" VerticalAlignment="Top" Width="200" PasswordChar="X" Password="" />
-
-        <Label Content="Confirmer le mot de passe:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,350,270,0" VerticalAlignment="Top" />
-        <PasswordBox Name="pbConfirmerMdp" HorizontalAlignment="Right" Margin="0,355,70,0" VerticalAlignment="Top" Width="200" />
+        <composants:MdpControl Password="{Binding MdpUser}"  HorizontalAlignment="Left" Margin="200,355,0,0" VerticalAlignment="Top" Width="200"/>
+ 
+        <Label Content="Confirmer mot de passe:"  FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,350,270,0" VerticalAlignment="Top" />
+        <composants:MdpControl Password="{Binding ConfirmMdp}" HorizontalAlignment="Right" Margin="0,355,70,0" VerticalAlignment="Top" Width="200" />
 
         <!-- Bouton de soumission -->
         <Button Name="btnInscription" Content="S'inscrire" Command="{Binding AjouteCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7" />

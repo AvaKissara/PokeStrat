@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Composants\MdpControl.xaml.cs">
+      <DependentUpon>MdpControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Connexion.cs" />
     <Compile Include="Modeles\MAction.cs" />
     <Compile Include="Modeles\MCapacite.cs" />
@@ -162,6 +165,10 @@
     <Compile Include="Vues\Layout\NavigationBarUser.xaml.cs">
       <DependentUpon>NavigationBarUser.xaml</DependentUpon>
     </Compile>
+    <Page Include="Composants\MdpControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

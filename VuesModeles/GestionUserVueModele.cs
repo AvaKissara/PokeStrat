@@ -133,7 +133,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private SecureString mdpUser;
+        private SecureString mdpUser = new SecureString();
         public SecureString MdpUser
         {
             get { return mdpUser; }
@@ -194,7 +194,10 @@ namespace PokeStat.VuesModeles
             List<MUser> users = repUser.GetAll();
             DtData = DataTableTool.ConvertListToDataTable(users);
         }
-
+        public void UpdateSecurePassword(SecureString securePassword)
+        {
+            MdpUser = securePassword.Copy(); // Copy the password to the view model's SecureString
+        }
         private void CreeUser()
         {
             NavigationServices.NavigateToPage(new CreeUser());

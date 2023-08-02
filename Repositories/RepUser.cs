@@ -121,7 +121,8 @@ namespace PokeStat.Repositories
         public void Delete(int idSuppr)
         {
 
-        }    
+        }   
+        
         public void Update(MUser MModele)
         {
 
