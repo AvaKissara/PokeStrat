@@ -206,6 +206,7 @@ namespace PokeStat.VuesModeles
 
         private void AjouteUser() 
         {
+            Cree = DateTime.Now;
             MDate cree = new MDate(Cree);
 
             MUser nouvelUser = new MUser(idUser, NomUser, PrenomUser, PseudoUser, MailUser, MdpUser, Actualise, Cree);

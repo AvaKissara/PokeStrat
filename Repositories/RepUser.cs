@@ -92,8 +92,8 @@ namespace PokeStat.Repositories
         {
             CheckConnexion();
 
-            try
-            {
+            //try
+            //{
                 SqlCommand RequestAddUsers = activeConnexion.CreateCommand();              
                 
                 RequestAddUsers.CommandText = "INSERT INTO Users(nom_user, prenom_user, pseudo, mail_user, mdp_user, actualise_le, date_id) VALUES(@nom_user, @prenom_user, @pseudo, @mail_user, @mdp_user, @actualise_le, @date_id)";
@@ -119,12 +119,12 @@ namespace PokeStat.Repositories
                 RequestAddUsers.Parameters.AddWithValue("@date_id", dateId);*/
 
                 int result = RequestAddUsers.ExecuteNonQuery();          
-            }
+            /*}
             catch (Exception ex)
             {
                 // Handle the exception
                 Console.WriteLine("Error while adding User: " + ex.Message);
-            }
+            }*/
         }
 
         public void Delete(int idSuppr)
