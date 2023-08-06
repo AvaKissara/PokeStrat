@@ -83,6 +83,7 @@ namespace PokeStat.Composants
             }
 
             IntPtr ptr = System.Runtime.InteropServices.Marshal.SecureStringToBSTR(secureString);
+
             try
             {
                 char[] chars = new char[secureString.Length];
@@ -93,6 +94,7 @@ namespace PokeStat.Composants
 
                 return new string(chars);
             }
+
             finally
             {
                 System.Runtime.InteropServices.Marshal.ZeroFreeBSTR(ptr);
