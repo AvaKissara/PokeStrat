@@ -15,6 +15,7 @@ using PokeStat.Repositories;
 using System.Security;
 using System.Windows;
 using PokeStat.Vues.CrudVersion;
+using System.Runtime.InteropServices;
 
 namespace PokeStat.VuesModeles
 {
@@ -208,8 +209,9 @@ namespace PokeStat.VuesModeles
         {
             Cree = DateTime.Now;
             MDate cree = new MDate(Cree);
+            
 
-            MUser nouvelUser = new MUser(idUser, NomUser, PrenomUser, PseudoUser, MailUser, MdpUser, Actualise, Cree);
+            MUser nouvelUser = new MUser(idUser, NomUser, PrenomUser, PseudoUser, MailUser, MdpUser, Actualise, cree);
             List<MUser> users = repUser.GetAll();
 
             bool userExiste = users.Any(u => u.mailUser.Equals(nouvelUser.mailUser, StringComparison.OrdinalIgnoreCase));
@@ -227,9 +229,10 @@ namespace PokeStat.VuesModeles
             users = repUser.GetAll();
             dtData = DataTableTool.ConvertListToDataTable(users);
 
-            MessageBox.Show("La version a bien été ajouté !");
+            MessageBox.Show("L'inscription est réussie !");
             NavigationServices.NavigateToPage(new GestionUser());
         }
+     
 
         private void ModifieUser() 
         {

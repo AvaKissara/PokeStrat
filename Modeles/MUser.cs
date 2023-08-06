@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PokeStat.Modeles
 {
@@ -16,10 +17,23 @@ namespace PokeStat.Modeles
         public string pseudoUser { get; set; }
         public string mailUser { get; set; }
         public SecureString mdpUser { get; set; }
+        public string sel { get; set; }
         public DateTime actualise { get; set; }  
-        public DateTime cree { get; set; }
+        public MDate cree { get; set; }
 
-        public MUser(int IdUser, string NomUser, string PrenomUser, string PseudoUser, string MailUser, SecureString MdpUser, DateTime Actualise,  DateTime Cree) 
+        public MUser(int IdUser, string NomUser, string PrenomUser, string PseudoUser, string MailUser, SecureString MdpUser, string Sel, DateTime Actualise, MDate Cree) 
+        {
+            this.idUser = IdUser;
+            this.nomUser = NomUser;
+            this.prenomUser = PrenomUser;
+            this.pseudoUser = PseudoUser;
+            this.mailUser = MailUser;
+            this.mdpUser = MdpUser;
+            this.sel = Sel;
+            this.actualise = Actualise;
+            this.cree= Cree;
+        }
+        public MUser(int IdUser, string NomUser, string PrenomUser, string PseudoUser, string MailUser, SecureString MdpUser, DateTime Actualise, MDate Cree)
         {
             this.idUser = IdUser;
             this.nomUser = NomUser;
@@ -28,17 +42,8 @@ namespace PokeStat.Modeles
             this.mailUser = MailUser;
             this.mdpUser = MdpUser;
             this.actualise = Actualise;
-            this.cree= Cree;
-        }
-        public MUser(int IdUser, string NomUser, string PrenomUser, string PseudoUser, string MailUser, DateTime Actualise, DateTime Cree)
-        {
-            this.idUser = IdUser;
-            this.nomUser = NomUser;
-            this.prenomUser = PrenomUser;
-            this.pseudoUser = PseudoUser;
-            this.mailUser = MailUser;
-            this.actualise = Actualise;
             this.cree = Cree;
         }
+  
     }
 }

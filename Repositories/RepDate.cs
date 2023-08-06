@@ -45,20 +45,20 @@ namespace PokeStat.Repositories
         public void Add(MDate nouvelleDate) 
         {
             CheckConnexion();
-            try
-            {
+            //try
+            //{
                 SqlCommand RequestAddDate = activeConnexion.CreateCommand();
-                RequestAddDate.CommandText = "INSERT INTO Dates VALUES (@JJ/MM/AAA)";
+                RequestAddDate.CommandText = "INSERT INTO Dates VALUES (@jjmmaaaa)";
 
-                SqlParameter idDate = RequestAddDate.Parameters.Add("@JJ/MM/AAAA", SqlDbType.DateTime);
-                idDate.Value = DateTime.Now;
+                SqlParameter idDate = RequestAddDate.Parameters.Add("@jjmmaaaa", SqlDbType.DateTime);
+                idDate.Value = nouvelleDate.idDate;
 
                 int result = RequestAddDate.ExecuteNonQuery();
-            }
-            catch (Exception ex) 
-            {
-                Console.WriteLine("Erreur lors de l'ajout de la date : " + ex.Message);
-            }
+            //}
+            //catch (Exception ex) 
+            //{
+            //    Console.WriteLine("Erreur lors de l'ajout de la date : " + ex.Message);
+            //}
 
             this.activeConnexion.Close();
         }
