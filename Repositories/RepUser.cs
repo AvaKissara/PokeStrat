@@ -76,8 +76,8 @@ namespace PokeStat.Repositories
                             $"{users[2]}",
                             $"{users[3]}",
                             $"{users[4]}",
-                            mdp,                         
-                            $"{users[8]}",
+                            mdp,
+
                             DateTime.Parse($"{users[6]}"),
                             creationDate);
 
@@ -97,30 +97,18 @@ namespace PokeStat.Repositories
 
             return ListMUsers;
         }
-        public string ToInsecureString(SecureString securePassword)
-        {
-            IntPtr unmanagedString = IntPtr.Zero;
-            try
-            {
-                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
-                return Marshal.PtrToStringUni(unmanagedString);
-            }
-            finally
-            {
-                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-            }
-        }
+      
         public void Add(MUser nouvelUser)
         {
             CheckConnexion();
             // Convertir le SecureString en string
-            string mdpString = ToInsecureString(nouvelUser.mdpUser);
+            string mdpString = nouvelUser.ToInsecureString(nouvelUser.mdpUser);
 
             // Utiliser PasswordManager pour hacher le mot de passe
             (string hash, string salt) = PasswordManager.HashPassword(mdpString);
 
-            //try
-            //{
+            try
+            {
                 SqlCommand RequestAddUsers = activeConnexion.CreateCommand();              
                 
                 RequestAddUsers.CommandText = "INSERT INTO Users(nom_user, prenom_user, pseudo, mail_user, mdp_user, actualise_le, date_id, sel_user) VALUES(@nom_user, @prenom_user, @pseudo, @mail_user, @mdp_user, @actualise_le, @date_id, @sel_user)";
@@ -143,14 +131,14 @@ namespace PokeStat.Repositories
                 cree.Value = nouvelUser.cree.idDate;
                 sel.Value = salt;
 
-                int result = RequestAddUsers.ExecuteNonQuery();          
-            //}
-            //catch (Exception ex)
-            //{
-            //    // Handle the exception
-            //    Console.WriteLine("Error while adding User: " + ex.Message);
-            //}
-        }
+                int result = RequestAddUsers.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                Console.WriteLine("Error while adding User: " + ex.Message);
+            }
+}
 
         public void Delete(int idSuppr)
         {
