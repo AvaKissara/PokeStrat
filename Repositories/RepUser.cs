@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -77,7 +78,6 @@ namespace PokeStat.Repositories
                             $"{users[3]}",
                             $"{users[4]}",
                             mdp,
-
                             DateTime.Parse($"{users[6]}"),
                             creationDate);
 
@@ -88,7 +88,7 @@ namespace PokeStat.Repositories
             catch (Exception ex)
             {
                 // Gestion de l'exception
-                Console.WriteLine("Erreur lors de la récupération des generations : " + ex.Message);
+                Console.WriteLine("Erreur lors de la récupération des utilisateurs: " + ex.Message);
             }
 
             
@@ -109,18 +109,18 @@ namespace PokeStat.Repositories
 
             try
             {
-                SqlCommand RequestAddUsers = activeConnexion.CreateCommand();              
+                SqlCommand RequestAddUser = activeConnexion.CreateCommand();              
                 
-                RequestAddUsers.CommandText = "INSERT INTO Users(nom_user, prenom_user, pseudo, mail_user, mdp_user, actualise_le, date_id, sel_user) VALUES(@nom_user, @prenom_user, @pseudo, @mail_user, @mdp_user, @actualise_le, @date_id, @sel_user)";
+                RequestAddUser.CommandText = "INSERT INTO Users(nom_user, prenom_user, pseudo, mail_user, mdp_user, actualise_le, date_id, sel_user) VALUES(@nom_user, @prenom_user, @pseudo, @mail_user, @mdp_user, @actualise_le, @date_id, @sel_user)";
 
-                SqlParameter nom = RequestAddUsers.Parameters.Add("@nom_user", SqlDbType.VarChar);             
-                SqlParameter prenom = RequestAddUsers.Parameters.Add("@prenom_user", SqlDbType.VarChar);           
-                SqlParameter pseuso = RequestAddUsers.Parameters.Add("@pseudo", SqlDbType.VarChar);              
-                SqlParameter mail = RequestAddUsers.Parameters.Add("@mail_user", SqlDbType.VarChar);               
-                SqlParameter mdp = RequestAddUsers.Parameters.Add("@mdp_user", SqlDbType.VarChar);               
-                SqlParameter actualise = RequestAddUsers.Parameters.Add("@actualise_le", SqlDbType.DateTime);              
-                SqlParameter cree = RequestAddUsers.Parameters.Add("@date_id", SqlDbType.DateTime);
-                SqlParameter sel = RequestAddUsers.Parameters.Add("@sel_user", SqlDbType.VarChar);
+                SqlParameter nom = RequestAddUser.Parameters.Add("@nom_user", SqlDbType.VarChar);             
+                SqlParameter prenom = RequestAddUser.Parameters.Add("@prenom_user", SqlDbType.VarChar);           
+                SqlParameter pseuso = RequestAddUser.Parameters.Add("@pseudo", SqlDbType.VarChar);              
+                SqlParameter mail = RequestAddUser.Parameters.Add("@mail_user", SqlDbType.VarChar);               
+                SqlParameter mdp = RequestAddUser.Parameters.Add("@mdp_user", SqlDbType.VarChar);               
+                SqlParameter actualise = RequestAddUser.Parameters.Add("@actualise_le", SqlDbType.DateTime);              
+                SqlParameter cree = RequestAddUser.Parameters.Add("@date_id", SqlDbType.DateTime);
+                SqlParameter sel = RequestAddUser.Parameters.Add("@sel_user", SqlDbType.VarChar);
 
                 nom.Value = nouvelUser.nomUser;
                 prenom.Value = nouvelUser.prenomUser;
@@ -131,23 +131,74 @@ namespace PokeStat.Repositories
                 cree.Value = nouvelUser.cree.idDate;
                 sel.Value = salt;
 
-                int result = RequestAddUsers.ExecuteNonQuery();
+                int result = RequestAddUser.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                // Handle the exception
-                Console.WriteLine("Error while adding User: " + ex.Message);
+                Console.WriteLine("Erreur lors de l'ajout de l'utilisateur: " + ex.Message);
             }
-}
+
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
+        }
 
         public void Delete(int idSuppr)
         {
+            CheckConnexion();
 
+            try
+            {
+                SqlCommand RequestDeleteUser = activeConnexion.CreateCommand();
+
+                RequestDeleteUser.CommandText = "DELETE FROM Users WHERE id_user = @id_user";
+
+                SqlParameter id = RequestDeleteUser.Parameters.Add("@id_user", SqlDbType.Int);
+
+                id.Value = idSuppr;
+
+                int result = RequestDeleteUser.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur lors de la suppression de l'utilisateur: " + ex.Message);
+            }
+
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
         }   
         
-        public void Update(MUser MModele)
+        public void Update(MUser modifUser)
         {
+            CheckConnexion();
+            // Convertir le SecureString en string
+            string mdpString = modifUser.ToInsecureString(modifUser.mdpUser);
 
+            // Utiliser PasswordManager pour hacher le mot de passe
+            (string hash, string salt) = PasswordManager.HashPassword(mdpString);
+
+            SqlCommand RequestUpdateUser = activeConnexion.CreateCommand();
+            RequestUpdateUser.CommandText = "UPDATE Users SET nom_user = @nom_user, prenom_user = @prenom_user, pseudo = @pseudo, mail_user = @mail_user, mdp_user = @mdp_user, actualise_le = @actualise_le, sel_user = @sel_user WHERE id_user = @id_user";
+           
+            SqlParameter nom = RequestUpdateUser.Parameters.Add("@nom_user", SqlDbType.VarChar);
+            SqlParameter prenom = RequestUpdateUser.Parameters.Add("@prenom_user", SqlDbType.VarChar);
+            SqlParameter pseuso = RequestUpdateUser.Parameters.Add("@pseudo", SqlDbType.VarChar);
+            SqlParameter mail = RequestUpdateUser.Parameters.Add("@mail_user", SqlDbType.VarChar);
+            SqlParameter mdp = RequestUpdateUser.Parameters.Add("@mdp_user", SqlDbType.VarChar);
+            SqlParameter actualise = RequestUpdateUser.Parameters.Add("@actualise_le", SqlDbType.DateTime);
+            SqlParameter sel = RequestUpdateUser.Parameters.Add("@sel_user", SqlDbType.VarChar);
+
+            nom.Value = modifUser.nomUser;
+            prenom.Value = modifUser.prenomUser;
+            pseuso.Value = modifUser.pseudoUser;
+            mail.Value = modifUser.mailUser;
+            mdp.Value = hash;
+            actualise.Value = DateTime.Now;
+            sel.Value = salt;
+
+            int result = RequestUpdateUser.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
         }
     }
 }

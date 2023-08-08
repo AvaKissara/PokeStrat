@@ -3,12 +3,51 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PokeStat.Vues.CrudUser"
+      xmlns:local="clr-namespace:PokeStat.Vues.CrudUser" xmlns:composants="clr-namespace:PokeStat.Composants" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionUserVueModele}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ModifieUser">
 
-    <Grid>
-        
+    <Grid Background="#2D354D">
+        <Grid>
+            <TextBlock Text="MODIFIER UN UTILISATEUR" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="26" Padding="6,4" Foreground="White"/>
+        </Grid>
+        <Label Content="Nom:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,150,0,0" VerticalAlignment="Top" />
+        <TextBox Name="tbNomUser" HorizontalAlignment="Left" Margin="200,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200">
+            <TextBox.Text>
+                <Binding Path="LigneSelection.nomUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True"/>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Prénom:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,150,270,0" VerticalAlignment="Top" />
+        <TextBox Name="tbPrenomUser" HorizontalAlignment="Right" Margin="0,155,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
+            <TextBox.Text>
+                <Binding Path="LigneSelection.prenomUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Pseudo:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,200,0,0" VerticalAlignment="Top" />
+        <TextBox Name="tbPseudoUser" HorizontalAlignment="Left" Margin="200,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
+            <TextBox.Text>
+                <Binding Path="LigneSelection.pseudoUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Email:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,200,270,0" VerticalAlignment="Top" />
+        <TextBox Name="tbMailUser" HorizontalAlignment="Right" Margin="0,205,70,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
+            <TextBox.Text>
+                <Binding Path="LigneSelection.mailUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="Mot de passe:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,350,0,0" VerticalAlignment="Top" />
+        <composants:MdpControl Password="{Binding MdpUser}"  HorizontalAlignment="Left" Margin="200,355,0,0" VerticalAlignment="Top" Width="200"/>
+
+        <Label Content="Confirmer mot de passe:"  FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,350,270,0" VerticalAlignment="Top" />
+        <composants:MdpControl Password="{Binding ConfirmMdp}" HorizontalAlignment="Right" Margin="0,355,70,0" VerticalAlignment="Top" Width="200" />
+
+        <!-- Bouton de soumission -->
+        <Button Name="btnModifier" Content="Modifier" Command="{Binding MajCommand}" HorizontalAlignment="Center" Margin="0,0,120,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7" />
+        <Button Name="btnAnnul" Content="Annuler" Command="{Binding GestionCommand}" HorizontalAlignment="Center" Margin="120,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
     </Grid>
 </Page>

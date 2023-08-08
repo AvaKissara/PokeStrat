@@ -75,6 +75,6 @@
         </Button>
 
         <!-- Champ de texte pour l'id du type sélectionné -->
-        <TextBox HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="300,10,0,40" Background="#7B7B7E" Foreground="White" Width="40" Height="40" BorderBrush="Black" BorderThickness="1"/>
+        <TextBox Text="{Binding LigneSelection.idVersion}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="300,10,0,40" Background="#7B7B7E" Foreground="White" Width="40" Height="40" BorderBrush="Black" BorderThickness="1"/>
     </Grid>
 </Page>

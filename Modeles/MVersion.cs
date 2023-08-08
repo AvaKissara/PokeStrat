@@ -8,7 +8,7 @@ namespace PokeStat.Modeles
 {
     public class MVersion
     {
-        public int idVersion { get; }
+        public int idVersion { get; set; }
         public string nomVersion { get; set; }
         public MGeneration gen{ get; set; }
 

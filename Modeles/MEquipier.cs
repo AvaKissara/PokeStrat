@@ -21,7 +21,7 @@ namespace PokeStat.Modeles
         public MTalent talentEquipier { get; set; }
         public MEquipe equipeEquipier { get; set; } 
 
-        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, MPokemon Evolution, int NivEvolution, MGeneration Gen, int IdEquipier, string NomEquipier, int NiveauEquipier)
+        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BaseXp, int PV, int Attaque, int Defense, int AttSpe, int DefSpe, int Vitesse, bool Legendaire, bool Shiny, MSpecimen Evolution, int NivEvolution, MGeneration Gen, int IdEquipier, string NomEquipier, int NiveauEquipier)
             : base(IdPokemon, CheminImgPokemon, NomFraPokemon, nomEngPokemon, NumPokemon, TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen)
         {
             this.idEquipier = IdEquipier;

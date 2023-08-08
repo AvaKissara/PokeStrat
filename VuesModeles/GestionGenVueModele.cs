@@ -52,18 +52,7 @@ namespace PokeStat.VuesModeles
         private readonly RepGeneration repGen;
 
 
-        public int idGen
-        {
-            get { return idGen; }
-            set
-            {
-                if (idGen != value)
-                {
-                    idGen = value;
-                    OnPropertyChanged(nameof(idGen));
-                }
-            }
-        }
+        public int idGen;
 
         //Propriété de type booléen utilisée pour contrôler la saisie d'une version
         private bool isSaisieValide;
@@ -117,6 +106,8 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
+
+
 
         public GestionGenVueModele()
         {

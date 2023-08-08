@@ -8,7 +8,7 @@ namespace PokeStat.Modeles
 {
     public class MGeneration
     {
-        public int idGen { get; }
+        public int idGen { get; set; }
         public string nomGen { get; set; }
 
         public MGeneration(int IdGen, string NomGen)
@@ -16,10 +16,12 @@ namespace PokeStat.Modeles
             this.idGen = IdGen; 
             this.nomGen = NomGen; 
         }
+
         public MGeneration(string NomGen)
         {
             this.nomGen = NomGen;
         }
+
         public MGeneration() { }
 
         public override bool Equals(object objTest)

@@ -123,6 +123,7 @@ namespace PokeStat.Repositories
 
         public void Update(MVersion MModele)
         {
+
         }
 
         public void Delete(int idSuppr)
@@ -132,7 +133,7 @@ namespace PokeStat.Repositories
             try
             {
                 SqlCommand RequestDeleteVersion = activeConnexion.CreateCommand();
-                RequestDeleteVersion.CommandText = "DELETE FROM Versions WHERE id_ = @id_version";
+                RequestDeleteVersion.CommandText = "DELETE FROM Versions WHERE id_version = @id_version";
 
                 SqlParameter id = RequestDeleteVersion.Parameters.Add("@id_version", SqlDbType.Int);
                 id.Value = idSuppr;

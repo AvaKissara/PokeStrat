@@ -9,7 +9,7 @@ namespace PokeStat.Modeles
 {
     public abstract class MPokemon
     {  
-        public int idPokemon { get; }
+        public int idPokemon { get; set; }
         public string cheminImgPokemon { get; set; }
         public string nomFraPokemon { get; set; }
         public string nomEngPokemon { get; set; }

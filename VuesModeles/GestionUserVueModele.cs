@@ -186,6 +186,7 @@ namespace PokeStat.VuesModeles
             CreeCommand = new RelayCommand(CreeUser);
             AjouteCommand = new RelayCommand(AjouteUser);
             ModifieCommand = new RelayCommand(ModifieUser);
+            MajCommand = new RelayCommand(MajUser);
             EffaceCommand = new RelayCommand(EffaceUser);
             GestionCommand = new RelayCommand(GestionUser);
             AccueilPageCommand = new RelayCommand(AccueilPage);
@@ -236,17 +237,77 @@ namespace PokeStat.VuesModeles
 
         private void ModifieUser() 
         {
+            List<MUser> users = repUser.GetAll();
 
+            if(DtData != null && DtData.Rows.Count > 0)
+            {
+                foreach(MUser user in users)
+                {
+                    if(user.Equals(LigneSelection))
+                    {
+                        LigneSelection = user;
+                    }
+                }
+            }
+
+            NavigationServices.NavigateToPage(new ModifieUser(LigneSelection));
+        }
+
+        private void MajUser()
+        {
+            List<MUser> users = repUser.GetAll();
+            LigneSelection.mailUser = mailUser;
+           
+
+            bool userExiste = users.Any(u => u.idUser == LigneSelection.idUser);
+
+            if (userExiste)
+            {
+                MessageBox.Show("Cet utilisateur existe déjà !");
+            }
+            {
+                repUser.Update(LigneSelection);
+            }
+
+            users = repUser.GetAll();
+            DtData = DataTableTool.ConvertListToDataTable(users);
+
+            MessageBox.Show("L'utilisateur a bien été modifié");
+
+            NavigationServices.NavigateToPage(new GestionUser());
         }
 
         private void EffaceUser() 
         {
+            List<MUser> users = repUser.GetAll();
 
+            if(DtData != null & DtData.Rows.Count > 0)
+            {
+                int idUserAEffacer = LigneSelection.idUser;
+
+                MUser userAEffacer = users.FirstOrDefault(u => u.idUser == idUserAEffacer);
+
+                if(userAEffacer != null)
+                {
+                    MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cet utilisateur ?", "Confirmation de suppression", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        repUser.Delete(idUserAEffacer);
+                        users = repUser.GetAll();
+                        DtData = DataTableTool.ConvertListToDataTable(users);
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Echec !");
+                    }
+                }
+            }
         }
 
         private void GestionUser() 
         {
-
+            NavigationServices.NavigateToPage(new GestionUser());
         }
 
         private void AccueilPage()

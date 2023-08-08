@@ -33,6 +33,8 @@ namespace PokeStat.Modeles
             this.cree= Cree;
         }
 
+        public MUser()
+        { }
 
         public string ToInsecureString(SecureString securePassword)
         {

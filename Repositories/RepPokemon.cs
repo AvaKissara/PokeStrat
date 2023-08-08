@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Repositories
 {
-    public class RepPokemon : IRepository<MPokemon>
+    public class RepPokemon : IRepository<MSpecimen>
     {
         private SqlConnection activeConnexion;
 
@@ -40,11 +40,11 @@ namespace PokeStat.Repositories
             }
         }
 
-        public List<MPokemon> GetAll()
+        public List<MSpecimen> GetAll()
         {
             CheckConnexion();
 
-            List<MPokemon> ListMPokemons = new List<MPokemon>();
+            List<MSpecimen> ListMSpecimens = new List<MSpecimen>();
 
             SqlCommand RequestGetPokemons = activeConnexion.CreateCommand();
             RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img, P.nom_eng_pok, P.nom_fra_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_experience, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P2.id_pok as evo_id, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, P.niv_evo, G.id_gen, G.nom_gen FROM Pokemons AS P \r\nLEFT JOIN Generations as G ON P.gen_id = G.id_gen \r\nLEFT JOIN Pokemons P2 ON P.evo_id = P2.id_pok\r\n";
@@ -56,7 +56,7 @@ namespace PokeStat.Repositories
                     decimal taille = pokemons.IsDBNull(5) ? 0.0m : pokemons.GetDecimal(5); // Récupérer la valeur de la taille ou utiliser 0.0m si elle est nulle
                     decimal poids = pokemons.IsDBNull(6) ? 0.0m : pokemons.GetDecimal(6); // Récupérer la valeur du poids ou utiliser 0.0m si elle est nulle
 
-                    MPokemon evolution = null;
+                    MSpecimen evolution = null;
                     if (!pokemons.IsDBNull(16)) // Vérifier si la colonne id_evo peut être nulle
                     {
                         int idEvo = pokemons.IsDBNull(16) ? 0 : pokemons.GetInt32(16);
@@ -97,19 +97,19 @@ namespace PokeStat.Repositories
                         gen
                     );
 
-                    ListMPokemons.Add(unPokemon);
+                    ListMSpecimens.Add(unPokemon);
                 }
             }
 
             // Fermeture de la connexion
             this.activeConnexion.Close();
 
-            return ListMPokemons;
+            return ListMSpecimens;
         }
 
-        public void Add(MPokemon entreePokemon)
+        public void Add(MSpecimen entreePokemon)
         {
-            if (entreePokemon is MPokemon nouveauPokemon)
+            if (entreePokemon is MSpecimen nouveauPokemon)
             {
                 int idGen = nouveauPokemon.gen.idGen;
 
@@ -117,12 +117,12 @@ namespace PokeStat.Repositories
             }
             else
             {
-                throw new ArgumentException("L'entrée n'est pas de type MPokemon");
+                throw new ArgumentException("L'entrée n'est pas de type MSpecimen");
             }
         }
 
 
-        public void Add(MPokemon nouveauPokemon, int idGen)
+        public void Add(MSpecimen nouveauPokemon, int idGen)
         {
             CheckConnexion();
 
@@ -208,7 +208,7 @@ namespace PokeStat.Repositories
 
   
 
-        public void Update(MPokemon MModele)
+        public void Update(MSpecimen MModele)
         {
         }
 

@@ -24,7 +24,7 @@ using System.Windows.Markup;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionPokemonVueModel : IVueModele<MPokemon, DataTable>
+    public class GestionPokemonVueModel : IVueModele<MSpecimen, DataTable>
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand CreeCommand { get; set; }
@@ -42,9 +42,9 @@ namespace PokeStat.VuesModeles
         private readonly RepGeneration repGen;
         private readonly RepType repType;
 
-        //Propriété de type MPokemon corrrespondant à l'élément actuellement sélectionné dans la liste des types.
-        private MPokemon _ligneSelection;
-        public MPokemon LigneSelection
+        //Propriété de type MSpecimen corrrespondant à l'élément actuellement sélectionné dans la liste des types.
+        private MSpecimen _ligneSelection;
+        public MSpecimen LigneSelection
         {
             get { return _ligneSelection; }
             set
@@ -192,8 +192,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private List<MPokemon> cmbEvo;
-        public List<MPokemon> CmbEvo
+        private List<MSpecimen> cmbEvo;
+        public List<MSpecimen> CmbEvo
         {
             get { return cmbEvo; }
             set
@@ -447,8 +447,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private MPokemon evolution;
-        public MPokemon Evolution
+        private MSpecimen evolution;
+        public MSpecimen Evolution
         {
             get { return evolution; }
             set
@@ -515,7 +515,7 @@ namespace PokeStat.VuesModeles
             repPokemon = new RepPokemon();
             repGen = new RepGeneration();
             repType = new RepType();
-            List<MPokemon> pokemons = repPokemon.GetAll();
+            List<MSpecimen> pokemons = repPokemon.GetAll();
             DtData = ConvertListToDataTable(pokemons);
             repGen = new RepGeneration();
             repType = new RepType();
@@ -538,10 +538,10 @@ namespace PokeStat.VuesModeles
             int idType;
             CheminImgPokemon = RelativeSelectedImagePath;
 
-            MPokemon nouveauPokemon = new MSpecimen(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
+            MSpecimen nouveauPokemon = new MSpecimen(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
             List<MGeneration> generations = repGen.GetAll();
             List<MType> types = repType.GetAll();      
-            List<MPokemon> pokemons = repPokemon.GetAll();
+            List<MSpecimen> pokemons = repPokemon.GetAll();
 
             bool pokExiste = pokemons.Any(p => p.nomFraPokemon.Equals(nouveauPokemon.nomFraPokemon, StringComparison.OrdinalIgnoreCase));
 
@@ -620,8 +620,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        // Convertir une liste de MPokemon en DataTable
-        private DataTable ConvertListToDataTable(List<MPokemon> pokemons)
+        // Convertir une liste de MSpecimen en DataTable
+        private DataTable ConvertListToDataTable(List<MSpecimen> pokemons)
         {
             DataTable dtData = new DataTable();
 
