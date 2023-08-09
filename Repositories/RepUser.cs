@@ -170,15 +170,27 @@ namespace PokeStat.Repositories
         public void Update(MUser modifUser)
         {
             CheckConnexion();
+
             // Convertir le SecureString en string
             string mdpString = modifUser.ToInsecureString(modifUser.mdpUser);
-
+           
+              
             // Utiliser PasswordManager pour hacher le mot de passe
             (string hash, string salt) = PasswordManager.HashPassword(mdpString);
+         
 
             SqlCommand RequestUpdateUser = activeConnexion.CreateCommand();
-            RequestUpdateUser.CommandText = "UPDATE Users SET nom_user = @nom_user, prenom_user = @prenom_user, pseudo = @pseudo, mail_user = @mail_user, mdp_user = @mdp_user, actualise_le = @actualise_le, sel_user = @sel_user WHERE id_user = @id_user";
-           
+
+             if (mdpString == null) 
+             {
+                RequestUpdateUser.CommandText = "UPDATE Users SET nom_user = @nom_user, prenom_user = @prenom_user, pseudo = @pseudo, mail_user = @mail_user, actualise_le = @actualise_le WHERE id_user = @id_user";
+             }
+             else
+             {
+                RequestUpdateUser.CommandText = "UPDATE Users SET nom_user = @nom_user, prenom_user = @prenom_user, pseudo = @pseudo, mail_user = @mail_user, mdp_user = @mdp_user, actualise_le = @actualise_le, sel_user = @sel_user WHERE id_user = @id_user";
+             }
+
+            SqlParameter id = RequestUpdateUser.Parameters.Add("@id_user", SqlDbType.Int);
             SqlParameter nom = RequestUpdateUser.Parameters.Add("@nom_user", SqlDbType.VarChar);
             SqlParameter prenom = RequestUpdateUser.Parameters.Add("@prenom_user", SqlDbType.VarChar);
             SqlParameter pseuso = RequestUpdateUser.Parameters.Add("@pseudo", SqlDbType.VarChar);
@@ -187,6 +199,7 @@ namespace PokeStat.Repositories
             SqlParameter actualise = RequestUpdateUser.Parameters.Add("@actualise_le", SqlDbType.DateTime);
             SqlParameter sel = RequestUpdateUser.Parameters.Add("@sel_user", SqlDbType.VarChar);
 
+            id.Value = modifUser.idUser;
             nom.Value = modifUser.nomUser;
             prenom.Value = modifUser.prenomUser;
             pseuso.Value = modifUser.pseudoUser;

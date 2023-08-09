@@ -14,24 +14,34 @@ namespace PokeStat.Utilitaires
         // Méthode pour hacher un mot de passe et générer un sel aléatoire
         public static (string hash, string salt) HashPassword(string password)
         {
-            // Générer un sel aléatoire sous forme de tableau d'octets
-            byte[] saltBytes = GenerateSalt();
-            // Conversion du mot de passe en tableau d'octets
-            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-
-            // Créer une instance de l'algorithme de hachage SHA256
-            using (var sha256 = SHA256.Create())
+            if (password == null)
+            {               
+                password = string.Empty;
+                string key = string.Empty;
+                return (password, key);
+            }
+            else
             {
-                // Combinaison du sel et du mot de passe en un seul tableau d'octets
-                byte[] saltedPassword = new byte[saltBytes.Length + passwordBytes.Length];
-                Buffer.BlockCopy(saltBytes, 0, saltedPassword, 0, saltBytes.Length);
-                Buffer.BlockCopy(passwordBytes, 0, saltedPassword, saltBytes.Length, passwordBytes.Length);
+                // Générer un sel aléatoire sous forme de tableau d'octets
+                byte[] saltBytes = GenerateSalt();
+                // Conversion du mot de passe en tableau d'octets
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
-                // Calculer le hachage du mot de passe et du sel combinés
-                byte[] hashedBytes = sha256.ComputeHash(saltedPassword);
+                // Créer une instance de l'algorithme de hachage SHA256
+                using (var sha256 = SHA256.Create())
+                {
+                    // Combinaison du sel et du mot de passe en un seul tableau d'octets
+                    byte[] saltedPassword = new byte[saltBytes.Length + passwordBytes.Length];
+                    Buffer.BlockCopy(saltBytes, 0, saltedPassword, 0, saltBytes.Length);
+                    Buffer.BlockCopy(passwordBytes, 0, saltedPassword, saltBytes.Length, passwordBytes.Length);
 
-                // Convertir les tableaux d'octets en chaînes Base64 pour le stockage
-                return (Convert.ToBase64String(hashedBytes), Convert.ToBase64String(saltBytes));
+                    // Calculer le hachage du mot de passe et du sel combinés
+                    byte[] hashedBytes = sha256.ComputeHash(saltedPassword);
+
+                    // Convertir les tableaux d'octets en chaînes Base64 pour le stockage
+                    return (Convert.ToBase64String(hashedBytes), Convert.ToBase64String(saltBytes));
+                }
+          
             }
         }
 

@@ -256,15 +256,16 @@ namespace PokeStat.VuesModeles
         private void MajUser()
         {
             List<MUser> users = repUser.GetAll();
-            LigneSelection.mailUser = mailUser;
+            mailUser = LigneSelection.mailUser;
            
 
-            bool userExiste = users.Any(u => u.idUser == LigneSelection.idUser);
+            bool userExiste = users.Any(u => u.mailUser.Equals(LigneSelection.mailUser, StringComparison.OrdinalIgnoreCase));
 
             if (userExiste)
             {
                 MessageBox.Show("Cet utilisateur existe déjà !");
             }
+
             {
                 repUser.Update(LigneSelection);
             }

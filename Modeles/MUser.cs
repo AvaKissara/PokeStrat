@@ -38,6 +38,11 @@ namespace PokeStat.Modeles
 
         public string ToInsecureString(SecureString securePassword)
         {
+            if (securePassword == null)
+            {
+                return null;
+            }
+
             IntPtr unmanagedString = IntPtr.Zero;
             try
             {
@@ -49,6 +54,7 @@ namespace PokeStat.Modeles
                 Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
             }
         }
+
 
     }
 }
