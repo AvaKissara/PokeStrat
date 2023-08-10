@@ -111,6 +111,9 @@
     <Compile Include="Vues\AccueilPage.xaml.cs">
       <DependentUpon>AccueilPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vues\Authentification\Connexion.xaml.cs">
+      <DependentUpon>Connexion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vues\CrudGeneration\CreeGen.xaml.cs">
       <DependentUpon>CreeGen.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,15 @@
     <Compile Include="Vues\Layout\NavigationBarUser.xaml.cs">
       <DependentUpon>NavigationBarUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vues\User\GestionProfile\ChangeMdp.xaml.cs">
+      <DependentUpon>ChangeMdp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\User\GestionProfile\CreeProfile.xaml.cs">
+      <DependentUpon>CreeProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\User\GestionProfile\ModifieProfile.xaml.cs">
+      <DependentUpon>ModifieProfile.xaml</DependentUpon>
+    </Compile>
     <Page Include="Composants\MdpControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +194,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Vues\AccueilPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\Authentification\Connexion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,6 +274,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vues\Layout\NavigationBarUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\User\GestionProfile\ChangeMdp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\User\GestionProfile\CreeProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\User\GestionProfile\ModifieProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

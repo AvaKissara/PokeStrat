@@ -15,7 +15,6 @@ using PokeStat.Vues.CrudPokemon;
 using PokeStat.Vues.CrudType;
 using PokeStat.Vues.CrudVersion;
 using PokeStat.Vues.CrudUser;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace PokeStat.VuesModeles
 {
