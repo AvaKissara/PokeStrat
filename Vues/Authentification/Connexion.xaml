@@ -10,10 +10,11 @@
     <Grid Background="#2D354D">
         <TextBlock Text="CONNEXION" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="26" Padding="6,4" Foreground="White"/>
         <Label Content="Email:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="226,120,0,0" VerticalAlignment="Top" />
-        <TextBox Name="tbMailUser" HorizontalAlignment="Center" Margin="0,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200">
+        <TextBox Name="tbIdentifiant" HorizontalAlignment="Center" Margin="0,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200">
             <TextBox.Text>
-                <Binding Path="MailUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
+                <Binding Path="Identifiant" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
             </TextBox.Text>
         </TextBox>
+
     </Grid>
 </Window>
