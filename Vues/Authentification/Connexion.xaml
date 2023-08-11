@@ -3,18 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PokeStat.Vues.Authentification"
+        xmlns:local="clr-namespace:PokeStat.Vues.Authentification" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" xmlns:composants="clr-namespace:PokeStat.Composants" d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionAuthVueModele}"
         mc:Ignorable="d"
         Title="Connexion" Height="450" Width="800">
 
-    <Grid Background="#2D354D">
-        <TextBlock Text="CONNEXION" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="26" Padding="6,4" Foreground="White"/>
-        <Label Content="Email:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="226,120,0,0" VerticalAlignment="Top" />
+    <Grid Background="White">
+        <TextBlock Text="CONNEXION" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="26" Padding="6,4" Foreground="#2D354D"/>
+        <Label Content="Email:" FontFamily="Raleway" Foreground="#2D354D" FontSize="18" HorizontalAlignment="Left" Margin="226,120,0,0" VerticalAlignment="Top" />
         <TextBox Name="tbIdentifiant" HorizontalAlignment="Center" Margin="0,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200">
             <TextBox.Text>
                 <Binding Path="Identifiant" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
             </TextBox.Text>
         </TextBox>
+
+        <Label Content="Mot de passe:" FontFamily="Raleway" Foreground="#2D354D" FontSize="18" HorizontalAlignment="Left" Margin="162,191,0,0" VerticalAlignment="Top" />
+        <composants:MdpControl Password="{Binding Mdp}"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Margin="0,197,0,0"/>
+
+        <Button Name="btnValid" Content="Valider" Command="{Binding ConnexionCommand}" HorizontalAlignment="Left" Margin="298,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#2D354D" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnAnnul" Content="Annuler" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Left" Margin="397,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#2D354D" Foreground="White" FontSize="18" Padding="20,7"/>
 
     </Grid>
 </Window>

@@ -31,8 +31,11 @@ namespace PokeStat.VuesModeles
         public ICommand GestionUserCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
+        public ICommand ClosePopupCommand { get; }
 
-        public AccueilVueModel()
+
+
+    public AccueilVueModel()
         {
             ConnexionCommand = new RelayCommand(Connexion);
             InscriptionCommand = new RelayCommand(Inscription);
@@ -43,12 +46,18 @@ namespace PokeStat.VuesModeles
             GestionUserCommand = new RelayCommand(GestionUser);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
+            ClosePopupCommand = new RelayCommand(ClosePopup);
         }
 
         private void Connexion()
         {
             var authPopup = new Connexion();
             authPopup.ShowDialog();
+        }
+
+        static public void ClosePopup()
+        {
+            Application.Current.MainWindow.Close();
         }
 
         private void Inscription()
