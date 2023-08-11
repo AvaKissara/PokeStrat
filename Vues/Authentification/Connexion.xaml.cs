@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PokeStat.Vues.Authentification
@@ -18,7 +17,7 @@ namespace PokeStat.Vues.Authentification
     /// <summary>
     /// Logique d'interaction pour Connexion.xaml
     /// </summary>
-    public partial class Connexion : Page
+    public partial class Connexion : Window
     {
         public Connexion()
         {

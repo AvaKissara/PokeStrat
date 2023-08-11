@@ -15,6 +15,7 @@ using PokeStat.Vues.CrudPokemon;
 using PokeStat.Vues.CrudType;
 using PokeStat.Vues.CrudVersion;
 using PokeStat.Vues.CrudUser;
+using PokeStat.Vues.Authentification;
 
 namespace PokeStat.VuesModeles
 {
@@ -46,7 +47,8 @@ namespace PokeStat.VuesModeles
 
         private void Connexion()
         {
-            
+            var authPopup = new Connexion();
+            authPopup.ShowDialog();
         }
 
         private void Inscription()

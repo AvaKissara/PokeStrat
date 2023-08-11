@@ -14,9 +14,11 @@ using PokeStat.Vues.CrudVersion;
 using System.Data;
 using PokeStat.Repositories;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using PokeStat.Vues.CrudPokemon;
+using PokeStat.Vues.CrudUser;
+using System.Windows;
+
 
 namespace PokeStat.VuesModeles
 {
@@ -230,8 +232,31 @@ namespace PokeStat.VuesModeles
         public void MajVersion() { }
 
         public void EffaceVersion() 
-        { 
+        {
+            List<MVersion> versions = repVersion.GetAll();
 
+            if (DtData != null & DtData.Rows.Count > 0)
+            {
+                int idVersionAEffacer = LigneSelection.idVersion;
+
+                MVersion userAEffacer = versions.FirstOrDefault(u => u.idVersion == idVersionAEffacer);
+
+                if (userAEffacer != null)
+                {
+                    MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette version ?", "Confirmation de suppression", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        repVersion.Delete(idVersionAEffacer);
+                        versions = repVersion.GetAll();
+                        DtData = DataTableTool.ConvertListToDataTable(versions);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("La version n'a pas été supprimée.");
+                    }
+                }
+            }
         }
 
         public void GestionVersion() 

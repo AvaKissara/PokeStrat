@@ -35,7 +35,7 @@ namespace PokeStat.Repositories
 
         public void DbConnecter()
         {
-            Connexion con = new Connexion();
+            ConnexionBdd con = new ConnexionBdd();
             this.activeConnexion = con.GetConnexion();
         }
 
@@ -102,7 +102,7 @@ namespace PokeStat.Repositories
         {
             CheckConnexion();
             // Convertir le SecureString en string
-            string mdpString = nouvelUser.ToInsecureString(nouvelUser.mdpUser);
+            string mdpString = nouvelUser.ToInsecureString(nouvelUser.mdpPersonne);
 
             // Utiliser PasswordManager pour hacher le mot de passe
             (string hash, string salt) = PasswordManager.HashPassword(mdpString);
@@ -122,10 +122,10 @@ namespace PokeStat.Repositories
                 SqlParameter cree = RequestAddUser.Parameters.Add("@date_id", SqlDbType.DateTime);
                 SqlParameter sel = RequestAddUser.Parameters.Add("@sel_user", SqlDbType.VarChar);
 
-                nom.Value = nouvelUser.nomUser;
-                prenom.Value = nouvelUser.prenomUser;
-                pseuso.Value = nouvelUser.pseudoUser;
-                mail.Value = nouvelUser.mailUser;
+                nom.Value = nouvelUser.nomPersonne;
+                prenom.Value = nouvelUser.prenomPersonne;
+                pseuso.Value = nouvelUser.pseudoPersonne;
+                mail.Value = nouvelUser.mailPersonne;
                 mdp.Value = hash;
                 actualise.Value = DateTime.Now;
                 cree.Value = nouvelUser.cree.idDate;
@@ -172,7 +172,7 @@ namespace PokeStat.Repositories
             CheckConnexion();
 
             // Convertir le SecureString en string
-            string mdpString = modifUser.ToInsecureString(modifUser.mdpUser);
+            string mdpString = modifUser.ToInsecureString(modifUser.mdpPersonne);
            
               
             // Utiliser PasswordManager pour hacher le mot de passe
@@ -199,11 +199,11 @@ namespace PokeStat.Repositories
             SqlParameter actualise = RequestUpdateUser.Parameters.Add("@actualise_le", SqlDbType.DateTime);
             SqlParameter sel = RequestUpdateUser.Parameters.Add("@sel_user", SqlDbType.VarChar);
 
-            id.Value = modifUser.idUser;
-            nom.Value = modifUser.nomUser;
-            prenom.Value = modifUser.prenomUser;
-            pseuso.Value = modifUser.pseudoUser;
-            mail.Value = modifUser.mailUser;
+            id.Value = modifUser.idPersonne;
+            nom.Value = modifUser.nomPersonne;
+            prenom.Value = modifUser.prenomPersonne;
+            pseuso.Value = modifUser.pseudoPersonne;
+            mail.Value = modifUser.mailPersonne;
             mdp.Value = hash;
             actualise.Value = DateTime.Now;
             sel.Value = salt;

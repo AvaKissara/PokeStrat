@@ -63,8 +63,9 @@
     <Compile Include="Composants\MdpControl.xaml.cs">
       <DependentUpon>MdpControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Connexion.cs" />
+    <Compile Include="ConnexionBdd.cs" />
     <Compile Include="Modeles\MAction.cs" />
+    <Compile Include="Modeles\MAdmin.cs" />
     <Compile Include="Modeles\MCapacite.cs" />
     <Compile Include="Modeles\MCategorie.cs" />
     <Compile Include="Modeles\MDate.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Modeles\MNature.cs" />
     <Compile Include="Modeles\MObjet.cs" />
     <Compile Include="Modeles\MPokemon.cs" />
+    <Compile Include="Modeles\MPersonne.cs" />
     <Compile Include="Modeles\MSpecimen.cs" />
     <Compile Include="Modeles\MStat.cs" />
     <Compile Include="Modeles\MStatut.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Utilitaires\PasswordManager.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />
+    <Compile Include="VuesModeles\GestionAuthVueModele.cs" />
     <Compile Include="VuesModeles\GestionGenVueModele.cs" />
     <Compile Include="VuesModeles\GestionPokemonVueModel.cs" />
     <Compile Include="VuesModeles\GestionTypeVueModel.cs" />

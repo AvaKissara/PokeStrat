@@ -20,7 +20,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Titre de la vue -->
-            <TextBlock Grid.Column="0" Text="GESTION DES VERSIONS" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
+            <TextBlock Grid.Column="0" Text="GESTION DES UTILISATEURS" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
         </Grid>
 
 
@@ -75,6 +75,6 @@
         </Button>
 
         <!-- Champ de texte pour l'id du type sélectionné -->
-        <TextBox Text="{Binding LigneSelection.idUser}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="300,10,0,40" Background="#7B7B7E" Foreground="White" Width="40" Height="40" BorderBrush="Black" BorderThickness="1"/>
+        <TextBox Text="{Binding LigneSelection.idPersonne}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Margin="300,10,0,40" Background="#7B7B7E" Foreground="White" Width="40" Height="40" BorderBrush="Black" BorderThickness="1"/>
     </Grid>
 </Page>

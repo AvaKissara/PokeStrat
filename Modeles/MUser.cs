@@ -10,50 +10,19 @@ using System.Windows.Forms;
 
 namespace PokeStat.Modeles
 {
-    public class MUser
+    public class MUser : MPersonne
     {
-        public int idUser { get; set; }   
-        public string nomUser { get; set; }
-        public string prenomUser { get; set; }
-        public string pseudoUser { get; set; }
-        public string mailUser { get; set; }
-        public SecureString mdpUser { get; set; }
-        public DateTime actualise { get; set; }  
-        public MDate cree { get; set; }
-
-        public MUser(int IdUser, string NomUser, string PrenomUser, string PseudoUser, string MailUser, SecureString MdpUser, DateTime Actualise, MDate Cree) 
+    
+        public MUser(int idPersonne, string nomPersonne, string prenomPersonne, string pseudoPersonne, string mailPersonne, SecureString mdpPersonne, DateTime roleActualise, MDate roleCree)
+      : base(idPersonne, nomPersonne, prenomPersonne, pseudoPersonne, mailPersonne, mdpPersonne, roleActualise, roleCree)
         {
-            this.idUser = IdUser;
-            this.nomUser = NomUser;
-            this.prenomUser = PrenomUser;
-            this.pseudoUser = PseudoUser;
-            this.mailUser = MailUser;
-            this.mdpUser = MdpUser;
-            this.actualise = Actualise;
-            this.cree= Cree;
+
         }
 
         public MUser()
         { }
 
-        public string ToInsecureString(SecureString securePassword)
-        {
-            if (securePassword == null)
-            {
-                return null;
-            }
-
-            IntPtr unmanagedString = IntPtr.Zero;
-            try
-            {
-                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
-                return Marshal.PtrToStringUni(unmanagedString);
-            }
-            finally
-            {
-                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-            }
-        }
+       
 
 
     }

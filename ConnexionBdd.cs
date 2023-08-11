@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat
 {
-    public class Connexion
+    public class ConnexionBdd
     {
         public SqlConnection GetConnexion()
         {

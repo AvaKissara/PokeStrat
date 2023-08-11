@@ -27,7 +27,7 @@ namespace PokeStat.Repositories
         }
         public void DbConnecter()
         {
-            Connexion con = new Connexion();
+            ConnexionBdd con = new ConnexionBdd();
             this.activeConnexion = con.GetConnexion();
         }
 

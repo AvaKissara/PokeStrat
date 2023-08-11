@@ -15,7 +15,7 @@
 
             <!-- Bouton de fermeture -->
             <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseCommand}"/>
-            <Button Content="Connexion" HorizontalAlignment="Right" Margin="40,30,45,0" VerticalAlignment="Top" Background="#7B7B7E" Foreground="White" FontFamily="Raleway" FontSize="18" Padding="20,7"/>
+            <Button Content="Connexion" Command="{Binding ConnexionCommand}" HorizontalAlignment="Right" Margin="40,30,45,0" VerticalAlignment="Top" Background="#7B7B7E" Foreground="White" FontFamily="Raleway" FontSize="18" Padding="20,7"/>
             <Button Content="" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Right" Margin="0,30,0,0" VerticalAlignment="Top" FontFamily="Raleway" FontSize="18" Padding="20,7">
                 <Button.Background>
                     <ImageBrush ImageSource="/Ressources/home.png" Stretch="Fill"/>
@@ -26,7 +26,7 @@
             <Button x:Name="btnGestionType" Content="Gestion Type" Command="{Binding GestionTypeCommand}" HorizontalAlignment="Left" Margin="226,30,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>
             <Button x:Name="btnGestionVersion" Content="Gestion Version" Command="{Binding GestionVersionCommand}" HorizontalAlignment="Left" Margin="375,30,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>
             <Button x:Name="btnGestionGen" Content="Gestion Gen" Command="{Binding GestionGenerationCommand}" HorizontalAlignment="Left" Margin="545,30,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>
-            <Button x:Name="btnGestionUser" Content="Gestion User" Command="{Binding GestionUserCommand}" HorizontalAlignment="Left" Margin="688,30,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>
+            <Button x:Name="btnGestionUser" Content="Gestion User" Command="{Binding GestionUserCommand}" HorizontalAlignment="Left" Margin="690,30,0,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7" Grid.ColumnSpan="2"/>
         </Grid>
     </Grid>
 </UserControl>
