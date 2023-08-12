@@ -22,8 +22,8 @@ namespace PokeStat.VuesModeles
     public class AccueilVueModel : INotifyPropertyChanged
     {
         // Déclaration des commandes utilisées dans la classe
-        public ICommand ConnexionCommand { get; set; }
-        public ICommand InscriptionCommand { get; set; }
+        public ICommand ConnexionPopupCommand { get; set; }
+        public ICommand InscriptionPopupCommand { get; set; }
         public ICommand GestionPokemonCommand { get; set; }
         public ICommand GestionTypeCommand { get; set; }
         public ICommand GestionVersionCommand { get; set; }
@@ -31,25 +31,24 @@ namespace PokeStat.VuesModeles
         public ICommand GestionUserCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
-        public ICommand ClosePopupCommand { get; }
 
 
 
-        private static bool isUserLoggedIn;
-        public static bool IsUserLoggedIn
+        private bool connecteExiste;
+        public bool ConnecteExiste
         {
-            get { return isUserLoggedIn; }
+            get { return connecteExiste; }
             set
             {
-                isUserLoggedIn = value;
-                OnPropertyChanged(nameof(IsUserLoggedIn));
+                connecteExiste = value;
+                OnPropertyChanged(nameof(ConnecteExiste));
             }
         }
 
         public AccueilVueModel()
         {
-            ConnexionCommand = new RelayCommand(Connexion);
-            InscriptionCommand = new RelayCommand(Inscription);
+            ConnexionPopupCommand = new RelayCommand(ConnexionPopup);
+            InscriptionPopupCommand = new RelayCommand(InscriptionPopup);
             GestionPokemonCommand = new RelayCommand(GestionPokemon);
             GestionTypeCommand = new RelayCommand(GestionType);
             GestionVersionCommand = new RelayCommand(GestionVersion);
@@ -57,22 +56,22 @@ namespace PokeStat.VuesModeles
             GestionUserCommand = new RelayCommand(GestionUser);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
-            ClosePopupCommand = new RelayCommand(ClosePopup);
         }
 
-        private void Connexion()
+        public void EtatConnecte()
+        {
+            connecteExiste=true;
+        }
+
+        private void ConnexionPopup()
         {
             var connexionPopup = new Connexion();
             connexionPopup.DataContext = new GestionAuthVueModele();
             connexionPopup.ShowDialog();
         }
 
-        static public void ClosePopup()
-        {
-            Application.Current.MainWindow.Close();
-        }
 
-        private void Inscription()
+        private void InscriptionPopup()
         {
             NavigationServices.NavigateToPage(new CreeUser());
         }

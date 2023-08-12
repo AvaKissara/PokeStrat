@@ -70,6 +70,7 @@ namespace PokeStat.VuesModeles
                 if (activeWindow != null)
                 {
                     activeWindow.Close();
+              
                 }
             }
             else
