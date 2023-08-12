@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
-
-
+using System.Security;
+using System.Runtime.InteropServices;
 
 namespace PokeStat.Utilitaires
 {
@@ -46,8 +46,12 @@ namespace PokeStat.Utilitaires
         }
 
         // Méthode pour vérifier si un mot de passe saisi correspond au hachage stocké
-        public static bool VerifyPassword(string enteredPassword, string storedHash, string salt)
+        public static bool VerifyPassword(SecureString secureEnteredPassword, SecureString secureStoredHash, SecureString secureSalt)
         {
+            string enteredPassword = ToInsecureString(secureEnteredPassword);
+            string storedHash = ToInsecureString(secureStoredHash);
+            string salt = ToInsecureString(secureSalt);
+
             // Convertir le sel en tableau d'octets
             byte[] saltBytes = Convert.FromBase64String(salt);
             // Conversion du mot de passe saisi en tableau d'octets
@@ -82,6 +86,25 @@ namespace PokeStat.Utilitaires
                 rng.GetBytes(salt);
             }
             return salt;
+        }
+
+        public static string ToInsecureString(SecureString securePassword)
+        {
+            if (securePassword == null)
+            {
+                return null;
+            }
+
+            IntPtr unmanagedString = IntPtr.Zero;
+            try
+            {
+                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
+                return Marshal.PtrToStringUni(unmanagedString);
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+            }
         }
     }
 }

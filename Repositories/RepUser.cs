@@ -97,12 +97,51 @@ namespace PokeStat.Repositories
 
             return ListMUsers;
         }
-      
+
+        public SecureString GetSalt(int idUserLogin)
+        {
+            CheckConnexion();
+
+            SecureString salt = new SecureString();
+
+            SqlCommand RequestGetSaltUser = activeConnexion.CreateCommand();
+            RequestGetSaltUser.CommandText = "SELECT sel_user FROM Users WHERE id_user = @id_user";
+
+            SqlParameter sel = RequestGetSaltUser.Parameters.Add("@sel_user", SqlDbType.VarChar);
+
+            sel.Value = idUserLogin;
+
+            SqlDataReader reader = RequestGetSaltUser.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    // Récupérez la valeur du sel depuis la base de données
+                    string saltValue = reader.GetString(0);
+
+                    // Ajoutez chaque caractère du sel à la SecureString
+                    foreach (char c in saltValue)
+                    {
+                        salt.AppendChar(c);
+                    }
+                }
+            }
+
+            reader.Close();
+
+            // Fermeture de la connexion
+            this.activeConnexion.Close();
+
+            // Assurez-vous de renvoyer la SecureString contenant le sel
+            return salt;
+        }
+
         public void Add(MUser nouvelUser)
         {
             CheckConnexion();
             // Convertir le SecureString en string
-            string mdpString = nouvelUser.ToInsecureString(nouvelUser.mdpPersonne);
+            string mdpString = PasswordManager.ToInsecureString(nouvelUser.mdpPersonne);
 
             // Utiliser PasswordManager pour hacher le mot de passe
             (string hash, string salt) = PasswordManager.HashPassword(mdpString);

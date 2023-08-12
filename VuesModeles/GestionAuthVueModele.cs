@@ -1,4 +1,6 @@
-﻿using PokeStat.Utilitaires;
+﻿using PokeStat.Modeles;
+using PokeStat.Repositories;
+using PokeStat.Utilitaires;
 using PokeStat.Vues;
 using PokeStat.Vues.Authentification;
 using System;
@@ -16,6 +18,8 @@ namespace PokeStat.VuesModeles
     {
         public ICommand ConnexionCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
+
+        private readonly RepUser repUser;
 
         private string identifiant;
         public string Identifiant
@@ -47,12 +51,18 @@ namespace PokeStat.VuesModeles
  
         public void Connexion()
         {
+            List<MUser> users = repUser.GetAll();
+            MUser userAConnecter = users.FirstOrDefault(u => u.mailPersonne == Identifiant);
 
+            SecureString selHashe = repUser.GetSalt(userAConnecter.idPersonne);
+
+            // Vérifier si le mot de passe saisi correspond au hachage stocké
+            bool connexionReussie = PasswordManager.VerifyPassword(Mdp, userAConnecter.mdpPersonne, selHashe);
         }
 
         private void AccueilPage()
         {
-            System.Windows.Application.Current.Shutdown();
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
