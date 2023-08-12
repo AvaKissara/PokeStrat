@@ -21,7 +21,6 @@ namespace PokeStat.Repositories
 
         public RepUser()
         {
-
             try
             {
                 this.DbConnecter();
@@ -55,7 +54,6 @@ namespace PokeStat.Repositories
        
             try
             {
-
                 SqlCommand RequestGetUsers = activeConnexion.CreateCommand();
                 RequestGetUsers.CommandText = "SELECT * FROM Users";
                
@@ -107,9 +105,10 @@ namespace PokeStat.Repositories
             SqlCommand RequestGetSaltUser = activeConnexion.CreateCommand();
             RequestGetSaltUser.CommandText = "SELECT sel_user FROM Users WHERE id_user = @id_user";
 
-            SqlParameter sel = RequestGetSaltUser.Parameters.Add("@sel_user", SqlDbType.VarChar);
+            SqlParameter id = RequestGetSaltUser.Parameters.Add("@id_user", SqlDbType.Int);
 
-            sel.Value = idUserLogin;
+            id.Value = idUserLogin;
+
 
             SqlDataReader reader = RequestGetSaltUser.ExecuteReader();
 
@@ -117,10 +116,10 @@ namespace PokeStat.Repositories
             {
                 while (reader.Read())
                 {
-                    // Récupérez la valeur du sel depuis la base de données
+                    // Récupére la valeur du sel depuis la base de données
                     string saltValue = reader.GetString(0);
 
-                    // Ajoutez chaque caractère du sel à la SecureString
+                    // Ajoute chaque caractère du sel à la SecureString
                     foreach (char c in saltValue)
                     {
                         salt.AppendChar(c);
@@ -133,7 +132,6 @@ namespace PokeStat.Repositories
             // Fermeture de la connexion
             this.activeConnexion.Close();
 
-            // Assurez-vous de renvoyer la SecureString contenant le sel
             return salt;
         }
 

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
@@ -47,6 +48,8 @@ namespace PokeStat.VuesModeles
         {
             ConnexionCommand = new RelayCommand(Connexion);
             AccueilPageCommand = new RelayCommand(AccueilPage);
+
+            repUser = new RepUser();    
         }
  
         public void Connexion()
@@ -58,6 +61,21 @@ namespace PokeStat.VuesModeles
 
             // Vérifier si le mot de passe saisi correspond au hachage stocké
             bool connexionReussie = PasswordManager.VerifyPassword(Mdp, userAConnecter.mdpPersonne, selHashe);
+
+            if (connexionReussie)
+            {
+                MessageBox.Show("Youpii!");
+                var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+
+                if (activeWindow != null)
+                {
+                    activeWindow.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Raté");
+            }
         }
 
         private void AccueilPage()

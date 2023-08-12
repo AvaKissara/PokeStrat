@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PokeStat.Utilitaires;
+using PokeStat.VuesModeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,16 @@ namespace PokeStat.Vues.Authentification
     /// </summary>
     public partial class Connexion : Window
     {
+        private GestionAuthVueModele gestionAuthVueModele;
         public Connexion()
         {
             InitializeComponent();
+            gestionAuthVueModele = new GestionAuthVueModele();
+            DataContext = gestionAuthVueModele;
+
+            Frame mainFrame = NavigationServices.GetMainFrame();
+            NavigationServices.Initialize(mainFrame);
+
         }
     }
 }

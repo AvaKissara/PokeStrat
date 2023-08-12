@@ -35,7 +35,18 @@ namespace PokeStat.VuesModeles
 
 
 
-    public AccueilVueModel()
+        private static bool isUserLoggedIn;
+        public static bool IsUserLoggedIn
+        {
+            get { return isUserLoggedIn; }
+            set
+            {
+                isUserLoggedIn = value;
+                OnPropertyChanged(nameof(IsUserLoggedIn));
+            }
+        }
+
+        public AccueilVueModel()
         {
             ConnexionCommand = new RelayCommand(Connexion);
             InscriptionCommand = new RelayCommand(Inscription);
@@ -51,8 +62,9 @@ namespace PokeStat.VuesModeles
 
         private void Connexion()
         {
-            var authPopup = new Connexion();
-            authPopup.ShowDialog();
+            var connexionPopup = new Connexion();
+            connexionPopup.DataContext = new GestionAuthVueModele();
+            connexionPopup.ShowDialog();
         }
 
         static public void ClosePopup()
