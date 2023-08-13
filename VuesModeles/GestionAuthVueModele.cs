@@ -64,6 +64,9 @@ namespace PokeStat.VuesModeles
 
             if (connexionReussie)
             {
+                // Définir l'ID de l'utilisateur dans la session
+                SessionManager.Instance.SetUser(userAConnecter.idPersonne);
+
                 MessageBox.Show("Youpii!");
                 var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
@@ -72,6 +75,7 @@ namespace PokeStat.VuesModeles
                     activeWindow.Close();
               
                 }
+                
             }
             else
             {

@@ -197,6 +197,9 @@ namespace PokeStat.VuesModeles
             List<MUser> users = repUser.GetAll();
             DtData = DataTableTool.ConvertListToDataTable(users);
         }
+
+        
+
         public void UpdateSecurePassword(SecureString securePassword)
         {
             MdpUser = securePassword.Copy(); // Copy the password to the view model's SecureString
