@@ -22,7 +22,8 @@ namespace PokeStat.Utilitaires
             }
         }
 
-        public int UserId { get; private set; }
+        public int UserId { get; set; }
+
         public bool IsLoggedIn => UserId != 0;
 
         public void SetUser(int userId)

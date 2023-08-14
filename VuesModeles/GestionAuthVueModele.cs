@@ -68,14 +68,13 @@ namespace PokeStat.VuesModeles
                 SessionManager.Instance.SetUser(userAConnecter.idPersonne);
 
                 MessageBox.Show("Youpii!");
+
                 var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
                 if (activeWindow != null)
                 {
-                    activeWindow.Close();
-              
-                }
-                
+                    activeWindow.Close();            
+                }               
             }
             else
             {

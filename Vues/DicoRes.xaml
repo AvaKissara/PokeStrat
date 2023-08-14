@@ -7,7 +7,8 @@
 >
 
     <local1:NavigationBarAdmin x:Key="NavigationBarAdmin" />
-
+    
+    <local1:NavigationBarUser x:Key="NavigationBarUser" />
 
 
 </ResourceDictionary>

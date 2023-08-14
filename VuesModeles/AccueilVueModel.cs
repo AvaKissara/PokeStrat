@@ -29,6 +29,9 @@ namespace PokeStat.VuesModeles
         public ICommand GestionVersionCommand { get; set; }
         public ICommand GestionGenerationCommand { get; set; }
         public ICommand GestionUserCommand { get; set; }
+        public ICommand GestionEquipeCommand { get; set; }
+        public ICommand GestionProfileCommand { get; set; }
+        public ICommand GestionMatchCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
@@ -54,13 +57,26 @@ namespace PokeStat.VuesModeles
             GestionVersionCommand = new RelayCommand(GestionVersion);
             GestionGenerationCommand = new RelayCommand(GestionGeneration);
             GestionUserCommand = new RelayCommand(GestionUser);
+            GestionEquipeCommand = new RelayCommand(GestionEquipe);
+            GestionProfileCommand = new RelayCommand(GestionProfile);
+            GestionMatchCommand = new RelayCommand(GestionMatch);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
         }
 
-        public void EtatConnecte()
+        public void GestionProfile()
         {
-            connecteExiste=true;
+
+        }
+
+        public void GestionMatch()
+        {
+
+        }
+
+        public void GestionEquipe()
+        {
+   
         }
 
         private void ConnexionPopup()

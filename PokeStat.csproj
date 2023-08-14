@@ -324,6 +324,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="Vues\User\GestionEquipe\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\arceus.jpg">
