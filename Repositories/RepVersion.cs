@@ -1,4 +1,5 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.Utilitaires;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,13 +12,15 @@ namespace PokeStat.Repositories
 {
     public class RepVersion : IRepository<MVersion>
     {
-        private SqlConnection activeConnexion;
+        public BddTool bddTool;
 
         public RepVersion()
         {
+            bddTool = new BddTool();
+
             try
             {
-                this.DbConnecter();
+                this.bddTool.DbConnecter(); 
             }
             catch (Exception ex)
             {
@@ -25,28 +28,16 @@ namespace PokeStat.Repositories
                 Console.WriteLine("Erreur lors de la connexion à la base de données : " + ex.Message);
             }
         }
-        public void DbConnecter()
-        {
-            ConnexionBdd con = new ConnexionBdd();
-            this.activeConnexion = con.GetConnexion();
-        }
 
-        public void CheckConnexion()
-        {
-            if (activeConnexion.State == ConnectionState.Closed)
-            {
-                activeConnexion.Open();
-            }
-        }
         public List<MVersion> GetAll()
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             List<MVersion> ListMVersions = new List<MVersion>();
 
             try
             {
-                SqlCommand RequestGetVersions = activeConnexion.CreateCommand();
+                SqlCommand RequestGetVersions = bddTool.GetRequest();
                 RequestGetVersions.CommandText = "SELECT id_version, nom_version, gen_id, nom_gen FROM Versions as V LEFT JOIN Generations as G ON V.gen_id = G.id_gen";
 
                 using (SqlDataReader versions = RequestGetVersions.ExecuteReader())
@@ -77,7 +68,7 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
 
             return ListMVersions;
         }
@@ -97,11 +88,11 @@ namespace PokeStat.Repositories
 
         public void Add(MVersion nouvelleVersion, int idGen)
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             try
             {
-                SqlCommand RequestAddVersion = activeConnexion.CreateCommand();
+                SqlCommand RequestAddVersion = bddTool.GetRequest();
                 RequestAddVersion.CommandText = "INSERT INTO Versions (nom_version, gen_id) VALUES (@nom_version, @gen_id)";
 
                 SqlParameter nom = RequestAddVersion.Parameters.Add("@nom_version", SqlDbType.VarChar);
@@ -118,7 +109,7 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
 
         public void Update(MVersion MModele)
@@ -128,11 +119,11 @@ namespace PokeStat.Repositories
 
         public void Delete(int idSuppr)
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             try
             {
-                SqlCommand RequestDeleteVersion = activeConnexion.CreateCommand();
+                SqlCommand RequestDeleteVersion = bddTool.GetRequest();
                 RequestDeleteVersion.CommandText = "DELETE FROM Versions WHERE id_version = @id_version";
 
                 SqlParameter id = RequestDeleteVersion.Parameters.Add("@id_version", SqlDbType.Int);
@@ -147,7 +138,7 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
     }
 }

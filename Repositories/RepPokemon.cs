@@ -1,5 +1,6 @@
 ﻿using PokeStat;
 using PokeStat.Modeles;
+using PokeStat.Utilitaires;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,13 +13,15 @@ namespace PokeStat.Repositories
 {
     public class RepPokemon : IRepository<MSpecimen>
     {
-        private SqlConnection activeConnexion;
+        public BddTool bddTool;
 
         public RepPokemon()
         {
+            bddTool = new BddTool();
+
             try
             {
-                this.DbConnecter();
+                this.bddTool.DbConnecter();
             }
             catch (Exception ex)
             {
@@ -27,26 +30,13 @@ namespace PokeStat.Repositories
             }
         }
 
-        public void DbConnecter()
-        {
-            ConnexionBdd con = new ConnexionBdd();
-            this.activeConnexion = con.GetConnexion();
-        }
-        public void CheckConnexion()
-        {
-            if (activeConnexion.State == ConnectionState.Closed)
-            {
-                activeConnexion.Open();
-            }
-        }
-
         public List<MSpecimen> GetAll()
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             List<MSpecimen> ListMSpecimens = new List<MSpecimen>();
 
-            SqlCommand RequestGetPokemons = activeConnexion.CreateCommand();
+            SqlCommand RequestGetPokemons = bddTool.GetRequest();
             RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img, P.nom_eng_pok, P.nom_fra_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_experience, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P2.id_pok as evo_id, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, P.niv_evo, G.id_gen, G.nom_gen FROM Pokemons AS P \r\nLEFT JOIN Generations as G ON P.gen_id = G.id_gen \r\nLEFT JOIN Pokemons P2 ON P.evo_id = P2.id_pok\r\n";
 
             using (SqlDataReader pokemons = RequestGetPokemons.ExecuteReader())
@@ -102,7 +92,7 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
 
             return ListMSpecimens;
         }
@@ -124,12 +114,12 @@ namespace PokeStat.Repositories
 
         public void Add(MSpecimen nouveauPokemon, int idGen)
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             try
             {
 
-                SqlCommand RequestAddPokemon = activeConnexion.CreateCommand();
+                SqlCommand RequestAddPokemon = bddTool.GetRequest();
                 RequestAddPokemon.CommandText = "INSERT INTO Pokemons (nom_eng_pok, nom_fra_pok, num_pok, taille_pok, poids_pok, base_experience, base_hp, base_att, base_def, base_sp_att, base_sp_def, base_vit, legendaire, shiny, pok_img, niv_evo, id_evo, id_gen) VALUES (@nom_eng_pok, @nom_fra_pok, @num_pok, @taille_pok, @poids_pok, @base_experience, @base_hp, @base_att, @base_def, @base_sp_att, @base_sp_def, @base_vit, @legendaire, @shiny, @pok_img, @niv_evo, @evo_id, @gen_id)";
 
             
@@ -182,14 +172,14 @@ namespace PokeStat.Repositories
 
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
 
         public void AddTypePokemon(int IdType, int IdPokemon)
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
-            SqlCommand RequestAddTypePokemon = activeConnexion.CreateCommand();
+            SqlCommand RequestAddTypePokemon = bddTool.GetRequest();
             RequestAddTypePokemon.CommandText = "INSERT INTO pokemon_type (type_id, pok_id, emplac) VALUES (@type_id, @pok_id, @emplac)";
 
             SqlParameter idType = RequestAddTypePokemon.Parameters.Add("@type_id", SqlDbType.Int);
@@ -203,7 +193,7 @@ namespace PokeStat.Repositories
        
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
 
   

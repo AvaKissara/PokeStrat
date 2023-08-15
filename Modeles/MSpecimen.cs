@@ -10,9 +10,9 @@ namespace PokeStat.Modeles
     /// Classe dérivée de MPokemon correpondant à un specimen de pokémon dans le Pokedex
     /// </summary>
     public class MSpecimen : MPokemon
-    {
-       
+    {     
         public string desc { get; set; }
+
         public MSpecimen(int IdPokemon, string CheminImgPokemon, string NomFraPokemon) : base(IdPokemon, CheminImgPokemon, NomFraPokemon)
         {
             

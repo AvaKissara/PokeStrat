@@ -1,4 +1,5 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.Utilitaires;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,13 +9,15 @@ namespace PokeStat.Repositories
 {
     public class RepType : IRepository<MType>
     {
-        private SqlConnection activeConnexion;
+        public BddTool bddTool;
 
         public RepType()
         {
+            bddTool = new BddTool();
+
             try
             {
-                this.DbConnecter();
+                this.bddTool.DbConnecter();
             }
             catch (Exception ex)
             {
@@ -23,29 +26,15 @@ namespace PokeStat.Repositories
             }
         }
 
-        public void DbConnecter()
-        {
-            ConnexionBdd con = new ConnexionBdd();
-            this.activeConnexion = con.GetConnexion();
-        }
-
-        public void CheckConnexion()
-        {
-            if (activeConnexion.State == ConnectionState.Closed)
-            {
-                activeConnexion.Open();
-            }
-        }
-
         public List<MType> GetAll()
         {
-            CheckConnexion();
+             bddTool.CheckConnexion();
 
             List<MType> ListMTypes = new List<MType>();
 
             try
             {
-                SqlCommand RequestGetTypes = activeConnexion.CreateCommand();
+                SqlCommand RequestGetTypes = bddTool.GetRequest();
                 RequestGetTypes.CommandText = "SELECT * FROM Types";
 
                 using (SqlDataReader types = RequestGetTypes.ExecuteReader())
@@ -68,18 +57,18 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
 
             return ListMTypes;
         }
 
         public void Add(MType nouveauType)
         {
-            CheckConnexion();
+             bddTool.CheckConnexion();
 
             try
             {
-                SqlCommand RequestAddType = activeConnexion.CreateCommand();
+                SqlCommand RequestAddType = bddTool.GetRequest();
                 RequestAddType.CommandText = "INSERT INTO Types (nom_type) VALUES (@nom_type)";
 
                 SqlParameter nom = RequestAddType.Parameters.Add("@nom_type", SqlDbType.VarChar);
@@ -94,16 +83,16 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
 
         public void Delete(int idSuppr)
         {
-            CheckConnexion();
+             bddTool.CheckConnexion();
 
             try
             {
-                SqlCommand RequestDeleteType = activeConnexion.CreateCommand();
+                SqlCommand RequestDeleteType = bddTool.GetRequest();
                 RequestDeleteType.CommandText = "DELETE FROM Types WHERE id_type = @id_type";
 
                 SqlParameter id = RequestDeleteType.Parameters.Add("@id_type", SqlDbType.Int);
@@ -118,16 +107,16 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
 
         public void Update(MType modifType)
         {
-            CheckConnexion();
+             bddTool.CheckConnexion();
 
             try
             {
-                SqlCommand RequestUpdateType = activeConnexion.CreateCommand();
+                SqlCommand RequestUpdateType = bddTool.GetRequest();
                 RequestUpdateType.CommandText = "UPDATE Types SET nom_type= @nomType WHERE id_type = @idType";
 
                 SqlParameter id = RequestUpdateType.Parameters.Add("@idType", SqlDbType.VarChar);
@@ -145,7 +134,7 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
     }
 }

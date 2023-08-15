@@ -17,13 +17,15 @@ namespace PokeStat.Repositories
 {
     public class RepUser : IRepository<MUser>
     {
-        private SqlConnection activeConnexion;
+        public BddTool bddTool;
 
         public RepUser()
         {
+            bddTool = new BddTool();
+
             try
             {
-                this.DbConnecter();
+                this.bddTool.DbConnecter();
             }
             catch (Exception ex)
             {
@@ -32,29 +34,15 @@ namespace PokeStat.Repositories
             }
         }
 
-        public void DbConnecter()
-        {
-            ConnexionBdd con = new ConnexionBdd();
-            this.activeConnexion = con.GetConnexion();
-        }
-
-        public void CheckConnexion()
-        {
-            if (activeConnexion.State == ConnectionState.Closed)
-            {
-                activeConnexion.Open();
-            }
-        }
-
         public List<MUser> GetAll()
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             List<MUser> ListMUsers = new List<MUser>();
        
             try
             {
-                SqlCommand RequestGetUsers = activeConnexion.CreateCommand();
+                SqlCommand RequestGetUsers = bddTool.GetRequest();
                 RequestGetUsers.CommandText = "SELECT * FROM Users";
                
                 using (SqlDataReader users = RequestGetUsers.ExecuteReader())
@@ -91,18 +79,18 @@ namespace PokeStat.Repositories
 
             
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
 
             return ListMUsers;
         }
 
         public SecureString GetSalt(int idUserLogin)
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             SecureString salt = new SecureString();
 
-            SqlCommand RequestGetSaltUser = activeConnexion.CreateCommand();
+            SqlCommand RequestGetSaltUser = bddTool.GetRequest();
             RequestGetSaltUser.CommandText = "SELECT sel_user FROM Users WHERE id_user = @id_user";
 
             SqlParameter id = RequestGetSaltUser.Parameters.Add("@id_user", SqlDbType.Int);
@@ -130,14 +118,14 @@ namespace PokeStat.Repositories
             reader.Close();
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
 
             return salt;
         }
 
         public void Add(MUser nouvelUser)
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
             // Convertir le SecureString en string
             string mdpString = PasswordManager.ToInsecureString(nouvelUser.mdpPersonne);
 
@@ -146,7 +134,7 @@ namespace PokeStat.Repositories
 
             try
             {
-                SqlCommand RequestAddUser = activeConnexion.CreateCommand();              
+                SqlCommand RequestAddUser = bddTool.GetRequest();              
                 
                 RequestAddUser.CommandText = "INSERT INTO Users(nom_user, prenom_user, pseudo, mail_user, mdp_user, actualise_le, date_id, sel_user) VALUES(@nom_user, @prenom_user, @pseudo, @mail_user, @mdp_user, @actualise_le, @date_id, @sel_user)";
 
@@ -176,16 +164,16 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
 
         public void Delete(int idSuppr)
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             try
             {
-                SqlCommand RequestDeleteUser = activeConnexion.CreateCommand();
+                SqlCommand RequestDeleteUser = bddTool.GetRequest();
 
                 RequestDeleteUser.CommandText = "DELETE FROM Users WHERE id_user = @id_user";
 
@@ -201,12 +189,12 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }   
         
         public void Update(MUser modifUser)
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             // Convertir le SecureString en string
             string mdpString = modifUser.ToInsecureString(modifUser.mdpPersonne);
@@ -216,7 +204,7 @@ namespace PokeStat.Repositories
             (string hash, string salt) = PasswordManager.HashPassword(mdpString);
          
 
-            SqlCommand RequestUpdateUser = activeConnexion.CreateCommand();
+            SqlCommand RequestUpdateUser = bddTool.GetRequest();
 
              if (mdpString == null) 
              {
@@ -248,7 +236,7 @@ namespace PokeStat.Repositories
             int result = RequestUpdateUser.ExecuteNonQuery();
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
     }
 }

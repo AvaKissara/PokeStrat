@@ -6,18 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PokeStat.Modeles;
+using PokeStat.Utilitaires;
 
 namespace PokeStat.Repositories
 {
     public class RepGeneration : IRepository<MGeneration>
     {
-        private SqlConnection activeConnexion;
+        public BddTool bddTool;
 
         public RepGeneration()
         {
+            bddTool = new BddTool();
+
             try
             {
-                this.DbConnecter();
+                this.bddTool.DbConnecter();
             }
             catch (Exception ex)
             {
@@ -25,29 +28,16 @@ namespace PokeStat.Repositories
                 Console.WriteLine("Erreur lors de la connexion à la base de données : " + ex.Message);
             }
         }
-        public void DbConnecter()
-        {
-            ConnexionBdd con = new ConnexionBdd();
-            this.activeConnexion = con.GetConnexion();
-        }
-
-        public void CheckConnexion()
-        {
-            if (activeConnexion.State == ConnectionState.Closed)
-            {
-                activeConnexion.Open();
-            }
-        }
 
         public List<MGeneration> GetAll()
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             List<MGeneration> ListMGenerations = new List<MGeneration>();
 
             try
             {
-                SqlCommand RequestGetGenerations = activeConnexion.CreateCommand();
+                SqlCommand RequestGetGenerations = bddTool.GetRequest();
                 RequestGetGenerations.CommandText = "SELECT * FROM Generations";
 
                 using (SqlDataReader generations = RequestGetGenerations.ExecuteReader())
@@ -70,18 +60,18 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
 
             return ListMGenerations;
         }
 
         public void AddGeneration(MGeneration nouvelleGeneration)
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
 
             try
             {
-                SqlCommand RequestAddGeneration = activeConnexion.CreateCommand();
+                SqlCommand RequestAddGeneration = bddTool.GetRequest();
                 RequestAddGeneration.CommandText = "INSERT INTO Generations (nom_generation) VALUES (@nom_generation)";
 
                 SqlParameter nom = RequestAddGeneration.Parameters.Add("@nom_generation", SqlDbType.VarChar);
@@ -97,7 +87,7 @@ namespace PokeStat.Repositories
             }
 
             // Fermeture de la connexion
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
 
         public void Add(MGeneration MModele)

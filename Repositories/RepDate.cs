@@ -1,4 +1,5 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.Utilitaires;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,13 +15,14 @@ namespace PokeStat.Repositories
     /// </summary>
     public class RepDate
     {
-        private SqlConnection activeConnexion;
-
+        public BddTool bddTool;
         public RepDate()
         {
+            bddTool = new BddTool();
+
             try
             {
-                this.DbConnecter();
+                this.bddTool.DbConnecter();
             }
             catch (Exception ex)
             {
@@ -29,25 +31,12 @@ namespace PokeStat.Repositories
             }
         }
 
-        public void DbConnecter()
-        {
-            ConnexionBdd con = new ConnexionBdd();
-            this.activeConnexion = con.GetConnexion();
-        }
-        public void CheckConnexion()
-        {
-            if (activeConnexion.State == ConnectionState.Closed)
-            {
-                activeConnexion.Open();
-            }
-        }
-
         public void Add(MDate nouvelleDate) 
         {
-            CheckConnexion();
+            bddTool.CheckConnexion();
             //try
             //{
-                SqlCommand RequestAddDate = activeConnexion.CreateCommand();
+                SqlCommand RequestAddDate = bddTool.GetRequest();
                 RequestAddDate.CommandText = "INSERT INTO Dates VALUES (@jjmmaaaa)";
 
                 SqlParameter idDate = RequestAddDate.Parameters.Add("@jjmmaaaa", SqlDbType.DateTime);
@@ -60,7 +49,7 @@ namespace PokeStat.Repositories
             //    Console.WriteLine("Erreur lors de l'ajout de la date : " + ex.Message);
             //}
 
-            this.activeConnexion.Close();
+            bddTool.CloseConnexion();
         }
     }
 }
