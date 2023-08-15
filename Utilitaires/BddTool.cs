@@ -12,7 +12,7 @@ namespace PokeStat.Utilitaires
     {
         private SqlConnection activeConnexion;
 
-        public void DbConnecter()
+        public void DbConnnexion()
         {
             ConnexionBdd con = new ConnexionBdd();
             this.activeConnexion = con.GetConnexion();

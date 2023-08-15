@@ -17,7 +17,7 @@ namespace PokeStat.Repositories
 
             try
             {
-                this.bddTool.DbConnecter();
+                this.bddTool.DbConnnexion();
             }
             catch (Exception ex)
             {
