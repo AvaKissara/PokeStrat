@@ -538,7 +538,7 @@ namespace PokeStat.VuesModeles
             int idType;
             CheminImgPokemon = RelativeSelectedImagePath;
 
-            MSpecimen nouveauPokemon = new MSpecimen(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, BaseXp, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, NivEvolution, Gen);
+            MSpecimen nouveauPokemon = new MSpecimen(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, Gen);
             List<MGeneration> generations = repGen.GetAll();
             List<MType> types = repType.GetAll();      
             List<MSpecimen> pokemons = repPokemon.GetAll();
@@ -671,7 +671,6 @@ namespace PokeStat.VuesModeles
                 row[4] = pokemon.numPokemon;
                 row[5] = pokemon.taillePokemon;
                 row[6] = pokemon.poidsPokemon;
-                row[7] = pokemon.baseXp;
                 row[8] = pokemon.basePv;
                 row[9] = pokemon.baseAttaque;
                 row[10] = pokemon.baseDefense;
@@ -681,7 +680,6 @@ namespace PokeStat.VuesModeles
                 row[14] = pokemon.legendaire;
                 row[15] = pokemon.shiny;
                 row[16] = pokemon.evolution?.nomFraPokemon;
-                row[17] = pokemon?.nivEvolution;
                 row[18] = pokemon.gen.nomGen;
                 dtData.Rows.Add(row);
             }
