@@ -28,7 +28,7 @@
         </Grid.RowDefinitions>
 
         <!-- Navigation Bar -->
-        <ContentControl Grid.Row="0" Content="{StaticResource NavigationBarUser}" />
+        <ContentControl Grid.Row="0" Content="{StaticResource NavigationBarAdmin}" />
 
         <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="Vues/AccueilPage.xaml" />
 

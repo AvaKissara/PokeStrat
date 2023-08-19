@@ -306,21 +306,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-
-        private int baseXp;
-        public int BaseXp
-        {
-            get { return baseXp; }
-            set
-            {
-                if (baseXp != value)
-                {
-                    baseXp = value;
-                    OnPropertyChanged(nameof(BaseXp));
-                }
-            }
-        }
-
         private int pv;
         public int PV
         {
@@ -433,16 +418,44 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private int nivEvolution;
-        public int NivEvolution
+        private bool mega;
+        public bool Mega    
         {
-            get { return nivEvolution; }
+            get { return mega; }
             set
             {
-                if (nivEvolution != value)
+                if (mega != value)
                 {
-                    nivEvolution = value;
-                    OnPropertyChanged(nameof(NivEvolution));
+                    mega = value;
+                    OnPropertyChanged(nameof(Mega));
+                }
+            }
+        }
+
+        private bool giga;
+        public bool Giga
+        {
+            get { return giga; }
+            set
+            {
+                if (giga != value)
+                {
+                    giga = value;
+                    OnPropertyChanged(nameof(Mega));
+                }
+            }
+        }
+
+        private bool fab;
+        public bool Fab
+        {
+            get { return fab; }
+            set
+            {
+                if (fab != value)
+                {
+                    fab = value;
+                    OnPropertyChanged(nameof(Fab));
                 }
             }
         }
@@ -538,7 +551,7 @@ namespace PokeStat.VuesModeles
             int idType;
             CheminImgPokemon = RelativeSelectedImagePath;
 
-            MSpecimen nouveauPokemon = new MSpecimen(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon,TaillePokemon, PoidsPokemon, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Evolution, Gen);
+            MSpecimen nouveauPokemon = new MSpecimen(IdPok,CheminImgPokemon, NomFraPokemon, NomEngPokemon, NumPokemon, TaillePokemon, PoidsPokemon, PV, Attaque, Defense, AttSpe, DefSpe, Vitesse, Legendaire, Shiny, Mega, Giga, Fab, Evolution, Gen);
             List<MGeneration> generations = repGen.GetAll();
             List<MType> types = repType.GetAll();      
             List<MSpecimen> pokemons = repPokemon.GetAll();
@@ -633,7 +646,6 @@ namespace PokeStat.VuesModeles
             dtData.Columns.Add("Num", typeof(string));
             dtData.Columns.Add("Taille", typeof(string));
             dtData.Columns.Add("Poids", typeof(double));
-            dtData.Columns.Add("Xp", typeof(int));
             dtData.Columns.Add("HP", typeof(int));
             dtData.Columns.Add("Attaque", typeof(int));
             dtData.Columns.Add("Défense", typeof(int));
@@ -642,8 +654,10 @@ namespace PokeStat.VuesModeles
             dtData.Columns.Add("Vitesse", typeof(int));
             dtData.Columns.Add("Légendaire", typeof(bool));
             dtData.Columns.Add("Shiny", typeof(bool));
+            dtData.Columns.Add("Mega", typeof (bool));
+            dtData.Columns.Add("Giga", typeof(bool));
+            dtData.Columns.Add("Fab", typeof(bool));
             dtData.Columns.Add("Evolution", typeof(string));
-            dtData.Columns.Add("Niveau évo", typeof(int));
             dtData.Columns.Add("Gen", typeof(string));
             dtData.Columns[1].ColumnName = "Pokemon";
 
@@ -671,16 +685,19 @@ namespace PokeStat.VuesModeles
                 row[4] = pokemon.numPokemon;
                 row[5] = pokemon.taillePokemon;
                 row[6] = pokemon.poidsPokemon;
-                row[8] = pokemon.basePv;
-                row[9] = pokemon.baseAttaque;
-                row[10] = pokemon.baseDefense;
-                row[11] = pokemon.baseAttSpe;
-                row[12] = pokemon.baseDefSpe;
-                row[13] = pokemon.baseVit;
+                row[8] = pokemon?.basePv;
+                row[9] = pokemon?.baseAttaque;
+                row[10] = pokemon?.baseDefense;
+                row[11] = pokemon?.baseAttSpe;
+                row[12] = pokemon?.baseDefSpe;
+                row[13] = pokemon?.baseVit;
                 row[14] = pokemon.legendaire;
                 row[15] = pokemon.shiny;
-                row[16] = pokemon.evolution?.nomFraPokemon;
-                row[18] = pokemon.gen.nomGen;
+                row[16] = pokemon.mega;
+                row[17] = pokemon.giga;
+                row[18] = pokemon.fab;
+                row[19] = pokemon.evolution?.nomFraPokemon;
+                row[20] = pokemon.gen.nomGen;
                 dtData.Rows.Add(row);
             }
 

@@ -63,6 +63,13 @@ namespace PokeStat.Repositories
                         string nomGen = pokemons.IsDBNull(22) ? "" : $"{pokemons[22]}";
                         gen = new MGeneration(idGen, nomGen);
                     }
+                    int base_hp = pokemons.IsDBNull(7) ? 0 : pokemons.GetInt32(7);
+                    int base_att = pokemons.IsDBNull(8) ? 0 : pokemons.GetInt32(8);
+                    int base_def = pokemons.IsDBNull(9) ? 0 : pokemons.GetInt32(9);
+                    int base_sp_att = pokemons.IsDBNull(10) ? 0 : pokemons.GetInt32(10);
+                    int base_sp_def = pokemons.IsDBNull(11) ? 0 : pokemons.GetInt32(11);
+                    int base_vit = pokemons.IsDBNull(12) ? 0 : pokemons.GetInt32(12);
+
 
                     MSpecimen unPokemon = new MSpecimen(
                         pokemons.GetInt32(0),
@@ -72,14 +79,14 @@ namespace PokeStat.Repositories
                         $"{pokemons[4]}",
                         taille,
                         poids,
-                        pokemons.GetInt32(7),
-                        pokemons.GetInt32(8),
-                        pokemons.GetInt32(9),
-                        pokemons.GetInt32(10),
-                        pokemons.GetInt32(11),
-                        pokemons.GetInt32(12),
+                        base_hp,
+                        base_att,
+                        base_def,
+                        base_sp_att,
+                        base_sp_def,
+                        base_vit,
                         Convert.ToBoolean(pokemons.GetValue(13)),
-                        Convert.ToBoolean(pokemons.GetValue(14)),               
+                        Convert.ToBoolean(pokemons.GetValue(14)),
                         Convert.ToBoolean(pokemons.GetValue(15)),
                         Convert.ToBoolean(pokemons.GetValue(16)),
                         Convert.ToBoolean(pokemons.GetValue(17)),
@@ -88,6 +95,7 @@ namespace PokeStat.Repositories
                     );
 
                     ListMSpecimens.Add(unPokemon);
+
                 }
             }
 
