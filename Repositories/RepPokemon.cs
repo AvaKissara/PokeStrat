@@ -37,7 +37,7 @@ namespace PokeStat.Repositories
             List<MSpecimen> ListMSpecimens = new List<MSpecimen>();
 
             SqlCommand RequestGetPokemons = bddTool.GetRequest();
-            RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img, P.nom_eng_pok, P.nom_fra_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, P2.id_pok as evo_de_id, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, G.id_gen, G.nom_gen FROM Pokemons AS P LEFT JOIN Generations as G ON P.gen_id = G.id_gen LEFT JOIN Pokemons P2 ON P.evo_de_id = P2.id_pok";
+            RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img, P.nom_eng_pok, P.nom_fra_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, P2.id_pok as evo_de_id, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, G.id_gen, G.nom_gen FROM Pokemons AS P LEFT JOIN Generations as G ON P.gen_id = G.id_gen LEFT JOIN Pokemons P2 ON P.evo_de_id = P2.id_pok where P.id_pok=1";
 
             using (SqlDataReader pokemons = RequestGetPokemons.ExecuteReader())
             {

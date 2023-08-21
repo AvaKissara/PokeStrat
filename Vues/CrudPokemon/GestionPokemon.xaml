@@ -13,7 +13,7 @@
     <Page.Resources>
         <converters:DRVToModelConverter x:Key="DRVToModelConverter" />
     </Page.Resources>
-    
+
     <Grid Background="#2D354D">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -21,55 +21,57 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="GESTION DES POKEMONS" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
+            <Image Source="{Binding AbsoluteDtImagePath}" />
         </Grid>
 
-        <DataGrid RowHeight="100"  ColumnWidth="*" ItemsSource="{Binding DtData, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding LigneSelection, Converter={StaticResource DRVToModelConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,30,40,100" AutoGenerateColumns="False" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1" Height="500">
+      
+    <DataGrid RowHeight="100" ColumnWidth="*" ItemsSource="{Binding DtData, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding LigneSelection, Converter={StaticResource DRVToModelConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,64,10,83" AutoGenerateColumns="False" Name="dataGridView" Background="White" FontFamily="Raleway" BorderBrush="#BDBDBD" BorderThickness="1">
 
-            <DataGrid.Resources>
-                <!-- Style de cellule -->
-                <Style TargetType="DataGridCell">
-                    <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
-                    <Setter Property="TextBlock.FontSize" Value="16"/>
-                    <Setter Property="TextBlock.Foreground" Value="Black"/>
-                </Style>
+        <DataGrid.Resources>
+            <Style TargetType="DataGridCell">
+                <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
+                <Setter Property="TextBlock.FontSize" Value="16"/>
+                <Setter Property="TextBlock.Foreground" Value="Black"/>
+            </Style>
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
+                <Setter Property="TextBlock.FontSize" Value="16"/>
+                <Setter Property="TextBlock.Foreground" Value="White"/>
+                <Setter Property="Background" Value="#7B7B7E"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+        </DataGrid.Resources>
 
-                <!-- Style d'en-tête de colonne -->
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="TextBlock.FontFamily" Value="Raleway"/>
-                    <Setter Property="TextBlock.FontSize" Value="16"/>
-                    <Setter Property="TextBlock.Foreground" Value="White"/>
-                    <Setter Property="Background" Value="#7B7B7E"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                </Style>
-            </DataGrid.Resources>
-
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Image">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Image}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Name" Binding="{Binding Nom}" />
-                <DataGridTextColumn Header="Nom" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Num" Binding="{Binding Num}" />
-                <DataGridTextColumn Header="Taille" Binding="{Binding Taille}" />
-                <DataGridTextColumn Header="Poids" Binding="{Binding Poids}" />
-                <DataGridTextColumn Header="Xp" Binding="{Binding Xp}" />
-                <DataGridTextColumn Header="HP" Binding="{Binding HP}" />
-                <DataGridTextColumn Header="Attaque" Binding="{Binding Attaque}" />
-                <DataGridTextColumn Header="Défense" Binding="{Binding Défense}" />
-                <DataGridTextColumn Header="Attaque spé" Binding="{Binding [Att. spé]}" />
-                <DataGridTextColumn Header="Défense spé" Binding="{Binding [Déf. spé]}" />
-                <DataGridTextColumn Header="Vitesse" Binding="{Binding Vitesse}" />
-                <DataGridCheckBoxColumn Header="Légendaire" Binding="{Binding Légendaire}" />
-                <DataGridCheckBoxColumn Header="Shiny" Binding="{Binding Shiny}" />
-                <DataGridTextColumn Header="Evolution" Binding="{Binding Evolution}" />
-                <DataGridTextColumn Header="Niveau évo" Binding="{Binding [Niveau évo]}" />
-                <DataGridTextColumn Header="Generation" Binding="{Binding Gen}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <DataGrid.Columns>
+            <DataGridTemplateColumn Header="Image">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding AbsoluteDtImagePath}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Header="Name" Binding="{Binding Nom}" />
+            <DataGridTextColumn Header="Nom" Binding="{Binding Name}" />
+            <DataGridTextColumn Header="Num" Binding="{Binding Num}" />
+            <DataGridTextColumn Header="Taille" Binding="{Binding Taille}" />
+            <DataGridTextColumn Header="Poids" Binding="{Binding Poids}" />
+            <DataGridTextColumn Header="HP" Binding="{Binding HP}" />
+            <DataGridTextColumn Header="Attaque" Binding="{Binding Attaque}" />
+            <DataGridTextColumn Header="Défense" Binding="{Binding Défense}" />
+            <DataGridTextColumn Header="Att spé" Binding="{Binding [Att. spé]}" />
+            <DataGridTextColumn Header="Déf spé" Binding="{Binding [Déf. spé]}" />
+            <DataGridTextColumn Header="Vitesse" Binding="{Binding Vitesse}" />
+            <DataGridCheckBoxColumn Header="Légendaire" Binding="{Binding Légendaire}" />
+            <DataGridCheckBoxColumn Header="Shiny" Binding="{Binding Shiny}" />
+            <DataGridCheckBoxColumn Header="Mega" Binding="{Binding Mega}" />
+            <DataGridCheckBoxColumn Header="Giga" Binding="{Binding Giga}" />
+            <DataGridCheckBoxColumn Header="Fab" Binding="{Binding Fab}" />
+            <DataGridTextColumn Header="Evolution" Binding="{Binding Evolution}" />
+            <DataGridTextColumn Header="Generation" Binding="{Binding Gen}" />
+        </DataGrid.Columns>
+        
+    </DataGrid>
+   
 
         <Button Name="btnAdd" Content="Ajouter" Command="{Binding CreeCommand}" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7"/>
         <Button Name="btnUpd" Content="Modifier" Command="{Binding ModifieCommand}" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>

@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using PokeStat.Properties;
 using System.Xml.Linq;
 using System.Windows.Markup;
+using System.Globalization;
 
 namespace PokeStat.VuesModeles
 {
@@ -72,6 +73,21 @@ namespace PokeStat.VuesModeles
                     selectedImagePath = value;
                     OnPropertyChanged(nameof(SelectedImagePath));
                     OnPropertyChanged(nameof(RelativeSelectedImagePath));
+                }
+            }
+        }
+
+
+        private System.Drawing.Image imgPokemon;
+        public System.Drawing.Image ImgPokemon
+        {
+            get { return imgPokemon; }
+            set
+            {
+                if (imgPokemon != value)
+                {
+                    imgPokemon = value;
+                    OnPropertyChanged(nameof(ImgPokemon));
                 }
             }
         }
@@ -638,6 +654,7 @@ namespace PokeStat.VuesModeles
         {
             DataTable dtData = new DataTable();
 
+
             // Ajouter les colonnes à la DataTable
             dtData.Columns.Add("id", typeof(int));
             dtData.Columns.Add("Image", typeof(string));
@@ -666,43 +683,49 @@ namespace PokeStat.VuesModeles
             {
 
                 //string absoluteImagePath = GetFullPath(rela);
-                //absoluDtImagePath = Environment.CurrentDirectory;
-                //relativeDtImagePath = pokemon.cheminImgPokemon;
+               //absoluDtImagePath = Environment.CurrentDirectory;
+                RelativeDtImagePath = pokemon.cheminImgPokemon;
                 //Environment.CurrentDirectory = "C:/Users/Lila%20Badi/Documents/GitHub/AvaKissara/PokeStat/Ressources/";
-                string basePath = @"C:/Users/Lila Badi/Documents/GitHub/AvaKissara/PokeStat/Ressources/";
+                string basePath = @"C:/Users/AvaKissara/source/repos/PokeStat/Ressources/";
                 //string fullPath = System.IO.Path.GetFullPath("C:\Users/Lila%20Badi/Documents/GitHub/AvaKissara/PokeStat/Ressources/" + relativeDtImagePath);
-                absoluDtImagePath = System.IO.Path.Combine(basePath, pokemon.cheminImgPokemon);
+                AbsoluDtImagePath = System.IO.Path.Combine(basePath, pokemon.cheminImgPokemon);
+                
+             
+
 
                 // Créez un objet BitmapImage à partir du chemin relatif
-                //System.Drawing.Image imgPokemon = System.Drawing.Image.FromFile(absoluteImagePath);
+                System.Drawing.Image ImgPokemon = System.Drawing.Image.FromFile(AbsoluDtImagePath);
+                
 
                 DataRow row;
                 row = dtData.NewRow();
                 row[0] = pokemon.idPokemon;
-                row[1] = absoluDtImagePath;
+                row[1] = AbsoluDtImagePath;
                 row[2] = pokemon.nomFraPokemon;
                 row[3] = pokemon.nomEngPokemon;
                 row[4] = pokemon.numPokemon;
                 row[5] = pokemon.taillePokemon;
                 row[6] = pokemon.poidsPokemon;
-                row[8] = pokemon?.basePv;
-                row[9] = pokemon?.baseAttaque;
-                row[10] = pokemon?.baseDefense;
-                row[11] = pokemon?.baseAttSpe;
-                row[12] = pokemon?.baseDefSpe;
-                row[13] = pokemon?.baseVit;
-                row[14] = pokemon.legendaire;
-                row[15] = pokemon.shiny;
-                row[16] = pokemon.mega;
-                row[17] = pokemon.giga;
-                row[18] = pokemon.fab;
-                row[19] = pokemon.evolution?.nomFraPokemon;
-                row[20] = pokemon.gen.nomGen;
+                row[7] = pokemon?.basePv;
+                row[8] = pokemon?.baseAttaque;
+                row[9] = pokemon?.baseDefense;
+                row[10] = pokemon?.baseAttSpe;
+                row[11] = pokemon?.baseDefSpe;
+                row[12] = pokemon?.baseVit;
+                row[13] = pokemon.legendaire;
+                row[14] = pokemon.shiny;
+                row[15] = pokemon.mega;
+                row[16] = pokemon.giga;
+                row[17] = pokemon.fab;
+                row[18] = pokemon.evolution?.nomFraPokemon;
+                row[19] = pokemon.gen.nomGen;
                 dtData.Rows.Add(row);
             }
 
             return dtData;
         }
+
+  
 
         /// <summary>
         /// Contrôle de la saisie

@@ -63,6 +63,16 @@ namespace PokeStat.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap _001 {
+            get {
+                object obj = ResourceManager.GetObject("001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap arceus {
             get {
                 object obj = ResourceManager.GetObject("arceus", resourceCulture);
