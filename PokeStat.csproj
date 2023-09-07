@@ -321,7 +321,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="bin\Debug\PokeStat.exe.config" />
     <None Include="data\PokeStrat.bak" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -333,7 +332,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Release\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -443,8 +441,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\PokeStat.exe" />
-    <Content Include="bin\Debug\PokeStat.pdb" />
     <None Include="Ressources\001.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -97,7 +97,6 @@ namespace PokeStat.Repositories
 
             id.Value = idUserLogin;
 
-
             SqlDataReader reader = RequestGetSaltUser.ExecuteReader();
 
             if (reader.HasRows)
@@ -114,7 +113,6 @@ namespace PokeStat.Repositories
                     }
                 }
             }
-
             reader.Close();
 
             // Fermeture de la connexion

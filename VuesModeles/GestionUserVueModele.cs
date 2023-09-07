@@ -196,9 +196,7 @@ namespace PokeStat.VuesModeles
             repDate = new RepDate();
             List<MUser> users = repUser.GetAll();
             DtData = DataTableTool.ConvertListToDataTable(users);
-        }
-
-        
+        }       
 
         public void UpdateSecurePassword(SecureString securePassword)
         {
@@ -298,8 +296,7 @@ namespace PokeStat.VuesModeles
                     {
                         repUser.Delete(idUserAEffacer);
                         users = repUser.GetAll();
-                        DtData = DataTableTool.ConvertListToDataTable(users);
-                        
+                        DtData = DataTableTool.ConvertListToDataTable(users);                       
                     }
                     else
                     {
@@ -325,7 +322,6 @@ namespace PokeStat.VuesModeles
         {
             System.Windows.Application.Current.Shutdown();
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
