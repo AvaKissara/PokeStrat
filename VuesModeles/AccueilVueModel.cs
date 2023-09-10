@@ -16,6 +16,7 @@ using PokeStat.Vues.CrudType;
 using PokeStat.Vues.CrudVersion;
 using PokeStat.Vues.CrudUser;
 using PokeStat.Vues.Authentification;
+using PokeStat.Vues.User.GestionEquipe;
 
 namespace PokeStat.VuesModeles
 {
@@ -76,7 +77,7 @@ namespace PokeStat.VuesModeles
 
         public void GestionEquipe()
         {
-   
+            NavigationServices.NavigateToPage(new GestionEquipe());
         }
 
         private void ConnexionPopup()
