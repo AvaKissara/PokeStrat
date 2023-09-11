@@ -15,7 +15,6 @@ namespace PokeStat.Modeles
         public DateTime dateMatch {get; }
         public List<MEquipier> equipiers { get; set; }
 
-
         public MEquipe(int IdEquipe, string NomEquipe, int UserId, DateTime DateMatch)
         {
             this.idEquipe = IdEquipe;

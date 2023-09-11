@@ -9,7 +9,12 @@
       Title="GestionEquipe">
 
     <Grid Background="#2D354D">
-        <ListBox Name="listBoxTeam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1900" Height="800" Margin="20"/>
+        <Grid>
+            <TextBlock Grid.Column="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
+        </Grid>
+        
+        
+        <ListBox Name="listBoxTeam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1900" Height="800" Margin="20, 70,20,10"/>
         <Button Name="addTeam" Content="Ajouter une équipe" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7" />
         <Button Name="updTeam" Content="Modifier une équipe" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>
         <Button Name="delTeam" Content="Supprimer une équipe" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" FontFamily="Raleway" FontSize="18" Padding="20,7"/>

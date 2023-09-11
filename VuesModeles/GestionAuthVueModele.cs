@@ -22,6 +22,8 @@ namespace PokeStat.VuesModeles
 
         private readonly RepUser repUser;
 
+        private readonly RepAdmin repAdmin;
+
         private string identifiant;
         public string Identifiant
         {
@@ -44,43 +46,87 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        private bool isAdmin;
+        public bool IsAdmin
+        {
+            get { return isAdmin; }
+            set
+            {
+                if (isAdmin != value)
+                {
+                    isAdmin = value;
+                    OnPropertyChanged(nameof(IsAdmin));
+                    OnPropertyChanged(nameof(IsUser));
+                }
+            }
+        }
+
+        public bool IsUser => !IsAdmin;
+
+  
+
+        public event Action ConnexionReussie;
+
         public GestionAuthVueModele()
         {
             ConnexionCommand = new RelayCommand(Connexion);
             AccueilPageCommand = new RelayCommand(AccueilPage);
 
-            repUser = new RepUser();    
+            repUser = new RepUser();
+            repAdmin = new RepAdmin();
         }
- 
+
         public void Connexion()
         {
             List<MUser> users = repUser.GetAll();
+            List<MAdmin> admins = repAdmin.GetAll();
             MUser userAConnecter = users.FirstOrDefault(u => u.mailPersonne == Identifiant);
+            MAdmin adminAConnecter = admins.FirstOrDefault(a => a.mailPersonne == Identifiant);
 
-            SecureString selHashe = repUser.GetSalt(userAConnecter.idPersonne);
+            if (userAConnecter != null && adminAConnecter != null)
+            {
+                MessageBox.Show("Erreur : Plusieurs utilisateurs avec le même email.");
+                return;
+            }
+
+            SecureString selHasheUser = userAConnecter != null ? repUser.GetSalt(userAConnecter.idPersonne) : null;
+            SecureString selHasheAdmin = adminAConnecter != null ? repAdmin.GetSalt(adminAConnecter.idPersonne) : null;
 
             // Vérifier si le mot de passe saisi correspond au hachage stocké
-            bool connexionReussie = PasswordManager.VerifyPassword(Mdp, userAConnecter.mdpPersonne, selHashe);
+            bool connexionReussieUser = userAConnecter != null && PasswordManager.VerifyPassword(Mdp, userAConnecter.mdpPersonne, selHasheUser);
+            bool connexionReussieAdmin = adminAConnecter != null && PasswordManager.VerifyPassword(Mdp, adminAConnecter.mdpPersonne, selHasheAdmin);
 
-            if (connexionReussie)
+            if (connexionReussieUser || connexionReussieAdmin)
             {
-                // Définir l'ID de l'utilisateur dans la session
-                SessionManager.Instance.SetUser(userAConnecter.idPersonne);
+                // Définir le rôle de l'utilisateur
+                if (connexionReussieAdmin)
+                {
+                    IsAdmin = true;    
+                }
+                else
+                {
+                    IsAdmin = false;
+                }
 
-                MessageBox.Show("Youpii!");
+                ConnexionReussie?.Invoke();
+                // Définir l'ID de l'utilisateur dans la session
+                SessionManager.Instance.SetUser(userAConnecter?.idPersonne ?? adminAConnecter?.idPersonne ?? 0);
+
+                MessageBox.Show("Youpii! " + SessionManager.Instance.UserId);
 
                 var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
                 if (activeWindow != null)
                 {
-                    activeWindow.Close();            
-                }               
+                    activeWindow.Close();
+                }
             }
             else
             {
                 MessageBox.Show("Raté");
             }
         }
+
 
         private void AccueilPage()
         {

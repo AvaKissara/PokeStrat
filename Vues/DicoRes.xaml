@@ -6,9 +6,18 @@
 
 >
 
-    <local1:NavigationBarAdmin x:Key="NavigationBarAdmin" />
-    
-    <local1:NavigationBarUser x:Key="NavigationBarUser" />
 
+
+    <ContentControl x:Key="NavigationBar">
+        <!-- Définissez ici le contenu de la barre de navigation pour l'utilisateur ordinaire -->
+    </ContentControl>
+
+    <ContentControl x:Key="NavigationBarUser">
+        <!-- Définissez ici le contenu de la barre de navigation pour l'utilisateur ordinaire -->
+    </ContentControl>
+
+    <ContentControl x:Key="NavigationBarAdmin">
+        <!-- Définissez ici le contenu de la barre de navigation pour l'administrateur -->
+    </ContentControl>
 
 </ResourceDictionary>

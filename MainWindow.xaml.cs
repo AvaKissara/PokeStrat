@@ -22,13 +22,43 @@ namespace PokeStat
     /// </summary>
     public partial class MainWindow : Window
     {
+        private GestionAuthVueModele gestionAuthVueModele;
         public MainWindow()
         {
             InitializeComponent();
+            gestionAuthVueModele = new GestionAuthVueModele();
+            // Affectez le ViewModel en tant que DataContext
+            DataContext = gestionAuthVueModele;
             SetWindowFullScreen();
             NavigationServices.Initialize(MainFrame);
-           
+          
         }
+
+        //private void UpdateNavigationBarStyles()
+        //{
+        //    if (DataContext is GestionAuthVueModele gestionAuthVueModele)
+        //    {
+        //        if (gestionAuthVueModele.IsAdmin)
+        //        {
+        //            NavigationBarUser.Style = (Style)FindResource("NavigationBarUserHide");
+        //            NavigationBarAdmin.Style = (Style)FindResource("NavigationBarAdminShow");
+        //            NavigationBar.Style = (Style)FindResource("NavigationBarHide");
+        //        }
+        //        else if (gestionAuthVueModele.IsUser)
+        //        {
+        //            NavigationBarUser.Style = (Style)FindResource("NavigationBarUserShow");
+        //            NavigationBarAdmin.Style = (Style)FindResource("NavigationBarAdminHide");
+        //            NavigationBar.Style = (Style)FindResource("NavigationBarHide");
+        //        }
+        //        else
+        //        {
+        //            NavigationBarUser.Style = (Style)FindResource("NavigationBarHide");
+        //            NavigationBarAdmin.Style = (Style)FindResource("NavigationBarHide");
+        //            NavigationBar.Style = (Style)FindResource("NavigationBarShow");
+        //        }
+        //    }
+        //}
+
 
         private void SetWindowFullScreen()
         {

@@ -90,6 +90,7 @@
     <Compile Include="Modeles\MRegion.cs" />
     <Compile Include="Modeles\TypeObj.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\RepAdmin.cs" />
     <Compile Include="Repositories\RepDate.cs" />
     <Compile Include="Repositories\RepEquipe.cs" />
     <Compile Include="Repositories\RepGeneration.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Utilitaires\AuthenticationToVisibilityConverter.cs" />
     <Compile Include="Utilitaires\BddTool.cs" />
     <Compile Include="Utilitaires\BitmapToImageSourceConverter.cs" />
+    <Compile Include="Utilitaires\BoolToVisibilityConverter.cs" />
     <Compile Include="Utilitaires\DataTableTool.cs" />
     <Compile Include="Utilitaires\DRVToModelConverter.cs" />
     <Compile Include="Utilitaires\NavigationServices.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Utilitaires\SessionManager.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />
     <Compile Include="VuesModeles\GestionAuthVueModele.cs" />
+    <Compile Include="VuesModeles\GestionEquipeVueModele.cs" />
     <Compile Include="VuesModeles\GestionGenVueModele.cs" />
     <Compile Include="VuesModeles\GestionPokemonVueModel.cs" />
     <Compile Include="VuesModeles\GestionTypeVueModel.cs" />
