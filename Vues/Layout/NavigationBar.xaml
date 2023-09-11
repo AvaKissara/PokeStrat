@@ -18,7 +18,7 @@
             <Button Content="Connexion" Command="{Binding ConnexionPopupCommand}" HorizontalAlignment="Right" Margin="40,30,45,0" VerticalAlignment="Top" Background="#7B7B7E" Foreground="White" FontFamily="Raleway" FontSize="18" Padding="20,7"/>
             <Button Content="" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Right" Margin="0,30,0,0" VerticalAlignment="Top" FontFamily="Raleway" FontSize="18" Padding="20,7">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Ressources/home.png" Stretch="Fill"/>
+                    <ImageBrush ImageSource="/PokeStat;component/ressources/home.png" Stretch="Fill"/>
                 </Button.Background>
             </Button>
             <Button Content="Inscription" Command="{Binding InscriptionPopupCommand}" HorizontalAlignment="Right" Margin="0,30,175,0" VerticalAlignment="Top" Background="#7B7B7E" FontFamily="Raleway" Foreground="White" FontSize="18" Padding="20,7"/>

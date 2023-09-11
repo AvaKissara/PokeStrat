@@ -96,24 +96,28 @@ namespace PokeStat.VuesModeles
 
             if (connexionReussieUser || connexionReussieAdmin)
             {
-       
+
+                accueilVueModel.Role = Role;
+                //accueilVueModel.OnRoleChanged();
 
                 // Définir le rôle de l'utilisateur
                 if (connexionReussieAdmin)
                 {
                     SessionManager.Instance.SetUser(adminAConnecter.idPersonne, UserRole.Administrateur);
                     Role = UserRole.Administrateur;
+                  
                 }
                 else if(connexionReussieUser)
                 {
                     SessionManager.Instance.SetUser(userAConnecter.idPersonne, UserRole.Utilisateur);
                     Role = UserRole.Utilisateur;
-                    accueilVueModel.Role = Role;
+    
                 }
                 else
                 {
                     SessionManager.Instance.SetUser(0, UserRole.Profane);
                     Role = UserRole.Profane;
+  
                 }
 
                 // Définir l'ID de l'utilisateur dans la session
@@ -121,12 +125,14 @@ namespace PokeStat.VuesModeles
 
                 MessageBox.Show("Youpii! " + SessionManager.Instance.UserId);
 
+                
                 var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
                 if (activeWindow != null)
                 {
                     activeWindow.Close();
                 }
+               
             }
             else
             {
@@ -134,10 +140,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        public void SetRoleInAccueil(UserRole newRole)
-        {
-            accueilVueModel.Role = newRole;
-        }
 
 
         private void AccueilPage()

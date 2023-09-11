@@ -48,9 +48,12 @@ namespace PokeStat.VuesModeles
                 {
                     role = value;
                     OnPropertyChanged(nameof(Role));
+                    RoleChanged?.Invoke();
                 }
             }
         }
+
+        public event Action RoleChanged;
 
         public AccueilVueModel()
         {
@@ -68,6 +71,10 @@ namespace PokeStat.VuesModeles
             CloseCommand = new RelayCommand(Close);
         }
 
+        //public void OnRoleChanged()
+        //{
+        //    RoleChanged?.Invoke();
+        //}
         public void GestionProfile()
         {
 
