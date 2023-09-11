@@ -8,16 +8,16 @@
 
 
 
-    <ContentControl x:Key="NavigationBar">
+    <local1:NavigationBar x:Key="NavigationBar">
         <!-- Définissez ici le contenu de la barre de navigation pour l'utilisateur ordinaire -->
-    </ContentControl>
+    </local1:NavigationBar>
 
-    <ContentControl x:Key="NavigationBarUser">
+    <local1:NavigationBarUser x:Key="NavigationBarUser">
         <!-- Définissez ici le contenu de la barre de navigation pour l'utilisateur ordinaire -->
-    </ContentControl>
+    </local1:NavigationBarUser>
 
-    <ContentControl x:Key="NavigationBarAdmin">
+    <local1:NavigationBarAdmin x:Key="NavigationBarAdmin">
         <!-- Définissez ici le contenu de la barre de navigation pour l'administrateur -->
-    </ContentControl>
+    </local1:NavigationBarAdmin>
 
 </ResourceDictionary>

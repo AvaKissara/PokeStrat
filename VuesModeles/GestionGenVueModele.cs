@@ -51,6 +51,8 @@ namespace PokeStat.VuesModeles
 
         private readonly RepGeneration repGen;
 
+        GestionAuthVueModele gestionAuthVueModele = new GestionAuthVueModele();
+
 
         public int idGen;
 
@@ -106,6 +108,7 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
+
 
 
 

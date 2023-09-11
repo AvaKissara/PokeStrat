@@ -28,12 +28,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <ContentControl Grid.Row="0" x:Name="NavigationBar" Visibility="{Binding IsUser, Converter={StaticResource BoolToVisibilityConverter}}" />
-        <ContentControl Grid.Row="0" x:Name="NavigationBarUser" Visibility="{Binding IsUser, Converter={StaticResource BoolToVisibilityConverter}}" />
-        <ContentControl Grid.Row="0" x:Name="NavigationBarAdmin" Visibility="{Binding IsAdmin, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-
+        <local1:NavigationBar Grid.Row="0" x:Name="NavigationBar" Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Profane,  Mode=TwoWay}" />
+        <local1:NavigationBarUser Grid.Row="0" x:Name="NavigationBarUser" Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Utilisateur,  Mode=TwoWay}" />
+        <local1:NavigationBarAdmin Grid.Row="0" x:Name="NavigationBarAdmin" Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Administrateur,  Mode=TwoWay}" />
 
         <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="Vues/AccueilPage.xaml" />
 

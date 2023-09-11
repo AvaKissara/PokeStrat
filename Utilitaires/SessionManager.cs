@@ -23,17 +23,26 @@ namespace PokeStat.Utilitaires
         }
 
         public int UserId { get; set; }
-
         public bool IsLoggedIn => UserId != 0;
+        public UserRole Role { get; set; }
 
-        public void SetUser(int userId)
+        public void SetUser(int userId, UserRole role)
         {
             UserId = userId;
+            Role = role;
         }
 
         public void ClearUser()
         {
             UserId = 0;
+            Role = UserRole.Profane;
         }
+    }
+
+    public enum UserRole
+    {
+        Profane,    // L'utilisateur non connecté
+        Utilisateur, // L'utilisateur connecté
+        Administrateur // L'administrateur connecté
     }
 }

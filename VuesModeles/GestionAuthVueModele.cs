@@ -24,6 +24,9 @@ namespace PokeStat.VuesModeles
 
         private readonly RepAdmin repAdmin;
 
+        private AccueilVueModel accueilVueModel;
+
+
         private string identifiant;
         public string Identifiant
         {
@@ -46,26 +49,20 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private bool isAdmin;
-        public bool IsAdmin
+        private UserRole role;
+
+        public UserRole Role
         {
-            get { return isAdmin; }
+            get { return role; }
             set
             {
-                if (isAdmin != value)
+                if (role != value)
                 {
-                    isAdmin = value;
-                    OnPropertyChanged(nameof(IsAdmin));
-                    OnPropertyChanged(nameof(IsUser));
+                    role = value;
+                    OnPropertyChanged(nameof(Role));
                 }
             }
         }
-
-        public bool IsUser => !IsAdmin;
-
-  
-
-        public event Action ConnexionReussie;
 
         public GestionAuthVueModele()
         {
@@ -74,6 +71,7 @@ namespace PokeStat.VuesModeles
 
             repUser = new RepUser();
             repAdmin = new RepAdmin();
+            accueilVueModel = new AccueilVueModel();
         }
 
         public void Connexion()
@@ -98,19 +96,28 @@ namespace PokeStat.VuesModeles
 
             if (connexionReussieUser || connexionReussieAdmin)
             {
+       
+
                 // Définir le rôle de l'utilisateur
                 if (connexionReussieAdmin)
                 {
-                    IsAdmin = true;    
+                    SessionManager.Instance.SetUser(adminAConnecter.idPersonne, UserRole.Administrateur);
+                    Role = UserRole.Administrateur;
+                }
+                else if(connexionReussieUser)
+                {
+                    SessionManager.Instance.SetUser(userAConnecter.idPersonne, UserRole.Utilisateur);
+                    Role = UserRole.Utilisateur;
+                    accueilVueModel.Role = Role;
                 }
                 else
                 {
-                    IsAdmin = false;
+                    SessionManager.Instance.SetUser(0, UserRole.Profane);
+                    Role = UserRole.Profane;
                 }
 
-                ConnexionReussie?.Invoke();
                 // Définir l'ID de l'utilisateur dans la session
-                SessionManager.Instance.SetUser(userAConnecter?.idPersonne ?? adminAConnecter?.idPersonne ?? 0);
+               
 
                 MessageBox.Show("Youpii! " + SessionManager.Instance.UserId);
 
@@ -125,6 +132,11 @@ namespace PokeStat.VuesModeles
             {
                 MessageBox.Show("Raté");
             }
+        }
+
+        public void SetRoleInAccueil(UserRole newRole)
+        {
+            accueilVueModel.Role = newRole;
         }
 
 

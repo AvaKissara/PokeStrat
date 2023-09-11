@@ -13,16 +13,17 @@ namespace PokeStat.Utilitaires
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool boolValue)
+            if (value is UserRole userRole && Enum.TryParse(parameter.ToString(), out UserRole expectedRole))
             {
-                return boolValue ? Visibility.Visible : Visibility.Collapsed;
+                return userRole == expectedRole ? Visibility.Visible : Visibility.Collapsed;
             }
-            return Visibility.Collapsed; // Par défaut, masquez si la valeur n'est pas booléenne.
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is Visibility visibility && visibility == Visibility.Visible;
+            return Binding.DoNothing;
         }
     }
+
 }

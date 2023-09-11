@@ -23,11 +23,11 @@ namespace PokeStat
     public partial class MainWindow : Window
     {
         private GestionAuthVueModele gestionAuthVueModele;
+
         public MainWindow()
         {
             InitializeComponent();
             gestionAuthVueModele = new GestionAuthVueModele();
-            // Affectez le ViewModel en tant que DataContext
             DataContext = gestionAuthVueModele;
             SetWindowFullScreen();
             NavigationServices.Initialize(MainFrame);

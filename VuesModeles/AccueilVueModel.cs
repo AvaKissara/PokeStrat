@@ -37,15 +37,18 @@ namespace PokeStat.VuesModeles
         public ICommand CloseCommand { get; }
 
 
+        private UserRole role;
 
-        private bool connecteExiste;
-        public bool ConnecteExiste
+        public UserRole Role
         {
-            get { return connecteExiste; }
+            get { return role; }
             set
             {
-                connecteExiste = value;
-                OnPropertyChanged(nameof(ConnecteExiste));
+                if (role != value)
+                {
+                    role = value;
+                    OnPropertyChanged(nameof(Role));
+                }
             }
         }
 
