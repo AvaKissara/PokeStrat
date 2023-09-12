@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:PokeStat.Vues.Layout" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:AccueilVueModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <UserControl.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent" />

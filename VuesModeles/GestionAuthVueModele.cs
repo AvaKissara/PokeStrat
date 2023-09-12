@@ -98,29 +98,28 @@ namespace PokeStat.VuesModeles
 
             if (connexionReussieUser || connexionReussieAdmin)
             {
-                //accueilVueModel.OnRoleChanged();
+                MPersonne personneConnectee = null;
 
                 // Définir le rôle de l'utilisateur
                 if (connexionReussieAdmin)
                 {
-                    SessionManager.Instance.SetUser(adminAConnecter.idPersonne, UserRole.Administrateur);
+                    personneConnectee = adminAConnecter;
                     Role = UserRole.Administrateur;
 
                 }
                 else if(connexionReussieUser)
                 {
-                    SessionManager.Instance.SetUser(userAConnecter.idPersonne, UserRole.Utilisateur);
+                    personneConnectee = userAConnecter;
                     Role = UserRole.Utilisateur;
                 }
                 else
                 {
-                    SessionManager.Instance.SetUser(0, UserRole.Profane);
                     Role = UserRole.Profane;
                 }
                 accueilVueModel.Role = Role;
+                SessionManager.Instance.Account = personneConnectee;
 
-
-                MessageBox.Show("Youpii! " + SessionManager.Instance.UserId);
+                MessageBox.Show("Youpii! " + personneConnectee.nomPersonne);
                 MainWindow = new MainWindow();
                 //MainWindow.UpdateNavigationBarVisibility();
 
@@ -130,7 +129,12 @@ namespace PokeStat.VuesModeles
                 {
                     activeWindow.Close();
                 }
-               
+                // Créez une nouvelle instance de MainWindow
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show(); // Affichez la nouvelle fenêtre
+
+                // Fermez la fenêtre actuelle (l'ancienne instance de MainWindow)
+                Application.Current.MainWindow.Close();
             }
             else
             {
@@ -142,12 +146,5 @@ namespace PokeStat.VuesModeles
         {
             
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
     }
 }

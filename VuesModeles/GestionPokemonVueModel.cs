@@ -25,7 +25,7 @@ using System.Globalization;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionPokemonVueModel : IVueModele<MSpecimen, DataTable>
+    public class GestionPokemonVueModel : BaseVueModele, IVueModele<MSpecimen, DataTable>
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand CreeCommand { get; set; }
@@ -747,14 +747,6 @@ namespace PokeStat.VuesModeles
                 ErreurSaisie = string.Empty;
                 IsSaisieValide = true;
             }
-        }
-
-        // EVENT HANDLER
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

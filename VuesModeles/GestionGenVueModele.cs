@@ -18,7 +18,7 @@ using PokeStat.Vues.CrudGeneration;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionGenVueModele : BaseVueModele IVueModele<MGeneration, DataTable>
+    public class GestionGenVueModele : BaseVueModele, IVueModele<MGeneration, DataTable>
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand CreeCommand { get; set; }
@@ -196,13 +196,6 @@ namespace PokeStat.VuesModeles
         private void Close()
         {
             System.Windows.Application.Current.Shutdown();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -23,7 +23,7 @@ using static System.Resources.ResXFileRef;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionTypeVueModel : IVueModele<MType, DataTable>
+    public class GestionTypeVueModel : BaseVueModele, IVueModele<MType, DataTable>
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand CreeCommand { get; set; }
@@ -338,14 +338,6 @@ namespace PokeStat.VuesModeles
                 ErreurSaisie = string.Empty;
                 IsSaisieValide = true;
             }
-        }
-
-        // EVENT HANDLER
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

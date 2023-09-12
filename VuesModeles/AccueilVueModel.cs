@@ -37,10 +37,8 @@ namespace PokeStat.VuesModeles
         public ICommand CloseCommand { get; }
 
 
+
         private UserRole role;
-
-        public event Action RoleChanged;
-
         public UserRole Role
         {
             get { return role; }
@@ -50,7 +48,6 @@ namespace PokeStat.VuesModeles
                 {
                     role = value;
                     OnPropertyChanged(nameof(Role));
-                    OnRoleChanged();
                 }
             }
         }
@@ -69,12 +66,6 @@ namespace PokeStat.VuesModeles
             GestionMatchCommand = new RelayCommand(GestionMatch);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
-        }
-
-        protected virtual void OnRoleChanged()
-        {
-            RoleChanged?.Invoke();
-            
         }
 
 

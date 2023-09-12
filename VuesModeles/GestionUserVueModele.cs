@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionUserVueModele : IVueModele<MUser, DataTable>
+    public class GestionUserVueModele : BaseVueModele, IVueModele<MUser, DataTable>
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand CreeCommand { get; set; }
@@ -321,13 +321,6 @@ namespace PokeStat.VuesModeles
         private void Close()
         {
             System.Windows.Application.Current.Shutdown();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

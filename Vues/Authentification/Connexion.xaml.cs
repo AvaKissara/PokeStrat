@@ -32,7 +32,6 @@ namespace PokeStat.Vues.Authentification
             MainWindow = new MainWindow();
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
-
         }
     }
 }

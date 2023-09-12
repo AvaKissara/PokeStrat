@@ -1,6 +1,8 @@
-﻿using System;
+﻿using PokeStat.Modeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +10,11 @@ namespace PokeStat.Utilitaires
 {
     public class SessionManager
     {
+        private MPersonne _account;
+
+        public int UserId { get; set; }
+        public UserRole Role { get; set; }
+
         private static SessionManager _instance;
 
         public static SessionManager Instance
@@ -21,21 +28,37 @@ namespace PokeStat.Utilitaires
                 return _instance;
             }
         }
-
-        public int UserId { get; set; }
-        public bool IsLoggedIn => UserId != 0;
-        public UserRole Role { get; set; }
-
-        public void SetUser(int userId, UserRole role)
+        public MPersonne Account
         {
-            UserId = userId;
-            Role = role;
+            get => _account;
+            set
+            {
+                _account = value;
+                AccountChanged?.Invoke();
+
+                if (_account is MUser)
+                {
+                    Role = UserRole.Utilisateur;
+                }
+                else if (_account is MAdmin)
+                {
+                    Role = UserRole.Administrateur;
+                }
+                else
+                {
+                    Role = UserRole.Profane;
+                }
+            }
         }
+
+        public bool IsLoggedIn => Account != null;
+
+        public event Action AccountChanged;
 
         public void ClearUser()
         {
-            UserId = 0;
-            Role = UserRole.Profane;
+            Account = null;
+            Role = UserRole.Profane; 
         }
     }
 
