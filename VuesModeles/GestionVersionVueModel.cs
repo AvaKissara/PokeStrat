@@ -22,7 +22,7 @@ using System.Windows;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionVersionVueModel : IVueModele<MVersion, DataTable>
+    public class GestionVersionVueModel : BaseVueModele, IVueModele<MVersion, DataTable>
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand CreeCommand { get; set; }

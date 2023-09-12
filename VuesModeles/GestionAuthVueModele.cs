@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionAuthVueModele : INotifyPropertyChanged
+    public class GestionAuthVueModele : BaseVueModele
     {
         public ICommand ConnexionCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
@@ -64,6 +64,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        public MainWindow MainWindow { get; private set; }
+
         public GestionAuthVueModele()
         {
             ConnexionCommand = new RelayCommand(Connexion);
@@ -96,8 +98,6 @@ namespace PokeStat.VuesModeles
 
             if (connexionReussieUser || connexionReussieAdmin)
             {
-
-                accueilVueModel.Role = Role;
                 //accueilVueModel.OnRoleChanged();
 
                 // Définir le rôle de l'utilisateur
@@ -105,27 +105,25 @@ namespace PokeStat.VuesModeles
                 {
                     SessionManager.Instance.SetUser(adminAConnecter.idPersonne, UserRole.Administrateur);
                     Role = UserRole.Administrateur;
-                  
+
                 }
                 else if(connexionReussieUser)
                 {
                     SessionManager.Instance.SetUser(userAConnecter.idPersonne, UserRole.Utilisateur);
                     Role = UserRole.Utilisateur;
-    
                 }
                 else
                 {
                     SessionManager.Instance.SetUser(0, UserRole.Profane);
                     Role = UserRole.Profane;
-  
                 }
+                accueilVueModel.Role = Role;
 
-                // Définir l'ID de l'utilisateur dans la session
-               
 
                 MessageBox.Show("Youpii! " + SessionManager.Instance.UserId);
+                MainWindow = new MainWindow();
+                //MainWindow.UpdateNavigationBarVisibility();
 
-                
                 var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
                 if (activeWindow != null)
@@ -140,8 +138,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-
-
         private void AccueilPage()
         {
             
@@ -152,6 +148,6 @@ namespace PokeStat.VuesModeles
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            }
     }
 }

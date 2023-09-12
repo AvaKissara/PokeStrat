@@ -22,12 +22,14 @@ namespace PokeStat.Vues.Authentification
     public partial class Connexion : Window
     {
         private GestionAuthVueModele gestionAuthVueModele;
+
+        private MainWindow MainWindow;
         public Connexion()
         {
             InitializeComponent();
             gestionAuthVueModele = new GestionAuthVueModele();
             DataContext = gestionAuthVueModele;
-
+            MainWindow = new MainWindow();
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
 

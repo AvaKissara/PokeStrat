@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionEquipeVueModele
+    public class GestionEquipeVueModele : BaseVueModele
     {
 
     }

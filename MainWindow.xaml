@@ -29,7 +29,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <local1:NavigationBar Grid.Row="0" x:Name="NavigationBar" Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Profane,  Mode=TwoWay}" />
+        <local1:NavigationBar Grid.Row="0" x:Name="NavigationBar"  Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Profane,  Mode=TwoWay}" />
         <local1:NavigationBarUser Grid.Row="0" x:Name="NavigationBarUser" Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Utilisateur,  Mode=TwoWay}" />
         <local1:NavigationBarAdmin Grid.Row="0" x:Name="NavigationBarAdmin" Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Administrateur,  Mode=TwoWay}" />
 

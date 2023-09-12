@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
 {
-    public interface IVueModele<TElement, TData> : INotifyPropertyChanged
+    public interface IVueModele<TElement, TData>
     {
         // Commandes
         ICommand GestionCommand { get; set; }

@@ -20,7 +20,7 @@ using PokeStat.Vues.User.GestionEquipe;
 
 namespace PokeStat.VuesModeles
 {
-    public class AccueilVueModel : INotifyPropertyChanged
+    public class AccueilVueModel : BaseVueModele
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand ConnexionPopupCommand { get; set; }
@@ -39,6 +39,8 @@ namespace PokeStat.VuesModeles
 
         private UserRole role;
 
+        public event Action RoleChanged;
+
         public UserRole Role
         {
             get { return role; }
@@ -48,12 +50,10 @@ namespace PokeStat.VuesModeles
                 {
                     role = value;
                     OnPropertyChanged(nameof(Role));
-                    RoleChanged?.Invoke();
+                    OnRoleChanged();
                 }
             }
         }
-
-        public event Action RoleChanged;
 
         public AccueilVueModel()
         {
@@ -71,10 +71,13 @@ namespace PokeStat.VuesModeles
             CloseCommand = new RelayCommand(Close);
         }
 
-        //public void OnRoleChanged()
-        //{
-        //    RoleChanged?.Invoke();
-        //}
+        protected virtual void OnRoleChanged()
+        {
+            RoleChanged?.Invoke();
+            
+        }
+
+
         public void GestionProfile()
         {
 
@@ -138,14 +141,6 @@ namespace PokeStat.VuesModeles
         private void Close()
         {
             Application.Current.Shutdown();
-        }
-
-        // EVENT HANDLER
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

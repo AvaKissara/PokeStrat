@@ -18,7 +18,7 @@ using PokeStat.Vues.CrudGeneration;
 
 namespace PokeStat.VuesModeles
 {
-    public class GestionGenVueModele : IVueModele<MGeneration, DataTable>
+    public class GestionGenVueModele : BaseVueModele IVueModele<MGeneration, DataTable>
     {
         // Déclaration des commandes utilisées dans la classe
         public ICommand CreeCommand { get; set; }
