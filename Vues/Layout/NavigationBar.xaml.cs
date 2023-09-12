@@ -21,12 +21,10 @@ namespace PokeStat.Vues.Layout
     /// </summary>
     public partial class NavigationBar : UserControl
     {
-        private AccueilVueModel accueilVueModel;
+        
         public NavigationBar()
         {
             InitializeComponent();
-            accueilVueModel = new AccueilVueModel();
-            DataContext = accueilVueModel;
         }
     }
 }

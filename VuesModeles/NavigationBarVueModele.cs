@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokeStat.Utilitaires;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,29 @@ namespace PokeStat.VuesModeles
         public ICommand InscriptionPopupCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
+
+        private readonly SessionManager _sessionManager; 
+        public bool IsLoggedIn => _sessionManager.IsLoggedIn;
+
+        public NavigationBarVueModele(ICommand connexionPopupCommand, ICommand inscriptionPopupCommand, ICommand accueilPageCommand, ICommand closeCommand, SessionManager sessionManager)
+        {
+            ConnexionPopupCommand = connexionPopupCommand;
+            InscriptionPopupCommand = inscriptionPopupCommand;
+            AccueilPageCommand = accueilPageCommand;
+            CloseCommand = closeCommand;
+            _sessionManager = sessionManager;
+        }
+
+        private void OnAccountChanged()
+        {
+            OnPropertyChanged(nameof(IsLoggedIn));
+        }
+
+        public override void Dispose()
+        {
+            _sessionManager.AccountChanged -= OnAccountChanged;
+
+            base.Dispose();
+        }
     }
 }
