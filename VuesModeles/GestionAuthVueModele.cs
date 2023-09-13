@@ -116,7 +116,6 @@ namespace PokeStat.VuesModeles
                 {
                     Role = UserRole.Profane;
                 }
-                accueilVueModel.Role = Role;
                 SessionManager.Instance.Account = personneConnectee;
 
                 MessageBox.Show("Youpii! " + personneConnectee.nomPersonne);

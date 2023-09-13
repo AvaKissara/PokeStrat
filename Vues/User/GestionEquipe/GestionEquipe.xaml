@@ -8,15 +8,46 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GestionEquipe">
 
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Raleway" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="FontFamily" Value="Raleway" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Raleway" />
+        </Style>
+    </Page.Resources>
+
     <Grid Background="#2D354D">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
         <Grid>
-            <TextBlock Grid.Column="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
+            <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
+
+            <ListView Grid.Row="1" Name="listBoxTeam" Width="1900" Height="800" Margin="20,70,20,10" ItemsSource="{Binding Orders}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Item}" Header="Item" />
+                            <GridViewColumn DisplayMemberBinding="{Binding DateCreated}" Header="Date Created"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+        <Grid Grid.Row="2">
+            <Button Name="addTeam" Content="Ajouter une équipe" HorizontalAlignment="Left" Margin="40,0,70,40" VerticalAlignment="Bottom" Background="#7B7B7E" FontSize="18" Padding="20,7" />
+            <Button Name="updTeam" Content="Modifier une équipe" HorizontalAlignment="Center" Margin="40,70,0,40" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>
+            <Button Name="delTeam" Content="Supprimer une équipe" HorizontalAlignment="Right" Margin="40,70,40,40" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>
         </Grid>
-        
-        
-        <ListBox Name="listBoxTeam" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1900" Height="800" Margin="20, 70,20,10"/>
-        <Button Name="addTeam" Content="Ajouter une équipe" HorizontalAlignment="Left" Margin="40,0,0,40" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#7B7B7E" Foreground="White" FontSize="18" Padding="20,7" />
-        <Button Name="updTeam" Content="Modifier une équipe" HorizontalAlignment="Center" Margin="40,0,0,40" FontFamily="Raleway" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>
-        <Button Name="delTeam" Content="Supprimer une équipe" HorizontalAlignment="Right" Margin="40,0,40,40" VerticalAlignment="Bottom" FontFamily="Raleway" FontSize="18" Padding="20,7"/>
     </Grid>
 </Page>

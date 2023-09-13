@@ -60,20 +60,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private UserRole role;
-        public UserRole Role
-        {
-            get { return role; }
-            set
-            {
-                if (role != value)
-                {
-                    role = value;
-                    OnPropertyChanged(nameof(Role));
-                }
-            }
-        }
-
         public AccueilVueModel()
         {
             ConnexionPopupCommand = new RelayCommand(ConnexionPopup);
