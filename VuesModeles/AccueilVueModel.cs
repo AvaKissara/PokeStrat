@@ -43,21 +43,18 @@ namespace PokeStat.VuesModeles
         {
             get
             {
-                // En fonction du rôle actuel (par exemple, stocké dans SessionManager),
-                // retournez le modèle de navigation bar approprié
+                // En fonction du rôle actuel
+                // retourne le modèle de navigation bar approprié
                 if (SessionManager.Instance.Role == UserRole.Utilisateur)
                 {
-                    // Utilisateur connecté, retournez le modèle de navigation bar utilisateur
-                    return new NavigationBarUserVueModele(ConnexionPopupCommand, InscriptionPopupCommand, AccueilPageCommand, CloseCommand, GestionEquipeCommand, GestionProfileCommand, GestionMatchCommand, SessionManager.Instance);
+                    return new NavigationBarUserVueModele(GestionEquipeCommand, GestionProfileCommand, GestionMatchCommand, AccueilPageCommand, CloseCommand, SessionManager.Instance);
                 }
                 else if (SessionManager.Instance.Role == UserRole.Administrateur)
                 {
-                    // Administrateur connecté, retournez le modèle de navigation bar administrateur
                     return new NavigationBarAdminVueModele(GestionPokemonCommand, GestionTypeCommand, GestionVersionCommand, GestionGenerationCommand, GestionUserCommand, AccueilPageCommand, CloseCommand, SessionManager.Instance);
                 }
                 else
                 {
-                    // Utilisateur non connecté ou rôle non défini, retournez le modèle de navigation bar par défaut
                     return new NavigationBarVueModele(ConnexionPopupCommand, InscriptionPopupCommand, AccueilPageCommand, CloseCommand, SessionManager.Instance);
                 }
             }

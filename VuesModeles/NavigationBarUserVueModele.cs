@@ -14,8 +14,6 @@ namespace PokeStat.VuesModeles
         public ICommand GestionEquipeCommand { get; set; }
         public ICommand GestionProfileCommand { get; set; }
         public ICommand GestionMatchCommand { get; set; }
-        public ICommand ConnexionPopupCommand { get; set; }
-        public ICommand InscriptionPopupCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
@@ -49,17 +47,15 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        public NavigationBarUserVueModele(ICommand connexionPopupCommand, ICommand inscriptionPopupCommand, ICommand accueilPageCommand, ICommand gestionEquipeCommand, ICommand gestionProfileCommand, ICommand gestionMatchCommand, ICommand closeCommand, SessionManager sessionManager)
+        public NavigationBarUserVueModele(ICommand gestionEquipeCommand, ICommand gestionProfileCommand, ICommand gestionMatchCommand, ICommand accueilPageCommand, ICommand closeCommand, SessionManager sessionManager)
         {
-            this.ConnexionPopupCommand = connexionPopupCommand;
-            this.InscriptionPopupCommand = inscriptionPopupCommand;
-            this.AccueilPageCommand = accueilPageCommand;
-            this.CloseCommand = closeCommand;
-            this._sessionManager = sessionManager;
+        
             this.GestionEquipeCommand = gestionEquipeCommand;
             this.GestionMatchCommand = gestionMatchCommand;
             this.GestionProfileCommand = gestionProfileCommand;
-
+            this.AccueilPageCommand = accueilPageCommand;
+            this.CloseCommand = closeCommand;
+            this._sessionManager = sessionManager;
 
         }
 

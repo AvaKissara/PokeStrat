@@ -93,7 +93,6 @@ namespace PokeStat.VuesModeles
             SecureString selHasheUser = userAConnecter != null ? repUser.GetSalt(userAConnecter.idPersonne) : null;
             SecureString selHasheAdmin = adminAConnecter != null ? repAdmin.GetSalt(adminAConnecter.idPersonne) : null;
 
-            // Vérifier si le mot de passe saisi correspond au hachage stocké
             bool connexionReussieUser = userAConnecter != null && PasswordManager.VerifyPassword(Mdp, userAConnecter.mdpPersonne, selHasheUser);
             bool connexionReussieAdmin = adminAConnecter != null && PasswordManager.VerifyPassword(Mdp, adminAConnecter.mdpPersonne, selHasheAdmin);
 
@@ -101,7 +100,7 @@ namespace PokeStat.VuesModeles
             {
                 MPersonne personneConnectee = null;
 
-                // Définir le rôle de l'utilisateur
+                // Défini le rôle de l'utilisateur
                 if (connexionReussieAdmin)
                 {
                     personneConnectee = adminAConnecter;
@@ -122,7 +121,6 @@ namespace PokeStat.VuesModeles
 
                 MessageBox.Show("Youpii! " + personneConnectee.nomPersonne);
                 MainWindow = new MainWindow();
-                //MainWindow.UpdateNavigationBarVisibility();
 
                 var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
@@ -130,11 +128,9 @@ namespace PokeStat.VuesModeles
                 {
                     activeWindow.Close();
                 }
-                // Créez une nouvelle instance de MainWindow
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show(); // Affichez la nouvelle fenêtre
 
-                // Fermez la fenêtre actuelle (l'ancienne instance de MainWindow)
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show(); 
                 Application.Current.MainWindow.Close();
             }
             else
