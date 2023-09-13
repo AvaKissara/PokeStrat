@@ -27,6 +27,7 @@ namespace PokeStat.VuesModeles
         private AccueilVueModel accueilVueModel;
 
 
+
         private string identifiant;
         public string Identifiant
         {

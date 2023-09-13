@@ -62,7 +62,7 @@ namespace PokeStat.Repositories
                             $"{users[3]}",
                             $"{users[4]}",
                             mdp,
-                            DateTime.Parse($"{users[6]}"),
+                            users.GetDateTime(users.GetOrdinal("actualise_le")),
                             creationDate,
                             mdpFort);
 

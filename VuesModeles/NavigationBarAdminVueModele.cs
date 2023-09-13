@@ -9,10 +9,13 @@ using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
 {
-    public class NavigationBarVueModele : BaseVueModele
+    public class NavigationBarAdminVueModele : BaseVueModele
     {
-        public ICommand ConnexionPopupCommand { get; set; }
-        public ICommand InscriptionPopupCommand { get; set; }
+        public ICommand GestionPokemonCommand { get; set; }
+        public ICommand GestionTypeCommand { get; set; }
+        public ICommand GestionVersionCommand { get; set; }
+        public ICommand GestionGenerationCommand { get; set; }
+        public ICommand GestionUserCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
@@ -32,7 +35,6 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
-
         private bool _isAdmin;
         public bool IsAdmin
         {
@@ -46,14 +48,16 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
-
-        public NavigationBarVueModele(ICommand connexionPopupCommand, ICommand inscriptionPopupCommand, ICommand accueilPageCommand, ICommand closeCommand, SessionManager sessionManager)
+        public NavigationBarAdminVueModele(ICommand gestionPokemonCommand, ICommand gestionTypeCommand, ICommand gestionVersionCommand, ICommand gestionGenerationCommand, ICommand gestionUserCommand, ICommand accueilPageCommand, ICommand closeCommand, SessionManager sessionManager)
         {
-            this.ConnexionPopupCommand = connexionPopupCommand;
-            this.InscriptionPopupCommand = inscriptionPopupCommand;
-            this.AccueilPageCommand = accueilPageCommand;
-            this.CloseCommand = closeCommand;
-            this._sessionManager = sessionManager;
+            GestionPokemonCommand = gestionPokemonCommand;
+            GestionTypeCommand = gestionTypeCommand;
+            GestionVersionCommand = gestionVersionCommand;
+            GestionGenerationCommand = gestionGenerationCommand;
+            GestionUserCommand = gestionUserCommand;
+            AccueilPageCommand = accueilPageCommand;
+            CloseCommand = closeCommand;
+            _sessionManager = sessionManager;
         }
 
         private void OnAccountChanged()
@@ -81,6 +85,5 @@ namespace PokeStat.VuesModeles
             _sessionManager.AccountChanged -= OnAccountChanged;
             base.Dispose();
         }
-
     }
 }

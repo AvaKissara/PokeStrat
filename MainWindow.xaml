@@ -11,14 +11,20 @@
         Title="PokeStat" Height="450" Width="800">
 
     <Window.Resources>
-      
-
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Vues/DicoRes.xaml" />
+                <!-- Ajoutez d'autres dictionnaires de ressources ici si nécessaire -->
             </ResourceDictionary.MergedDictionaries>
-            <!-- Ajoutez d'autres dictionnaires de ressources ici si nécessaire -->
-       
+            <DataTemplate DataType="{x:Type vuesmodeles:NavigationBarVueModele}">
+                <local1:NavigationBar />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vuesmodeles:NavigationBarUserVueModele}">
+                <local1:NavigationBarUser />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vuesmodeles:NavigationBarAdminVueModele}">
+                <local1:NavigationBarAdmin />
+            </DataTemplate>
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         </ResourceDictionary>
     </Window.Resources>
@@ -28,11 +34,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <local1:NavigationBar Grid.Row="0" x:Name="NavigationBar"  Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Profane,  Mode=TwoWay}" />
-        <local1:NavigationBarUser Grid.Row="0" x:Name="NavigationBarUser" Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Utilisateur,  Mode=TwoWay}" />
-        <local1:NavigationBarAdmin Grid.Row="0" x:Name="NavigationBarAdmin" Visibility="{Binding Role, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Administrateur,  Mode=TwoWay}" />
-
+        <ContentControl Grid.Row="0" Content="{Binding NavigationBarViewModel}" />
+        
         <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="Vues/AccueilPage.xaml" />
 
     </Grid>

@@ -118,6 +118,7 @@
     <Compile Include="VuesModeles\GestionUserVueModele.cs" />
     <Compile Include="VuesModeles\GestionVersionVueModel.cs" />
     <Compile Include="VuesModeles\IVueModele.cs" />
+    <Compile Include="VuesModeles\NavigationBarAdminVueModele.cs" />
     <Compile Include="VuesModeles\NavigationBarUserVueModele.cs" />
     <Compile Include="VuesModeles\NavigationBarVueModele.cs" />
     <Compile Include="Vues\AccueilPage.xaml.cs">
