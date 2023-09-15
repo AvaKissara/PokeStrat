@@ -77,7 +77,6 @@ namespace PokeStat.VuesModeles
         }
 
         private DataTable dtData;
-
         public DataTable DtData
         {
             get { return dtData; }
