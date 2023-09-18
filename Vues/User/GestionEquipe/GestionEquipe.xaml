@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe"
+      xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionEquipeVueModele}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GestionEquipe">
@@ -33,13 +33,11 @@
         <Grid>
             <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
 
-            <ListView Grid.Row="1" Name="listBoxTeam" Width="1900" Height="800" Margin="20,70,20,10" ItemsSource="{Binding Orders}">
+            <ListView Grid.Row="1" Name="listBoxTeam" Width="1900" Height="800" Margin="20,70,20,10" ItemsSource="{Binding Equipes}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" />
-                            <GridViewColumn DisplayMemberBinding="{Binding Item}" Header="Item" />
-                            <GridViewColumn DisplayMemberBinding="{Binding DateCreated}" Header="Date Created"/>
-                        </GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding NomEquipe}" Header="Nom" />
+                    </GridView>
                     </ListView.View>
                 </ListView>
             </Grid>

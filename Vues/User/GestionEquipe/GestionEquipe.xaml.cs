@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PokeStat.Utilitaires;
+using PokeStat.VuesModeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,16 @@ namespace PokeStat.Vues.User.GestionEquipe
     /// </summary>
     public partial class GestionEquipe : Page
     {
+        private GestionEquipeVueModele gestionEquipeVueModele;
         public GestionEquipe()
         {
             InitializeComponent();
+            gestionEquipeVueModele = new GestionEquipeVueModele();
+            DataContext =gestionEquipeVueModele;
+
+            Frame mainFrame = NavigationServices.GetMainFrame();
+            NavigationServices.Initialize(mainFrame);
+            NavigationServices.NavigateToPage(this);
         }
     }
 }

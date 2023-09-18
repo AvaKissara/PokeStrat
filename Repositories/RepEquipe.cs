@@ -35,32 +35,40 @@ namespace PokeStat.Repositories
 
             ObservableCollection<MEquipe> observableMEquipes = new ObservableCollection<MEquipe>();
 
-            try
-            {
+            //try
+            //{
                 SqlCommand requestGetEquipes = bddTool.GetRequest();
-                requestGetEquipes.CommandText = "SELECT * FROM Equipes WHERE userId = @UserId";
-                requestGetEquipes.Parameters.AddWithValue("@UserId", SessionManager.Instance.UserId);
+                requestGetEquipes.CommandText = "SELECT * FROM Equipes";
+                //requestGetEquipes.CommandText = "SELECT * FROM Equipes WHERE userId = @UserId";
+                //requestGetEquipes.Parameters.AddWithValue("@UserId", SessionManager.Instance.UserId);
 
                 using (SqlDataReader equipes = requestGetEquipes.ExecuteReader())
                 {
                     while (equipes.Read())
                     {
-                        MEquipe uneEquipe = new MEquipe(
+                    MDate creationDate = null;
+                    if (!equipes.IsDBNull(3))
+                    {
+                        DateTime idDate = DateTime.Parse($"{equipes[3]}");
+                        creationDate = new MDate(idDate);
+                    }
+
+                    MEquipe uneEquipe = new MEquipe(
                             equipes.GetInt32(0), // idEquipe
                             $"{equipes[1]}",    // nomEquipe
                             equipes.GetInt32(2), // userId
-                            DateTime.Parse($"{equipes[3]}") // dateMatch
+                            creationDate// dateMatch
                         );
 
                         observableMEquipes.Add(uneEquipe);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                // Gestion de l'exception
-                Console.WriteLine("Erreur lors de la récupération des équipes : " + ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Gestion de l'exception
+            //    Console.WriteLine("Erreur lors de la récupération des équipes : " + ex.Message);
+            //}
 
             // Fermeture de la connexion
             bddTool.CloseConnexion();

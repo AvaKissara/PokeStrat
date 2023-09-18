@@ -26,14 +26,47 @@ namespace PokeStat.VuesModeles
 
         private readonly RepEquipe repEquipe;
         private readonly ObservableCollection<MEquipe> _equipes;
-        public IEnumerable<MEquipe> equipes => _equipes;
+        public IEnumerable<MEquipe> Equipes => _equipes;
 
+        private int idEquipe;
+        public int IdEquipe
+        {
+            get { return idEquipe; }
+            set
+            {
+                idEquipe = value;
+                OnPropertyChanged(nameof(IdEquipe));
+            }
+        }
+
+        private string nomEquipe;
+        public string NomEquipe
+        {
+            get { return nomEquipe; }
+            set
+            {
+                nomEquipe = value;
+                OnPropertyChanged(nameof(NomEquipe));
+            }
+        }
+
+        private int userId;
+        public int UserId
+        {
+            get { return userId; }
+            set
+            {
+                userId = value;
+                OnPropertyChanged(nameof(UserId));
+            }
+        }
         public GestionEquipeVueModele()
         {
             GestionCommand = new RelayCommand(GestionEquipe);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
             repEquipe = new RepEquipe();
+            _equipes = repEquipe.GetAllEquipes();
         }
 
         private void GestionEquipe()
