@@ -31,6 +31,13 @@ namespace PokeStat.Modeles
             this.actualise = actualise;
             this.cree = cree;
         }
+
+        public MPersonne(int idPersonne, string pseudoPersonne)
+        {
+            this.idPersonne = idPersonne;
+            this.pseudoPersonne = pseudoPersonne;
+        }
+
         public MPersonne() { }
 
         public string ToInsecureString(SecureString securePassword)

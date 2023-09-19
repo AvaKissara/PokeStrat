@@ -38,7 +38,7 @@ namespace PokeStat.Repositories
             //try
             //{
                 SqlCommand requestGetEquipes = bddTool.GetRequest();
-                requestGetEquipes.CommandText = "SELECT * FROM Equipes";
+                requestGetEquipes.CommandText = "SELECT E.id_equipe, E.nom_equipe, E.user_id, U.pseudo, E.date_id FROM Equipes as E LEFT JOIN Users as U on E.user_id = U.id_user;";
                 //requestGetEquipes.CommandText = "SELECT * FROM Equipes WHERE userId = @UserId";
                 //requestGetEquipes.Parameters.AddWithValue("@UserId", SessionManager.Instance.UserId);
 
@@ -47,16 +47,23 @@ namespace PokeStat.Repositories
                     while (equipes.Read())
                     {
                     MDate creationDate = null;
-                    if (!equipes.IsDBNull(3))
+                    if (!equipes.IsDBNull(4))
                     {
-                        DateTime idDate = DateTime.Parse($"{equipes[3]}");
+                        DateTime idDate = DateTime.Parse($"{equipes[4]}");
                         creationDate = new MDate(idDate);
+                    }
+                    MUser user = null;
+                    if(!equipes.IsDBNull(2))
+                    {
+                        int idUser = equipes.IsDBNull(2) ? 0 : equipes.GetInt32(2);
+                        string nomUser = nomUser = equipes.IsDBNull(3) ? "" : $"{equipes[3]}";
+                        user = new MUser(idUser, nomUser);
                     }
 
                     MEquipe uneEquipe = new MEquipe(
                             equipes.GetInt32(0), // idEquipe
                             $"{equipes[1]}",    // nomEquipe
-                            equipes.GetInt32(2), // userId
+                            user, // userId
                             creationDate// dateMatch
                         );
 

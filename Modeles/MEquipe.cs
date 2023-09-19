@@ -12,16 +12,16 @@ namespace PokeStat.Modeles
     {
         public int idEquipe { get; set; }
         public string nomEquipe { get; set; }
-        public int userId { get; set; }
-        public MDate dateMatch { get; }
+        public MUser user { get; set; }
+        public MDate dateCreation { get; }
         public ObservableCollection<MEquipier> equipiers { get; set; }
 
-        public MEquipe(int IdEquipe, string NomEquipe, int UserId, MDate DateMatch)
+        public MEquipe(int IdEquipe, string NomEquipe, MUser User, MDate DateCreation)
         {
             this.idEquipe = IdEquipe;
             this.nomEquipe = NomEquipe;
-            this.userId = UserId;
-            this.dateMatch = DateMatch;
+            this.user = User;
+            this.dateCreation = DateCreation;
         }
     }
 }
