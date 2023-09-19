@@ -98,10 +98,10 @@
     <Compile Include="Repositories\RepType.cs" />
     <Compile Include="Repositories\RepUser.cs" />
     <Compile Include="Repositories\RepVersion.cs" />
-    <Compile Include="Utilitaires\AuthenticationToVisibilityConverter.cs" />
     <Compile Include="Utilitaires\BddTool.cs" />
     <Compile Include="Utilitaires\BitmapToImageSourceConverter.cs" />
     <Compile Include="Utilitaires\BoolToVisibilityConverter.cs" />
+    <Compile Include="Utilitaires\CollectionTool.cs" />
     <Compile Include="Utilitaires\DataTableTool.cs" />
     <Compile Include="Utilitaires\DRVToModelConverter.cs" />
     <Compile Include="Utilitaires\NavigationServices.cs" />
