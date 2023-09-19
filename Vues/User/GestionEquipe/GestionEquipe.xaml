@@ -32,15 +32,19 @@
 
         <Grid>
             <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
-
             <ListView Grid.Row="1" Name="listBoxTeam" Width="1900" Height="800" Margin="20,70,20,10" ItemsSource="{Binding Equipes}">
-                    <ListView.View>
-                        <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding NomEquipe}" Header="Nom" />
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding idEquipe}" Width="50"/>
+                        <GridViewColumn Header="Nom d'équipe" DisplayMemberBinding="{Binding nomEquipe}" Width="200"/>
+                        <GridViewColumn Header="ID Utilisateur" DisplayMemberBinding="{Binding userId}" Width="100"/>
+                        <GridViewColumn Header="Date de Match" DisplayMemberBinding="{Binding dateMatch}" Width="100"/>
+                        <!-- Ajoutez d'autres colonnes ici pour d'autres propriétés de MEquipe -->
                     </GridView>
-                    </ListView.View>
-                </ListView>
-            </Grid>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
 
         <Grid Grid.Row="2">
             <Button Name="addTeam" Content="Ajouter une équipe" HorizontalAlignment="Left" Margin="40,0,70,40" VerticalAlignment="Bottom" Background="#7B7B7E" FontSize="18" Padding="20,7" />

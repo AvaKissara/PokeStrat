@@ -27,7 +27,6 @@ namespace PokeStat.Utilitaires
                     dataTable.Columns.Add(property.Name, Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType);
                 }
             }
-
             foreach (T model in models)
             {
                 DataRow row = dataTable.NewRow();
