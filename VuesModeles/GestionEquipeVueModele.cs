@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
@@ -39,16 +40,17 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private string nomEquipe;
-        public string NomEquipe
-        {
-            get { return nomEquipe; }
-            set
-            {
-                nomEquipe = value;
-                OnPropertyChanged(nameof(NomEquipe));
-            }
-        }
+        //private string nomEquipe;
+        //public string NomEquipe
+        //{
+        //    get { return nomEquipe; }
+        //    set
+        //    {
+        //        nomEquipe = value;
+        //        OnPropertyChanged(nameof(NomEquipe));
+        //    }
+        //}
+        public string NomEquipe { get; set; }
 
         private int userId;
         public int UserId
@@ -60,6 +62,7 @@ namespace PokeStat.VuesModeles
                 OnPropertyChanged(nameof(UserId));
             }
         }
+
         public GestionEquipeVueModele()
         {
             GestionCommand = new RelayCommand(GestionEquipe);

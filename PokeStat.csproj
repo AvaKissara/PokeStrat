@@ -101,10 +101,10 @@
     <Compile Include="Utilitaires\BddTool.cs" />
     <Compile Include="Utilitaires\BitmapToImageSourceConverter.cs" />
     <Compile Include="Utilitaires\BoolToVisibilityConverter.cs" />
-    <Compile Include="Utilitaires\CollectionTool.cs" />
     <Compile Include="Utilitaires\DataTableTool.cs" />
     <Compile Include="Utilitaires\DRVToModelConverter.cs" />
     <Compile Include="Utilitaires\NavigationServices.cs" />
+    <Compile Include="Utilitaires\ObservableCollectionTool.cs" />
     <Compile Include="Utilitaires\PasswordManager.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="Utilitaires\SessionManager.cs" />

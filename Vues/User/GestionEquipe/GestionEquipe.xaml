@@ -35,10 +35,9 @@
             <ListView Grid.Row="1" Name="listBoxTeam" Width="1900" Height="800" Margin="20,70,20,10" ItemsSource="{Binding Equipes}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding idEquipe}" Width="50"/>
                         <GridViewColumn Header="Nom d'équipe" DisplayMemberBinding="{Binding nomEquipe}" Width="200"/>
                         <GridViewColumn Header="ID Utilisateur" DisplayMemberBinding="{Binding userId}" Width="100"/>
-                        <GridViewColumn Header="Date de Match" DisplayMemberBinding="{Binding dateMatch}" Width="100"/>
+                        <GridViewColumn Header="Date de Match" DisplayMemberBinding="{Binding dateMatch.idDate}" Width="100"/>
                         <!-- Ajoutez d'autres colonnes ici pour d'autres propriétés de MEquipe -->
                     </GridView>
                 </ListView.View>
