@@ -104,7 +104,6 @@
     <Compile Include="Utilitaires\DataTableTool.cs" />
     <Compile Include="Utilitaires\DRVToModelConverter.cs" />
     <Compile Include="Utilitaires\NavigationServices.cs" />
-    <Compile Include="Utilitaires\ObservableCollectionTool.cs" />
     <Compile Include="Utilitaires\PasswordManager.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="Utilitaires\SessionManager.cs" />
