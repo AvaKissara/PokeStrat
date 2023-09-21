@@ -17,8 +17,9 @@ namespace PokeStat.Modeles
         public int iv { get; set; }
         public int niveauBonheur { get; set; }
         public string nature { get; set; }
-        public List<MCapacite> setCapacites { get; set; }
         public MTalent talentEquipier { get; set; }
+        public List<MCapacite> setCapacites { get; set; }
+        public MObjet objetEquipier { get; set; }
         public MEquipe equipeEquipier { get; set; } 
 
         public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, MPokemon Evolution, MGeneration Gen, int IdEquipier, string SurnomEquipier, int NiveauEquipier)
