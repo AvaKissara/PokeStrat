@@ -38,6 +38,7 @@
                         <GridViewColumn Header="Equipe" DisplayMemberBinding="{Binding nomEquipe}" Width="200"/>
                         <GridViewColumn Header="Utilisateur" DisplayMemberBinding="{Binding user.pseudoPersonne}" Width="100"/>
                         <GridViewColumn Header="Création" DisplayMemberBinding="{Binding dateCreation.idDate}" Width="140"/>
+                        <GridViewColumn Header="Equipiers" DisplayMemberBinding="{Binding equipiers.Count}" Width="140"/>
                     </GridView>
                 </ListView.View>
             </ListView>

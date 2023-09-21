@@ -63,6 +63,25 @@ namespace PokeStat.Modeles
             this.nomFraPokemon = NomFraPokemon;
         }
 
+        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab)
+        {
+            this.idPokemon = IdPokemon;
+            this.cheminImgPokemon = CheminImgPokemon;
+            this.nomFraPokemon = NomFraPokemon;
+            this.basePv = BasePV;
+            this.baseAttaque = BaseAttaque;
+            this.baseDefense = BaseDefense;
+            this.baseAttSpe = BaseAttSpe;
+            this.baseDefSpe = BaseDefSpe;
+            this.baseVit = BaseVit;
+            this.legendaire = Legendaire;
+            this.shiny = Shiny;
+            this.mega = Mega;
+            this.giga = Giga;
+            this.fab = Fab;
+            this.typesPokemon= new List<MType>();
+        }
+
         public MPokemon()
         { }
     }

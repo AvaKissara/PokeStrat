@@ -40,7 +40,7 @@ namespace PokeStat.Repositories
             //try
             //{
                 SqlCommand requestGetEquipes = bddTool.GetRequest();
-                requestGetEquipes.CommandText = "SELECT E.id_equipe, E.nom_equipe, E.date_id, U.id_user, U.pseudo, EQ.pok_id, P.pok_img, P.nom_fra_pok, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit FROM Equipes as E LEFT JOIN Users AS U ON E.user_id = U.id_user LEFT JOIN equipiers AS EQ ON E.id_equipe = EQ.equipe_id LEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok LEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature LEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap LEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap LEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap;";
+                requestGetEquipes.CommandText = "SELECT E.id_equipe, E.nom_equipe, E.date_id, U.id_user, U.pseudo, EQ.pok_id, P.pok_img, P.nom_fra_pok, TY1.type_id, TY1.empla, TY2.type_id, TY2.empla, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit FROM Equipes as E LEFT JOIN Users AS U ON E.user_id = U.id_user LEFT JOIN equipiers AS EQ ON E.id_equipe = EQ.equipe_id \r\nLEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok \r\nLEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature \r\nLEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap \r\nLEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap \r\nLEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap LEFT JOIN pokemon_type AS TY1 ON EQ.pok_id = TY1.pok_id LEFT JOIN pokemon_type AS TY2 ON EQ.pok_id = TY2.pok_id";
                 //requestGetEquipes.CommandText = "SELECT * FROM Equipes WHERE userId = @UserId";
                 //requestGetEquipes.Parameters.AddWithValue("@UserId", SessionManager.Instance.UserId);
 
@@ -72,6 +72,11 @@ namespace PokeStat.Repositories
                             int idEquipier = equipes.GetInt32(5);
                             string imgEquipier = $"{equipes[6]}";
                             string nomEquipier = $"{equipes[7]}";
+                            bool legEquipier = Convert.ToBoolean(equipes.GetValue(8));
+                            bool shinyEquipier = Convert.ToBoolean(equipes.GetValue(9));
+                            bool megaEquipier = Convert.ToBoolean(equipes.GetValue(10));
+                            bool gigaEquipier = Convert.ToBoolean(equipes.GetValue(11));
+                            bool fabEquipier = Convert.ToBoolean(equipes.GetValue(12));
                             int pvEquipier = equipes.GetInt32(8);
                             int attEquipier = equipes.GetInt32(9);
                             int defEquipier = equipes.GetInt32(10);
@@ -84,8 +89,8 @@ namespace PokeStat.Repositories
                             int evEquipier = equipes.GetInt32(17);
                             int ivEquipier = equipes.GetInt32(18);
                             int bonhEquipier = equipes.GetInt32(19);
+                            equipier = new MEquipier(idEquipier, imgEquipier, nomEquipier, legEquipier, pvEquipier, attEquipier, defEquipier, attSpeEquipier, defSpeEquipier, vitEquipier, legEquipier, shinyEquipier, megaEquipier, gigaEquipier, fabEquipier, surnomEquipier, nivEquipier, esquiveEquipier, evEquipier, ivEquipier, bonhEquipier);
 
-                          
 
                             if (equipier != null)
                             {
