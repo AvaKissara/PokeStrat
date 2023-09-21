@@ -85,7 +85,7 @@ namespace PokeStat.Repositories
                             int ivEquipier = equipes.GetInt32(18);
                             int bonhEquipier = equipes.GetInt32(19);
 
-
+                          
 
                             if (equipier != null)
                             {
