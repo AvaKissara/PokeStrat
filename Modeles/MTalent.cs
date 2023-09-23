@@ -20,5 +20,10 @@ namespace PokeStat.Modeles
             this.nomTalent = NomTalent;
             this.descTalent = DescTalent;
         }
+        public MTalent(int IdTalent, string NomTalent)
+        {
+            this.idTalent = IdTalent;
+            this.nomTalent = NomTalent;
+        }
     }
 }

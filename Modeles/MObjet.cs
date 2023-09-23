@@ -18,5 +18,10 @@ namespace PokeStat.Modeles
             this.nomObjet = NomObjet;
             this.descObjet = DescObjet;
         }
+        public MObjet(int IdObjet, string NomObjet)
+        {
+            this.idObjet = IdObjet;
+            this.nomObjet = NomObjet;
+        }
     }
 }
