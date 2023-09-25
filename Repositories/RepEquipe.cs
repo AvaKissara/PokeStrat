@@ -31,6 +31,89 @@ namespace PokeStat.Repositories
             }
         }
 
+        public ObservableCollection<MEquipier> GetEquipiers() 
+        {
+            bddTool.CheckConnexion();
+
+            ObservableCollection<MEquipier> observableMEquipiers = new ObservableCollection<MEquipier>();
+
+            //try
+            //{
+            SqlCommand requestGetEquipiers = bddTool.GetRequest();
+            requestGetEquipiers.CommandText = "SELECT EQ.pok_id, P.pok_img, P.nom_fra_pok, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit FROM equipiers AS EQ LEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok LEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature LEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap LEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap LEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap;";
+
+
+            using (SqlDataReader equipiers = requestGetEquipiers.ExecuteReader())
+            {
+                while (equipiers.Read())
+                {
+                    MNature natureEquipier = null;
+                    if (!equipiers.IsDBNull(20))
+                    {
+                        int idNature = equipiers.IsDBNull(20) ? 0 : equipiers.GetInt32(20);
+                        string nomNature = equipiers.IsDBNull(21) ? "" : $"{equipiers[21]}";
+                        natureEquipier = new MNature(idNature, nomNature);
+                    }
+
+                    MTalent talentEquipier = null;
+                    if (!equipiers.IsDBNull(22))
+                    {
+                        int idTalent = equipiers.IsDBNull(22) ? 0 : equipiers.GetInt32(22);
+                        string nomTalent = equipiers.IsDBNull(23) ? "" : $"{equipiers[23]}";
+                        talentEquipier = new MTalent(idTalent, nomTalent);
+                    }
+
+                    MObjet objetTenu = null;
+                    if (!equipiers.IsDBNull(24))
+                    {
+                        int idObjet = equipiers.IsDBNull(24) ? 0 : equipiers.GetInt32(24);
+                        string nomObjet = equipiers.IsDBNull(25) ? "" : $"{equipiers[25]}";
+                        objetTenu = new MObjet(idObjet, nomObjet);
+                    }
+              
+
+                    MEquipier unEquipier = new MEquipier(
+                        equipiers.GetInt32(0),
+                        $"{equipiers[1]}",
+                        $"{equipiers[2]}",                    
+                        equipiers.GetInt32(3),
+                        equipiers.GetInt32(4),
+                        equipiers.GetInt32(5),
+                        equipiers.GetInt32(6),
+                        equipiers.GetInt32(7),
+                        equipiers.GetInt32(8),                       
+                        Convert.ToBoolean(equipiers.GetValue(9)),
+                        Convert.ToBoolean(equipiers.GetValue(10)),
+                        Convert.ToBoolean(equipiers.GetValue(11)),
+                        Convert.ToBoolean(equipiers.GetValue(12)),
+                        Convert.ToBoolean(equipiers.GetValue(13)),
+                        $"{equipiers[14]}",
+                        equipiers.GetInt32(15),
+                        equipiers.GetInt32(16),
+                        equipiers.GetInt32(17),
+                        equipiers.GetInt32(18),
+                        equipiers.GetInt32(19),
+                        natureEquipier, 
+                        talentEquipier,
+                        objetTenu
+                        );
+
+                    observableMEquipiers.Add(unEquipier);
+                }
+            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Gestion de l'exception
+            //    Console.WriteLine("Erreur lors de la récupération des équipes : " + ex.Message);
+            //}
+
+            // Fermeture de la connexion
+            bddTool.CloseConnexion();
+
+            return observableMEquipiers;
+        }
+
         public ObservableCollection<MEquipe> GetAllEquipes()
         {
             bddTool.CheckConnexion();
@@ -40,11 +123,13 @@ namespace PokeStat.Repositories
             //try
             //{
                 SqlCommand requestGetEquipes = bddTool.GetRequest();
-                requestGetEquipes.CommandText = "SELECT E.id_equipe, E.nom_equipe, E.date_id, U.id_user, U.pseudo, EQ.pok_id, P.pok_img, P.nom_fra_pok, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit FROM Equipes as E LEFT JOIN Users AS U ON E.user_id = U.id_user LEFT JOIN equipiers AS EQ ON E.id_equipe = EQ.equipe_id LEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok LEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature LEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap LEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap LEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap LEFT JOIN pokemon_type AS TY1 ON EQ.pok_id = TY1.pok_id LEFT JOIN pokemon_type AS TY2 ON EQ.pok_id = TY2.pok_id;";
-                //requestGetEquipes.CommandText = "SELECT * FROM Equipes WHERE userId = @UserId";
-                //requestGetEquipes.Parameters.AddWithValue("@UserId", SessionManager.Instance.UserId);
+            //    requestGetEquipes.CommandText = "SELECT E.id_equipe, E.nom_equipe, E.date_id, U.id_user, U.pseudo, EQ.pok_id, P.pok_img, P.nom_fra_pok, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit FROM Equipes as E LEFT JOIN Users AS U ON E.user_id = U.id_user LEFT JOIN equipiers AS EQ ON E.id_equipe = EQ.equipe_id LEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok LEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature LEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap LEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap LEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap;";
+            requestGetEquipes.CommandText = "SELECT E.id_equipe, E.nom_equipe, E.date_id, U.id_user, U.pseudo FROM Equipes as E LEFT JOIN Users AS U ON E.user_id = U.id_user LEFT JOIN equipiers AS EQ ON E.id_equipe = EQ.equipe_id ;";
+            //requestGetEquipes.Parameters.AddWithValue("@UserId", SessionManager.Instance.UserId);
 
-                using (SqlDataReader equipes = requestGetEquipes.ExecuteReader())
+            ObservableCollection<MEquipier> equipiers = GetEquipiers();
+
+            using (SqlDataReader equipes = requestGetEquipes.ExecuteReader())
                 {
                     while (equipes.Read())
                     {
@@ -62,67 +147,7 @@ namespace PokeStat.Repositories
                             user = new MUser(idUser, pseudoUser);
                         }
 
-                        MNature natureEquipier = null;
-                        if(equipes.IsDBNull(20)) 
-                        {
-                            int idNature = equipes.IsDBNull(20) ? 0 : equipes.GetInt32(20);
-                            string nomNature = equipes.IsDBNull(21) ? "" : $"{equipes[21]}";
-                            natureEquipier = new MNature(idNature, nomNature);
-                        }
 
-                        MTalent talentEquipier = null;
-                        if(equipes.IsDBNull(22)) 
-                        {
-                            int idTalent = equipes.IsDBNull(22) ? 0 : equipes.GetInt32(22);
-                            string nomTalent = equipes.IsDBNull(23) ? "" : $"{equipes[23]}";
-                            talentEquipier = new MTalent(idTalent, nomTalent);
-                        }
-
-                        MObjet objetTenu = null;
-                        if (equipes.IsDBNull(24)) 
-                        {
-                            int idObjet = equipes.IsDBNull(24) ? 0 : equipes.GetInt32(24);
-                            string nomObjet = equipes.IsDBNull(25) ? "" : $"{equipes[25]}";
-                            objetTenu = new MObjet(idObjet, nomObjet);
-                        }
-               
-
-                        ObservableCollection<MEquipier> equipiers = new ObservableCollection<MEquipier>();
-
-                    //for (int i = 5; i <= 19; i++) 
-                    //{
-                        MEquipier equipier = null;
-                        if (!equipes.IsDBNull(5))
-                        {
-                            int idEquipier = equipes.GetInt32(5);
-                            string imgEquipier = $"{equipes[6]}";
-                            string nomEquipier = $"{equipes[7]}";
-                            bool legEquipier = Convert.ToBoolean(equipes.GetValue(8));
-                            bool shinyEquipier = Convert.ToBoolean(equipes.GetValue(9));
-                            bool megaEquipier = Convert.ToBoolean(equipes.GetValue(10));
-                            bool gigaEquipier = Convert.ToBoolean(equipes.GetValue(11));
-                            bool fabEquipier = Convert.ToBoolean(equipes.GetValue(12));
-                            int pvEquipier = equipes.GetInt32(8);
-                            int attEquipier = equipes.GetInt32(9);
-                            int defEquipier = equipes.GetInt32(10);
-                            int attSpeEquipier = equipes.GetInt32(11);
-                            int defSpeEquipier = equipes.GetInt32(12);
-                            int vitEquipier = equipes.GetInt32(13);
-                            string surnomEquipier = $"{equipes[14]}";
-                            int nivEquipier = equipes.GetInt32(15);
-                            int esquiveEquipier = equipes.GetInt32(16);
-                            int evEquipier = equipes.GetInt32(17);
-                            int ivEquipier = equipes.GetInt32(18);
-                            int bonhEquipier = equipes.GetInt32(19);
-                            equipier = new MEquipier(idEquipier, imgEquipier, nomEquipier,  pvEquipier, attEquipier, defEquipier, attSpeEquipier, defSpeEquipier, vitEquipier, legEquipier, shinyEquipier, megaEquipier, gigaEquipier, fabEquipier, surnomEquipier, nivEquipier, esquiveEquipier, bonhEquipier, evEquipier, ivEquipier, natureEquipier, talentEquipier, objetTenu);
-
-
-                            if (equipier != null)
-                            {
-                                 equipiers.Add(equipier);
-                            }
-                        }
-                    //}
 
                         MEquipe uneEquipe = new MEquipe(
                                 equipes.GetInt32(0),

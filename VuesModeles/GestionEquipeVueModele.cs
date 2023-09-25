@@ -29,6 +29,17 @@ namespace PokeStat.VuesModeles
         private readonly ObservableCollection<MEquipe> _equipes;
         public IEnumerable<MEquipe> Equipes => _equipes;
 
+        private ObservableCollection<MEquipier> _equipiers;
+        public ObservableCollection<MEquipier> Equipiers
+        {
+            get { return _equipiers; }
+            set
+            {
+                _equipiers = value;
+                OnPropertyChanged(nameof(Equipiers));
+            }
+        }
+
         private int idEquipe;
         public int IdEquipe
         {
@@ -70,6 +81,7 @@ namespace PokeStat.VuesModeles
             CloseCommand = new RelayCommand(Close);
             repEquipe = new RepEquipe();
             _equipes = repEquipe.GetAllEquipes();
+            _equipiers = repEquipe.GetEquipiers();
         }
 
         private void GestionEquipe()
