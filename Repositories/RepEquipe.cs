@@ -85,7 +85,7 @@ namespace PokeStat.Repositories
                         string nomObjet = equipes.IsDBNull(25) ? "" : $"{equipes[25]}";
                         objetTenu = new MObjet(idObjet, nomObjet);
                     }
-
+               
 
                     ObservableCollection<MEquipier> equipiers = new ObservableCollection<MEquipier>();
 
@@ -97,7 +97,6 @@ namespace PokeStat.Repositories
                             int idEquipier = equipes.GetInt32(5);
                             string imgEquipier = $"{equipes[6]}";
                             string nomEquipier = $"{equipes[7]}";
-
                             bool legEquipier = Convert.ToBoolean(equipes.GetValue(8));
                             bool shinyEquipier = Convert.ToBoolean(equipes.GetValue(9));
                             bool megaEquipier = Convert.ToBoolean(equipes.GetValue(10));
@@ -120,7 +119,7 @@ namespace PokeStat.Repositories
 
                             if (equipier != null)
                             {
-                                equipiers.Add(equipier);
+                                 equipiers.Add(equipier);
                             }
                         }
                     //}
