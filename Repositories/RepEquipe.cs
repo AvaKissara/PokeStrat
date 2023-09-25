@@ -48,46 +48,46 @@ namespace PokeStat.Repositories
                 {
                     while (equipes.Read())
                     {
-                    MDate creationDate = null;
-                    if (!equipes.IsDBNull(2))
-                    {
-                        DateTime idDate = DateTime.Parse($"{equipes[2]}");
-                        creationDate = new MDate(idDate);
-                    }
-                    MUser user = null;
-                    if(!equipes.IsDBNull(3))
-                    {
-                        int idUser = equipes.IsDBNull(3) ? 0 : equipes.GetInt32(3);
-                        string pseudoUser = equipes.IsDBNull(4) ? "" : $"{equipes[4]}";
-                        user = new MUser(idUser, pseudoUser);
-                    }
+                        MDate creationDate = null;
+                        if (!equipes.IsDBNull(2))
+                        {
+                            DateTime idDate = DateTime.Parse($"{equipes[2]}");
+                            creationDate = new MDate(idDate);
+                        }
+                        MUser user = null;
+                        if(!equipes.IsDBNull(3))
+                        {
+                            int idUser = equipes.IsDBNull(3) ? 0 : equipes.GetInt32(3);
+                            string pseudoUser = equipes.IsDBNull(4) ? "" : $"{equipes[4]}";
+                            user = new MUser(idUser, pseudoUser);
+                        }
 
-                    MNature natureEquipier = null;
-                    if(equipes.IsDBNull(20)) 
-                    {
-                        int idNature = equipes.IsDBNull(20) ? 0 : equipes.GetInt32(20);
-                        string nomNature = equipes.IsDBNull(21) ? "" : $"{equipes[21]}";
-                        natureEquipier = new MNature(idNature, nomNature);
-                    }
+                        MNature natureEquipier = null;
+                        if(equipes.IsDBNull(20)) 
+                        {
+                            int idNature = equipes.IsDBNull(20) ? 0 : equipes.GetInt32(20);
+                            string nomNature = equipes.IsDBNull(21) ? "" : $"{equipes[21]}";
+                            natureEquipier = new MNature(idNature, nomNature);
+                        }
 
-                    MTalent talentEquipier = null;
-                    if(equipes.IsDBNull(22)) 
-                    {
-                        int idTalent = equipes.IsDBNull(22) ? 0 : equipes.GetInt32(22);
-                        string nomTalent = equipes.IsDBNull(23) ? "" : $"{equipes[23]}";
-                        talentEquipier = new MTalent(idTalent, nomTalent);
-                    }
+                        MTalent talentEquipier = null;
+                        if(equipes.IsDBNull(22)) 
+                        {
+                            int idTalent = equipes.IsDBNull(22) ? 0 : equipes.GetInt32(22);
+                            string nomTalent = equipes.IsDBNull(23) ? "" : $"{equipes[23]}";
+                            talentEquipier = new MTalent(idTalent, nomTalent);
+                        }
 
-                    MObjet objetTenu = null;
-                    if (equipes.IsDBNull(24)) 
-                    {
-                        int idObjet = equipes.IsDBNull(24) ? 0 : equipes.GetInt32(24);
-                        string nomObjet = equipes.IsDBNull(25) ? "" : $"{equipes[25]}";
-                        objetTenu = new MObjet(idObjet, nomObjet);
-                    }
+                        MObjet objetTenu = null;
+                        if (equipes.IsDBNull(24)) 
+                        {
+                            int idObjet = equipes.IsDBNull(24) ? 0 : equipes.GetInt32(24);
+                            string nomObjet = equipes.IsDBNull(25) ? "" : $"{equipes[25]}";
+                            objetTenu = new MObjet(idObjet, nomObjet);
+                        }
                
 
-                    ObservableCollection<MEquipier> equipiers = new ObservableCollection<MEquipier>();
+                        ObservableCollection<MEquipier> equipiers = new ObservableCollection<MEquipier>();
 
                     //for (int i = 5; i <= 19; i++) 
                     //{
@@ -124,16 +124,16 @@ namespace PokeStat.Repositories
                         }
                     //}
 
-                    MEquipe uneEquipe = new MEquipe(
-                            equipes.GetInt32(0),
-                            $"{equipes[1]}",
-                            creationDate,
-                            user,                             
-                            equipiers
-                        );
+                        MEquipe uneEquipe = new MEquipe(
+                                equipes.GetInt32(0),
+                                $"{equipes[1]}",
+                                creationDate,
+                                user,                             
+                                equipiers
+                            );
 
-                        observableMEquipes.Add(uneEquipe);
-                    }
+                            observableMEquipes.Add(uneEquipe);
+                        }
                 }
             //}
             //catch (Exception ex)
