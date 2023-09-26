@@ -40,7 +40,7 @@ namespace PokeStat.Repositories
             //try
             //{
             SqlCommand requestGetEquipiers = bddTool.GetRequest();
-            requestGetEquipiers.CommandText = "SELECT EQ.pok_id, P.pok_img, P.nom_fra_pok, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit FROM equipiers AS EQ LEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok LEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature LEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap LEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap LEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap;";
+            requestGetEquipiers.CommandText = "SELECT EQ.pok_id, P.pok_img, P.nom_fra_pok, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit FROM equipiers AS EQ LEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok LEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature LEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap LEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap LEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap;";
 
 
             using (SqlDataReader equipiers = requestGetEquipiers.ExecuteReader())
@@ -81,7 +81,7 @@ namespace PokeStat.Repositories
                         equipiers.GetInt32(5),
                         equipiers.GetInt32(6),
                         equipiers.GetInt32(7),
-                        equipiers.GetInt32(8),                       
+                        equipiers.GetInt32(8), 
                         Convert.ToBoolean(equipiers.GetValue(9)),
                         Convert.ToBoolean(equipiers.GetValue(10)),
                         Convert.ToBoolean(equipiers.GetValue(11)),
@@ -116,6 +116,8 @@ namespace PokeStat.Repositories
 
         public ObservableCollection<MEquipe> GetAllEquipes()
         {
+            ObservableCollection<MEquipier> equipiers = GetEquipiers();
+
             bddTool.CheckConnexion();
 
             ObservableCollection<MEquipe> observableMEquipes = new ObservableCollection<MEquipe>();
@@ -127,7 +129,7 @@ namespace PokeStat.Repositories
             requestGetEquipes.CommandText = "SELECT E.id_equipe, E.nom_equipe, E.date_id, U.id_user, U.pseudo FROM Equipes as E LEFT JOIN Users AS U ON E.user_id = U.id_user LEFT JOIN equipiers AS EQ ON E.id_equipe = EQ.equipe_id ;";
             //requestGetEquipes.Parameters.AddWithValue("@UserId", SessionManager.Instance.UserId);
 
-            ObservableCollection<MEquipier> equipiers = GetEquipiers();
+            
 
             using (SqlDataReader equipes = requestGetEquipes.ExecuteReader())
                 {
