@@ -72,7 +72,7 @@ namespace PokeStat.Repositories
                 RequestAddType.CommandText = "INSERT INTO Types (nom_type) VALUES (@nom_type)";
 
                 SqlParameter nom = RequestAddType.Parameters.Add("@nom_type", SqlDbType.VarChar);
-                nom.Value = nouveauType.nomType;
+                nom.Value = nouveauType.NomType;
 
                 int result = RequestAddType.ExecuteNonQuery();
             }
@@ -122,8 +122,8 @@ namespace PokeStat.Repositories
                 SqlParameter id = RequestUpdateType.Parameters.Add("@idType", SqlDbType.VarChar);
                 SqlParameter nom = RequestUpdateType.Parameters.Add("@nomType", SqlDbType.VarChar);
 
-                id.Value = modifType.idType;
-                nom.Value = modifType.nomType;
+                id.Value = modifType.IdType;
+                nom.Value = modifType.NomType;
 
                 int result = RequestUpdateType.ExecuteNonQuery();
             }

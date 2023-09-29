@@ -8,26 +8,28 @@ namespace PokeStat.Modeles
 {
     public class MCapacite
     {
-        public int idCapacite { get; }
-        public string nomCapacite { get; set; }
-        public string descCapacite { get; set; }    
-        public int base_pp { get; set; }
-        public int base_puiss { get; set; }
-        public int base_pre { get; set; }
-        public int base_prio { get; set; }
-        public int base_crit { get; set; }
-        public MType typeCapacite { get; set; }
-        public List<MCategorie> catCapacite { get; set; }
-        public MMeteo effetMeteo { get; set; }
-        public MStatut effetStatut { get; set; }
-        public MTerrain effetTerrain { get; set; }
-        public MVersion versCapacite { get; set; }
-        public MCapacite(int IdCapacite, string NomCapacite, MType TypeCapacite, List<MCategorie> CatCapacite)
+        public int IdCapacite { get; }
+        public string NomCapacite { get; set; }
+        public string DescCapacite { get; set; }
+        public int BasePp { get; set; }
+        public int BasePuiss { get; set; }
+        public int BasePre { get; set; }
+        public int BasePrio { get; set; }
+        public int BaseCrit { get; set; }
+        public MType TypeCapacite { get; set; }
+        public List<MCategorie> CatCapacite { get; set; }
+        public MMeteo EffetMeteo { get; set; }
+        public MStatut EffetStatut { get; set; }
+        public MTerrain EffetTerrain { get; set; }
+        public MVersion VersCapacite { get; set; }
+
+        public MCapacite(int idCapacite, string nomCapacite, MType typeCapacite, List<MCategorie> catCapacite)
         {
-            this.idCapacite = IdCapacite;
-            this.nomCapacite = NomCapacite;
-            this.typeCapacite = TypeCapacite;
-            this.catCapacite = CatCapacite;
+            IdCapacite = idCapacite;
+            NomCapacite = nomCapacite;
+            TypeCapacite = typeCapacite;
+            CatCapacite = catCapacite;
         }
+
     }
 }

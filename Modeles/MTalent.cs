@@ -8,22 +8,22 @@ namespace PokeStat.Modeles
 {
     public class MTalent
     {
-        public int idTalent { get; }
-        public string nomTalent { get; set; }
-        public MVersion versionTalent { get; set; }
-        public string descTalent { get; set; }
-        public MTerrain effetTerrain { get; set; }
+        public int IdTalent { get; }
+        public string NomTalent { get; set; }
+        public MVersion VersionTalent { get; set; }
+        public string DescTalent { get; set; }
+        public MTerrain EffetTerrain { get; set; }
 
         public MTalent(int IdTalent, string NomTalent, string DescTalent)
         {
-            this.idTalent = IdTalent;
-            this.nomTalent = NomTalent;
-            this.descTalent = DescTalent;
+            this.IdTalent = IdTalent;
+            this.NomTalent = NomTalent;
+            this.DescTalent = DescTalent;
         }
         public MTalent(int IdTalent, string NomTalent)
         {
-            this.idTalent = IdTalent;
-            this.nomTalent = NomTalent;
+            this.IdTalent = IdTalent;
+            this.NomTalent = NomTalent;
         }
     }
 }

@@ -76,7 +76,7 @@ namespace PokeStat.Repositories
         {
             if (entreeVersion is MVersion nouvelleVersion)
             {
-                int idGen = nouvelleVersion.gen.idGen;
+                int idGen = nouvelleVersion.Gen.IdGen;
 
                 Add(nouvelleVersion, idGen);
             }
@@ -97,7 +97,7 @@ namespace PokeStat.Repositories
 
                 SqlParameter nom = RequestAddVersion.Parameters.Add("@nom_version", SqlDbType.VarChar);
                 SqlParameter gen = RequestAddVersion.Parameters.Add("@gen_id", SqlDbType.Int);
-                nom.Value = nouvelleVersion.nomVersion;
+                nom.Value = nouvelleVersion.NomVersion;
                 gen.Value = idGen;
 
                 int result = RequestAddVersion.ExecuteNonQuery();

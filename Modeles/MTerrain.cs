@@ -8,14 +8,14 @@ namespace PokeStat.Modeles
 {
     public class MTerrain
     {
-        public int idTerrain { get; set; }
-        public string nomTerrain { get; set; }
-        public string descTerrain { get; set; }
+        public int IdTerrain { get; set; }
+        public string NomTerrain { get; set; }
+        public string DescTerrain { get; set; }
 
         public MTerrain(int IdTerrain, string NomTerrain) 
         {
-            this.idTerrain = IdTerrain;
-            this.nomTerrain = NomTerrain;
+            this.IdTerrain = IdTerrain;
+            this.NomTerrain = NomTerrain;
         }
     }
 }

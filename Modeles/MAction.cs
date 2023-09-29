@@ -8,19 +8,19 @@ namespace PokeStat.Modeles
 {
     public class MAction
     {
-        public int idAction { get; set; }
-        public bool baisse { get; set; }
-        public bool augmente { get; set; }
-        public double val { get; set; }
-        public int tour { get; set; }
-        public MMatch match { get; set; }
-        public MEquipier participant { get; set; }
-        public MStat statCible { get; set; }
-        public MStatut statutParticipant { get; set; }
-        public MMeteo meteo { get; set; }
-        public MTerrain terrain { get; set; }
-        public MObjet objet { get; set; }
-        public MCapacite capacite { get; set; }
-        public MType typeParticipant { get; set; }
+        public int IdAction { get; set; }
+        public bool Baisse { get; set; }
+        public bool Augmente { get; set; }
+        public double Val { get; set; }
+        public int Tour { get; set; }
+        public MMatch Match { get; set; }
+        public MEquipier Participant { get; set; }
+        public MStat StatCible { get; set; }
+        public MStatut StatutParticipant { get; set; }
+        public MMeteo Meteo { get; set; }
+        public MTerrain Terrain { get; set; }
+        public MObjet Objet { get; set; }
+        public MCapacite Capacite { get; set; }
+        public MType TypeParticipant { get; set; }
     }
 }

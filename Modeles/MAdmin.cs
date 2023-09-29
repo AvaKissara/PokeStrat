@@ -9,13 +9,13 @@ namespace PokeStat.Modeles
 {
     public class MAdmin : MPersonne
     {
-        public SecureString mdpRenforce { get; set; }
+        public SecureString MdpRenforce { get; set; }
 
 
         public MAdmin(int idPersonne, string nomPersonne, string prenomPersonne, string pseudoPersonne, string mailPersonne, SecureString mdpPersonne, DateTime actualise, MDate cree, SecureString MdpRenforce)
       : base(idPersonne, nomPersonne, prenomPersonne, pseudoPersonne, mailPersonne, mdpPersonne, actualise, cree)
         {
-            this.mdpRenforce = MdpRenforce;
+            this.MdpRenforce = MdpRenforce;
         }
 
     }

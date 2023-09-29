@@ -195,7 +195,7 @@ namespace PokeStat.VuesModeles
                 List<MGeneration> generations = repGen.GetAll();
 
             // Vérifie si le nom du type existe déjà dans la liste des versions
-            bool versionExiste = versions.Any(v => v.nomVersion.Equals(nouvelleVersion.nomVersion, StringComparison.OrdinalIgnoreCase));
+            bool versionExiste = versions.Any(v => v.NomVersion.Equals(nouvelleVersion.NomVersion, StringComparison.OrdinalIgnoreCase));
 
                 if (versionExiste)
                 {
@@ -237,9 +237,9 @@ namespace PokeStat.VuesModeles
 
             if (DtData != null & DtData.Rows.Count > 0)
             {
-                int idVersionAEffacer = LigneSelection.idVersion;
+                int idVersionAEffacer = LigneSelection.IdVersion;
 
-                MVersion userAEffacer = versions.FirstOrDefault(u => u.idVersion == idVersionAEffacer);
+                MVersion userAEffacer = versions.FirstOrDefault(u => u.IdVersion == idVersionAEffacer);
 
                 if (userAEffacer != null)
                 {

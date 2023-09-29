@@ -8,13 +8,13 @@ namespace PokeStat.Modeles
 {
     public class MNature
     {
-        public int idNature { get; }
-        public string nomNature { get; set; }
+        public int IdNature { get; }
+        public string NomNature { get; set; }
 
         public MNature(int IdNature, string NomNature) 
         {
-            idNature = IdNature;
-            nomNature = NomNature;
+            this.IdNature = IdNature;
+            this.NomNature = NomNature;
         }
     }
 }

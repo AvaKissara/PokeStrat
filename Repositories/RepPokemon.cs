@@ -109,7 +109,7 @@ namespace PokeStat.Repositories
         {
             if (entreePokemon is MSpecimen nouveauPokemon)
             {
-                int idGen = nouveauPokemon.gen.idGen;
+                int idGen = nouveauPokemon.Gen.IdGen;
 
                 Add(nouveauPokemon, idGen);
             }
@@ -149,21 +149,21 @@ namespace PokeStat.Repositories
                 SqlParameter Gen = RequestAddPokemon.Parameters.Add("@gen_id", SqlDbType.Int);
 
 
-                name.Value = nouveauPokemon.nomEngPokemon;
-                nom.Value = nouveauPokemon.nomFraPokemon;
-                num.Value = nouveauPokemon.numPokemon;
-                taille.Value = nouveauPokemon.taillePokemon;
-                poids.Value = nouveauPokemon.poidsPokemon;
-                hp.Value = nouveauPokemon.basePv;
-                att.Value = nouveauPokemon.baseAttaque;
-                def.Value = nouveauPokemon.baseDefense;
-                sp_att.Value = nouveauPokemon.baseAttSpe;
-                sp_def.Value = nouveauPokemon.baseDefSpe;
-                vit.Value = nouveauPokemon.baseVit;
-                legendaire.Value = nouveauPokemon.legendaire;
-                shiny.Value = nouveauPokemon.shiny;
-                img.Value = nouveauPokemon.cheminImgPokemon;
-                idEvo.Value = (object)nouveauPokemon.evolution?.idPokemon ?? DBNull.Value;
+                name.Value = nouveauPokemon.NomEngPokemon;
+                nom.Value = nouveauPokemon.NomFraPokemon;
+                num.Value = nouveauPokemon.NumPokemon;
+                taille.Value = nouveauPokemon.TaillePokemon;
+                poids.Value = nouveauPokemon.PoidsPokemon;
+                hp.Value = nouveauPokemon.BasePV;
+                att.Value = nouveauPokemon.BaseAttaque;
+                def.Value = nouveauPokemon.BaseDefense;
+                sp_att.Value = nouveauPokemon.BaseAttSpe;
+                sp_def.Value = nouveauPokemon.BaseDefSpe;
+                vit.Value = nouveauPokemon.BaseVit;
+                legendaire.Value = nouveauPokemon.Legendaire;
+                shiny.Value = nouveauPokemon.Shiny;
+                img.Value = nouveauPokemon.CheminImgPokemon;
+                idEvo.Value = (object)nouveauPokemon.Evolution?.IdPokemon ?? DBNull.Value;
                 Gen.Value = idGen;
 
                 int result = RequestAddPokemon.ExecuteNonQuery();

@@ -8,12 +8,13 @@ namespace PokeStat.Modeles
 {
     public class MRegion
     {
-        public int idReg {  get; set; }
-        public string nomReg { get; set; }
-        public MRegion(int IdReg, string NomReg) 
+        public int IdReg { get; set; }
+        public string NomReg { get; set; }
+
+        public MRegion(int idReg, string nomReg)
         {
-            this.idReg = IdReg;
-            this.nomReg = NomReg;
-        } 
+            IdReg = idReg;
+            NomReg = nomReg;
+        }
     }
 }

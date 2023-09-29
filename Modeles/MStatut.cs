@@ -8,7 +8,7 @@ namespace PokeStat.Modeles
 {
     public class MStatut
     {
-        public int idStatut { get; set; }
-        public string nomStatut { get; set; }
+        public int IdStatut { get; set; }
+        public string NomStatut { get; set; }
     }
 }

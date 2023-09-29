@@ -13,14 +13,14 @@ namespace PokeStat.Modeles
     public class MUser : MPersonne
     {
     
-        public MUser(int idPersonne, string nomPersonne, string prenomPersonne, string pseudoPersonne, string mailPersonne, SecureString mdpPersonne, DateTime roleActualise, MDate roleCree)
-      : base(idPersonne, nomPersonne, prenomPersonne, pseudoPersonne, mailPersonne, mdpPersonne, roleActualise, roleCree)
+        public MUser(int IdPersonne, string NomPersonne, string PrenomPersonne, string PseudoPersonne, string MailPersonne, SecureString MdpPersonne, DateTime RoleActualise, MDate RoleCree)
+      : base(IdPersonne, NomPersonne, PrenomPersonne, PseudoPersonne, MailPersonne, MdpPersonne, RoleActualise, RoleCree)
         {
 
         }
 
-        public MUser(int idPersonne, string pseudoPersonne)
-     : base(idPersonne, pseudoPersonne)
+        public MUser(int IdPersonne, string PseudoPersonne)
+     : base(IdPersonne, PseudoPersonne)
         {
 
         }

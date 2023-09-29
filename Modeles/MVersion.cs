@@ -8,23 +8,22 @@ namespace PokeStat.Modeles
 {
     public class MVersion
     {
-        public int idVersion { get; set; }
-        public string nomVersion { get; set; }
-        public MGeneration gen{ get; set; }
+        public int IdVersion { get; set; }
+        public string NomVersion { get; set; }
+        public MGeneration Gen { get; set; }
 
         public MVersion(int IdVersion, string NomVersion, MGeneration Gen) 
         {
-            this.idVersion = IdVersion;
-            this.nomVersion = NomVersion;
-            this.gen = Gen;
+            this.IdVersion = IdVersion;
+            this.NomVersion = NomVersion;
+            this.Gen = Gen;
         }
         public MVersion(string NomVersion, MGeneration Gen)
         {
-            this.nomVersion = NomVersion;
-            this.gen = Gen;
+            this.NomVersion = NomVersion;
+            this.Gen = Gen;
         }
         public MVersion() { }
-
 
         public override bool Equals(object objTest)
         {
@@ -32,15 +31,16 @@ namespace PokeStat.Modeles
                 return false;
 
             MVersion objRef = (MVersion)objTest;
-            return idVersion == objRef.idVersion && nomVersion == objRef.nomVersion;
+            return IdVersion == objRef.IdVersion && NomVersion == objRef.NomVersion;
         }
+
         public override int GetHashCode()
         {
             unchecked
             {
                 int hash = 17;
-                hash = hash * 23 + idVersion.GetHashCode();
-                hash = hash * 23 + (nomVersion != null ? nomVersion.GetHashCode() : 0);
+                hash = hash * 23 + IdVersion.GetHashCode();
+                hash = hash * 23 + (NomVersion != null ? NomVersion.GetHashCode() : 0);
                 return hash;
             }
         }

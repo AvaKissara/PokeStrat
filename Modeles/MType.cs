@@ -9,35 +9,34 @@ namespace PokeStat.Modeles
 {
     public class MType
     {
-        public int idType { get; set; }
+        public int IdType { get; set; }
+        public string NomType { get; set; }
+        public int Emplacement { get; set; }
 
-        public string nomType { get; set; }
+        private const int MaxTypeId = 18; // À rendre variable
 
-        public int emplacement { get; set; }
-
-        const int MaxTypeId = 18; //à rendre variable
-
-        double[,] grilleDommage = new double[MaxTypeId, MaxTypeId];
+        private readonly double[,] grilleDommage = new double[MaxTypeId, MaxTypeId];
 
         public MType(string NomType)
         {
-            this.nomType = NomType;
+            this.NomType = NomType;
         }
+
         public MType(int IdType, string NomType)
         {
-            this.idType = IdType;
-            this.nomType = NomType;
+            this.IdType = IdType;
+            this.NomType = NomType;
         }
 
         public MType()
         {
-         
+
         }
 
-        public void PeuplerDicoType()
+        public void PeuplerGrilleDommage()
         {
             // Initialisation de la grille avec des coefficients de dommage par défaut
-            // coefficient de dommage de 1.0 pour les combinaisons attaquant/cible identiques
+            // Coefficient de dommage de 1.0 pour les combinaisons attaquant/cible identiques
             for (int i = 0; i < MaxTypeId; i++)
             {
                 for (int j = 0; j < MaxTypeId; j++)
@@ -60,7 +59,7 @@ namespace PokeStat.Modeles
                 return false;
 
             MType other = (MType)obj;
-            return idType == other.idType && nomType == other.nomType;
+            return IdType == other.IdType && NomType == other.NomType;
         }
 
         public override int GetHashCode()
@@ -68,10 +67,11 @@ namespace PokeStat.Modeles
             unchecked
             {
                 int hash = 17;
-                hash = hash * 23 + idType.GetHashCode();
-                hash = hash * 23 + (nomType != null ? nomType.GetHashCode() : 0);
+                hash = hash * 23 + IdType.GetHashCode();
+                hash = hash * 23 + (NomType != null ? NomType.GetHashCode() : 0);
                 return hash;
             }
         }
     }
+
 }

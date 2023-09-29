@@ -11,31 +11,31 @@ namespace PokeStat.Modeles
 {
     public abstract class MPersonne
     {
-        public int idPersonne { get; set; }
-        public string nomPersonne { get; set; }
-        public string prenomPersonne { get; set; }
-        public string pseudoPersonne { get; set; }
-        public string mailPersonne { get; set; }
-        public SecureString mdpPersonne { get; set; }
-        public DateTime actualise { get; set; }
-        public MDate cree { get; set; }
+        public int IdPersonne { get; set; }
+        public string NomPersonne { get; set; }
+        public string PrenomPersonne { get; set; }
+        public string PseudoPersonne { get; set; }
+        public string MailPersonne { get; set; }
+        public SecureString MdpPersonne { get; set; }
+        public DateTime Actualise { get; set; }
+        public MDate Cree { get; set; }
 
         public MPersonne(int idPersonne, string nomPersonne, string prenomPersonne, string pseudoPersonne, string mailPersonne, SecureString mdpPersonne, DateTime actualise, MDate cree)
         {
-            this.idPersonne = idPersonne;
-            this.nomPersonne = nomPersonne;
-            this.prenomPersonne = prenomPersonne;
-            this.pseudoPersonne = pseudoPersonne;
-            this.mailPersonne = mailPersonne;
-            this.mdpPersonne = mdpPersonne;
-            this.actualise = actualise;
-            this.cree = cree;
+            IdPersonne = idPersonne;
+            NomPersonne = nomPersonne;
+            PrenomPersonne = prenomPersonne;
+            PseudoPersonne = pseudoPersonne;
+            MailPersonne = mailPersonne;
+            MdpPersonne = mdpPersonne;
+            Actualise = actualise;
+            Cree = cree;
         }
 
         public MPersonne(int idPersonne, string pseudoPersonne)
         {
-            this.idPersonne = idPersonne;
-            this.pseudoPersonne = pseudoPersonne;
+            IdPersonne = idPersonne;
+            PseudoPersonne = pseudoPersonne;
         }
 
         public MPersonne() { }
@@ -59,4 +59,5 @@ namespace PokeStat.Modeles
             }
         }
     }
+
 }

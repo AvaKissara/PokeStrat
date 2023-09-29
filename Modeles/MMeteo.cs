@@ -8,14 +8,16 @@ namespace PokeStat.Modeles
 {
     public class MMeteo
     {
-        public int idMeteo { get; set; }
-        public string nomMeteo { get; set; }
-        public string descMeteo { get; set; }
-        public MMeteo(int IdMeteo, string NomMeteo, string DescMeteo) 
+        public int IdMeteo { get; set; }
+        public string NomMeteo { get; set; }
+        public string DescMeteo { get; set; }
+
+        public MMeteo(int IdMeteo, string NomMeteo, string DescMeteo)
         {
-            this.idMeteo = IdMeteo;
-            this.nomMeteo = NomMeteo;
-            this.descMeteo = DescMeteo;
-        } 
+            this.IdMeteo = IdMeteo;
+            this.NomMeteo = NomMeteo;
+            this.DescMeteo = DescMeteo;
+        }
     }
+
 }

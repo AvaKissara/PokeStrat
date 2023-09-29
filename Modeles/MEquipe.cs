@@ -10,20 +10,20 @@ namespace PokeStat.Modeles
 {
     public class MEquipe
     {
-        public int idEquipe { get; set; }
-        public string nomEquipe { get; set; }
-        public MUser user { get; set; }
-        public MDate dateCreation { get; }
-        public ObservableCollection<MEquipier> equipiers { get; set; }
+        public int IdEquipe { get; set; }
+        public string NomEquipe { get; set; }
+        public MUser User { get; set; }
+        public MDate DateCreation { get; }
+        public ObservableCollection<MEquipier> Equipiers { get; set; }
 
-        public MEquipe(int IdEquipe, string NomEquipe, MDate DateCreation, MUser User, ObservableCollection<MEquipier> Equipiers)
+        public MEquipe(int idEquipe, string nomEquipe, MDate dateCreation, MUser user, ObservableCollection<MEquipier> equipiers)
         {
-            this.idEquipe = IdEquipe;
-            this.nomEquipe = NomEquipe;
-            this.dateCreation = DateCreation;
-            this.user = User;
-            this.equipiers = Equipiers;
-            this.equipiers = new ObservableCollection<MEquipier>();
+            this.IdEquipe = idEquipe;
+            this.NomEquipe = nomEquipe;
+            this.DateCreation = dateCreation;
+            this.User = user;
+            this.Equipiers = equipiers;
+            this.Equipiers = new ObservableCollection<MEquipier>();
         }
     }
 }

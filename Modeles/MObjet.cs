@@ -12,7 +12,7 @@ namespace PokeStat.Modeles
         public string nomObjet { get; set; }
         public string descObjet { get; set; }
 
-        public MObjet(int IdObjet, string NomObjet, string DescObjet) 
+        public MObjet(int IdObjet, string NomObjet, string DescObjet)
         {
             this.idObjet = IdObjet;
             this.nomObjet = NomObjet;

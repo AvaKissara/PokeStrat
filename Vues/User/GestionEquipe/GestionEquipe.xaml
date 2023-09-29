@@ -32,29 +32,32 @@
 
         <Grid>
             <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
-            <ListView Name="listViewTeams" Margin="20,80,20,40" ItemsSource="{Binding Equipes}">
+            <ListView Name="listViewTeams" Margin="20,80,20,40" ItemsSource="{Binding Equipes}" SelectedItem="{Binding SelectedEquipe}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Nom de l'équipe" DisplayMemberBinding="{Binding NomEquipe}" Width="200"/>
-                        <GridViewColumn Header="Utilisateur" DisplayMemberBinding="{Binding User.Pseudo}" Width="150"/>
+                        <GridViewColumn Header="Utilisateur" DisplayMemberBinding="{Binding User.PseudoPersonne}" Width="150"/>
                         <GridViewColumn Header="Date de création" DisplayMemberBinding="{Binding DateCreation}" Width="150"/>
-                        <GridViewColumn Header="Équipiers" Width="Auto"/>
+                        <GridViewColumn Header="Équipiers">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Equipiers}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <!-- Ajoutez des éléments ici pour afficher les informations de l'équipier -->
+                                                <StackPanel>
+                                                    <Image Source="{Binding CheminImgPokemon}" Width="100" Height="100"/>
+                                                    <TextBlock Text="{Binding NomEquipier}" HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-
-            <!-- Liste d'équipiers pour l'équipe sélectionnée -->
-            <ListView Name="listViewTeamMembers" Margin="20,250,20,20" Visibility="Hidden" ItemsSource="{Binding Equipiers}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="150"/>
-                        <GridViewColumn Header="Niveau" DisplayMemberBinding="{Binding Niveau}" Width="100"/>
-                        <GridViewColumn Header="Attaque" DisplayMemberBinding="{Binding Attaque}" Width="100"/>
-                        <!-- Ajoutez des colonnes pour les autres propriétés des équipiers -->
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
         </Grid>
 
         <Grid Grid.Row="2">

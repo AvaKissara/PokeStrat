@@ -11,7 +11,7 @@ namespace PokeStat.Modeles
     /// </summary>
     public class MSpecimen : MPokemon
     {     
-        public string desc { get; set; }
+        public string Desc { get; set; }
 
         public MSpecimen(int IdPokemon, string CheminImgPokemon, string NomFraPokemon) : base(IdPokemon, CheminImgPokemon, NomFraPokemon)
         {

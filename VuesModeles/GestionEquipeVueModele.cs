@@ -3,13 +3,8 @@ using PokeStat.Repositories;
 using PokeStat.Utilitaires;
 using PokeStat.Vues;
 using PokeStat.Vues.User.GestionEquipe;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
@@ -39,6 +34,21 @@ namespace PokeStat.VuesModeles
                 OnPropertyChanged(nameof(Equipiers));
             }
         }
+
+        private MEquipe selectedEquipe;
+        public MEquipe SelectedEquipe
+        {
+            get { return selectedEquipe; }
+            set
+            {
+                selectedEquipe = value;
+                OnPropertyChanged(nameof(SelectedEquipe));
+
+                // Mettez à jour la liste d'équipiers en fonction de l'équipe sélectionnée
+                Equipiers = selectedEquipe?.Equipiers;
+            }
+        }
+
 
         private int idEquipe;
         public int IdEquipe

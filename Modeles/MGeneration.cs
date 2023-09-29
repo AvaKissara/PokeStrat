@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokeStat.Modeles
 {
     public class MGeneration
     {
-        public int idGen { get; set; }
-        public string nomGen { get; set; }
+        public int IdGen { get; set; }
+        public string NomGen { get; set; }
 
-        public MGeneration(int IdGen, string NomGen)
-        { 
-            this.idGen = IdGen; 
-            this.nomGen = NomGen; 
+        public MGeneration(int idGen, string nomGen)
+        {
+            IdGen = idGen;
+            NomGen = nomGen;
         }
 
-        public MGeneration(string NomGen)
+        public MGeneration(string nomGen)
         {
-            this.nomGen = NomGen;
+            NomGen = nomGen;
         }
 
         public MGeneration() { }
@@ -30,7 +26,7 @@ namespace PokeStat.Modeles
                 return false;
 
             MGeneration objRef = (MGeneration)objTest;
-            return idGen == objRef.idGen && nomGen == objRef.nomGen;
+            return IdGen == objRef.IdGen && NomGen == objRef.NomGen;
         }
 
         public override int GetHashCode()
@@ -38,8 +34,8 @@ namespace PokeStat.Modeles
             unchecked
             {
                 int hash = 17;
-                hash = hash * 23 + idGen.GetHashCode();
-                hash = hash * 23 + (nomGen != null ? nomGen.GetHashCode() : 0);
+                hash = hash * 23 + IdGen.GetHashCode();
+                hash = hash * 23 + (NomGen != null ? NomGen.GetHashCode() : 0);
                 return hash;
             }
         }

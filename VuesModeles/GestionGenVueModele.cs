@@ -146,7 +146,7 @@ namespace PokeStat.VuesModeles
             List<MGeneration> generations = repGen.GetAll();
 
             // Vérifie si le nom du type existe déjà dans la liste des types
-            bool genExiste = generations.Any(g => g.nomGen.Equals(nouvelleGen.nomGen, StringComparison.OrdinalIgnoreCase));
+            bool genExiste = generations.Any(g => g.NomGen.Equals(nouvelleGen.NomGen, StringComparison.OrdinalIgnoreCase));
 
             if (genExiste)
             {

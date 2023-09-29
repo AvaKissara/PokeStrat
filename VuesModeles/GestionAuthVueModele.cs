@@ -81,8 +81,8 @@ namespace PokeStat.VuesModeles
         {
             List<MUser> users = repUser.GetAll();
             List<MAdmin> admins = repAdmin.GetAll();
-            MUser userAConnecter = users.FirstOrDefault(u => u.mailPersonne == Identifiant);
-            MAdmin adminAConnecter = admins.FirstOrDefault(a => a.mailPersonne == Identifiant);
+            MUser userAConnecter = users.FirstOrDefault(u => u.MailPersonne == Identifiant);
+            MAdmin adminAConnecter = admins.FirstOrDefault(a => a.MailPersonne == Identifiant);
 
             if (userAConnecter != null && adminAConnecter != null)
             {
@@ -90,11 +90,11 @@ namespace PokeStat.VuesModeles
                 return;
             }
 
-            SecureString selHasheUser = userAConnecter != null ? repUser.GetSalt(userAConnecter.idPersonne) : null;
-            SecureString selHasheAdmin = adminAConnecter != null ? repAdmin.GetSalt(adminAConnecter.idPersonne) : null;
+            SecureString selHasheUser = userAConnecter != null ? repUser.GetSalt(userAConnecter.IdPersonne) : null;
+            SecureString selHasheAdmin = adminAConnecter != null ? repAdmin.GetSalt(adminAConnecter.IdPersonne) : null;
 
-            bool connexionReussieUser = userAConnecter != null && PasswordManager.VerifyPassword(Mdp, userAConnecter.mdpPersonne, selHasheUser);
-            bool connexionReussieAdmin = adminAConnecter != null && PasswordManager.VerifyPassword(Mdp, adminAConnecter.mdpPersonne, selHasheAdmin);
+            bool connexionReussieUser = userAConnecter != null && PasswordManager.VerifyPassword(Mdp, userAConnecter.MdpPersonne, selHasheUser);
+            bool connexionReussieAdmin = adminAConnecter != null && PasswordManager.VerifyPassword(Mdp, adminAConnecter.MdpPersonne, selHasheAdmin);
 
             if (connexionReussieUser || connexionReussieAdmin)
             {
@@ -118,15 +118,12 @@ namespace PokeStat.VuesModeles
                 }
                 SessionManager.Instance.Account = personneConnectee;
 
-                MessageBox.Show("Youpii! " + personneConnectee.nomPersonne);
+                MessageBox.Show("Youpii! " + personneConnectee.NomPersonne);
                 MainWindow = new MainWindow();
 
                 var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
-                if (activeWindow != null)
-                {
-                    activeWindow.Close();
-                }
+                activeWindow?.Close();
 
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show(); 

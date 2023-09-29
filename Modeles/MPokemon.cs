@@ -8,81 +8,81 @@ using System.Threading.Tasks;
 namespace PokeStat.Modeles
 {
     public abstract class MPokemon
-    {  
-        public int idPokemon { get; set; }
-        public string cheminImgPokemon { get; set; }
-        public string nomFraPokemon { get; set; }
-        public string nomEngPokemon { get; set; }
-        public string numPokemon { get; set; }
-        public decimal taillePokemon { get; set; }
-        public decimal poidsPokemon { get; set; }
-        public int basePv { get; set; }
-        public int baseAttaque { get; set; }
-        public int baseDefense { get; set; }
-        public int baseAttSpe { get; set; }
-        public int baseDefSpe { get; set; }
-        public int baseVit { get; set; }
-        public bool legendaire { get; set; }
-        public bool shiny { get; set; }
-        public bool mega { get; set; }
-        public bool giga { get; set; }
-        public bool fab { get; set; }
-        public List<MType> typesPokemon { get; set; }
-        public MPokemon evolution { get; set; }
-        public MGeneration gen { get; set; }
-        public List<MCapacite> poolCapacites { get; set; }
-        public List<MTalent> talentPokemon { get; set; }
-        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, MPokemon Evolution, MGeneration Gen)
+    {
+        public int IdPokemon { get; set; }
+        public string CheminImgPokemon { get; set; }
+        public string NomFraPokemon { get; set; }
+        public string NomEngPokemon { get; set; }
+        public string NumPokemon { get; set; }
+        public decimal TaillePokemon { get; set; }
+        public decimal PoidsPokemon { get; set; }
+        public int BasePV { get; set; }
+        public int BaseAttaque { get; set; }
+        public int BaseDefense { get; set; }
+        public int BaseAttSpe { get; set; }
+        public int BaseDefSpe { get; set; }
+        public int BaseVit { get; set; }
+        public bool Legendaire { get; set; }
+        public bool Shiny { get; set; }
+        public bool Mega { get; set; }
+        public bool Giga { get; set; }
+        public bool Fab { get; set; }
+        public List<MType> TypesPokemon { get; set; }
+        public MPokemon Evolution { get; set; }
+        public MGeneration Gen { get; set; }
+        public List<MCapacite> PoolCapacites { get; set; }
+        public List<MTalent> TalentPokemon { get; set; }
+
+        public MPokemon(int idPokemon, string cheminImgPokemon, string nomFraPokemon, string nomEngPokemon, string numPokemon, decimal taillePokemon, decimal poidsPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab, MPokemon evolution, MGeneration gen)
         {
-            this.idPokemon = IdPokemon;
-            this.cheminImgPokemon = CheminImgPokemon;
-            this.nomFraPokemon = NomFraPokemon;
-            this.nomEngPokemon = nomEngPokemon;
-            this.numPokemon = NumPokemon;
-            this.taillePokemon = TaillePokemon;
-            this.poidsPokemon = PoidsPokemon;
-            this.basePv = BasePV;
-            this.baseAttaque = BaseAttaque;
-            this.baseDefense = BaseDefense;
-            this.baseAttSpe = BaseAttSpe;
-            this.baseDefSpe = BaseDefSpe;
-            this.baseVit = BaseVit;
-            this.legendaire = Legendaire;
-            this.shiny = Shiny;
-            this.mega = Mega;
-            this.giga = Giga;
-            this.fab = Fab;
-            this.evolution = Evolution;
-            this.gen = Gen;
+            IdPokemon = idPokemon;
+            CheminImgPokemon = cheminImgPokemon;
+            NomFraPokemon = nomFraPokemon;
+            NomEngPokemon = nomEngPokemon;
+            NumPokemon = numPokemon;
+            TaillePokemon = taillePokemon;
+            PoidsPokemon = poidsPokemon;
+            BasePV = basePV;
+            BaseAttaque = baseAttaque;
+            BaseDefense = baseDefense;
+            BaseAttSpe = baseAttSpe;
+            BaseDefSpe = baseDefSpe;
+            BaseVit = baseVit;
+            Legendaire = legendaire;
+            Shiny = shiny;
+            Mega = mega;
+            Giga = giga;
+            Fab = fab;
+            Evolution = evolution;
+            Gen = gen;
         }
 
-        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon)
-        { 
-            this.idPokemon = IdPokemon;
-            this.cheminImgPokemon = CheminImgPokemon;
-            this.nomFraPokemon = NomFraPokemon;
-        }
-
-        public MPokemon(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab)
+        public MPokemon(int idPokemon, string cheminImgPokemon, string nomFraPokemon)
         {
-            this.idPokemon = IdPokemon;
-            this.cheminImgPokemon = CheminImgPokemon;
-            this.nomFraPokemon = NomFraPokemon;
-            this.basePv = BasePV;
-            this.baseAttaque = BaseAttaque;
-            this.baseDefense = BaseDefense;
-            this.baseAttSpe = BaseAttSpe;
-            this.baseDefSpe = BaseDefSpe;
-            this.baseVit = BaseVit;
-            this.legendaire = Legendaire;
-            this.shiny = Shiny;
-            this.mega = Mega;
-            this.giga = Giga;
-            this.fab = Fab;
-            this.typesPokemon= new List<MType>();
+            IdPokemon = idPokemon;
+            CheminImgPokemon = cheminImgPokemon;
+            NomFraPokemon = nomFraPokemon;
         }
 
-        public MPokemon()
-        { }
+        public MPokemon(int idPokemon, string cheminImgPokemon, string nomFraPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab)
+        {
+            IdPokemon = idPokemon;
+            CheminImgPokemon = cheminImgPokemon;
+            NomFraPokemon = nomFraPokemon;
+            BasePV = basePV;
+            BaseAttaque = baseAttaque;
+            BaseDefense = baseDefense;
+            BaseAttSpe = baseAttSpe;
+            BaseDefSpe = baseDefSpe;
+            BaseVit = baseVit;
+            Legendaire = legendaire;
+            Shiny = shiny;
+            Mega = mega;
+            Giga = giga;
+            Fab = fab;
+            TypesPokemon = new List<MType>();
+        }
+
+        public MPokemon() { }
     }
 }

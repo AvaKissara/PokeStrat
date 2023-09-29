@@ -8,13 +8,11 @@ namespace PokeStat.Modeles
 {
     public class MDate
     {
-       public DateTime idDate { get; set; }
+        public DateTime IdDate { get; set; }
 
-        public MDate(DateTime IdDate)
+        public MDate(DateTime idDate)
         {
-            this.idDate = IdDate;
+            this.IdDate = idDate;
         }
-
-        
     }
 }

@@ -75,7 +75,7 @@ namespace PokeStat.Repositories
                 RequestAddGeneration.CommandText = "INSERT INTO Generations (nom_generation) VALUES (@nom_generation)";
 
                 SqlParameter nom = RequestAddGeneration.Parameters.Add("@nom_generation", SqlDbType.VarChar);
-                nom.Value = nouvelleGeneration.nomGen;
+                nom.Value = nouvelleGeneration.NomGen;
 
 
                 int result = RequestAddGeneration.ExecuteNonQuery();

@@ -572,7 +572,7 @@ namespace PokeStat.VuesModeles
             List<MType> types = repType.GetAll();      
             List<MSpecimen> pokemons = repPokemon.GetAll();
 
-            bool pokExiste = pokemons.Any(p => p.nomFraPokemon.Equals(nouveauPokemon.nomFraPokemon, StringComparison.OrdinalIgnoreCase));
+            bool pokExiste = pokemons.Any(p => p.NomFraPokemon.Equals(nouveauPokemon.NomFraPokemon, StringComparison.OrdinalIgnoreCase));
 
             if (pokExiste)
             {
@@ -600,8 +600,8 @@ namespace PokeStat.VuesModeles
             {
                 if (type.Equals(SelectedCmbTypeValue))
                 {                   
-                    idType = type.idType;
-                    idPok = pokemons[pokemons.Count - 1].idPokemon;
+                    idType = type.IdType;
+                    idPok = pokemons[pokemons.Count - 1].IdPokemon;
                     repPokemon.AddTypePokemon(idType, idPok);                   
                 }
             } 
@@ -684,11 +684,11 @@ namespace PokeStat.VuesModeles
 
                 //string absoluteImagePath = GetFullPath(rela);
                //absoluDtImagePath = Environment.CurrentDirectory;
-                RelativeDtImagePath = pokemon.cheminImgPokemon;
+                RelativeDtImagePath = pokemon.CheminImgPokemon;
                 //Environment.CurrentDirectory = "C:/Users/Lila%20Badi/Documents/GitHub/AvaKissara/PokeStat/Ressources/";
                 string basePath = @"C:/Users/AvaKissara/source/repos/PokeStat/Ressources/";
                 //string fullPath = System.IO.Path.GetFullPath("C:\Users/Lila%20Badi/Documents/GitHub/AvaKissara/PokeStat/Ressources/" + relativeDtImagePath);
-                AbsoluDtImagePath = System.IO.Path.Combine(basePath, pokemon.cheminImgPokemon);
+                AbsoluDtImagePath = System.IO.Path.Combine(basePath, pokemon.CheminImgPokemon);
                 
              
 
@@ -699,26 +699,26 @@ namespace PokeStat.VuesModeles
 
                 DataRow row;
                 row = dtData.NewRow();
-                row[0] = pokemon.idPokemon;
+                row[0] = pokemon.IdPokemon;
                 row[1] = AbsoluDtImagePath;
-                row[2] = pokemon.nomFraPokemon;
-                row[3] = pokemon.nomEngPokemon;
-                row[4] = pokemon.numPokemon;
-                row[5] = pokemon.taillePokemon;
-                row[6] = pokemon.poidsPokemon;
-                row[7] = pokemon?.basePv;
-                row[8] = pokemon?.baseAttaque;
-                row[9] = pokemon?.baseDefense;
-                row[10] = pokemon?.baseAttSpe;
-                row[11] = pokemon?.baseDefSpe;
-                row[12] = pokemon?.baseVit;
-                row[13] = pokemon.legendaire;
-                row[14] = pokemon.shiny;
-                row[15] = pokemon.mega;
-                row[16] = pokemon.giga;
-                row[17] = pokemon.fab;
-                row[18] = pokemon.evolution?.nomFraPokemon;
-                row[19] = pokemon.gen.nomGen;
+                row[2] = pokemon.NomFraPokemon;
+                row[3] = pokemon.NomEngPokemon;
+                row[4] = pokemon.NumPokemon;
+                row[5] = pokemon.TaillePokemon;
+                row[6] = pokemon.PoidsPokemon;
+                row[7] = pokemon ?.BasePV;
+                row[8] = pokemon?.BaseAttaque;
+                row[9] = pokemon?.BaseDefense;
+                row[10] = pokemon?.BaseAttSpe;
+                row[11] = pokemon?.BaseDefSpe;
+                row[12] = pokemon?.BaseVit;
+                row[13] = pokemon.Legendaire;
+                row[14] = pokemon.Shiny;
+                row[15] = pokemon.Mega;
+                row[16] = pokemon.Giga;
+                row[17] = pokemon.Fab;
+                row[18] = pokemon.Evolution?.NomFraPokemon;
+                row[19] = pokemon.Gen.NomGen;
                 dtData.Rows.Add(row);
             }
 

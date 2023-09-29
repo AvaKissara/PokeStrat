@@ -40,7 +40,7 @@ namespace PokeStat.Repositories
                 RequestAddDate.CommandText = "INSERT INTO Dates VALUES (@jjmmaaaa)";
 
                 SqlParameter idDate = RequestAddDate.Parameters.Add("@jjmmaaaa", SqlDbType.DateTime);
-                idDate.Value = nouvelleDate.idDate;
+                idDate.Value = nouvelleDate.IdDate;
 
                 int result = RequestAddDate.ExecuteNonQuery();
             //}

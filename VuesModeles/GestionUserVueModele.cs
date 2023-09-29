@@ -215,7 +215,7 @@ namespace PokeStat.VuesModeles
             MUser nouvelUser = new MUser(idUser, NomUser, PrenomUser, PseudoUser, MailUser, MdpUser, Actualise, cree);
             List<MUser> users = repUser.GetAll();
 
-            bool userExiste = users.Any(u => u.mailPersonne.Equals(nouvelUser.mailPersonne, StringComparison.OrdinalIgnoreCase));
+            bool userExiste = users.Any(u => u.MailPersonne.Equals(nouvelUser.MailPersonne, StringComparison.OrdinalIgnoreCase));
 
             if(userExiste)
             {
@@ -256,10 +256,10 @@ namespace PokeStat.VuesModeles
         private void MajUser()
         {
             List<MUser> users = repUser.GetAll();
-            mailUser = LigneSelection.mailPersonne;
+            mailUser = LigneSelection.MailPersonne;
            
 
-            bool userExiste = users.Any(u => u.mailPersonne.Equals(LigneSelection.mailPersonne, StringComparison.OrdinalIgnoreCase));
+            bool userExiste = users.Any(u => u.MailPersonne.Equals(LigneSelection.MailPersonne, StringComparison.OrdinalIgnoreCase));
 
             if (userExiste)
             {
@@ -284,9 +284,9 @@ namespace PokeStat.VuesModeles
 
             if(DtData != null & DtData.Rows.Count > 0)
             {
-                int idUserAEffacer = LigneSelection.idPersonne;
+                int idUserAEffacer = LigneSelection.IdPersonne;
 
-                MUser userAEffacer = users.FirstOrDefault(u => u.idPersonne == idUserAEffacer);
+                MUser userAEffacer = users.FirstOrDefault(u => u.IdPersonne == idUserAEffacer);
 
                 if(userAEffacer != null)
                 {

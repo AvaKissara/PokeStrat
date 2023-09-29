@@ -10,48 +10,43 @@ namespace PokeStat.Modeles
 {
     public class MEquipier : MPokemon
     {
-        public string surnomEquipier { get; set; }
-        public int niveauEquipier { get; set; }
-        public int esquiveEquipier { get; set; }
-        public int ev { get; set; }
-        public int iv { get; set; }
-        public int niveauBonheur { get; set; }
-        public MNature nature { get; set; }
-        public MTalent talentEquipier { get; set; }
-        public List<MCapacite> setCapacites { get; set; }
-        public MObjet objetEquipier { get; set; }
-        public MEquipe equipeEquipier { get; set; }
+        public string SurnomEquipier { get; set; }
+        public int NiveauEquipier { get; set; }
+        public int EsquiveEquipier { get; set; }
+        public int Ev { get; set; }
+        public int Iv { get; set; }
+        public int NiveauBonheur { get; set; }
+        public MNature Nature { get; set; }
+        public MTalent TalentEquipier { get; set; }
+        public List<MCapacite> SetCapacites { get; set; }
+        public MObjet ObjetEquipier { get; set; }
+        public MEquipe EquipeEquipier { get; set; }
 
-
-        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, string SurnomEquipier, int NiveauEquipier, int EsquiveEquipier, int NiveauBonheur, int Ev, int Iv, MNature Nature, MTalent TalentEquipier, MObjet ObjetEquipier)
-        : base(IdPokemon, CheminImgPokemon, NomFraPokemon, BasePV, BaseAttaque, BaseDefense, BaseAttSpe, BaseDefSpe, BaseVit, Legendaire, Shiny, Mega, Giga, Fab)
+        public MEquipier(int idPokemon, string cheminImgPokemon, string nomFraPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab, string surnomEquipier, int niveauEquipier, int esquiveEquipier, int niveauBonheur, int ev, int iv, MNature nature, MTalent talentEquipier, MObjet objetEquipier)
+            : base(idPokemon, cheminImgPokemon, nomFraPokemon, basePV, baseAttaque, baseDefense, baseAttSpe, baseDefSpe, baseVit, legendaire, shiny, mega, giga, fab)
         {
-            this.surnomEquipier = SurnomEquipier;
-            this.niveauEquipier = NiveauEquipier;
-            this.esquiveEquipier = EsquiveEquipier;
-            this.ev = Ev;
-            this.iv = Iv;
-            this.niveauBonheur = NiveauBonheur;
-            this.nature = Nature;
-            this.setCapacites = new List<MCapacite>();
-            this.talentEquipier = TalentEquipier;
-            this.objetEquipier = ObjetEquipier;
-
-        }
-        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string nomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, MPokemon Evolution, MGeneration Gen, string SurnomEquipier, int NiveauEquipier)
-            : base(IdPokemon, CheminImgPokemon, NomFraPokemon, nomEngPokemon, NumPokemon, TaillePokemon, PoidsPokemon, BasePV, BaseAttaque, BaseDefense, BaseAttSpe, BaseDefSpe, BaseVit, Legendaire, Shiny, Mega, Giga, Fab, Evolution, Gen)
-        {
-            this.surnomEquipier = SurnomEquipier;
-            this.niveauEquipier = NiveauEquipier;
+            SurnomEquipier = surnomEquipier;
+            NiveauEquipier = niveauEquipier;
+            EsquiveEquipier = esquiveEquipier;
+            NiveauBonheur = niveauBonheur;
+            Ev = ev;
+            Iv = iv;
+            Nature = nature;
+            SetCapacites = new List<MCapacite>();
+            TalentEquipier = talentEquipier;
+            ObjetEquipier = objetEquipier;
         }
 
-        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon)
-            : base(IdPokemon, CheminImgPokemon, NomFraPokemon)
+        public MEquipier(int idPokemon, string cheminImgPokemon, string nomFraPokemon, string nomEngPokemon, string numPokemon, decimal taillePokemon, decimal poidsPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab, MPokemon evolution, MGeneration gen, string surnomEquipier, int niveauEquipier)
+            : base(idPokemon, cheminImgPokemon, nomFraPokemon, nomEngPokemon, numPokemon, taillePokemon, poidsPokemon, basePV, baseAttaque, baseDefense, baseAttSpe, baseDefSpe, baseVit, legendaire, shiny, mega, giga, fab, evolution, gen)
         {
-           
+            SurnomEquipier = surnomEquipier;
+            NiveauEquipier = niveauEquipier;
         }
-    
 
+        public MEquipier(int idPokemon, string cheminImgPokemon, string nomFraPokemon)
+            : base(idPokemon, cheminImgPokemon, nomFraPokemon)
+        {
+        }
     }
-
 }

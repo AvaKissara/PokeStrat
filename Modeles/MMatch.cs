@@ -9,8 +9,14 @@ namespace PokeStat.Modeles
 {
     public class MMatch
     {
-        public int idMatch { get; }
-        public int dureeMatch { get; set; }
-        List<MEquipe> equipes { get; set;}
+        public int IdMatch { get; }
+        public int DureeMatch { get; set; }
+        public List<MEquipe> Equipes { get; set; }
+
+        public MMatch(int idMatch)
+        {
+            IdMatch = idMatch;
+            Equipes = new List<MEquipe>();
+        }
     }
 }

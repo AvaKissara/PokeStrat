@@ -157,8 +157,8 @@ namespace PokeStat.VuesModeles
             MType model = new MType();
 
             // Exemple de conversion d'une colonne nommée "gen" en une propriété "Gen" de type string dans MType
-            model.idType = (int)dataRowView["idType"];
-            model.nomType = dataRowView["nomType"].ToString();
+            model.IdType = (int)dataRowView["idType"];
+            model.NomType = dataRowView["nomType"].ToString();
 
             // Effectuez les conversions pour les autres propriétés de MType
 
@@ -181,7 +181,7 @@ namespace PokeStat.VuesModeles
                 List<MType> types = repType.GetAll();
 
                 // Vérifie si le nom du type existe déjà dans la liste des types
-                bool typeExiste = types.Any(t => t.nomType.Equals(nouveauType.nomType, StringComparison.OrdinalIgnoreCase));
+                bool typeExiste = types.Any(t => t.NomType.Equals(nouveauType.NomType, StringComparison.OrdinalIgnoreCase));
 
                 if (typeExiste)
                 {
@@ -236,9 +236,9 @@ namespace PokeStat.VuesModeles
             {
                 List<MType> types = repType.GetAll();
                 // Mise à jour du nom du type avec la saisie de l'admin
-                LigneSelection.nomType = nomType;
+                LigneSelection.NomType = nomType;
                 // Vérifie si le nom du type existe déjà dans la liste des types
-                bool typeExiste = types.Any(t => t.nomType.Equals(LigneSelection.nomType, StringComparison.OrdinalIgnoreCase));
+                bool typeExiste = types.Any(t => t.NomType.Equals(LigneSelection.NomType, StringComparison.OrdinalIgnoreCase));
 
                 if (typeExiste)
                 {
@@ -271,10 +271,10 @@ namespace PokeStat.VuesModeles
 
             if (DtData != null && DtData.Rows.Count > 0)
             {
-                int idTypeAEfface = LigneSelection.idType;
+                int idTypeAEfface = LigneSelection.IdType;
 
                 // Cherche le type à effacer en fonction de son id
-                MType typeAEffacer = types.FirstOrDefault(t => t.idType == idTypeAEfface);
+                MType typeAEffacer = types.FirstOrDefault(t => t.IdType == idTypeAEfface);
                 if (typeAEffacer != null)
                 {
                     // Boîte de dialogue de confirmation
