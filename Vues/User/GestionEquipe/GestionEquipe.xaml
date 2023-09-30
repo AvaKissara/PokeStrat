@@ -65,8 +65,8 @@
                                         <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="80" Height="80" VerticalAlignment="Center"/>
                                         <StackPanel>
                                             <TextBlock Text="{Binding Equipier.SurnomEquipier}" FontSize="14" />
-                                        <TextBlock Text="{Binding Equipier.NiveauEquipier}" FontSize="12" Foreground="#555" />
-                                        <!-- Ajoutez d'autres propriétés d'équipier ici -->
+                                            <TextBlock Text="{Binding Equipier.NiveauEquipier}" FontSize="12" Foreground="#555" />
+                                            <!-- Ajoutez d'autres propriétés d'équipier ici -->
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>

@@ -102,8 +102,7 @@ namespace PokeStat.VuesModeles
         {
             ObservableCollection<EquipeTreeViewNode> equipeNodes = new ObservableCollection<EquipeTreeViewNode>();
 
-            // Récupérez vos données d'équipes (MEquipe) depuis la base de données
-            ObservableCollection<MEquipe> equipes = repEquipe.GetAllEquipes();
+            ObservableCollection<MEquipe> equipes = _equipes;
 
             foreach (var equipe in equipes)
             {
