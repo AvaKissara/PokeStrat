@@ -3,23 +3,37 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionEquipeVueModele}"
+      xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" 
+      xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" 
+      d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionEquipeVueModele}"
+      xmlns:projType="clr-namespace:PokeStat.Modeles"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GestionEquipe">
 
     <Page.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontFamily" Value="Raleway" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Cursor" Value="Hand" />
-        </Style>
-        <Style TargetType="ListView">
-            <Setter Property="FontFamily" Value="Raleway" />
-        </Style>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Raleway" />
+        <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
+            <Setter Property="IsExpanded" Value="True" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Foreground" Value="#2D354D" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TreeViewItem">
+                        <Grid>
+                            <Border Name="Bd" Background="Transparent">
+                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" />
+                            </Border>
+                            <ItemsPresenter x:Name="ItemsHost" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#2D354D" />
+                                <Setter TargetName="Bd" Property="BorderThickness" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Page.Resources>
 
@@ -31,36 +45,40 @@
         </Grid.RowDefinitions>
 
         <Grid>
-            <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
-            <ListView Name="listViewTeams" Margin="20,80,20,40" ItemsSource="{Binding Equipes}" SelectedItem="{Binding SelectedEquipe}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Nom de l'équipe" DisplayMemberBinding="{Binding NomEquipe}" Width="200"/>
-                        <GridViewColumn Header="Utilisateur" DisplayMemberBinding="{Binding User.PseudoPersonne}" Width="150"/>
-                        <GridViewColumn Header="Date de création" DisplayMemberBinding="{Binding DateCreation}" Width="150"/>
-                        <GridViewColumn Header="Équipiers">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Equipiers}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <!-- Ajoutez des éléments ici pour afficher les informations de l'équipier -->
-                                                <StackPanel>
-                                                    <Image Source="{Binding CheminImgPokemon}" Width="100" Height="100"/>
-                                                    <TextBlock Text="{Binding NomEquipier}" HorizontalAlignment="Center"/>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
         </Grid>
+        <TreeView Grid.Row="1" ItemsSource="{Binding EquipesTreeView}" ItemContainerStyle="{StaticResource TreeViewItemStyle}">
+            <TreeView.Resources>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="True" />
+                </Style>
+            </TreeView.Resources>
 
-        <Grid Grid.Row="2">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Equipe}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Equipe.NomEquipe}" FontWeight="Bold" FontSize="16" />
+                        <ItemsControl ItemsSource="{Binding Equipiers}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="80" Height="80" VerticalAlignment="Center"/>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Equipier.SurnomEquipier}" FontSize="14" />
+                                        <TextBlock Text="{Binding Equipier.NiveauEquipier}" FontSize="12" Foreground="#555" />
+                                        <!-- Ajoutez d'autres propriétés d'équipier ici -->
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+
+        <Grid Grid.Row="3">
             <Button Name="addTeam" Content="Ajouter une équipe" HorizontalAlignment="Left" Margin="40,0,70,40" VerticalAlignment="Bottom" Background="#7B7B7E" FontSize="18" Padding="20,7" />
             <Button Name="updTeam" Content="Modifier une équipe" HorizontalAlignment="Center" Margin="40,70,0,40" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>
             <Button Name="delTeam" Content="Supprimer une équipe" HorizontalAlignment="Right" Margin="40,70,40,40" VerticalAlignment="Bottom" FontSize="18" Padding="20,7"/>

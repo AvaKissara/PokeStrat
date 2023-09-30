@@ -64,6 +64,8 @@
       <DependentUpon>MdpControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConnexionBdd.cs" />
+    <Compile Include="Modeles\EquipeTreeViewNode.cs" />
+    <Compile Include="Modeles\EquipierTreeViewNode.cs" />
     <Compile Include="Modeles\MAction.cs" />
     <Compile Include="Modeles\MAdmin.cs" />
     <Compile Include="Modeles\MCapacite.cs" />
@@ -327,6 +329,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\PokeStat.exe.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -337,6 +340,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Release\" />
     <Folder Include="data\" />
     <Folder Include="Services\" />
   </ItemGroup>
@@ -448,6 +452,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\PokeStat.exe" />
+    <Content Include="bin\Debug\PokeStat.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

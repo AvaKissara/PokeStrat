@@ -5,6 +5,7 @@ using PokeStat.Vues;
 using PokeStat.Vues.User.GestionEquipe;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
@@ -25,15 +26,17 @@ namespace PokeStat.VuesModeles
         public IEnumerable<MEquipe> Equipes => _equipes;
 
         private ObservableCollection<MEquipier> _equipiers;
-        public ObservableCollection<MEquipier> Equipiers
-        {
-            get { return _equipiers; }
-            set
-            {
-                _equipiers = value;
-                OnPropertyChanged(nameof(Equipiers));
-            }
-        }
+
+        public IEnumerable<MEquipier> Equipiers => _equipiers;
+        //public ObservableCollection<MEquipier> Equipiers
+        //{
+        //    get { return _equipiers; }
+        //    set
+        //    {
+        //        _equipiers = value;
+        //        OnPropertyChanged(nameof(Equipiers));
+        //    }
+        //}
 
         private MEquipe selectedEquipe;
         public MEquipe SelectedEquipe
@@ -45,7 +48,7 @@ namespace PokeStat.VuesModeles
                 OnPropertyChanged(nameof(SelectedEquipe));
 
                 // Mettez à jour la liste d'équipiers en fonction de l'équipe sélectionnée
-                Equipiers = selectedEquipe?.Equipiers;
+                _equipiers = selectedEquipe?.Equipiers;
             }
         }
 
@@ -61,16 +64,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        //private string nomEquipe;
-        //public string NomEquipe
-        //{
-        //    get { return nomEquipe; }
-        //    set
-        //    {
-        //        nomEquipe = value;
-        //        OnPropertyChanged(nameof(NomEquipe));
-        //    }
-        //}
         public string NomEquipe { get; set; }
 
         private int userId;
@@ -83,7 +76,17 @@ namespace PokeStat.VuesModeles
                 OnPropertyChanged(nameof(UserId));
             }
         }
+        private ObservableCollection<EquipeTreeViewNode> _equipesTreeView;
 
+        public ObservableCollection<EquipeTreeViewNode> EquipesTreeView
+        {
+            get { return _equipesTreeView; }
+            set
+            {
+                _equipesTreeView = value;
+                OnPropertyChanged(nameof(EquipesTreeView));
+            }
+        }
         public GestionEquipeVueModele()
         {
             GestionCommand = new RelayCommand(GestionEquipe);
@@ -92,7 +95,37 @@ namespace PokeStat.VuesModeles
             repEquipe = new RepEquipe();
             _equipes = repEquipe.GetAllEquipes();
             _equipiers = repEquipe.GetEquipiers();
+            _equipesTreeView = InitializeTreeViewData();
         }
+
+        private ObservableCollection<EquipeTreeViewNode> InitializeTreeViewData()
+        {
+            ObservableCollection<EquipeTreeViewNode> equipeNodes = new ObservableCollection<EquipeTreeViewNode>();
+
+            // Récupérez vos données d'équipes (MEquipe) depuis la base de données
+            ObservableCollection<MEquipe> equipes = repEquipe.GetAllEquipes();
+
+            foreach (var equipe in equipes)
+            {
+                var equipeNode = new EquipeTreeViewNode(equipe);
+
+                // Récupérez les équipiers correspondant à cette équipe
+                var equipeEquipiers = _equipiers.Where(e => e.EquipeId == equipe.IdEquipe).ToList();
+
+
+
+                foreach (var equipier in equipeEquipiers)
+                {
+                    equipeNode.Equipiers.Add(new EquipierTreeViewNode(equipier));
+                }
+
+                equipeNodes.Add(equipeNode);
+            }
+
+            return equipeNodes;
+        }
+
+
 
         private void GestionEquipe()
         {

@@ -36,9 +36,6 @@ namespace PokeStat.VuesModeles
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
-
-
-        private BaseVueModele _navigationBarViewModel;
         public BaseVueModele NavigationBarViewModel
         {
             get

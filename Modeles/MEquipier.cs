@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,8 +22,26 @@ namespace PokeStat.Modeles
         public List<MCapacite> SetCapacites { get; set; }
         public MObjet ObjetEquipier { get; set; }
         public MEquipe EquipeEquipier { get; set; }
+        public int EquipeId { get; set; }
+        public string CheminImgPokemonAbsolu
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(CheminImgPokemon))
+                {
+                    // Obtenez le chemin du répertoire de l'exécutable de l'application
+                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-        public MEquipier(int idPokemon, string cheminImgPokemon, string nomFraPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab, string surnomEquipier, int niveauEquipier, int esquiveEquipier, int niveauBonheur, int ev, int iv, MNature nature, MTalent talentEquipier, MObjet objetEquipier)
+                    // Composez le chemin absolu en concaténant le chemin du répertoire de l'application avec le chemin relatif
+                    return Path.Combine(appDirectory, CheminImgPokemon);
+                }
+
+                return string.Empty;
+            }
+        }
+
+
+        public MEquipier(int idPokemon, string cheminImgPokemon, string nomFraPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab, string surnomEquipier, int niveauEquipier, int esquiveEquipier, int niveauBonheur, int ev, int iv, MNature nature, MTalent talentEquipier, MObjet objetEquipier, int EquipeId)
             : base(idPokemon, cheminImgPokemon, nomFraPokemon, basePV, baseAttaque, baseDefense, baseAttSpe, baseDefSpe, baseVit, legendaire, shiny, mega, giga, fab)
         {
             SurnomEquipier = surnomEquipier;
@@ -35,6 +54,7 @@ namespace PokeStat.Modeles
             SetCapacites = new List<MCapacite>();
             TalentEquipier = talentEquipier;
             ObjetEquipier = objetEquipier;
+            this.EquipeId = EquipeId;
         }
 
         public MEquipier(int idPokemon, string cheminImgPokemon, string nomFraPokemon, string nomEngPokemon, string numPokemon, decimal taillePokemon, decimal poidsPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab, MPokemon evolution, MGeneration gen, string surnomEquipier, int niveauEquipier)
