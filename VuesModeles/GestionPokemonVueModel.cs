@@ -54,7 +54,6 @@ namespace PokeStat.VuesModeles
                 {
                     _ligneSelection = value;
                     OnPropertyChanged(nameof(LigneSelection));
-                    // indique si un élément est sélectionné ou non
                     OnPropertyChanged(nameof(IsSelectionne));
                 }
             }

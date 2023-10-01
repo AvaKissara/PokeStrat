@@ -27,8 +27,8 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Bd" Property="BorderBrush" Value="#2D354D" />
-                                <Setter TargetName="Bd" Property="BorderThickness" Value="1" />
+                                <Setter TargetName="Bd" Property="Background" Value="#333" />
+                                <Setter Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -59,15 +59,20 @@
                     <StackPanel>
                         <TextBlock Text="{Binding Equipe.NomEquipe}" FontWeight="Bold" FontSize="16" />
                         <ItemsControl ItemsSource="{Binding Equipiers}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel>
                                         <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="80" Height="80" VerticalAlignment="Center"/>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Equipier.SurnomEquipier}" FontSize="14" />
-                                            <TextBlock Text="{Binding Equipier.NiveauEquipier}" FontSize="12" Foreground="#555" />
-                                            <!-- Ajoutez d'autres propriétés d'équipier ici -->
-                                        </StackPanel>
+                                        <TextBlock Text="{Binding Equipier.SurnomEquipier}" FontSize="14" />
+                                        <TextBlock FontSize="12">
+                                            <Run Text="lvl: " />
+                                            <Run Text="{Binding Equipier.NiveauEquipier}" />        
+                                        </TextBlock>
                                     </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -75,6 +80,7 @@
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
+
         </TreeView>
 
 

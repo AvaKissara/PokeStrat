@@ -12,9 +12,9 @@ namespace PokeStat.Modeles
         public MEquipe Equipe { get; }
         public ObservableCollection<EquipierTreeViewNode> Equipiers { get; } = new ObservableCollection<EquipierTreeViewNode>();
 
-        public EquipeTreeViewNode(MEquipe equipe)
+        public EquipeTreeViewNode(MEquipe Equipe)
         {
-            Equipe = equipe;
+            this.Equipe = Equipe;
         }
     }
 

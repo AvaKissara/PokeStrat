@@ -12,9 +12,9 @@ namespace PokeStat.Modeles
         public MEquipier Equipier { get; }
 
         
-        public EquipierTreeViewNode(MEquipier equipier)
+        public EquipierTreeViewNode(MEquipier Equipier)
         {
-            Equipier = equipier;
+            this.Equipier = Equipier;
         }
     }
 }

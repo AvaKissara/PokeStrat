@@ -111,20 +111,14 @@ namespace PokeStat.VuesModeles
                 // Récupérez les équipiers correspondant à cette équipe
                 var equipeEquipiers = _equipiers.Where(e => e.EquipeId == equipe.IdEquipe).ToList();
 
-
-
                 foreach (var equipier in equipeEquipiers)
                 {
                     equipeNode.Equipiers.Add(new EquipierTreeViewNode(equipier));
                 }
-
                 equipeNodes.Add(equipeNode);
             }
-
             return equipeNodes;
         }
-
-
 
         private void GestionEquipe()
         {
