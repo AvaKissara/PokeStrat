@@ -3,10 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe"
+        xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:EquipeTreeViewNode}"
         mc:Ignorable="d"
         Title="DetailEquipe" Height="450" Width="800">
     <Grid>
-        
+        <ListView ItemsSource="{Binding Equipiers}" Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Image" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="80" Height="80" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Surnom" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Equipier.SurnomEquipier}" FontSize="14" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Niveau" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Equipier.NiveauEquipier}" FontSize="14" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <!-- Ajoutez d'autres colonnes pour les autres propriétés d'équipiers -->
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

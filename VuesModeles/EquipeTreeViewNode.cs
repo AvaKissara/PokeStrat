@@ -22,11 +22,17 @@ namespace PokeStat.VuesModeles
             }
         }
         public MEquipe Equipe { get; }
-        public ObservableCollection<EquipierTreeViewNode> Equipiers { get; } = new ObservableCollection<EquipierTreeViewNode>();
-
+        public ObservableCollection<EquipierTreeViewNode> Equipiers { get; }= new ObservableCollection<EquipierTreeViewNode>();
         public EquipeTreeViewNode(MEquipe Equipe)
         {
             this.Equipe = Equipe;
+
+        }
+        public EquipeTreeViewNode(MEquipe Equipe, ObservableCollection<EquipierTreeViewNode> Equipiers)
+        {
+            this.Equipe = Equipe;
+            this.Equipiers = Equipiers;
+
         }
     }
 }

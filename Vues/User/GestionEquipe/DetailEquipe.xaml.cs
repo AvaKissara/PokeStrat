@@ -1,4 +1,6 @@
-﻿using PokeStat.Utilitaires;
+﻿using PokeStat.Modeles;
+using PokeStat.Utilitaires;
+using PokeStat.VuesModeles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +26,12 @@ namespace PokeStat.Vues.User.GestionEquipe
         public DetailEquipe()
         {
             InitializeComponent();
-
             MainWindow = new MainWindow();
+    
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
         }
+
+
     }
 }

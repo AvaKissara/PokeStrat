@@ -124,9 +124,14 @@ namespace PokeStat.VuesModeles
                     }
 
                     OnPropertyChanged(nameof(SelectedEquipeNode));
+
+                    // Appelez la méthode DetailPopup ici
+                    DetailPopup();
                 }
             }
         }
+
+
 
         public GestionEquipeVueModele()
         {
@@ -139,6 +144,7 @@ namespace PokeStat.VuesModeles
             _equipes = repEquipe.GetAllEquipes();
             _equipiers = repEquipe.GetEquipiers();
             _equipesTreeView = InitializeTreeViewData();
+
         }
 
         private ObservableCollection<EquipeTreeViewNode> InitializeTreeViewData()
@@ -163,14 +169,19 @@ namespace PokeStat.VuesModeles
         }
         private void DetailPopup()
         {
+            
+            if (SelectedEquipeNode != null)
+            {
+                // Créez une nouvelle instance de EquipeTreeViewNode pour l'équipe sélectionnée
+                var equipeNode = new EquipeTreeViewNode(SelectedEquipeNode.Equipe, SelectedEquipeNode.Equipiers);
 
-            //if (SelectedEquipeNode != null)
-            //{
+                // Créez une nouvelle instance de DetailEquipe en passant l'équipeNode comme DataContext
                 var detailPopup = new DetailEquipe();
-                detailPopup.DataContext = new EquipeTreeViewNode(SelectedEquipe);
-                detailPopup.ShowDialog();
+                detailPopup.DataContext = equipeNode;
 
-            //}
+                detailPopup.ShowDialog();
+            }
+            
         }
         private void ClosePopup()
         {

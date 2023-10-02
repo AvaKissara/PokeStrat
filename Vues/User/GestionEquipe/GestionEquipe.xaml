@@ -46,7 +46,7 @@
         <Grid>
             <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
         </Grid>
-        <TreeView Grid.Row="1" ItemsSource="{Binding EquipesTreeView}" ItemContainerStyle="{StaticResource TreeViewItemStyle}">
+        <TreeView Grid.Row="1" ItemsSource="{Binding EquipesTreeView}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" SelectedItemChanged="TreeView_SelectedItemChanged">
             <TreeView.Resources>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsExpanded" Value="True" />

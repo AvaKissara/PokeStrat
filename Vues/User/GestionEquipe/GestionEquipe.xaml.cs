@@ -33,5 +33,12 @@ namespace PokeStat.Vues.User.GestionEquipe
             NavigationServices.Initialize(mainFrame);
             NavigationServices.NavigateToPage(this);
         }
+        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (DataContext is GestionEquipeVueModele viewModel)
+            {
+                viewModel.SelectedEquipeNode = e.NewValue as EquipeTreeViewNode;
+            }
+        }
     }
 }

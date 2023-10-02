@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
 {
-    public class EquipierTreeViewNode
+    public class EquipierTreeViewNode : BaseVueModele
     {
         public ICommand AccueilPageCommand { get; set; }
         public MEquipier Equipier { get; }
