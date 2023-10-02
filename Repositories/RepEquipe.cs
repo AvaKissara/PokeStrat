@@ -96,7 +96,7 @@ namespace PokeStat.Repositories
                         natureEquipier, 
                         talentEquipier,
                         objetTenu,
-                        8
+                        equipiers.GetInt32(50)
                         );
 
                     observableMEquipiers.Add(unEquipier);

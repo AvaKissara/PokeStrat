@@ -70,7 +70,7 @@
                                         <TextBlock Text="{Binding Equipier.SurnomEquipier}" FontSize="14" />
                                         <TextBlock FontSize="12">
                                             <Run Text="lvl: " />
-                                            <Run Text="{Binding Equipier.NiveauEquipier}" />        
+                                            <Run Text="{Binding Equipier.NiveauEquipier}" />
                                         </TextBlock>
                                     </StackPanel>
                                 </DataTemplate>
@@ -80,9 +80,6 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <Button Name="btnShowPopup" Content="Afficher les détails" Command="{Binding DetailPopupCommand}" HorizontalAlignment="Right" Margin="40,30,45,0" VerticalAlignment="Top"  Foreground="White" FontSize="18" Padding="20,7"/>
-
-
 
 
         <Grid Grid.Row="3">

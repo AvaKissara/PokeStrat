@@ -167,6 +167,7 @@ namespace PokeStat.VuesModeles
             }
             return equipeNodes;
         }
+
         private void DetailPopup()
         {
             
