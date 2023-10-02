@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokeStat.Modeles;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokeStat.Modeles
+namespace PokeStat.VuesModeles
 {
-    public class EquipeTreeViewNode : INotifyPropertyChanged, IDisposable
+    public class EquipeTreeViewNode : BaseVueModele
     {
         private bool isSelected;
         public bool IsSelected
@@ -27,14 +28,5 @@ namespace PokeStat.Modeles
         {
             this.Equipe = Equipe;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public virtual void Dispose() { }
     }
 }

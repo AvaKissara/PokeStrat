@@ -125,9 +125,8 @@ namespace PokeStat.VuesModeles
 
         private void AccueilPage()
         {
-            // Vers la page d'accueil
-            Page accueilPage = new AccueilPage();
-            NavigationServices.NavigateToPage(accueilPage);
+       
+            NavigationServices.NavigateToPage(new AccueilPage());
         }
 
         public void GestionVersion()

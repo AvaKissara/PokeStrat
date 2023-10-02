@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" 
       xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" 
       d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionEquipeVueModele}"
-      xmlns:projType="clr-namespace:PokeStat.Modeles"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GestionEquipe">
