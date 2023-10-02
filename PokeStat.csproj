@@ -91,6 +91,11 @@
     <Compile Include="Modeles\MType.cs" />
     <Compile Include="Modeles\MRegion.cs" />
     <Compile Include="Modeles\TypeObj.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\RepAdmin.cs" />
     <Compile Include="Repositories\RepDate.cs" />
@@ -181,6 +186,9 @@
     </Compile>
     <Compile Include="Vues\Layout\NavigationBarUser.xaml.cs">
       <DependentUpon>NavigationBarUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\User\GestionEquipe\DetailEquipe.xaml.cs">
+      <DependentUpon>DetailEquipe.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vues\User\GestionEquipe\GestionEquipe.xaml.cs">
       <DependentUpon>GestionEquipe.xaml</DependentUpon>
@@ -294,6 +302,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vues\User\GestionEquipe\DetailEquipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vues\User\GestionEquipe\GestionEquipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -314,11 +326,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -342,6 +349,7 @@
   <ItemGroup>
     <Folder Include="bin\Release\" />
     <Folder Include="data\" />
+    <Folder Include="Resources\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>

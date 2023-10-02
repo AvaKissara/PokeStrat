@@ -1,5 +1,4 @@
 ﻿using PokeStat.Utilitaires;
-using PokeStat.VuesModeles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +11,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PokeStat.Vues.User.GestionEquipe
 {
     /// <summary>
-    /// Logique d'interaction pour GestionEquipe.xaml
+    /// Logique d'interaction pour DetailEquipe.xaml
     /// </summary>
-    public partial class GestionEquipe : Page
+    public partial class DetailEquipe : Window
     {
-        private GestionEquipeVueModele gestionEquipeVueModele;
-        public GestionEquipe()
+        private MainWindow MainWindow;
+        public DetailEquipe()
         {
             InitializeComponent();
-            gestionEquipeVueModele = new GestionEquipeVueModele();
-            DataContext =gestionEquipeVueModele;
 
+            MainWindow = new MainWindow();
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
-            NavigationServices.NavigateToPage(this);
         }
     }
 }

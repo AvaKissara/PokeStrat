@@ -14,7 +14,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Vues/DicoRes.xaml" />
-                <!-- Ajoutez d'autres dictionnaires de ressources ici si nécessaire -->
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type vuesmodeles:NavigationBarVueModele}">
                 <local1:NavigationBar />
