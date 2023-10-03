@@ -7,27 +7,35 @@
       xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" 
       d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionEquipeVueModele}"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1800"
       Title="GestionEquipe">
 
     <Page.Resources>
         <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
             <Setter Property="IsExpanded" Value="True" />
             <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="Foreground" Value="#2D354D" />
+            <Setter Property="Foreground" Value="White" />
+              <Setter Property="Margin" Value="20" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TreeViewItem">
                         <Grid>
-                            <Border Name="Bd" Background="Transparent">
+                            <Border Name="Bd" Background="#2D354D">
+
                                 <ContentPresenter x:Name="PART_Header" ContentSource="Header" />
                             </Border>
                             <ItemsPresenter x:Name="ItemsHost" />
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#333" />
-                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="Bd" Property="Background" Value="#2D354D" />
+                                <Setter Property="Foreground" Value="#FFF3D772" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#FF181D2B" ShadowDepth="2" BlurRadius="2"  />
+                                    </Setter.Value>
+                                </Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -46,7 +54,7 @@
         <Grid>
             <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
         </Grid>
-        <TreeView Grid.Row="1" ItemsSource="{Binding EquipesTreeView}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" SelectedItemChanged="TreeView_SelectedItemChanged">
+        <TreeView Grid.Row="1" ItemsSource="{Binding EquipesTreeView}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" SelectedItemChanged="TreeView_SelectedItemChanged" Background="#FF2D354D" BorderBrush="#FF2D354D">
             <TreeView.Resources>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsExpanded" Value="True" />
@@ -55,6 +63,7 @@
 
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Equipe}">
+                    
                     <StackPanel>
                         <TextBlock Text="{Binding Equipe.NomEquipe}" FontWeight="Bold" FontSize="16" />
                         <ItemsControl ItemsSource="{Binding Equipiers}">
@@ -65,14 +74,21 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
                                         <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="80" Height="80" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Equipier.SurnomEquipier}" FontSize="14" />
-                                        <TextBlock FontSize="12">
-                                            <Run Text="lvl: " />
-                                            <Run Text="{Binding Equipier.NiveauEquipier}" />
+
+                                        <TextBlock Grid.Column="1" Text="{Binding Equipier.SurnomEquipier}" FontSize="14" VerticalAlignment="Center">
+                                            <TextBlock.LayoutTransform>
+                                                <RotateTransform Angle="-90"/>
+                                            </TextBlock.LayoutTransform>
                                         </TextBlock>
-                                    </StackPanel>
+                                    </Grid>
+
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
