@@ -462,6 +462,11 @@
     <None Include="Ressources\001.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="bin\Debug\cardpic.png" />
+    <Resource Include="bin\Debug\003.png" />
+    <Resource Include="bin\Debug\025.png" />
+    <Resource Include="bin\Debug\037.png" />
+    <Resource Include="bin\Debug\037_f2.png" />
     <Content Include="bin\Debug\PokeStat.exe" />
     <Content Include="bin\Debug\PokeStat.pdb" />
   </ItemGroup>

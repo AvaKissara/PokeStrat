@@ -126,16 +126,7 @@
                 </StackPanel>
            
             </Grid>
-            <!-- Bouton de fermeture 
-            <Button Grid.Column="1" Width="30" Height="30" Background="Red" Content="X" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding CloseCommand}"/>
-            <Button Content="" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Right" Margin="0,30,0,0" VerticalAlignment="Top" FontSize="18" Padding="20,7">-->
-            <!--<Button.Background>-->
-            <!--<ImageBrush ImageSource="/PokeStat;component/ressources/home.png" Stretch="Fill"/>-->
-            <!-- </Button.Background>-->
-            <!--</Button>-->
-            <!-- <Button x:Name="btnGestionEquipe" Content="Mes Equipes" Command="{Binding GestionEquipeCommand}" HorizontalAlignment="Left" Margin="29,30,0,0" VerticalAlignment="Top" FontSize="18" Padding="20,7"/>-->
-            <!--<Button x:Name="btnGestionMatch" Content="Mes Matchs" Command="{Binding GestionMatchCommand}" HorizontalAlignment="Left" Margin="176,30,0,0" VerticalAlignment="Top" FontSize="18" Padding="20,7"/>-->
-            <!--<Button x:Name="btnGestionProfile" Content="Mon Profile" Command="{Binding GestionProfileCommand}" HorizontalAlignment="Left" Margin="320,30,0,0" VerticalAlignment="Top" FontSize="18" Padding="20,7"/>-->
+           
         </Grid> 
     </Grid>
 </UserControl>
