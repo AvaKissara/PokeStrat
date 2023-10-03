@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:EquipeTreeViewNode}"
         mc:Ignorable="d"
-        Title="DetailEquipe" Height="450" Width="800">
+        Title="DetailEquipe" Height="450" Width="1000">
     <Grid>
         <ListView ItemsSource="{Binding Equipiers}" Margin="20">
             <ListView.View>
@@ -38,7 +38,6 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-
                     <GridViewColumn Header="Attaque" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -51,6 +50,20 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Equipier.BaseDefense}" FontSize="14" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Att Spe" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Equipier.BaseAttSpe}" FontSize="14" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Def Spe" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Equipier.BaseDefSpe}" FontSize="14" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
