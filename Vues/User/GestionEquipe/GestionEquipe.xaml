@@ -22,7 +22,6 @@
                     <ControlTemplate TargetType="TreeViewItem">
                         <Grid>
                             <Border Name="Bd" Background="#2D354D">
-
                                 <ContentPresenter x:Name="PART_Header" ContentSource="Header" />
                             </Border>
                             <ItemsPresenter x:Name="ItemsHost" />
@@ -32,6 +31,7 @@
                                 <Setter TargetName="Bd" Property="Background" Value="#2D354D" />
                                 <Setter Property="Foreground" Value="#FFF3D772" />
                                 <Setter Property="FontWeight" Value="Bold" />
+
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -59,7 +59,6 @@
 
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Equipe}">
-                    
                     <StackPanel>
                         <TextBlock Text="{Binding Equipe.NomEquipe}" FontWeight="Bold" FontSize="16" />
                         <ItemsControl ItemsSource="{Binding Equipiers}">
@@ -76,15 +75,13 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="90" Height="100" VerticalAlignment="Center"/>
-
+                                        <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="110" Height="110" VerticalAlignment="Center"/>
                                         <TextBlock Grid.Column="1" Text="{Binding Equipier.SurnomEquipier}" FontSize="14" VerticalAlignment="Center">
                                             <TextBlock.LayoutTransform>
                                                 <RotateTransform Angle="-90"/>
                                             </TextBlock.LayoutTransform>
                                         </TextBlock>
                                     </Grid>
-
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
