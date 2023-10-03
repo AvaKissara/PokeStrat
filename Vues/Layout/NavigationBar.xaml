@@ -15,24 +15,116 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonSlidStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border1" BorderThickness="0,0.5,0,0" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" BorderBrush="#FFDAD6D6" Background="#2D354D">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.3" To="MouseOver"/>
+                                        <VisualTransition From="MouseOver" GeneratedDuration="0:0:0.3" To="Normal"/>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border1">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF011F3A"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed"/>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid x:Name="border" SnapsToDevicePixels="true" Margin="0,0,-2,-2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="83*"/>
+                                    <ColumnDefinition Width="117*"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.ColumnSpan="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,17.906,0,17.907" Height="Auto" Width="Auto"/>
+                                <TextBlock HorizontalAlignment="Right" Height="Auto" TextWrapping="Wrap"  VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="{TemplateBinding Tag}" FontSize="24" Width="Auto" Margin="0,11.636,12.475,17.636" Foreground="{TemplateBinding Foreground}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid>
+        <Grid Cursor="">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- Bouton de fermeture -->
-            <Button Grid.Column="1" Width="30" Height="30" Background="Red" Foreground="White" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Command="{Binding CloseCommand}"/>
-            <Button Content="Connexion" Command="{Binding ConnexionPopupCommand}" HorizontalAlignment="Right" Margin="40,30,45,0" VerticalAlignment="Top"  Foreground="White" FontSize="18" Padding="20,7"/>
-            <Button Content="" Command="{Binding AccueilPageCommand}" HorizontalAlignment="Right" Margin="0,30,0,0" VerticalAlignment="Top" FontSize="18" Padding="20,7">
-                <Button.Background>
-                    <ImageBrush ImageSource="/PokeStat;component/ressources/home.png" Stretch="Fill"/>
-                </Button.Background>
-            </Button>
-            <Button Content="Inscription" Command="{Binding InscriptionPopupCommand}" HorizontalAlignment="Right" Margin="0,30,175,0" VerticalAlignment="Top" Foreground="White" FontSize="18" Padding="20,7"/>
+            <StackPanel Background="#2D354D" Grid.RowSpan="2">
+                <Canvas Height="220">
+                    <Label Content="okeStrat" Canvas.Left="68.5" Canvas.Top="84.593" Foreground="White" FontFamily="Swis721 BlkCn BT" FontSize="20"/>
+                    <Path Data="M15.046875,36.632813 C15.703124,36.632813 16.289063,36.785156 16.804688,37.089844 C17.320313,37.394531 17.765625,37.816406 18.140625,38.355469 C20.34375,41.542969 22.927734,43.96875 25.892578,45.632813 C28.85742,47.296875 32.320313,48.128906 36.28125,48.128906 C40.03125,48.128906 43.388672,47.255859 46.353516,45.509766 C49.318356,43.763672 51.843746,41.378906 53.929688,38.355469 C54.281246,37.839844 54.697262,37.423828 55.177734,37.107422 C55.658199,36.791016 56.226559,36.632813 56.882813,36.632813 C57.937496,36.632813 58.828121,36.960938 59.554688,37.617188 C60.281246,38.273438 60.644527,39.152344 60.644531,40.253906 C60.644527,40.605469 60.597652,40.927734 60.503906,41.220703 C60.410152,41.513672 60.269527,41.8125 60.082031,42.117188 C59.519527,43.148438 58.845699,44.109375 58.060547,45 C57.275387,45.890625 56.460934,46.746094 55.617188,47.566406 C52.921871,50.121094 49.874996,52.060547 46.476563,53.384766 C43.078125,54.708984 39.527344,55.371094 35.824219,55.371094 C33.457031,55.371094 31.119139,55.066406 28.810547,54.457031 C26.501951,53.847656 24.310545,52.974609 22.236328,51.837891 C20.162109,50.701172 18.246094,49.324219 16.488281,47.707031 C14.730468,46.089844 13.242187,44.261719 12.023438,42.222656 C11.625,41.613281 11.425781,40.957031 11.425781,40.253906 C11.425781,39.761719 11.519531,39.292969 11.707031,38.847656 C11.894531,38.402344 12.158203,38.015625 12.498047,37.6875 C12.83789,37.359375 13.224608,37.101563 13.658203,36.914063 C14.091796,36.726563 14.554687,36.632813 15.046875,36.632813 z M49.183594,14.589844 C49.980465,14.589848 50.724606,14.742191 51.416016,15.046875 C52.107418,15.351566 52.710934,15.767582 53.226563,16.294922 C53.742184,16.822269 54.146481,17.431644 54.439453,18.123047 C54.732418,18.814457 54.878902,19.558598 54.878906,20.355469 C54.878902,21.152348 54.726559,21.896488 54.421875,22.587891 C54.117184,23.279301 53.707027,23.888676 53.191406,24.416016 C52.675777,24.943359 52.072262,25.359375 51.380859,25.664063 C50.689449,25.96875 49.945309,26.121094 49.148438,26.121094 C48.351563,26.121094 47.607422,25.96875 46.916016,25.664063 C46.224609,25.359375 45.621094,24.943359 45.105469,24.416016 C44.589844,23.888676 44.179688,23.279301 43.875,22.587891 C43.570313,21.896488 43.417969,21.152348 43.417969,20.355469 C43.417969,19.558598 43.570313,18.808598 43.875,18.105469 C44.179688,17.402348 44.589844,16.792973 45.105469,16.277344 C45.621094,15.761723 46.230469,15.351566 46.933594,15.046875 C47.636719,14.742191 48.386719,14.589848 49.183594,14.589844 z M22.886719,14.589844 C23.683592,14.589848 24.427732,14.742191 25.119141,15.046875 C25.810545,15.351566 26.41992,15.767582 26.947266,16.294922 C27.474607,16.822269 27.890623,17.431644 28.195313,18.123047 C28.499998,18.814457 28.652342,19.558598 28.652344,20.355469 C28.652342,21.12891 28.499998,21.867191 28.195313,22.570313 C27.890623,23.273441 27.480467,23.888676 26.964844,24.416016 C26.449217,24.943359 25.845701,25.359375 25.154297,25.664063 C24.462889,25.96875 23.718748,26.121094 22.921875,26.121094 C22.125,26.121094 21.380859,25.96875 20.689453,25.664063 C19.998047,25.359375 19.394531,24.949219 18.878906,24.433594 C18.363281,23.917973 17.953125,23.314457 17.648438,22.623047 C17.34375,21.931644 17.191406,21.187504 17.191406,20.390625 C17.191406,19.593754 17.337891,18.843754 17.630859,18.140625 C17.923828,17.437504 18.328125,16.822269 18.84375,16.294922 C19.359375,15.767582 19.962891,15.351566 20.654297,15.046875 C21.345703,14.742191 22.089844,14.589848 22.886719,14.589844 z" Fill="White" Height="40.781" Canvas.Left="69.772" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Canvas.Top="40.209" Width="49.219">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="19.983"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Label Content="P" Canvas.Left="43" Canvas.Top="53.11" Foreground="#FFFD860E" FontSize="48" FontFamily="Comic Sans MS"/>
+                </Canvas>
+                <Button Content="Home" HorizontalAlignment="Left" Height="60" Width="200" Command="{Binding AccueilPageCommand}" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Tag="&#xE10F;" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Cursor=""/>
+                <Button Content="Connexion" Command="{Binding ConnexionPopupCommand}" HorizontalAlignment="Left" Height="60" Width="200" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Tag="&#xE192;" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}"/>
+                <Button Content="Inscription" Command="{Binding InscriptionPopupCommand}" HorizontalAlignment="Left" Height="60" Width="200" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Tag="&#xE77B;" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}"/>
+                <Button Content="Setting" HorizontalAlignment="Left" Height="60" Width="200" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Tag="&#xE115;" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}"/>
+                <Image Height="312.255" Opacity="0.84" StretchDirection="DownOnly" Margin="-139.333,0,0,0">
+                    <Image.Effect>
+                        <BlurEffect Radius="1" RenderingBias="Quality"/>
+                    </Image.Effect>
+                </Image>
+            </StackPanel>
+            <Grid Grid.Column="1" Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="&#xE711;" Width="49.699" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}" Command="{Binding CloseCommand}" FontFamily="Segoe MDL2 Assets" FontSize="24" Foreground="White" Height="50" VerticalAlignment="Top"/>
+                </StackPanel>
+
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

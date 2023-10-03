@@ -31,7 +31,7 @@ namespace PokeStat
             DataContext = accueilVueModel;
             SetWindowFullScreen();
             NavigationServices.Initialize(MainFrame);
-          
+
         }
 
         public void UpdateNavigationBarVisibility()
@@ -46,10 +46,16 @@ namespace PokeStat
         }
 
 
-        private void SetWindowFullScreen()
+        public void SetWindowFullScreen()
         {
-            WindowStyle = WindowStyle.None;
-            WindowState = WindowState.Maximized;
+            // Obtenez la fenêtre parente du UserControl
+            Window parentWindow = Window.GetWindow(this);
+
+            if (parentWindow != null)
+            {
+                parentWindow.WindowStyle = WindowStyle.None;
+                parentWindow.WindowState = WindowState.Maximized;
+            }
         }
     }
 }

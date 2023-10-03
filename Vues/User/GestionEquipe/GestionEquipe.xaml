@@ -46,11 +46,15 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
         <Grid>
-            <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="24" Padding="6,4" Margin="0,16,0,50" Foreground="White"/>
+            <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="24" Padding="6,4" Margin="0,60,0,50" Foreground="White"/>
         </Grid>
-        <TreeView Grid.Row="1" ItemsSource="{Binding EquipesTreeView}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" SelectedItemChanged="TreeView_SelectedItemChanged" Background="#FF2D354D" BorderBrush="#FF2D354D">
+
+        <TreeView Grid.Row="1" Width="1600" HorizontalAlignment="Stretch" ItemsSource="{Binding EquipesTreeView}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" SelectedItemChanged="TreeView_SelectedItemChanged" Background="#FF2D354D" BorderBrush="#FF2D354D">
             <TreeView.Resources>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsExpanded" Value="True" />
@@ -89,7 +93,6 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-
 
         <Grid Grid.Row="3">
             <Button Name="addTeam" Content="Ajouter une équipe" HorizontalAlignment="Left" Margin="40,0,70,40" VerticalAlignment="Bottom" Background="#7B7B7E" FontSize="18" Padding="20,7" />

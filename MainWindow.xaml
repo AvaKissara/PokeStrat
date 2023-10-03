@@ -30,12 +30,37 @@
 
     <Grid Background="#2D354D">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <ContentControl Grid.Row="0" Content="{Binding NavigationBarViewModel}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- Nouvelle rangée automatique -->
+                <RowDefinition Height="*"/>
+                <!-- Rangée principale -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" >
+                <Button Content="&#xE711;" Width="49.699" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}" Command="{Binding CloseCommand}" FontFamily="Segoe MDL2 Assets" FontSize="24" Foreground="White" Height="50" VerticalAlignment="Top"/>
+            </StackPanel>
+        </Grid>
+
+        <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding NavigationBarViewModel}"   />
         
-        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="Vues/AccueilPage.xaml" />
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="Vues/AccueilPage.xaml" HorizontalAlignment="Center" />
+        </Grid>
+
+
 
     </Grid>
 </Window>
