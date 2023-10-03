@@ -15,7 +15,8 @@
             <Setter Property="IsExpanded" Value="True" />
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="Foreground" Value="White" />
-              <Setter Property="Margin" Value="20" />
+            <Setter Property="Margin" Value="10" />
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TreeViewItem">
@@ -31,11 +32,6 @@
                                 <Setter TargetName="Bd" Property="Background" Value="#2D354D" />
                                 <Setter Property="Foreground" Value="#FFF3D772" />
                                 <Setter Property="FontWeight" Value="Bold" />
-                                <Setter Property="Effect">
-                                    <Setter.Value>
-                                        <DropShadowEffect Color="#FF181D2B" ShadowDepth="2" BlurRadius="2"  />
-                                    </Setter.Value>
-                                </Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -52,7 +48,7 @@
         </Grid.RowDefinitions>
 
         <Grid>
-            <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
+            <TextBlock Grid.Row="0" Text="GESTION DES EQUIPES" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="24" Padding="6,4" Margin="0,16,0,50" Foreground="White"/>
         </Grid>
         <TreeView Grid.Row="1" ItemsSource="{Binding EquipesTreeView}" ItemContainerStyle="{StaticResource TreeViewItemStyle}" SelectedItemChanged="TreeView_SelectedItemChanged" Background="#FF2D354D" BorderBrush="#FF2D354D">
             <TreeView.Resources>
@@ -80,7 +76,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="80" Height="80" VerticalAlignment="Center"/>
+                                        <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="90" Height="100" VerticalAlignment="Center"/>
 
                                         <TextBlock Grid.Column="1" Text="{Binding Equipier.SurnomEquipier}" FontSize="14" VerticalAlignment="Center">
                                             <TextBlock.LayoutTransform>
