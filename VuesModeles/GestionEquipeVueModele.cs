@@ -103,33 +103,33 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private EquipeTreeViewNode selectedEquipeNode;
-        public EquipeTreeViewNode SelectedEquipeNode
-        {
-            get { return selectedEquipeNode; }
-            set
-            {
-                if (selectedEquipeNode != value)
-                {
-                    if (selectedEquipeNode != null)
-                    {
-                        selectedEquipeNode.IsSelected = false;
-                    }
+        //private EquipierTreeViewNode selectedEquipeNode;
+        //public EquipierTreeViewNode SelectedEquipeNode
+        //{
+        //    get { return selectedEquipeNode; }
+        //    set
+        //    {
+        //        if (selectedEquipeNode != value)
+        //        {
+        //            if (selectedEquipeNode != null)
+        //            {
+        //                selectedEquipeNode.IsSelected = false;
+        //            }
 
-                    selectedEquipeNode = value;
+        //            selectedEquipeNode = value;
 
-                    if (selectedEquipeNode != null)
-                    {
-                        selectedEquipeNode.IsSelected = true;
-                    }
+        //            if (selectedEquipeNode != null)
+        //            {
+        //                equipierSelection.IsSelected = true;
+        //            }
 
-                    OnPropertyChanged(nameof(SelectedEquipeNode));
+        //            OnPropertyChanged(nameof(SelectedEquipeNode));
 
-                    // Appelez la méthode DetailPopup ici
-                    DetailPopup();
-                }
-            }
-        }
+        //            // Appelez la méthode DetailPopup ici
+        //            DetailPopup();
+        //        }
+        //    }
+        //}
 
 
 
@@ -138,7 +138,7 @@ namespace PokeStat.VuesModeles
             GestionCommand = new RelayCommand(GestionEquipe);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
-            DetailPopupCommand = new RelayCommand(DetailPopup);
+            //DetailPopupCommand = new RelayCommand(DetailPopup);
             ClosePopupCommand = new RelayCommand(ClosePopup);
             repEquipe = new RepEquipe();
             _equipes = repEquipe.GetAllEquipes();
@@ -168,26 +168,26 @@ namespace PokeStat.VuesModeles
             return equipeNodes;
         }
 
-        private void DetailPopup()
-        {
+        //private void DetailPopup()
+        //{
             
-            if (SelectedEquipeNode != null)
-            {
-                // Créez une nouvelle instance de EquipeTreeViewNode pour l'équipe sélectionnée
-                var equipeNode = new EquipeTreeViewNode(SelectedEquipeNode.Equipe, SelectedEquipeNode.Equipiers);
+        //    if (SelectedEquipeNode != null)
+        //    {
+        //        // Créez une nouvelle instance de EquipeTreeViewNode pour l'équipe sélectionnée
+        //        var equipeNode = new EquipierTreeViewNode(SelectedEquipeNode.Equipier);
 
-                // Créez une nouvelle instance de DetailEquipe en passant l'équipeNode comme DataContext
-                var detailPopup = new DetailEquipe();
-                detailPopup.DataContext = equipeNode;
+        //        // Créez une nouvelle instance de DetailEquipe en passant l'équipeNode comme DataContext
+        //        var detailPopup = new DetailEquipe();
+        //        detailPopup.DataContext = equipeNode;
 
-                detailPopup.ShowDialog();
-            }
+        //        detailPopup.ShowDialog();
+        //    }
             
-        }
+        //}
         private void ClosePopup()
         {
             IsPopupOpen = false;
-            selectedEquipeNode = null;
+  
         }
 
         private void GestionEquipe()

@@ -3,129 +3,123 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:EquipeTreeViewNode}"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:EquipierTreeViewNode}"
         mc:Ignorable="d"
-        Title="DetailEquipe" Height="450" Width="1600">
-    <Grid>
-        <ListView ItemsSource="{Binding Equipiers}" Margin="20">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Image" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="80" Height="80" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Surnom" Width="150">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.NomFraPokemon}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Niveau" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.NiveauEquipier}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="PV" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.BasePV}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Attaque" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.BaseAttaque}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+        Title="DetailEquipe" Height="620" Width="520">
 
-                    <GridViewColumn Header="Défense" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.BaseDefense}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Att Spe" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.BaseAttSpe}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Def Spe" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.BaseDefSpe}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Vit" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.BaseVit}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Esquive" Width="100">
-                    <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.EsquiveEquipier}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="EV" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.Ev}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="IV" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.Iv}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Bonheur" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.NiveauBonheur}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Nature" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.Nature.NomNature}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Talent" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.TalentEquipier.NomTalent}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Objet" Width="100">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Equipier.ObjetEquipier.nomObjet}" FontSize="14" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <!-- Ajoutez d'autres colonnes pour les autres propriétés d'équipiers -->
-                </GridView>
-            </ListView.View>
-        </ListView>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Vues/DicoRes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="1" Width="1300" >
+
+                <Grid HorizontalAlignment="Center">
+                    <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,80,0,0">
+                        <!-- Carte 1 -->
+                        <Border x:Name="border1" Height="559" Width="480" VerticalAlignment="Center" Style="{DynamicResource CardStyle}" HorizontalAlignment="Left" Canvas.Left="-659" Canvas.Top="-70">
+
+                            <Canvas Margin="30">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.RowSpan="2" Canvas.Left="408" VerticalAlignment="Top" Canvas.Top="-31" Height="61" Width="42" >
+                                    <Button Content="&#xE711;" Width="43" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}" Command="{Binding CloseCommand}" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top" />
+                                </StackPanel>
+                                <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="200" Height="220" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="2"/>
+                                <TextBlock Text="{Binding Equipier.SurnomEquipier}" Height="43" Canvas.Left="36" TextWrapping="Wrap" FontWeight="Bold" Canvas.Top="225" Width="94"  FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                <Path Data="M19.5,10 C19.5,15.246705 15.246705,19.5 10,19.5 C4.7532949,19.5 0.5,15.246705 0.5,10 C0.5,4.7532949 4.7532949,0.5 10,0.5 C15.246705,0.5 19.5,4.7532949 19.5,10 z" Height="20" Canvas.Left="185.991" Stretch="Fill" Canvas.Top="10" Width="20"/>
+                                <TextBlock Canvas.Left="193.021" TextWrapping="Wrap" Text="1" Canvas.Top="12.5" FontSize="11" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Canvas.Left="55" Canvas.Top="260" VerticalAlignment="Top">
+                                    <TextBlock Text="lvl: " FontSize="18"/>
+                                    <TextBlock Text="{Binding Equipier.NiveauEquipier}" FontSize="18" Width="100"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="290" VerticalAlignment="Center" Canvas.Left="55">
+                                    <TextBlock Text="{Binding Equipier.Nature.NomNature}" FontSize="18"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="320" VerticalAlignment="Center" Canvas.Left="55">
+                                    <TextBlock Text="{Binding Equipier.TalentEquipier.NomTalent}" FontSize="18"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="350" VerticalAlignment="Center" Canvas.Left="55">
+                                    <TextBlock Text="{Binding Equipier.ObjetEquipier.nomObjet}" FontSize="18"/>
+                                </StackPanel>
+                                <Grid HorizontalAlignment="Left" Canvas.Right="155" VerticalAlignment="Center" Canvas.Left="267" Canvas.Top="38">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Colonne : SurnomEquipier -->
+                                    <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="8">
+                                        <TextBlock Text="Nom : "  FontSize="16"/>
+                                        <TextBlock Text="{Binding Equipier.NomFraPokemon}" FontSize="16"/>
+                                    </StackPanel>
+
+                                    <!-- Colonne : NiveauEquipier -->
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="8">
+                                        <TextBlock Text="PV : " FontSize="16"/>
+                                        <TextBlock Text="{Binding Equipier.BasePV}" FontSize="16"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="8">
+                                        <TextBlock Text="Attaque : " FontSize="16"/>
+                                        <TextBlock Text="{Binding Equipier.BaseAttaque}" FontSize="16"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="8">
+                                        <TextBlock Text="Défense : " FontSize="16"/>
+                                        <TextBlock Text="{Binding Equipier.BaseDefense}" FontSize="16"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="8">
+                                        <TextBlock Text="Att. Spe: " FontSize="16"/>
+                                        <TextBlock Text="{Binding Equipier.BaseAttSpe}" FontSize="16"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="8">
+                                        <TextBlock Text="Def. Spe: " FontSize="16"/>
+                                        <TextBlock Text="{Binding Equipier.BaseDefSpe}" FontSize="16"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="8">
+                                        <TextBlock Text="Vit: " FontSize="16"/>
+                                        <TextBlock Text="{Binding Equipier.BaseVit}" FontSize="16"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="8" Margin="8">
+                                        <TextBlock Text="Esquive: " FontSize="16"/>
+                                        <TextBlock Text="{Binding Equipier.EsquiveEquipier}" FontSize="16"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="9" Margin="8">
+                                        <TextBlock Text="Bonheur: " FontSize="16"/>
+                                        <TextBlock Text="{Binding Equipier.NiveauBonheur}" FontSize="16"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Canvas>
+                        </Border>
+                    </Canvas>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

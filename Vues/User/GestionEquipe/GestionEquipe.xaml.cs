@@ -33,12 +33,28 @@ namespace PokeStat.Vues.User.GestionEquipe
             NavigationServices.Initialize(mainFrame);
             NavigationServices.NavigateToPage(this);
         }
-        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        //private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        //{
+        //    if (DataContext is GestionEquipeVueModele viewModel)
+        //    {
+        //        viewModel.SelectedEquipeNode = e.NewValue as EquipeTreeViewNode;
+        //    }
+        //}
+
+        private void Equipier_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (DataContext is GestionEquipeVueModele viewModel)
+            // Obtenir l'équipier correspondant aux données de la vue
+            var border = sender as Border;
+            var equipier = border.DataContext as EquipierTreeViewNode;
+
+            if (equipier != null)
             {
-                viewModel.SelectedEquipeNode = e.NewValue as EquipeTreeViewNode;
+                equipier.SelectedEquipeNode = equipier.Equipier;
             }
+
+            // Empêcher la propagation de l'événement pour éviter la sélection de l'élément parent de la TreeView.
+            e.Handled = true;
         }
+
     }
 }

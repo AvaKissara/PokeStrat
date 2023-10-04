@@ -118,7 +118,6 @@ namespace PokeStat.VuesModeles
                 }
                 SessionManager.Instance.Account = personneConnectee;
 
-                MessageBox.Show("Youpii! " + personneConnectee.NomPersonne);
                 MainWindow = new MainWindow();
 
                 var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);

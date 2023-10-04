@@ -136,13 +136,13 @@
     <Style x:Key="CardStyle" TargetType="{x:Type Border}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FFF9F9F9"/>
+                <Setter Property="Background" Value="#333"/>
             </Trigger>
         </Style.Triggers>
         <Setter Property="Background" Value="White"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="20" ShadowDepth="9" Color="#333"/>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="9" Color="#333"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -326,4 +326,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
 </ResourceDictionary>
