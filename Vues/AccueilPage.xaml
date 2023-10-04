@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:AccueilVueModel}"
       mc:Ignorable="d"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1800"
       Title="AccueilPage">
 
 
@@ -30,7 +30,7 @@
         </Storyboard>
     </Page.Resources>
     <Grid >
-        <Grid Margin="29,30,-97,-319">
+        <Grid Margin="-100,48,-120,-319">
             <Grid.Background>
                 <ImageBrush ImageSource="../bin/Debug/cardpic.png"/>
             </Grid.Background>
@@ -45,34 +45,37 @@
             </Grid.ColumnDefinitions>
             <Grid>
                 <!-- Titre de la vue -->
-                <TextBlock  Grid.Row="0" Text="DRESSEURS, DRESSEUSES BIENVENUE !" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" Margin="0,116,60,0" FontFamily="Raleway" FontWeight="Bold" Padding="10"/>
+                <TextBlock  Grid.Row="0" Text="DRESSEURS, DRESSEUSES BIENVENUE !" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" Margin="0,80,60,0" FontFamily="Raleway" FontWeight="Bold" Padding="10"/>
             </Grid>
             <Grid Grid.Row="1" Width="1600" >
                 <Grid HorizontalAlignment="Center">
                     <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,80,0,0">
-                        <Border x:Name="border" Height="207" Width="385" VerticalAlignment="Center" Style="{DynamicResource CardStyle}" HorizontalAlignment="Left" Canvas.Left="-451" Canvas.Top="-6">
+                        <!-- Carte 1 -->
+                        <Border x:Name="border1" Height="267" Width="533" VerticalAlignment="Center" Style="{DynamicResource CardStyle}" HorizontalAlignment="Left" Canvas.Left="-621" Canvas.Top="-6">
                             <Canvas>
                                 <TextBlock TextWrapping="Wrap" Text="&#xE007;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{Binding Foreground, ElementName=textBlock}" FontSize="48" Canvas.Left="11.99" Canvas.Top="16"/>
                                 <TextBlock x:Name="textBlock" Height="23" Canvas.Left="58.5" TextWrapping="Wrap" Text="Matchs" Canvas.Top="41" Width="75" Foreground="#FF677C8F" FontSize="18"/>
                                 <Path Data="M19.5,10 C19.5,15.246705 15.246705,19.5 10,19.5 C4.7532949,19.5 0.5,15.246705 0.5,10 C0.5,4.7532949 4.7532949,0.5 10,0.5 C15.246705,0.5 19.5,4.7532949 19.5,10 z" Height="20" Canvas.Left="185.991" Stretch="Fill" Stroke="{Binding Foreground, ElementName=textBlock}" Canvas.Top="10" Width="20"/>
                                 <TextBlock Canvas.Left="193.021" TextWrapping="Wrap" Text="1" Canvas.Top="12.5" FontSize="11" Foreground="{Binding Foreground, ElementName=textBlock}"/>
-                                <TextBlock TextWrapping="Wrap" Canvas.Left="12" Canvas.Top="74" Height="92" Width="290" Text="This is test description on my design in wpf application" Foreground="#FF878585" FontFamily="SansSerif" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <TextBlock TextWrapping="Wrap" Canvas.Left="12" Canvas.Top="74" Height="92" Width="350" Text="This is test description on my design in wpf application" Foreground="#FF878585" FontFamily="SansSerif" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             </Canvas>
                         </Border>
-                        <Border BorderThickness="1"  Height="191" Width="367" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" Canvas.Left="-40" HorizontalAlignment="Center" Canvas.Top="-8">
+                        <!-- Carte 2 -->
+                        <Border BorderThickness="1" Height="267" Width="541" VerticalAlignment="Center" Style="{DynamicResource CardStyle}" Canvas.Left="-51" HorizontalAlignment="Left" Canvas.Top="-8">
                             <Canvas>
                                 <TextBlock TextWrapping="Wrap" Text="&#xEBDA;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{Binding Foreground, ElementName=textBlock}" FontSize="48" Canvas.Left="13.49" Canvas.Top="16"/>
                                 <TextBlock x:Name="textBlock3" Height="23" Canvas.Left="67" TextWrapping="Wrap" Text="Patients" Canvas.Top="44.5" Width="75" Foreground="#FF677C8F" FontSize="18"/>
                                 <Path Data="M19.5,10 C19.5,15.246705 15.246705,19.5 10,19.5 C4.7532949,19.5 0.5,15.246705 0.5,10 C0.5,4.7532949 4.7532949,0.5 10,0.5 C15.246705,0.5 19.5,4.7532949 19.5,10 z" Height="20" Canvas.Left="227.491" Stretch="Fill" Stroke="{Binding Foreground, ElementName=textBlock}" Canvas.Top="10" Width="20"/>
                                 <TextBlock Canvas.Left="234.521" TextWrapping="Wrap" Text="3" Canvas.Top="12.5" FontSize="11" Foreground="{Binding Foreground, ElementName=textBlock}"/>
-                                <TextBlock TextWrapping="Wrap" Canvas.Left="12" Canvas.Top="74" Height="70" Width="317" Foreground="#FF878585" FontFamily="SansSerif" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="This is test description on my design in wpf application. "/><Run Text="This is test description on my design in WPF application.This is test description on my design."/></TextBlock>
+                                <TextBlock TextWrapping="Wrap" Canvas.Left="12" Canvas.Top="74" Height="128" Width="455" Foreground="#FF878585" FontFamily="SansSerif" HorizontalAlignment="Left" VerticalAlignment="Top"><Run Text="This is test description on my design in wpf application. "/><Run Text="This is test description on my design in WPF application.This is test description on my design."/></TextBlock>
                             </Canvas>
                         </Border>
-                        <Border BorderThickness="1"  Height="161" Width="163" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" Canvas.Left="132">
+                        <!-- Carte 3 -->
+                        <Border BorderThickness="1" Height="234" Width="243" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" Canvas.Left="132">
                             <Border.Background>
                                 <ImageBrush />
                             </Border.Background>
-                            <Canvas x:Name="canvas" Background="Black" Opacity="0.6" Canvas.Top="10" Margin="236,70,-236,0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" UseLayoutRounding="False" ClipToBounds="True">
+                            <Canvas x:Name="canvas" Background="Black" Opacity="0.6" Canvas.Top="10" Margin="163,562,-163,-492" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" UseLayoutRounding="False" ClipToBounds="True">
                                 <TextBlock TextWrapping="Wrap" Foreground="White" LineHeight="6" FontStretch="ExtraExpanded" Canvas.Left="15.833" Canvas.Top="36.996" FontWeight="Bold" FontSize="23" Text="Information"/>
                                 <TextBlock TextWrapping="Wrap" Text="websit" Foreground="White" FontWeight="Thin" Canvas.Left="53" Canvas.Top="24.046"/>
                                 <TextBlock TextWrapping="Wrap" Foreground="White" FontWeight="Thin" Canvas.Left="15.833" Canvas.Top="61.919" FontSize="10" Text="www.my.clinic@gmail.com.com"/>
@@ -88,28 +91,30 @@
                                 </TextBlock>
                             </Canvas>
                         </Border>
-                        <Border BorderThickness="1"  Height="243" Width="385" VerticalAlignment="Center" Style="{DynamicResource CardStyle}" Canvas.Top="224" HorizontalAlignment="Center" Canvas.Left="-451">
+                        <!-- Carte 4 -->
+                        <Border BorderThickness="1" Height="277" Width="533" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" Canvas.Top="294" HorizontalAlignment="Center" Canvas.Left="-621">
                             <Canvas>
                                 <TextBlock TextWrapping="Wrap" Text="&#xE2AC;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{Binding Foreground, ElementName=textBlock}" FontSize="48" Canvas.Left="11.99" Canvas.Top="29.5"/>
                                 <TextBlock x:Name="textBlock1" Height="23" Canvas.Left="62" TextWrapping="Wrap" Text="X_Ray" Canvas.Top="54.5" Width="75" Foreground="#FF677C8F" FontSize="18"/>
                                 <Path Data="M19.5,10 C19.5,15.246705 15.246705,19.5 10,19.5 C4.7532949,19.5 0.5,15.246705 0.5,10 C0.5,4.7532949 4.7532949,0.5 10,0.5 C15.246705,0.5 19.5,4.7532949 19.5,10 z" Height="20" Canvas.Left="185.991" Stretch="Fill" Stroke="{Binding Foreground, ElementName=textBlock}" Canvas.Top="10" Width="20"/>
                                 <TextBlock Canvas.Left="193.021" TextWrapping="Wrap" Text="2" Canvas.Top="12.5" FontSize="11" Foreground="{Binding Foreground, ElementName=textBlock}"/>
-                                <TextBlock TextWrapping="Wrap" Canvas.Left="12" Canvas.Top="87" Height="45" Width="282" Foreground="#FF878585" FontFamily="SansSerif" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="This is test description on my design in wpf application. "/><Run Text="This is test description on my design in WPF."/></TextBlock>
+                                <TextBlock TextWrapping="Wrap" Canvas.Left="12" Canvas.Top="87" Height="65" Width="344" Foreground="#FF878585" FontFamily="SansSerif" HorizontalAlignment="Left" VerticalAlignment="Top"><Run Text="This is test description on my design in wpf application. "/><Run Text="This is test description on my design in WPF."/></TextBlock>
                             </Canvas>
                         </Border>
-                        <Border BorderThickness="1"  Height="122" Width="123" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" Canvas.Left="-39" Canvas.Top="398" HorizontalAlignment="Center">
+                        <!-- Carte 5 -->
+                        <Border BorderThickness="1" Height="163" Width="305" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" Canvas.Top="564" HorizontalAlignment="Center" Canvas.Left="-48">
                             <Canvas>
-                                <TextBlock TextWrapping="Wrap" Text="&#xE713;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{Binding Foreground, ElementName=textBlock}" FontSize="48" Canvas.Left="34.99" Canvas.Top="22.5"/>
-                                <TextBlock x:Name="textBlock2" Canvas.Left="30.666" TextWrapping="Wrap" Text="Setting" Canvas.Top="75.5" Foreground="#FF677C8F" FontSize="18"/>
+                                <TextBlock TextWrapping="Wrap" Text="&#xE713;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{Binding Foreground, ElementName=textBlock}" FontSize="48" Canvas.Left="121" Canvas.Top="47"/>
+                                <TextBlock x:Name="textBlock2" Canvas.Left="123" TextWrapping="Wrap" Text="Setting" Canvas.Top="103" Foreground="#FF677C8F" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             </Canvas>
                         </Border>
-                        <Border BorderThickness="1"  Height="175" Width="367" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" Canvas.Left="-39" Canvas.Top="203" HorizontalAlignment="Center">
+                        <Border BorderThickness="1"  Height="233" Width="533" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" Canvas.Left="-50" Canvas.Top="297" HorizontalAlignment="Center">
                             <Canvas>
                                 <TextBlock TextWrapping="Wrap" Text="&#xEADF;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{Binding Foreground, ElementName=textBlock}" FontSize="48" Canvas.Left="7.49" Canvas.Top="16"/>
                                 <TextBlock x:Name="textBlock4" Height="23" Canvas.Left="58" TextWrapping="Wrap" Text="Analysis" Canvas.Top="44" Width="75" Foreground="#FF677C8F" FontSize="18"/>
                                 <Path Data="M19.5,10 C19.5,15.246705 15.246705,19.5 10,19.5 C4.7532949,19.5 0.5,15.246705 0.5,10 C0.5,4.7532949 4.7532949,0.5 10,0.5 C15.246705,0.5 19.5,4.7532949 19.5,10 z" Height="20" Canvas.Left="268.991" Stretch="Fill" Stroke="{Binding Foreground, ElementName=textBlock}" Canvas.Top="10" Width="20"/>
                                 <TextBlock Canvas.Left="276.021" TextWrapping="Wrap" Text="4" Canvas.Top="12.5" FontSize="11" Foreground="{Binding Foreground, ElementName=textBlock}"/>
-                                <TextBlock TextWrapping="Wrap" Canvas.Left="14" Canvas.Top="74" Height="53" Width="320" Foreground="#FF878585" FontFamily="SansSerif"><Run Text="This is test description in WPF application. "/><Run Text="This is "/><LineBreak/><Run Text="test description on my design."/></TextBlock>
+                                <TextBlock TextWrapping="Wrap" Canvas.Left="14" Canvas.Top="96" Height="83" Width="471" Foreground="#FF878585" FontFamily="SansSerif" HorizontalAlignment="Left" VerticalAlignment="Top"><Run Text="This is test description in WPF application. "/><Run Text="This is "/><LineBreak/><Run Text="test description on my design."/></TextBlock>
                             </Canvas>
                         </Border>
                     </Canvas>
