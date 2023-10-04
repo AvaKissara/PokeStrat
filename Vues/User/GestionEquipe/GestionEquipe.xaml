@@ -11,34 +11,12 @@
       Title="GestionEquipe">
 
     <Page.Resources>
-        <Style x:Key="TreeViewItemStyle" TargetType="TreeViewItem">
-            <Setter Property="IsExpanded" Value="True" />
-            <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="10" />
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TreeViewItem">
-                        <Grid>
-                            <Border Name="Bd" Background="#2D354D">
-                                <ContentPresenter x:Name="PART_Header" ContentSource="Header" />
-                            </Border>
-                            <ItemsPresenter x:Name="ItemsHost" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#2D354D" />
-                                <Setter Property="Foreground" Value="#FFF3D772" />
-                                <Setter Property="FontWeight" Value="Bold" />
-
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-       
+   
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../DicoRes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
 
     <Grid Background="#2D354D">

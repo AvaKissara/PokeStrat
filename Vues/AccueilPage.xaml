@@ -10,24 +10,11 @@
 
 
     <Page.Resources>
-        <Style x:Key="CardStyle" TargetType="{x:Type Border}">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FFF9F9F9"/>
-                </Trigger>
-            </Style.Triggers>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect BlurRadius="20" ShadowDepth="9" Color="#FF484848"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Storyboard x:Key="OnMouseEnter1">
-            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="canvas">
-                <EasingThicknessKeyFrame KeyTime="0" Value="0,-1,0,0"/>
-            </ThicknessAnimationUsingKeyFrames>
-        </Storyboard>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DicoRes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
     <Grid >
         <Grid Margin="-100,48,-120,-319">
