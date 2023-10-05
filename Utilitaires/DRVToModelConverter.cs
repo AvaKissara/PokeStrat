@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using PokeStat.Modeles;
 using System;
 using System.Collections.Generic;

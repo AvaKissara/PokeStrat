@@ -7,11 +7,10 @@
       xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" 
       d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionEquipeVueModele}"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1800"
+      d:DesignHeight="1450" d:DesignWidth="1800"
       Title="GestionEquipe">
 
     <Page.Resources>
-
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../DicoRes.xaml" />
@@ -41,7 +40,7 @@
 
 
             <!-- Arborescence des équipes -->
-            <TreeView Grid.Row="1" Width="1500" Name="treeViewEquipes" ItemsSource="{Binding EquipesTreeView}" Margin="0,130,0,0"
+            <TreeView Grid.Row="0" Width="1500" Name="treeViewEquipes" ItemsSource="{Binding EquipesTreeView}" Margin="0,130,0,0"
                       ItemContainerStyle="{StaticResource TreeViewItemStyle}">
                 <TreeView.Resources>
                     <Style TargetType="TreeViewItem">
@@ -51,7 +50,7 @@
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Equipe}">
                         <StackPanel>
-                            <TextBlock Text="{Binding Equipe.NomEquipe}" FontWeight="Bold" FontSize="16" />
+
                             <ItemsControl ItemsSource="{Binding Equipiers}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -72,24 +71,38 @@
                                                     <TextBlock.LayoutTransform>
                                                         <RotateTransform Angle="-90" />
                                                     </TextBlock.LayoutTransform>
-                                                    
                                                 </TextBlock>
                                             </Grid>
                                         </Border>
                                     </DataTemplate>
-
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+                            <Border Grid.Row="1" Margin="0,-280,0,0" BorderThickness="1" BorderBrush="Gray" HorizontalAlignment="Right" Width="350">
+                                <Grid Margin="0,46,3,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="149"/>
+                                        <RowDefinition Height="46.316"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+
+                                    <!-- Ligne 1 : Boutons -->
+                                    <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2">
+                                        <TextBlock Text="{Binding Equipe.NomEquipe}" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
+                                        <!-- Bouton Ajouter un équipier -->
+                                        <Button Content="Ajouter" Command="{Binding Equipe.OuvrirPopupCommand}" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Cursor=""  Width="342"/>
+                                        <!-- Bouton Consulter les stats de l'équipe -->
+                                        <Button Content="Stats" Command="{Binding Equipe}" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Cursor=""/>
+                                        <!-- Bouton Supprimer l'équipe -->
+                                        <Button Content="Supprimer" Command="{Binding Equipe}" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Cursor=""/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
 
-            <!-- Zone de détails de l'équipe sélectionnée -->
-            <Border Grid.Row="1" Margin="0,130,0,0" BorderThickness="1" BorderBrush="Gray" HorizontalAlignment="Right" Width="350">
-                <!-- Insérez ici les détails de l'équipe sélectionnée -->
-            </Border>
         </Grid>
     </Grid>
-
 </Page>

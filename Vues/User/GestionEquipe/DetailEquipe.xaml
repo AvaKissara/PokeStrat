@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -32,50 +33,82 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="1" Width="1300" >
-
                 <Grid HorizontalAlignment="Center">
                     <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,80,0,0">
                         <!-- Carte 1 -->
-                        <Border x:Name="border1" Height="559" Width="480" VerticalAlignment="Center" Style="{DynamicResource CardStyle}" HorizontalAlignment="Left" Canvas.Left="-659" Canvas.Top="-70">
-
-                            <Canvas Margin="30">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.RowSpan="2" Canvas.Left="408" VerticalAlignment="Top" Canvas.Top="-31" Height="61" Width="42" >
+                        <Border x:Name="border1" Height="631" Width="470" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" HorizontalAlignment="Center" Canvas.Left="-659" Canvas.Top="-70">
+                            <Canvas Margin ="30">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.RowSpan="2" Canvas.Left="398" VerticalAlignment="Center" Canvas.Top="-31" Height="61" Width="42" >
                                     <Button Content="&#xE711;" Width="43" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}" Command="{Binding CloseCommand}" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top" />
                                 </StackPanel>
                                 <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="200" Height="220" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="2"/>
-                                <TextBlock Text="{Binding Equipier.SurnomEquipier}" Foreground="#FF677C8F" Height="43" Canvas.Left="36" TextWrapping="Wrap" FontWeight="Bold" Canvas.Top="225" Width="94"  FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                <TextBlock Text="{Binding Equipier.SurnomEquipier}" Typography.Capitals="AllSmallCaps" Foreground="#FF677C8F" Height="43" Canvas.Left="36" TextWrapping="Wrap" FontWeight="Bold" Canvas.Top="215" Width="144"  FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                                 <Path Data="M19.5,10 C19.5,15.246705 15.246705,19.5 10,19.5 C4.7532949,19.5 0.5,15.246705 0.5,10 C0.5,4.7532949 4.7532949,0.5 10,0.5 C15.246705,0.5 19.5,4.7532949 19.5,10 z" Height="20" Canvas.Left="185.991" Stretch="Fill" Canvas.Top="10" Width="20"/>
                                 <TextBlock Canvas.Left="193.021" TextWrapping="Wrap" Text="1" Canvas.Top="12.5" FontSize="11" />
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Canvas.Left="55" Canvas.Top="260" VerticalAlignment="Top">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Canvas.Left="55" Canvas.Top="250" VerticalAlignment="Top">
                                     <TextBlock Text="lvl: " FontSize="18" Foreground="#FF677C8F"/>
                                     <TextBlock Text="{Binding Equipier.NiveauEquipier}" FontSize="18" Width="100" Foreground="#FF677C8F"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="290" VerticalAlignment="Center" Canvas.Left="55">
-                                    <TextBlock Text="{Binding Equipier.Nature.NomNature}" FontSize="18"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="280" VerticalAlignment="Center" Canvas.Left="55">
+                                    <TextBlock Text="{Binding Equipier.Nature.NomNature}" Foreground="#FF677C8F" FontSize="18"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="320" VerticalAlignment="Center" Canvas.Left="55">
-                                    <TextBlock Text="{Binding Equipier.TalentEquipier.NomTalent}" FontSize="18"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="310" VerticalAlignment="Center" Canvas.Left="55">
+                                    <TextBlock Text="{Binding Equipier.TalentEquipier.NomTalent}" Foreground="#FF677C8F" FontSize="18"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="350" VerticalAlignment="Center" Canvas.Left="55">
-                                    <TextBlock Text="{Binding Equipier.ObjetEquipier.nomObjet}" FontSize="18"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="340" VerticalAlignment="Center" Canvas.Left="55">
+                                    <TextBlock Text="{Binding Equipier.ObjetEquipier.nomObjet}" Foreground="#FF677C8F" FontSize="18"/>
                                 </StackPanel>
-                                <ItemsControl ItemsSource="{Binding Equipier.SetCapacites}" HorizontalAlignment="Center" Canvas.Top="394" VerticalAlignment="Top">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                                                <TextBlock Text="{Binding NomCapacite}" FontSize="16"/>
-                                                <TextBlock Text="PP: " FontSize="16"/>
-                                                <TextBlock Text="{Binding BasePp}" FontSize="16"/>
-                                                <TextBlock Text="Pre: " FontSize="16"/>
-                                                <TextBlock Text="{Binding BasePre}" FontSize="16"/>
-                                                <TextBlock Text="Puiss: " FontSize="16"/>
-                                                <TextBlock Text="{Binding BasePuiss}" FontSize="16"/>
-                                                <!-- Ajoutez d'autres propriétés de capacité ici si nécessaire -->
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                                <Grid HorizontalAlignment="Left" Canvas.Right="155" VerticalAlignment="Center" Canvas.Left="267" Canvas.Top="38">
+                                <StackPanel HorizontalAlignment="Center" Canvas.Top="400" VerticalAlignment="Top" Canvas.Left="52">
+                                    <Border Background="#FF677C8F" Padding="5" Margin="0 2 0 10">
+                                        <TextBlock Text="Set de capacités" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" />
+                                    </Border>
+                                    <DataGrid FontSize="14" ItemsSource="{Binding Equipier.SetCapacites}" AutoGenerateColumns="False" HorizontalAlignment="Left" BorderBrush="Transparent" IsReadOnly="True" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF878585" VerticalGridLinesBrush="#FF878585">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Nom" Binding="{Binding NomCapacite}" Width="100"  />
+
+                                            <DataGridTextColumn Header="PP" Binding="{Binding BasePp}" Width="50" />
+                                            <DataGridTextColumn Header="Pré" Binding="{Binding BasePre}" Width="50" FontSize="14" />
+                                            <DataGridTextColumn Header="Puiss" Binding="{Binding BasePuiss}" Width="50" FontSize="14"/>
+                                            <DataGridTextColumn Header="Crit" Binding="{Binding BaseCrit}" Width="50" FontSize="14" />
+                                        </DataGrid.Columns>
+                                        <!-- Style des cellules -->
+                                        <DataGrid.CellStyle>
+                                            <Style TargetType="DataGridCell">
+                                                <Setter Property="Background" Value="#FF677C8F"/>
+                                                <!-- Couleur de fond des cellules -->
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <!-- Couleur du texte dans les cellules -->
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                                <!-- Épaisseur de la bordure -->
+                                            </Style>
+                                        </DataGrid.CellStyle>
+                                        <!-- Style de l'en-tête -->
+                                        <DataGrid.ColumnHeaderStyle>
+                                            <Style TargetType="DataGridColumnHeader" >
+                                                <Setter Property="Background" Value="#FF878585"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                <Setter Property="FontSize" Value="14"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                <Setter Property="BorderThickness" Value="0"/>
+                                                <Setter Property="Typography.Capitals" Value="AllSmallCaps"/>
+                                            </Style>
+                                        </DataGrid.ColumnHeaderStyle>
+                                    </DataGrid>
+                                    <Border BorderBrush="White" BorderThickness="2,0,0,0" VerticalAlignment="Stretch" Width="2" />
+                                </StackPanel>
+                                <Border Grid.Row="1" BorderThickness="1" BorderBrush="Gray" HorizontalAlignment="Center" Width="96" RenderTransformOrigin="0.5,0.5" Canvas.Top="491" VerticalAlignment="Top" Canvas.Left="104">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="90"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                    <!-- Insérez ici les détails de l'équipe sélectionnée -->
+                                </Border>
+                                <Grid HorizontalAlignment="Left" Canvas.Right="155" VerticalAlignment="Center" Canvas.Left="209" Canvas.Top="59">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -91,43 +124,47 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
 
-
                                     <!-- Colonne : NiveauEquipier -->
                                     <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="8,26,8,4">
-                                        <TextBlock Text="PV : " FontSize="16"/>
-                                        <TextBlock Text="{Binding Equipier.BasePV}" FontSize="16"/>
+                                        <TextBlock Text="PV" FontSize="16" Foreground="#FF878585" Width="70"/>
+                                        <ProgressBar Height="10" Width="100" Value="{Binding Equipier.BasePV}" />
+                                        <TextBlock Text="{Binding Equipier.BasePV}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="8">
-                                        <TextBlock Text="Attaque : " FontSize="16"/>
-                                        <TextBlock Text="{Binding Equipier.BaseAttaque}" FontSize="16"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="8" >
+                                        <TextBlock Text="Attaque" FontSize="16" Foreground="#FF878585" Width="70" />
+                                        <ProgressBar Height="10" Width="100" Value="{Binding Equipier.BaseAttaque}" />
+                                        <TextBlock Text="{Binding Equipier.BaseAttaque}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="8">
-                                        <TextBlock Text="Défense : " FontSize="16"/>
-                                        <TextBlock Text="{Binding Equipier.BaseDefense}" FontSize="16"/>
+                                        <TextBlock Text="Défense" FontSize="16" Foreground="#FF878585" Width="70"/>
+                                        <ProgressBar Height="10" Width="100" Value="{Binding Equipier.BaseDefense}" />
+                                        <TextBlock Text="{Binding Equipier.BaseDefense}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="8">
-                                        <TextBlock Text="Att. Spe: " FontSize="16"/>
-                                        <TextBlock Text="{Binding Equipier.BaseAttSpe}" FontSize="16"/>
+                                        <TextBlock Text="Att. Spe" FontSize="16" Foreground="#FF878585" Width="70"/>
+                                        <ProgressBar Height="10" Width="100" Value="{Binding Equipier.BaseAttSpe}" />
+                                        <TextBlock Text="{Binding Equipier.BaseAttSpe}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="8">
-                                        <TextBlock Text="Def. Spe: " FontSize="16"/>
-                                        <TextBlock Text="{Binding Equipier.BaseDefSpe}" FontSize="16"/>
+                                        <TextBlock Text="Def. Spe" FontSize="16" Foreground="#FF878585" Width="70"/>
+                                        <ProgressBar Height="10" Width="100" Value="{Binding Equipier.BaseDefSpe}" />
+                                        <TextBlock Text="{Binding Equipier.BaseDefSpe}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="8">
-                                        <TextBlock Text="Vit: " FontSize="16"/>
-                                        <TextBlock Text="{Binding Equipier.BaseVit}" FontSize="16"/>
+                                        <TextBlock Text="Vit" FontSize="16" Foreground="#FF878585" Width="70"/>
+                                        <ProgressBar Height="10" Width="100" Value="{Binding Equipier.BaseVit}" />
+                                        <TextBlock Text="{Binding Equipier.BaseVit}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="8" Margin="8">
-                                        <TextBlock Text="Esquive: " FontSize="16"/>
-                                        <TextBlock Text="{Binding Equipier.EsquiveEquipier}" FontSize="16"/>
+                                        <TextBlock Text="Esquive" FontSize="16" Foreground="#FF878585" Width="70"/>
+                                        <ProgressBar Height="10" Width="100" Value="{Binding Equipier.EsquiveEquipier}" />
+                                        <TextBlock Text="{Binding Equipier.EsquiveEquipier}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="9" Margin="8">
-                                        <TextBlock Text="Bonheur: " FontSize="16"/>
-                                        <TextBlock Text="{Binding Equipier.NiveauBonheur}" FontSize="16"/>
+                                        <TextBlock Text="Bonheur" FontSize="16" Foreground="#FF878585" Width="70"/>
+                                        <ProgressBar Height="10" Width="100" Value="{Binding Equipier.NiveauBonheur}" />
+                                        <TextBlock Text="{Binding Equipier.NiveauBonheur}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
-
-
-
                                 </Grid>
                             </Canvas>
                         </Border>

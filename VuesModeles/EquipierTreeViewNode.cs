@@ -4,6 +4,7 @@ using PokeStat.Vues;
 using PokeStat.Vues.User.GestionEquipe;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,7 +49,6 @@ namespace PokeStat.VuesModeles
 
                     OnPropertyChanged(nameof(SelectedEquipeNode));
 
-                    // Appelez la méthode DetailPopup ici
                     DetailPopup();
                 }
             }
@@ -58,8 +58,41 @@ namespace PokeStat.VuesModeles
 
         public EquipierTreeViewNode(MEquipier Equipier)
         {
+            MEquipier equipierParDefaut = new MEquipier(
+            IdPokemon: 0,
+            CheminImgPokemon: "0.png", 
+            NomFraPokemon: "Nouveau", 
+            BasePV: 0, 
+            BaseAttaque: 0, 
+            BaseDefense: 0, 
+            BaseAttSpe: 0, 
+            BaseDefSpe: 0, 
+            BaseVit: 0, 
+            Legendaire: false, 
+            Shiny: false, 
+            Mega: false, 
+            Giga: false, 
+            Fab: false, 
+            SurnomEquipier: "Nouveau", 
+            NiveauEquipier: 0, 
+            EsquiveEquipier: 0, 
+            NiveauBonheur: 0, 
+            Ev: 0, 
+            Iv: 0, 
+            Nature: null,  
+            TalentEquipier: null, 
+            ObjetEquipier: null,  
+            SetCapacites: new ObservableCollection<MCapacite>(), 
+            EquipeId: 0 
+            );
+
             DetailPopupCommand = new RelayCommand(DetailPopup);
+           
             this.Equipier = Equipier;
+            if(Equipier==null)
+            {
+                this.Equipier = equipierParDefaut;
+            }
         }
 
         private void DetailPopup()

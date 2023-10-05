@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=vuesmodeles:AccueilVueModel}"
+      xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" 
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="1800"
       Title="AccueilPage">
@@ -51,7 +51,7 @@
                         <Border BorderThickness="1" Height="267" Width="541" VerticalAlignment="Center" Style="{DynamicResource CardStyle}" Canvas.Left="-51" HorizontalAlignment="Left" Canvas.Top="-8">
                             <Canvas>
                                 <TextBlock TextWrapping="Wrap" Text="&#xEBDA;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{Binding Foreground, ElementName=textBlock}" FontSize="48" Canvas.Left="13.49" Canvas.Top="16"/>
-                                <TextBlock x:Name="textBlock3" Height="23" Canvas.Left="67" TextWrapping="Wrap" Text="Patients" Canvas.Top="44.5" Width="75" Foreground="#FF677C8F" FontSize="18"/>
+                                <TextBlock x:Name="textBlock3" Height="23" Canvas.Left="67" TextWrapping="Wrap" Text="Equipe" Canvas.Top="44.5" Width="75" Foreground="#FF677C8F" FontSize="18"/>
                                 <Path Data="M19.5,10 C19.5,15.246705 15.246705,19.5 10,19.5 C4.7532949,19.5 0.5,15.246705 0.5,10 C0.5,4.7532949 4.7532949,0.5 10,0.5 C15.246705,0.5 19.5,4.7532949 19.5,10 z" Height="20" Canvas.Left="227.491" Stretch="Fill" Stroke="{Binding Foreground, ElementName=textBlock}" Canvas.Top="10" Width="20"/>
                                 <TextBlock Canvas.Left="234.521" TextWrapping="Wrap" Text="3" Canvas.Top="12.5" FontSize="11" Foreground="{Binding Foreground, ElementName=textBlock}"/>
                                 <TextBlock TextWrapping="Wrap" Canvas.Left="12" Canvas.Top="74" Height="128" Width="455" Foreground="#FF878585" FontFamily="SansSerif" HorizontalAlignment="Left" VerticalAlignment="Top"><Run Text="This is test description on my design in wpf application. "/><Run Text="This is test description on my design in WPF application.This is test description on my design."/></TextBlock>

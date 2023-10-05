@@ -1,4 +1,6 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.Utilitaires;
+using PokeStat.Vues.User.GestionEquipe;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
 {
@@ -26,7 +29,6 @@ namespace PokeStat.VuesModeles
         public EquipeTreeViewNode(MEquipe Equipe)
         {
             this.Equipe = Equipe;
-
         }
         public EquipeTreeViewNode(MEquipe Equipe, ObservableCollection<EquipierTreeViewNode> Equipiers)
         {
@@ -34,5 +36,6 @@ namespace PokeStat.VuesModeles
             this.Equipiers = Equipiers;
 
         }
+      
     }
 }
