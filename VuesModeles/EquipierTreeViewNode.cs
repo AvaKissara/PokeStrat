@@ -62,24 +62,17 @@ namespace PokeStat.VuesModeles
             this.Equipier = Equipier;
         }
 
-  
-
         private void DetailPopup()
         {
-
             if (SelectedEquipeNode != null)
             {
-                // Créez une nouvelle instance de EquipeTreeViewNode pour l'équipe sélectionnée
                 var equipeNode = new EquipierTreeViewNode(SelectedEquipeNode);
 
-                // Créez une nouvelle instance de DetailEquipe en passant l'équipeNode comme DataContext
                 var detailPopup = new DetailEquipe();
                 detailPopup.DataContext = equipeNode;
 
                 detailPopup.ShowDialog();
             }
-     
-
         }
 
         private RelayCommand closeCommand;

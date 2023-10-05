@@ -60,11 +60,11 @@ namespace PokeStat.Modeles
             this.NiveauBonheur = NiveauBonheur;
             this.Ev = Ev;
             this.Iv = Iv;
-            this.Nature = Nature;
-            this.SetCapacites = new ObservableCollection<MCapacite>();
+            this.Nature = Nature;          
             this.TalentEquipier = TalentEquipier;
             this.ObjetEquipier = ObjetEquipier;
             this.EquipeId = EquipeId;
+            this.SetCapacites = new ObservableCollection<MCapacite>();
             this.SetCapacites = SetCapacites;
         }
 

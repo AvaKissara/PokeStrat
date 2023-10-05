@@ -59,6 +59,22 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="350" VerticalAlignment="Center" Canvas.Left="55">
                                     <TextBlock Text="{Binding Equipier.ObjetEquipier.nomObjet}" FontSize="18"/>
                                 </StackPanel>
+                                <ItemsControl ItemsSource="{Binding Equipier.SetCapacites}" HorizontalAlignment="Center" Canvas.Top="394" VerticalAlignment="Top">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                                <TextBlock Text="{Binding NomCapacite}" FontSize="16"/>
+                                                <TextBlock Text="PP: " FontSize="16"/>
+                                                <TextBlock Text="{Binding BasePp}" FontSize="16"/>
+                                                <TextBlock Text="Pre: " FontSize="16"/>
+                                                <TextBlock Text="{Binding BasePre}" FontSize="16"/>
+                                                <TextBlock Text="Puiss: " FontSize="16"/>
+                                                <TextBlock Text="{Binding BasePuiss}" FontSize="16"/>
+                                                <!-- Ajoutez d'autres propriétés de capacité ici si nécessaire -->
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                                 <Grid HorizontalAlignment="Left" Canvas.Right="155" VerticalAlignment="Center" Canvas.Left="267" Canvas.Top="38">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -109,8 +125,10 @@
                                         <TextBlock Text="Bonheur: " FontSize="16"/>
                                         <TextBlock Text="{Binding Equipier.NiveauBonheur}" FontSize="16"/>
                                     </StackPanel>
+
+
+
                                 </Grid>
-                                
                             </Canvas>
                         </Border>
                     </Canvas>
