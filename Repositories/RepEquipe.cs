@@ -47,6 +47,21 @@ namespace PokeStat.Repositories
             {
                 while (equipiers.Read())
                 {
+                    ObservableCollection<MCapacite> capacites = new ObservableCollection<MCapacite>();
+                    for (int i = 26; i <= 49; i += 6)
+                    {
+                        if (!equipiers.IsDBNull(i))
+                        {
+                            int idCapacite = equipiers.GetInt32(i);
+                            string nomCapacite = equipiers.IsDBNull(i + 1) ? "" : $"{equipiers[i + 1]}";
+                            int pp = equipiers.IsDBNull(i + 2) ? 0 : equipiers.GetInt32(i + 2);
+                            int pre = equipiers.IsDBNull(i + 3) ? 0 : equipiers.GetInt32(i + 3);
+                            int puiss = equipiers.IsDBNull(i + 4) ? 0 : equipiers.GetInt32(i + 4);
+                            int crit = equipiers.IsDBNull(i + 5) ? 0 : equipiers.GetInt32(i + 5);
+                            MCapacite capacite = new MCapacite(idCapacite, nomCapacite, pp, pre, puiss, crit);
+                            capacites.Add(capacite);
+                        }
+                    }
                     MNature natureEquipier = null;
                     if (!equipiers.IsDBNull(20))
                     {
@@ -70,7 +85,7 @@ namespace PokeStat.Repositories
                         string nomObjet = equipiers.IsDBNull(25) ? "" : $"{equipiers[25]}";
                         objetTenu = new MObjet(idObjet, nomObjet);
                     }
-              
+                    
 
                     MEquipier unEquipier = new MEquipier(
                         equipiers.GetInt32(0),
@@ -96,6 +111,7 @@ namespace PokeStat.Repositories
                         natureEquipier, 
                         talentEquipier,
                         objetTenu,
+                        capacites,
                         equipiers.GetInt32(50)
                         );
 

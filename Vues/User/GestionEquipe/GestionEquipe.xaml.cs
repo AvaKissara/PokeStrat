@@ -27,7 +27,7 @@ namespace PokeStat.Vues.User.GestionEquipe
         {
             InitializeComponent();
             gestionEquipeVueModele = new GestionEquipeVueModele();
-            DataContext =gestionEquipeVueModele;
+            DataContext = gestionEquipeVueModele;
 
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);

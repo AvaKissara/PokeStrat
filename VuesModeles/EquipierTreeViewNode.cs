@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
@@ -98,12 +99,14 @@ namespace PokeStat.VuesModeles
 
         private void Close()
         {
-
             var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
             activeWindow?.Close();
-
+            MainWindow mainWindow = new MainWindow();
+      
             NavigationServices.NavigateToPage(new GestionEquipe());
+            mainWindow.ShowDialog();
+
         }
     }
 }

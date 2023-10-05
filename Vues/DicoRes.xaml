@@ -75,7 +75,7 @@
                                 <ColumnDefinition Width="83*"/>
                                 <ColumnDefinition Width="117*"/>
                             </Grid.ColumnDefinitions>
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.ColumnSpan="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,17.906,0,17.907" Height="Auto" Width="Auto"/>
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.ColumnSpan="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,15.906,0,17.907" Height="Auto" Width="Auto"/>
                             <TextBlock HorizontalAlignment="Right" Height="Auto" TextWrapping="Wrap"  VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="{TemplateBinding Tag}" FontSize="24" Width="Auto" Margin="0,11.636,12.475,17.636" Foreground="{TemplateBinding Foreground}"/>
                         </Grid>
                     </Border>
@@ -136,7 +136,7 @@
     <Style x:Key="CardStyle" TargetType="{x:Type Border}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#333"/>
+                <Setter Property="Background" Value="#FF403D3D"/>
             </Trigger>
         </Style.Triggers>
         <Setter Property="Background" Value="White"/>

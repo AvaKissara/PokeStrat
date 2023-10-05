@@ -30,6 +30,14 @@ namespace PokeStat.Modeles
             TypeCapacite = typeCapacite;
             CatCapacite = catCapacite;
         }
-
+        public MCapacite(int IdCapacite, string NomCapacite, int BasePp, int BasePre, int BasePuiss, int BaseCrit)
+        {
+            this.IdCapacite = IdCapacite;
+            this.NomCapacite = NomCapacite;
+            this.BasePp = BasePp;
+            this.BasePre = BasePre;
+            this.BasePuiss = BasePuiss;
+            this.BaseCrit = BaseCrit;   
+        }
     }
 }

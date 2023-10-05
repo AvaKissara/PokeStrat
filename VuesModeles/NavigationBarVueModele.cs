@@ -13,6 +13,7 @@ namespace PokeStat.VuesModeles
     {
         public ICommand ConnexionPopupCommand { get; set; }
         public ICommand InscriptionPopupCommand { get; set; }
+
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 

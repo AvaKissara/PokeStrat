@@ -103,33 +103,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        //private EquipierTreeViewNode selectedEquipeNode;
-        //public EquipierTreeViewNode SelectedEquipeNode
-        //{
-        //    get { return selectedEquipeNode; }
-        //    set
-        //    {
-        //        if (selectedEquipeNode != value)
-        //        {
-        //            if (selectedEquipeNode != null)
-        //            {
-        //                selectedEquipeNode.IsSelected = false;
-        //            }
 
-        //            selectedEquipeNode = value;
-
-        //            if (selectedEquipeNode != null)
-        //            {
-        //                equipierSelection.IsSelected = true;
-        //            }
-
-        //            OnPropertyChanged(nameof(SelectedEquipeNode));
-
-        //            // Appelez la méthode DetailPopup ici
-        //            DetailPopup();
-        //        }
-        //    }
-        //}
 
 
 

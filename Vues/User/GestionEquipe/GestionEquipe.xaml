@@ -68,10 +68,11 @@
                                                     <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
                                                 <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="200" Height="220" VerticalAlignment="Center"/>
-                                                <TextBlock Grid.Column="1" Text="{Binding Equipier.SurnomEquipier}" FontSize="14" VerticalAlignment="Center" Foreground="Black">
+                                                <TextBlock Typography.Capitals="AllSmallCaps" FontWeight="Bold" Grid.Column="1" Text="{Binding Equipier.SurnomEquipier}" FontSize="16" VerticalAlignment="Center" Foreground="#FF677C8F">
                                                     <TextBlock.LayoutTransform>
                                                         <RotateTransform Angle="-90" />
                                                     </TextBlock.LayoutTransform>
+                                                    
                                                 </TextBlock>
                                             </Grid>
                                         </Border>

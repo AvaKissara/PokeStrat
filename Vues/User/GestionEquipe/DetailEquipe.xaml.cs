@@ -23,11 +23,12 @@ namespace PokeStat.Vues.User.GestionEquipe
     public partial class DetailEquipe : Window
     {
         private MainWindow MainWindow;
+
         public DetailEquipe()
         {
             InitializeComponent();
             MainWindow = new MainWindow();
-    
+   
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
         }

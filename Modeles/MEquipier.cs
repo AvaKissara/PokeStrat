@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace PokeStat.Modeles
         public int NiveauBonheur { get; set; }
         public MNature Nature { get; set; }
         public MTalent TalentEquipier { get; set; }
-        public List<MCapacite> SetCapacites { get; set; }
+        public ObservableCollection<MCapacite> SetCapacites { get; set; }
         public MObjet ObjetEquipier { get; set; }
         public MEquipe EquipeEquipier { get; set; }
         public int EquipeId { get; set; }
@@ -50,7 +51,7 @@ namespace PokeStat.Modeles
                 OnPropertyChanged(nameof(IsSelected));
             }
         }
-        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, string SurnomEquipier, int NiveauEquipier, int EsquiveEquipier, int NiveauBonheur, int Ev, int Iv, MNature Nature, MTalent TalentEquipier, MObjet ObjetEquipier, int EquipeId)
+        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, string SurnomEquipier, int NiveauEquipier, int EsquiveEquipier, int NiveauBonheur, int Ev, int Iv, MNature Nature, MTalent TalentEquipier, MObjet ObjetEquipier, ObservableCollection<MCapacite> SetCapacites, int EquipeId)
             : base(IdPokemon, CheminImgPokemon, NomFraPokemon, BasePV, BaseAttaque, BaseDefense, BaseAttSpe, BaseDefSpe, BaseVit, Legendaire, Shiny, Mega, Giga, Fab)
         {
             this.SurnomEquipier = SurnomEquipier;
@@ -60,10 +61,11 @@ namespace PokeStat.Modeles
             this.Ev = Ev;
             this.Iv = Iv;
             this.Nature = Nature;
-            this.SetCapacites = new List<MCapacite>();
+            this.SetCapacites = new ObservableCollection<MCapacite>();
             this.TalentEquipier = TalentEquipier;
             this.ObjetEquipier = ObjetEquipier;
             this.EquipeId = EquipeId;
+            this.SetCapacites = SetCapacites;
         }
 
         public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string NomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, MPokemon Evolution, MGeneration Gen, string SurnomEquipier, int NiveauEquipier)
