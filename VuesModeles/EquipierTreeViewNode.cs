@@ -1,4 +1,5 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.Repositories;
 using PokeStat.Utilitaires;
 using PokeStat.Vues;
 using PokeStat.Vues.User.GestionEquipe;
@@ -16,6 +17,7 @@ namespace PokeStat.VuesModeles
 {
     public class EquipierTreeViewNode : BaseVueModele
     {
+       
         public ICommand DetailPopupCommand { get; set; }
         private bool isSelected;
         public bool IsSelected
@@ -54,7 +56,7 @@ namespace PokeStat.VuesModeles
             }
         }
         public MEquipier Equipier { get; }
-        public MainWindow MainWindow { get; private set; }
+        public MainWindow MainWindow { get; set; }
 
         public EquipierTreeViewNode(MEquipier Equipier)
         {
@@ -93,6 +95,7 @@ namespace PokeStat.VuesModeles
             {
                 this.Equipier = equipierParDefaut;
             }
+           
         }
 
         private void DetailPopup()

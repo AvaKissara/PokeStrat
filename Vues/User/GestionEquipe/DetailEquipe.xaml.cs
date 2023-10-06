@@ -32,7 +32,25 @@ namespace PokeStat.Vues.User.GestionEquipe
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
         }
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Obtenez l'équipier correspondant au DataContext de l'image
+            MEquipier equipier = (DataContext as EquipierTreeViewNode)?.Equipier;
 
+            if (equipier != null)
+            {
+                DetailGestionPokemon detailsPokemon = new DetailGestionPokemon(equipier);
+
+                double detailEquipeLeft = Left;
+                double detailEquipeTop = Top;
+
+                // Positionnez la nouvelle fenêtre à gauche de DetailEquipe
+                detailsPokemon.Left = detailEquipeLeft - detailsPokemon.Width;
+                detailsPokemon.Top = detailEquipeTop;
+
+                detailsPokemon.ShowDialog();
+            }
+        }
 
     }
 }

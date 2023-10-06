@@ -99,6 +99,8 @@
     <Compile Include="Repositories\RepDate.cs" />
     <Compile Include="Repositories\RepEquipe.cs" />
     <Compile Include="Repositories\RepGeneration.cs" />
+    <Compile Include="Repositories\RepNature.cs" />
+    <Compile Include="Repositories\RepObjet.cs" />
     <Compile Include="Repositories\RepPokemon.cs" />
     <Compile Include="Repositories\RepType.cs" />
     <Compile Include="Repositories\RepUser.cs" />
@@ -189,6 +191,9 @@
     </Compile>
     <Compile Include="Vues\User\GestionEquipe\DetailEquipe.xaml.cs">
       <DependentUpon>DetailEquipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\User\GestionEquipe\DetailGestionPokemon.xaml.cs">
+      <DependentUpon>DetailGestionPokemon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vues\User\GestionEquipe\GestionEquipe.xaml.cs">
       <DependentUpon>GestionEquipe.xaml</DependentUpon>
@@ -303,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vues\User\GestionEquipe\DetailEquipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\User\GestionEquipe\DetailGestionPokemon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

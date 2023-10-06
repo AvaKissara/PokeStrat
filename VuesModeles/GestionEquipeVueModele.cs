@@ -103,10 +103,6 @@ namespace PokeStat.VuesModeles
             }
         }
 
-
-
-
-
         public GestionEquipeVueModele()
         {
             GestionCommand = new RelayCommand(GestionEquipe);

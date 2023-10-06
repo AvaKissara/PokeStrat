@@ -41,7 +41,7 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.RowSpan="2" Canvas.Left="398" VerticalAlignment="Center" Canvas.Top="-31" Height="61" Width="42" >
                                     <Button Content="&#xE711;" Width="43" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}" Command="{Binding CloseCommand}" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top" />
                                 </StackPanel>
-                                <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="200" Height="220" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="2"/>
+                                <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="200" Height="220" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
                                 <TextBlock Text="{Binding Equipier.SurnomEquipier}" Typography.Capitals="AllSmallCaps" Foreground="#FF677C8F" Height="43" Canvas.Left="36" TextWrapping="Wrap" FontWeight="Bold" Canvas.Top="215" Width="144"  FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                                 <Path Data="M19.5,10 C19.5,15.246705 15.246705,19.5 10,19.5 C4.7532949,19.5 0.5,15.246705 0.5,10 C0.5,4.7532949 4.7532949,0.5 10,0.5 C15.246705,0.5 19.5,4.7532949 19.5,10 z" Height="20" Canvas.Left="185.991" Stretch="Fill" Canvas.Top="10" Width="20"/>
                                 <TextBlock Canvas.Left="193.021" TextWrapping="Wrap" Text="1" Canvas.Top="12.5" FontSize="11" />
@@ -56,7 +56,7 @@
                                     <TextBlock Text="{Binding Equipier.TalentEquipier.NomTalent}" Foreground="#FF677C8F" FontSize="18"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="340" VerticalAlignment="Center" Canvas.Left="55">
-                                    <TextBlock Text="{Binding Equipier.ObjetEquipier.nomObjet}" Foreground="#FF677C8F" FontSize="18"/>
+                                    <TextBlock Text="{Binding Equipier.ObjetEquipier.NomObjet}" Foreground="#FF677C8F" FontSize="18"/>
                                 </StackPanel>
                                 <StackPanel HorizontalAlignment="Center" Canvas.Top="400" VerticalAlignment="Top" Canvas.Left="52">
                                     <Border Background="#FF677C8F" Padding="5" Margin="0 2 0 10">
