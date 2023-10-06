@@ -39,5 +39,10 @@ namespace PokeStat.Modeles
             this.BasePuiss = BasePuiss;
             this.BaseCrit = BaseCrit;   
         }
+        public MCapacite(int IdCapacite, string NomCapacite)
+        {
+            this.IdCapacite = IdCapacite;
+            this.NomCapacite = NomCapacite;
+        }
     }
 }

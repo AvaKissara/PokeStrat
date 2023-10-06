@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace PokeStat.Repositories
 {
@@ -37,7 +38,7 @@ namespace PokeStat.Repositories
             List<MSpecimen> ListMSpecimens = new List<MSpecimen>();
 
             SqlCommand RequestGetPokemons = bddTool.GetRequest();
-            RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img, P.nom_eng_pok, P.nom_fra_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, P2.id_pok as evo_de_id, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, G.id_gen, G.nom_gen FROM Pokemons AS P LEFT JOIN Generations as G ON P.gen_id = G.id_gen LEFT JOIN Pokemons P2 ON P.evo_de_id = P2.id_pok";
+            RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img,  P.nom_fra_pok, P.nom_eng_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, P2.id_pok as evo_de_id, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, G.id_gen, G.nom_gen FROM Pokemons AS P LEFT JOIN Generations as G ON P.gen_id = G.id_gen LEFT JOIN Pokemons P2 ON P.evo_de_id = P2.id_pok";
 
             using (SqlDataReader pokemons = RequestGetPokemons.ExecuteReader())
             {
@@ -103,6 +104,35 @@ namespace PokeStat.Repositories
             bddTool.CloseConnexion();
 
             return ListMSpecimens;
+        }
+
+        public List<MCapacite> GetPoolCapacite(int idEquipier)
+        {
+            bddTool.CheckConnexion();
+
+            List<MCapacite> ListMCapacites = new List<MCapacite>();
+
+            SqlCommand RequestGetCapacites = bddTool.GetRequest();
+            RequestGetCapacites.CommandText = "SELECT P.id_pok, C.id_cap, C.nom_cap FROM pokemon_capacite AS CS LEFT JOIN Pokemons AS P ON CS.pok_id = P.id_pok LEFT JOIN Capacites AS C ON CS.cap_id = C.id_cap WHERE P.id_pok = @id_pok;";
+            
+            SqlParameter idPok = RequestGetCapacites.Parameters.Add("@id_pok", SqlDbType.Int);
+
+            idPok.Value = idEquipier;
+            
+            using (SqlDataReader capacites = RequestGetCapacites.ExecuteReader())
+            {
+                while (capacites.Read())
+                {
+                    MCapacite uneCapacite = new MCapacite(
+                      capacites.GetInt32(1),
+                      $"{capacites[2]}"
+                     );
+                    ListMCapacites.Add(uneCapacite);
+                }
+            }
+
+            bddTool.CloseConnexion();
+            return ListMCapacites;
         }
 
         public void Add(MSpecimen entreePokemon)
@@ -199,8 +229,6 @@ namespace PokeStat.Repositories
             // Fermeture de la connexion
             bddTool.CloseConnexion();
         }
-
-  
 
         public void Update(MSpecimen MModele)
         {

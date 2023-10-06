@@ -81,6 +81,7 @@ namespace PokeStat.Modeles
             this.pokemons = repPokemon.GetAll();
             this.natures = repNature.GetAll();
             this.objets = repObjet.GetAll();
+            this.PoolCapacites = repPokemon.GetPoolCapacite(IdPokemon);
         }
 
         public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string NomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, MPokemon Evolution, MGeneration Gen, string SurnomEquipier, int NiveauEquipier)
