@@ -64,7 +64,7 @@ namespace PokeStat.Utilitaires
             {
                 From = 0,
                 To = 1,
-                Duration = TimeSpan.FromSeconds(0.5) // Réglez la durée de l'animation selon vos préférences
+                Duration = TimeSpan.FromSeconds(0.3) // Réglez la durée de l'animation selon vos préférences
             };
 
             // Appliquez l'animation à l'opacité de la fenêtre

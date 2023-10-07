@@ -59,7 +59,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             e.Handled = true;
         }
         public MainWindow MainWindow { get; set; }
-        private WindowManager windowManager = new WindowManager();
+
         private void EquipierButton_Click(object sender, RoutedEventArgs e)
         {
             MEquipier equipierParDefaut = new MEquipier(

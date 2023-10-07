@@ -23,7 +23,10 @@ namespace PokeStat.VuesModeles
     {
        
         public ICommand DetailPopupCommand { get; set; }
-        public ICommand DetailPokPopupCommand { get; set; }
+
+        private WindowManager windowManager = new WindowManager();
+
+
         private bool isSelected;
         public bool IsSelected
         {
@@ -111,6 +114,48 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        private MNature natureSelection;
+        public MNature NatureSelection
+        {
+            get { return natureSelection; }
+            set
+            {
+                if (natureSelection != value)
+                {
+                    natureSelection = value;
+                    OnPropertyChanged(nameof(NatureSelection));
+                }
+            }
+        }
+
+
+        private MTalent talentSelection;
+        public MTalent TalentSelection
+        {
+            get { return talentSelection; }
+            set
+            {
+                if (talentSelection != value)
+                {
+                    talentSelection = value;
+                    OnPropertyChanged(nameof(TalentSelection));
+                }
+            }
+        }
+
+        private MObjet objetSelection;
+        public MObjet ObjetSelection
+        {
+            get { return objetSelection; }
+            set
+            {
+                if (objetSelection != value)
+                {
+                    objetSelection = value;
+                    OnPropertyChanged(nameof(ObjetSelection));
+                }
+            }
+        }
 
         private ImageSource imagePokemonSelectionne;
         public ImageSource ImagePokemonSelectionne
@@ -135,52 +180,42 @@ namespace PokeStat.VuesModeles
         {
             MEquipier equipierParDefaut = new MEquipier(
             IdPokemon: 0,
-            CheminImgPokemon: "0.png", 
-            NomFraPokemon: "Nouveau", 
-            BasePV: 0, 
-            BaseAttaque: 0, 
-            BaseDefense: 0, 
-            BaseAttSpe: 0, 
-            BaseDefSpe: 0, 
-            BaseVit: 0, 
-            Legendaire: false, 
-            Shiny: false, 
-            Mega: false, 
-            Giga: false, 
-            Fab: false, 
-            SurnomEquipier: "Nouveau", 
-            NiveauEquipier: 0, 
-            EsquiveEquipier: 0, 
-            NiveauBonheur: 0, 
-            Ev: 0, 
-            Iv: 0, 
-            Nature: null,  
-            TalentEquipier: null, 
-            ObjetEquipier: null,  
-            SetCapacites: new ObservableCollection<MCapacite>(), 
-            EquipeId: 0 
+            CheminImgPokemon: "0.png",
+            NomFraPokemon: "Nouveau",
+            BasePV: 0,
+            BaseAttaque: 0,
+            BaseDefense: 0,
+            BaseAttSpe: 0,
+            BaseDefSpe: 0,
+            BaseVit: 0,
+            Legendaire: false,
+            Shiny: false,
+            Mega: false,
+            Giga: false,
+            Fab: false,
+            SurnomEquipier: "Nouveau",
+            NiveauEquipier: 0,
+            EsquiveEquipier: 0,
+            NiveauBonheur: 0,
+            Ev: 0,
+            Iv: 0,
+            Nature: null,
+            TalentEquipier: null,
+            ObjetEquipier: null,
+            SetCapacites: new ObservableCollection<MCapacite>(),
+            EquipeId: 0
             );
 
             DetailPopupCommand = new RelayCommand(DetailPopup);
-            DetailPokPopupCommand = new RelayCommand(DetailPokPopup);
-
+            repTalent = new RepTalent();
 
             this.Equipier = Equipier;
-            if(Equipier==null)
+            if (Equipier == null)
             {
-                this.Equipier = equipierParDefaut;
-                repTalent = new RepTalent();
+                this.Equipier = equipierParDefaut;               
                 this.Equipier.TalentPokemon = repTalent.GetAll();
             }
-            //string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            //this.ImagePokemonSelectionne = new BitmapImage(new Uri(Path.Combine(appDirectory, Equipier.CheminImgPokemonAbsolu)));
         }
-        //public EquipierTreeViewNode(MSpecimen PokemonSaisi)
-        //{
-        //    this.Pokemon = PokemonSaisi;
-        //    this.Equipier = FromMSpecimen(PokemonSaisi);
-        //    DetailPopupCommand = new RelayCommand(DetailPopup);
-        //}
         public MEquipier FromMSpecimen(MSpecimen specimen)
         {
             if (specimen == null)
@@ -211,39 +246,46 @@ namespace PokeStat.VuesModeles
                 Gen: PokSelection.Gen,
                 
                 SurnomEquipier: Equipier.SurnomEquipier,
-                NiveauEquipier: Equipier.NiveauEquipier
-            );
+                NiveauEquipier: Equipier.NiveauEquipier             
+            ); 
+            if (specimen.TalentPokemon == null)
+            {
+               equipierEnSaisie.TalentPokemon = repTalent.GetTalent(specimen.IdPokemon);
+            }
             return equipierEnSaisie;
         }
 
-        private WindowManager windowManager = new WindowManager();
+
+     
         private void DetailPopup()
         {
             if (PokEquipierSeletion != null)
             {
                 PokEquipierSeletion.SurnomEquipier = this.Equipier.SurnomEquipier;
                 PokEquipierSeletion.NiveauEquipier = this.Equipier.NiveauEquipier;
-                //var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-                //activeWindow?.Close();
-                this.Equipier = PokEquipierSeletion;
 
-
-           
-              
-                var equipeNode = new EquipierTreeViewNode(this.Equipier);
-                //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-                
-                var detailPopup = new DetailEquipe();
-                detailPopup.Owner = MainWindow;
-                windowManager.Register(detailPopup);
-                detailPopup.DataContext = equipeNode;
-
-                //var equipeNode = new EquipierTreeViewNode(EquipierSeletionne);
-
-                //var detailPopup = new DetailEquipe();
-                //detailPopup.DataContext = equipeNode;
-                windowManager.ShowWindow("DetailEquipe", detailPopup);
             }
+            if(NatureSelection!=null) 
+            {
+                this.PokEquipierSeletion.Nature = NatureSelection;
+            }
+            if(TalentSelection!=null)
+            {
+                this.pokEquipierSeletion.TalentEquipier = TalentSelection;
+            }
+            if(ObjetSelection!=null)
+            {
+                this.pokEquipierSeletion.ObjetEquipier = ObjetSelection;
+            }
+            this.Equipier = PokEquipierSeletion;
+           
+            var equipeNode = new EquipierTreeViewNode(this.Equipier);      
+            var detailPopup = new DetailEquipe();
+            detailPopup.Owner = MainWindow;
+            windowManager.Register(detailPopup);
+            detailPopup.DataContext = equipeNode;
+            windowManager.ShowWindow("DetailEquipe", detailPopup);
+          
         }
 
         private RelayCommand closeCommand;
@@ -263,32 +305,12 @@ namespace PokeStat.VuesModeles
 
         private void Close()
         {
-            var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+          
             MainWindow mainWindow = new MainWindow();
             mainWindow.DataContext = new AccueilVueModel();
+            windowManager.Register(mainWindow);
             NavigationServices.NavigateToPage(new GestionEquipe());
-            mainWindow.ShowDialog();
-            activeWindow?.Close();
-
-        }
-
-        private void DetailPokPopup()
-        {
-            if (!string.IsNullOrEmpty(Equipier.NomFraPokemon))
-            {
-
-                var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-                activeWindow?.Close();
-
-                var equipeNode = new EquipierTreeViewNode(Equipier);
-                //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-                var detailPopup = new DetailEquipe();
-                detailPopup.DataContext = equipeNode;
-
-                detailPopup.ShowDialog();
-
-                //activeWindow2?.Close();        
-            }
+            windowManager.ShowWindow("Mainwindow", mainWindow);
         }
     }
 }

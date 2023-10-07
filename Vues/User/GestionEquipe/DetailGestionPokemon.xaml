@@ -55,16 +55,16 @@
 						VerticalAlignment="Center" Grid.ColumnSpan="2" />
                 <TextBlock x:Name="textBlock4" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 					Grid.Row="4" Margin="16,-10,0,0" FontSize="16" Text="Nature:" />
-                <ComboBox x:Name="comboBoxn" ItemsSource="{Binding Equipier.natures}" Grid.Row="4" Grid.Column="1"
+                <ComboBox x:Name="comboBoxn" ItemsSource="{Binding Equipier.natures}" SelectedValue="{Binding NatureSelection, Mode=TwoWay}" Grid.Row="4" Grid.Column="1"
 			VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomNature" Grid.ColumnSpan="2" MaxDropDownHeight="210" />
                 <TextBlock x:Name="textBlockt" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="5" Margin="16,-11,0,0" FontSize="16" Text="Talent:" />
                 <ComboBox x:Name="comboBoxt" Grid.Row="5" Grid.Column="1"
-VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding Equipier.TalentPokemon}"  DisplayMemberPath="NomTalent" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
+VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding PokEquipierSeletion.TalentPokemon}"  DisplayMemberPath="NomTalent" SelectedValue="{Binding TalentSelection, Mode=TwoWay}" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
                 <TextBlock x:Name="textBlocko" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="6" Margin="16,-11,0,0" FontSize="16" Text="Objet:" />
                 <ComboBox x:Name="comboBoxo"  ItemsSource="{Binding Equipier.objets}" Grid.Row="6" Grid.Column="1"
-VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomObjet" Grid.ColumnSpan="2" MaxDropDownHeight="200" />
+VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomObjet" SelectedValue="{Binding ObjetSelection, Mode=TwoWay}" Grid.ColumnSpan="2" MaxDropDownHeight="200" />
 
                 <StackPanel Grid.Row="7" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Left"
 						Orientation="Horizontal" Margin="103,0,0,0">

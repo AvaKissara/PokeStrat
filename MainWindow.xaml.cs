@@ -23,13 +23,13 @@ namespace PokeStat
     public partial class MainWindow : Window
     {
         private AccueilVueModel accueilVueModel;
-
+        //private WindowManager windowManager = new WindowManager();
         public MainWindow()
         {
             InitializeComponent();
             accueilVueModel = new AccueilVueModel();
             DataContext = accueilVueModel;
-
+            //windowManager.Register(this);
             SetWindowFullScreen();
             NavigationServices.Initialize(MainFrame);
 

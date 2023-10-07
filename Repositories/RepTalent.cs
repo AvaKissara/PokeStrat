@@ -52,5 +52,33 @@ namespace PokeStat.Repositories
             bddTool.CloseConnexion();
             return ListMTalents;
         }
+
+        public List<MTalent> GetTalent(int idEquipier)
+        {
+            bddTool.CheckConnexion();
+
+            List<MTalent> ListMTalents = new List<MTalent>();
+
+            SqlCommand RequestGetTalents = bddTool.GetRequest();
+            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM pokemon_talent AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent WHERE P.id_pok = @id_pok;";
+            SqlParameter idEq = RequestGetTalents.Parameters.Add("@id_pok", SqlDbType.Int);
+
+            idEq.Value = idEquipier;
+
+            using (SqlDataReader talents = RequestGetTalents.ExecuteReader())
+            {
+                while (talents.Read())
+                {
+                    MTalent unTalent = new MTalent(
+                      talents.GetInt32(1),
+                      $"{talents[2]}"
+                     );
+                    ListMTalents.Add(unTalent);
+                }
+            }
+
+            bddTool.CloseConnexion();
+            return ListMTalents;
+        }
     }
 }
