@@ -39,7 +39,7 @@
                    
                 </Grid.RowDefinitions>
 
-                <Image Source="{Binding PokEquipierSeletion.CheminImgPokemonAbsolu}" Width="170" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="90,-10,0,0" Grid.RowSpan="3"/>
+                <Image Source="{Binding ImagePokemonSelectionne}" Width="170" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="90,-10,0,0" Grid.RowSpan="3"/>
 
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Pokémon:" HorizontalAlignment="Left"
 						VerticalAlignment="Center" Grid.Row="1" Margin="16,0,0,0" FontSize="16" />

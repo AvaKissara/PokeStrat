@@ -215,6 +215,10 @@ namespace PokeStat.VuesModeles
                 this.Equipier = equipierParDefaut;               
                 this.Equipier.TalentPokemon = repTalent.GetAll();
             }
+            if (ImagePokemonSelectionne == null)
+            {
+                ImagePokemonSelectionne = new BitmapImage(new Uri(this.Equipier.CheminImgPokemonAbsolu));
+            }
         }
         public MEquipier FromMSpecimen(MSpecimen specimen)
         {
@@ -252,6 +256,7 @@ namespace PokeStat.VuesModeles
             {
                equipierEnSaisie.TalentPokemon = repTalent.GetTalent(specimen.IdPokemon);
             }
+
             return equipierEnSaisie;
         }
 
@@ -277,6 +282,7 @@ namespace PokeStat.VuesModeles
             {
                 this.pokEquipierSeletion.ObjetEquipier = ObjetSelection;
             }
+         
             this.Equipier = PokEquipierSeletion;
            
             var equipeNode = new EquipierTreeViewNode(this.Equipier);      

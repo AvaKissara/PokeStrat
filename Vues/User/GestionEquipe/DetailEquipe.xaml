@@ -58,7 +58,7 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Top="340" VerticalAlignment="Center" Canvas.Left="55">
                                     <TextBlock Text="{Binding Equipier.ObjetEquipier.NomObjet}" Foreground="#FF677C8F" FontSize="18"/>
                                 </StackPanel>
-                                <StackPanel HorizontalAlignment="Center" Canvas.Top="400" VerticalAlignment="Top" Canvas.Left="52">
+                                <StackPanel HorizontalAlignment="Center" Canvas.Top="400" VerticalAlignment="Top" Canvas.Left="52" PreviewMouseDown="StackPanel_PreviewMouseDown">
                                     <Border Background="#FF677C8F" Padding="5" Margin="0 2 0 10">
                                         <TextBlock Text="Set de capacités" FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" />
                                     </Border>

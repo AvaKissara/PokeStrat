@@ -34,6 +34,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
             NavigationServices.NavigateToPage(this);
+            
         }
         //private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         //{
@@ -48,6 +49,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             // Obtenir l'équipier correspondant aux données de la vue
             var border = sender as Border;
             var equipier = border.DataContext as EquipierTreeViewNode;
+            
 
             if (equipier != null)
             {

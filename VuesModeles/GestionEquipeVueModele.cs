@@ -7,6 +7,7 @@ using PokeStat.Vues.User.GestionEquipe;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
@@ -178,6 +179,7 @@ namespace PokeStat.VuesModeles
             detailPopup.Owner = MainWindow;
             windowManager.Register(detailPopup);
             detailPopup.DataContext = equipeNode;
+           
 
             //var equipeNode = new EquipierTreeViewNode(EquipierSeletionne);
 

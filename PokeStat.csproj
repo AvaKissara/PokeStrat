@@ -194,6 +194,9 @@
     <Compile Include="Vues\User\GestionEquipe\DetailEquipe.xaml.cs">
       <DependentUpon>DetailEquipe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vues\User\GestionEquipe\DetailGestionCapacite.xaml.cs">
+      <DependentUpon>DetailGestionCapacite.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vues\User\GestionEquipe\DetailGestionPokemon.xaml.cs">
       <DependentUpon>DetailGestionPokemon.xaml</DependentUpon>
     </Compile>
@@ -310,6 +313,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vues\User\GestionEquipe\DetailEquipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\User\GestionEquipe\DetailGestionCapacite.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

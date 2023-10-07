@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -31,6 +32,14 @@ namespace PokeStat.Vues.User.GestionEquipe
             windowManager = new WindowManager();
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
+
+            double detailGestionCapaciteHeight = 620; 
+
+            double newTop = Screen.PrimaryScreen.WorkingArea.Height - detailGestionCapaciteHeight + 400; 
+
+            this.Height = newTop;
+
+           this.Top = newTop;
         }
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -53,7 +62,6 @@ namespace PokeStat.Vues.User.GestionEquipe
         }
         private void Equipier_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // Obtenir l'équipier correspondant aux données de la vue
             var border = sender as Border;
             var equipier = border.DataContext as EquipierTreeViewNode;
 
@@ -63,8 +71,18 @@ namespace PokeStat.Vues.User.GestionEquipe
                 equipier.EquipierSeletionne = equipier.Equipier;
             }
 
-            // Empêcher la propagation de l'événement pour éviter la sélection de l'élément parent de la TreeView.
             e.Handled = true;
+        }
+        private void StackPanel_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var detailGestionCapacite = new DetailGestionCapacite();
+            detailGestionCapacite.Owner = this; // Définissez la fenêtre actuelle comme parent de la popup
+            double detailCapaciteLeft = Left;
+            double detailCapaciteTop = Top;
+            double detailGestionCapaciteHeight = 620;
+            detailGestionCapacite.Left = detailCapaciteLeft -140;
+            detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 40;
+            detailGestionCapacite.ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
