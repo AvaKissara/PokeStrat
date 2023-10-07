@@ -29,6 +29,7 @@ namespace PokeStat
             InitializeComponent();
             accueilVueModel = new AccueilVueModel();
             DataContext = accueilVueModel;
+
             SetWindowFullScreen();
             NavigationServices.Initialize(MainFrame);
 

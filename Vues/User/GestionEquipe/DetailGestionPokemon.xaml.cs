@@ -1,5 +1,6 @@
 ﻿using PokeStat.Modeles;
 using PokeStat.Utilitaires;
+using PokeStat.VuesModeles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,18 +22,16 @@ namespace PokeStat.Vues.User.GestionEquipe
     /// </summary>
     public partial class DetailGestionPokemon : Window
     {
-        public DetailGestionPokemon(MEquipier equipier)
+        public DetailGestionPokemon(EquipierTreeViewNode equipier)
         {
             InitializeComponent();
             DataContext = equipier;
         }
 
 
-        //private void button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    GestionEquipe equip = new GestionEquipe();
-        //    NavigationServices.NavigateToPage(equip);
-        //    this.Close();
-        //}
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

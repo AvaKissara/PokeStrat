@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" xmlns:modeles="clr-namespace:PokeStat.Modeles" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=modeles:MEquipier}"
+        xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" xmlns:modeles="clr-namespace:PokeStat.VuesModeles" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=modeles:EquipierTreeViewNode}"
         mc:Ignorable="d"
         Title="DetailGestionPokemon" Height="650" Width="500">
 
@@ -39,36 +39,36 @@
                    
                 </Grid.RowDefinitions>
 
-                <Image Source="{Binding ImagePokemonSelectionne}" Width="170" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="90,-10,0,0" Grid.RowSpan="3"/>
+                <Image Source="{Binding PokEquipierSeletion.CheminImgPokemonAbsolu}" Width="170" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="90,-10,0,0" Grid.RowSpan="3"/>
 
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Pokémon:" HorizontalAlignment="Left"
 						VerticalAlignment="Center" Grid.Row="1" Margin="16,0,0,0" FontSize="16" />
-                <ComboBox x:Name="comboBox" ItemsSource="{Binding pokemons}" Grid.Row="1" Grid.Column="1"
+                <ComboBox x:Name="comboBox" ItemsSource="{Binding Equipier.pokemons}" Grid.Row="1" Grid.Column="1"
 						VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" DisplayMemberPath="NomFraPokemon" Grid.ColumnSpan="2" MaxDropDownHeight="260" SelectedValue="{Binding PokSelection, Mode=TwoWay}" />
                 <TextBlock x:Name="textBlock2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 						Grid.Row="2" Margin="16,-10,0,0" FontSize="16" Text="Surnom:" />
-                <TextBox x:Name="textBox" Text="{Binding SurnomEquipier}" TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" Margin="10,-11,10,0" FontSize="14"
+                <TextBox x:Name="textBox" Text="{Binding Equipier.SurnomEquipier}" TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" Margin="10,-11,10,0" FontSize="14"
 						VerticalAlignment="Center" Grid.ColumnSpan="2" />
                 <TextBlock x:Name="textBlock1" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 						Grid.Row="3" Margin="16,-11,0,0" FontSize="16" Text="Niveau:" />
-                <TextBox x:Name="textBox1" Text="{Binding NiveauEquipier}" TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Margin="10,-11,10,0" FontSize="14"
+                <TextBox x:Name="textBox1" Text="{Binding Equipier.NiveauEquipier}" TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Margin="10,-11,10,0" FontSize="14"
 						VerticalAlignment="Center" Grid.ColumnSpan="2" />
                 <TextBlock x:Name="textBlock4" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 					Grid.Row="4" Margin="16,-10,0,0" FontSize="16" Text="Nature:" />
-                <ComboBox x:Name="comboBoxn" ItemsSource="{Binding natures}" Grid.Row="4" Grid.Column="1"
+                <ComboBox x:Name="comboBoxn" ItemsSource="{Binding Equipier.natures}" Grid.Row="4" Grid.Column="1"
 			VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomNature" Grid.ColumnSpan="2" MaxDropDownHeight="210" />
                 <TextBlock x:Name="textBlockt" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="5" Margin="16,-11,0,0" FontSize="16" Text="Talent:" />
                 <ComboBox x:Name="comboBoxt" Grid.Row="5" Grid.Column="1"
-VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding TalentPokemon}"  DisplayMemberPath="NomTalent" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
+VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding Equipier.TalentPokemon}"  DisplayMemberPath="NomTalent" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
                 <TextBlock x:Name="textBlocko" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="6" Margin="16,-11,0,0" FontSize="16" Text="Objet:" />
-                <ComboBox x:Name="comboBoxo"  ItemsSource="{Binding objets}" Grid.Row="6" Grid.Column="1"
+                <ComboBox x:Name="comboBoxo"  ItemsSource="{Binding Equipier.objets}" Grid.Row="6" Grid.Column="1"
 VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomObjet" Grid.ColumnSpan="2" MaxDropDownHeight="200" />
 
                 <StackPanel Grid.Row="7" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Left"
 						Orientation="Horizontal" Margin="103,0,0,0">
-                    <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" />
+                    <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" Click="button_Click" />
                     <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" />
                 </StackPanel>
             </Grid>

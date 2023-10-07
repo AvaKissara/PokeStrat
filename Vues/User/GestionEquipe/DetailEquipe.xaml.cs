@@ -35,7 +35,7 @@ namespace PokeStat.Vues.User.GestionEquipe
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // Obtenez l'équipier correspondant au DataContext de l'image
-            MEquipier equipier = (DataContext as EquipierTreeViewNode)?.Equipier;
+           EquipierTreeViewNode equipier = (DataContext as EquipierTreeViewNode);
 
             if (equipier != null)
             {

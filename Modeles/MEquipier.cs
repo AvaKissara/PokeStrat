@@ -45,46 +45,46 @@ namespace PokeStat.Modeles
             }
         }
 
-        private MSpecimen pokSelection;
-        public MSpecimen PokSelection
-        {
-            get { return pokSelection; }
-            set
-            {
-                if (pokSelection != value)
-                {
-                    pokSelection = value;
-                    OnPropertyChanged(nameof(PokSelection));
+        //private MSpecimen pokSelection;
+        //public MSpecimen PokSelection
+        //{
+        //    get { return pokSelection; }
+        //    set
+        //    {
+        //        if (pokSelection != value)
+        //        {
+        //            pokSelection = value;
+        //            OnPropertyChanged(nameof(PokSelection));
 
-                    // Mettez à jour l'image du Pokémon sélectionné
-                    if (pokSelection != null)
-                    {
-                        ImagePokemonSelectionne = new BitmapImage(new Uri(pokSelection.CheminImgPokemonAbsolu));
-                    }
-                    else
-                    {
-                        string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                        // Si aucun Pokémon n'est sélectionné, utilisez l'image par défaut
-                        ImagePokemonSelectionne = new BitmapImage(new Uri(Path.Combine(appDirectory, "0.png")));
-                    }
-                }
-            }
-        }
+        //            // Mettez à jour l'image du Pokémon sélectionné
+        //            if (pokSelection != null)
+        //            {
+        //                ImagePokemonSelectionne = new BitmapImage(new Uri(pokSelection.CheminImgPokemonAbsolu));
+        //            }
+        //            else
+        //            {
+        //                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        //                // Si aucun Pokémon n'est sélectionné, utilisez l'image par défaut
+        //                ImagePokemonSelectionne = new BitmapImage(new Uri(Path.Combine(appDirectory, "0.png")));
+        //            }
+        //        }
+        //    }
+        //}
 
 
-        private ImageSource imagePokemonSelectionne;
-        public ImageSource ImagePokemonSelectionne
-        {
-            get { return imagePokemonSelectionne; }
-            set
-            {
-                if (imagePokemonSelectionne != value)
-                {
-                    imagePokemonSelectionne = value ?? new BitmapImage(new Uri(CheminImgPokemonAbsolu));
-                    OnPropertyChanged(nameof(ImagePokemonSelectionne));
-                }
-            }
-        }
+        //private ImageSource imagePokemonSelectionne;
+        //public ImageSource ImagePokemonSelectionne
+        //{
+        //    get { return imagePokemonSelectionne; }
+        //    set
+        //    {
+        //        if (imagePokemonSelectionne != value)
+        //        {
+        //            imagePokemonSelectionne = value ?? new BitmapImage(new Uri(CheminImgPokemonAbsolu));
+        //            OnPropertyChanged(nameof(ImagePokemonSelectionne));
+        //        }
+        //    }
+        //}
 
 
         private readonly RepPokemon repPokemon;
@@ -100,7 +100,7 @@ namespace PokeStat.Modeles
         public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, string SurnomEquipier, int NiveauEquipier, int EsquiveEquipier, int NiveauBonheur, int Ev, int Iv, MNature Nature, MTalent TalentEquipier, MObjet ObjetEquipier, ObservableCollection<MCapacite> SetCapacites, int EquipeId)
             : base(IdPokemon, CheminImgPokemon, NomFraPokemon, BasePV, BaseAttaque, BaseDefense, BaseAttSpe, BaseDefSpe, BaseVit, Legendaire, Shiny, Mega, Giga, Fab)
         {
-            DetailPopupCommand = new RelayCommand(DetailPokPopup);
+            //DetailPopupCommand = new RelayCommand(DetailPokPopup);
             this.SurnomEquipier = SurnomEquipier;
             this.NiveauEquipier = NiveauEquipier;
             this.EsquiveEquipier = EsquiveEquipier;
@@ -121,8 +121,7 @@ namespace PokeStat.Modeles
             this.objets = repObjet.GetAll();
             this.PoolCapacites = repPokemon.GetPoolCapacite(IdPokemon);
             this.TalentPokemon = repPokemon.GetPoolTalent(IdPokemon);
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            this.ImagePokemonSelectionne = new BitmapImage(new Uri(Path.Combine(appDirectory, this.CheminImgPokemonAbsolu)));
+
 
 
         }
@@ -138,24 +137,24 @@ namespace PokeStat.Modeles
             : base(IdPokemon, CheminImgPokemon, NomFraPokemon)
         {
         }
-        private void DetailPokPopup()
-        {
-            if (!string.IsNullOrEmpty(PokSelection.NomFraPokemon))
-            {
+        //private void DetailPokPopup()
+        //{
+        //    if (!string.IsNullOrEmpty(PokSelection.NomFraPokemon))
+        //    {
 
-                var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-                activeWindow?.Close();
+        //        var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+        //        activeWindow?.Close();
 
-                var equipeNode = new EquipierTreeViewNode(pokSelection);
-                //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-                var detailPopup = new DetailEquipe();
-                detailPopup.DataContext = equipeNode;
+        //        var equipeNode = new EquipierTreeViewNode(pokSelection);
+        //        //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+        //        var detailPopup = new DetailEquipe();
+        //        detailPopup.DataContext = equipeNode;
         
-                detailPopup.ShowDialog();
+        //        detailPopup.ShowDialog();
    
-                //activeWindow2?.Close();        
-            }
-        }
+        //        //activeWindow2?.Close();        
+        //    }
+        //}
         
         public event PropertyChangedEventHandler PropertyChanged;
 
