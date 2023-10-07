@@ -1,4 +1,5 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.Utilitaires;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,13 @@ namespace PokeStat.Vues.User.GestionEquipe
             InitializeComponent();
             DataContext = equipier;
         }
+
+
+        //private void button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    GestionEquipe equip = new GestionEquipe();
+        //    NavigationServices.NavigateToPage(equip);
+        //    this.Close();
+        //}
     }
 }

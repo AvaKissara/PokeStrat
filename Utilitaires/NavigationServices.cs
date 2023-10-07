@@ -10,7 +10,8 @@ namespace PokeStat.Utilitaires
     public static class NavigationServices
     {
         private static Frame mainFrame;
-
+        private static SessionManager _sessionManager;
+      
         public static void Initialize(Frame Mainframe)
         {
             mainFrame = Mainframe;
@@ -23,7 +24,13 @@ namespace PokeStat.Utilitaires
 
         public static void NavigateToPage(Page page)
         {
+            _sessionManager = new SessionManager();
+            string fullClassName = page.GetType().FullName;
+            int lastDotIndex = fullClassName.LastIndexOf('.');
+            string className = fullClassName.Substring(lastDotIndex + 1);
+            _sessionManager.SetPreviousPage(className);
             mainFrame.Navigate(page);
         }
+
     }
 }

@@ -135,6 +135,35 @@ namespace PokeStat.Repositories
             return ListMCapacites;
         }
 
+        public List<MTalent> GetPoolTalent(int idEquipier)
+        {
+            bddTool.CheckConnexion();
+
+            List<MTalent> ListMTalents = new List<MTalent>();
+
+            SqlCommand RequestGetTalents = bddTool.GetRequest();
+            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM pokemon_talent AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent WHERE P.id_pok = @id_pok;";
+
+            SqlParameter idPok = RequestGetTalents.Parameters.Add("@id_pok", SqlDbType.Int);
+
+            idPok.Value = idEquipier;
+
+            using (SqlDataReader talents = RequestGetTalents.ExecuteReader())
+            {
+                while (talents.Read())
+                {
+                    MTalent unTalent = new MTalent(
+                      talents.GetInt32(1),
+                      $"{talents[2]}"
+                     );
+                    ListMTalents.Add(unTalent);
+                }
+            }
+
+            bddTool.CloseConnexion();
+            return ListMTalents;
+        }
+
         public void Add(MSpecimen entreePokemon)
         {
             if (entreePokemon is MSpecimen nouveauPokemon)

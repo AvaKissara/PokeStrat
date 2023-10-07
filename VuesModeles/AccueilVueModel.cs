@@ -71,6 +71,8 @@ namespace PokeStat.VuesModeles
             GestionMatchCommand = new RelayCommand(GestionMatch);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
+
+      
         }
 
 

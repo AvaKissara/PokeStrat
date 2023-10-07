@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace PokeStat.Modeles
     public class MSpecimen : MPokemon
     {     
         public string Desc { get; set; }
+
+       
 
         public MSpecimen(int IdPokemon, string CheminImgPokemon, string NomFraPokemon) : base(IdPokemon, CheminImgPokemon, NomFraPokemon)
         {
@@ -27,5 +30,6 @@ namespace PokeStat.Modeles
         {
 
         }
+
     }
 }

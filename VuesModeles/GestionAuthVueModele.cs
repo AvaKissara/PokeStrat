@@ -95,6 +95,7 @@ namespace PokeStat.VuesModeles
 
             bool connexionReussieUser = userAConnecter != null && PasswordManager.VerifyPassword(Mdp, userAConnecter.MdpPersonne, selHasheUser);
             bool connexionReussieAdmin = adminAConnecter != null && PasswordManager.VerifyPassword(Mdp, adminAConnecter.MdpPersonne, selHasheAdmin);
+            //bool connexionReussieAdmin = adminAConnecter != null;
 
             if (connexionReussieUser || connexionReussieAdmin)
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
@@ -32,6 +33,22 @@ namespace PokeStat.Modeles
         public MGeneration Gen { get; set; }
         public List<MCapacite> PoolCapacites { get; set; }
         public List<MTalent> TalentPokemon { get; set; }
+        public string CheminImgPokemonAbsolu
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(CheminImgPokemon))
+                {
+                    // Obtenez le chemin du répertoire de l'exécutable de l'application
+                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+                    // Composez le chemin absolu en concaténant le chemin du répertoire de l'application avec le chemin relatif
+                    return Path.Combine(appDirectory, CheminImgPokemon);
+                }
+
+                return string.Empty;
+            }
+        }
 
         public MPokemon(int idPokemon, string cheminImgPokemon, string nomFraPokemon, string nomEngPokemon, string numPokemon, decimal taillePokemon, decimal poidsPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab, MPokemon evolution, MGeneration gen)
         {

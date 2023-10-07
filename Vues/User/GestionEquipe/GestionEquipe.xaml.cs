@@ -49,7 +49,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             if (equipier != null)
             {
-                equipier.SelectedEquipeNode = equipier.Equipier;
+                equipier.EquipierSeletionne = equipier.Equipier;
             }
 
             // Empêcher la propagation de l'événement pour éviter la sélection de l'élément parent de la TreeView.

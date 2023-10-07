@@ -52,5 +52,9 @@ namespace PokeStat.Vues.User.GestionEquipe
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -102,6 +102,7 @@
     <Compile Include="Repositories\RepNature.cs" />
     <Compile Include="Repositories\RepObjet.cs" />
     <Compile Include="Repositories\RepPokemon.cs" />
+    <Compile Include="Repositories\RepTalent.cs" />
     <Compile Include="Repositories\RepType.cs" />
     <Compile Include="Repositories\RepUser.cs" />
     <Compile Include="Repositories\RepVersion.cs" />
@@ -477,6 +478,17 @@
     <Resource Include="bin\Debug\037.png" />
     <Resource Include="bin\Debug\037_f2.png" />
     <Resource Include="bin\Debug\0.png" />
+    <Resource Include="bin\Debug\008.png" />
+    <Resource Include="bin\Debug\007.png" />
+    <Resource Include="bin\Debug\006_f3.png" />
+    <Resource Include="bin\Debug\001.png" />
+    <Resource Include="bin\Debug\002.png" />
+    <Resource Include="bin\Debug\003_f2.png" />
+    <Resource Include="bin\Debug\004.png" />
+    <Resource Include="bin\Debug\005.png" />
+    <Resource Include="bin\Debug\006.png" />
+    <Resource Include="bin\Debug\006_f2.png" />
+    <Resource Include="bin\Debug\009.png" />
     <Content Include="bin\Debug\PokeStat.exe" />
     <Content Include="bin\Debug\PokeStat.pdb" />
   </ItemGroup>

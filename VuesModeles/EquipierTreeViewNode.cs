@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,34 +30,36 @@ namespace PokeStat.VuesModeles
                 OnPropertyChanged(nameof(IsSelected));
             }
         }
-        private MEquipier selectedEquipeNode;
-        public MEquipier SelectedEquipeNode
+        private MEquipier equipierSeletionne;
+        public MEquipier EquipierSeletionne
         {
-            get { return selectedEquipeNode; }
+            get { return equipierSeletionne; }
             set
             {
-                if (selectedEquipeNode != value)
+                if (equipierSeletionne != value)
                 {
-                    if (selectedEquipeNode != null)
+                    if (equipierSeletionne != null)
                     {
-                        selectedEquipeNode.IsSelected = false;
+                        equipierSeletionne.IsSelected = false;
                     }
 
-                    selectedEquipeNode = value;
+                    equipierSeletionne = value;
 
-                    if (selectedEquipeNode != null)
+                    if (equipierSeletionne != null)
                     {
-                        selectedEquipeNode.IsSelected = true;
+                        equipierSeletionne.IsSelected = true;
                     }
 
-                    OnPropertyChanged(nameof(SelectedEquipeNode));
+                    OnPropertyChanged(nameof(EquipierSeletionne));
 
                     DetailPopup();
                 }
             }
         }
-        public MEquipier Equipier { get; }
+        public MEquipier Equipier { get; set; }
+        public MSpecimen Pokemon { get; set; }  
         public MainWindow MainWindow { get; set; }
+        private readonly RepTalent repTalent;
 
         public EquipierTreeViewNode(MEquipier Equipier)
         {
@@ -94,19 +97,60 @@ namespace PokeStat.VuesModeles
             if(Equipier==null)
             {
                 this.Equipier = equipierParDefaut;
+                repTalent = new RepTalent();
+                this.Equipier.TalentPokemon = repTalent.GetAll();
             }
            
         }
-
+        public EquipierTreeViewNode(MSpecimen PokemonSaisi)
+        {
+            this.Pokemon = PokemonSaisi;
+            this.Equipier = FromMSpecimen(PokemonSaisi);
+            DetailPopupCommand = new RelayCommand(DetailPopup);
+        }
+        public MEquipier FromMSpecimen(MSpecimen specimen)
+        {
+            this.Pokemon = specimen;
+            
+            if (specimen == null)
+            {
+                return null;
+            }
+            MEquipier equipierEnSaisie =
+                     new MEquipier(
+                IdPokemon: Pokemon.IdPokemon,
+                CheminImgPokemon: Pokemon.CheminImgPokemon,
+                NomFraPokemon: Pokemon.NomFraPokemon,
+                NomEngPokemon: Pokemon.NomEngPokemon,
+                NumPokemon: Pokemon.NumPokemon,
+                TaillePokemon: Pokemon.TaillePokemon,
+                PoidsPokemon: Pokemon.PoidsPokemon,
+                BasePV: Pokemon.BasePV,
+                BaseAttaque: Pokemon.BaseAttaque,
+                BaseDefense: Pokemon.BaseDefense,
+                BaseAttSpe: Pokemon.BaseAttSpe,
+                BaseDefSpe: Pokemon.BaseDefSpe,
+                BaseVit: Pokemon.BaseVit,
+                Legendaire: Pokemon.Legendaire,
+                Shiny: Pokemon.Shiny,
+                Mega: Pokemon.Mega,
+                Giga: Pokemon.Giga,
+                Fab: Pokemon.Fab,
+                Evolution: Pokemon.Evolution,
+                Gen: Pokemon.Gen,
+                SurnomEquipier: "test",
+                NiveauEquipier: 1
+            );
+            return equipierEnSaisie;
+        }
         private void DetailPopup()
         {
-            if (SelectedEquipeNode != null)
+            if (EquipierSeletionne != null)
             {
-                var equipeNode = new EquipierTreeViewNode(SelectedEquipeNode);
+                var equipeNode = new EquipierTreeViewNode(EquipierSeletionne);
 
                 var detailPopup = new DetailEquipe();
                 detailPopup.DataContext = equipeNode;
-
                 detailPopup.ShowDialog();
             }
         }
@@ -129,12 +173,11 @@ namespace PokeStat.VuesModeles
         private void Close()
         {
             var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-
-            activeWindow?.Close();
             MainWindow mainWindow = new MainWindow();
-      
+            mainWindow.DataContext = new AccueilVueModel();
             NavigationServices.NavigateToPage(new GestionEquipe());
             mainWindow.ShowDialog();
+            activeWindow?.Close();
 
         }
     }

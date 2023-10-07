@@ -39,7 +39,7 @@
                         <Border x:Name="border1" Height="631" Width="470" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" HorizontalAlignment="Center" Canvas.Left="-659" Canvas.Top="-70">
                             <Canvas Margin ="30">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.RowSpan="2" Canvas.Left="398" VerticalAlignment="Center" Canvas.Top="-31" Height="61" Width="42" >
-                                    <Button Content="&#xE711;" Width="43" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}" Command="{Binding CloseCommand}" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top" />
+                                    <Button Content="&#xE711;" Width="43" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}"  FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top" Click="Button_Click" />
                                 </StackPanel>
                                 <Image Source="{Binding Equipier.CheminImgPokemonAbsolu}" Width="200" Height="220" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
                                 <TextBlock Text="{Binding Equipier.SurnomEquipier}" Typography.Capitals="AllSmallCaps" Foreground="#FF677C8F" Height="43" Canvas.Left="36" TextWrapping="Wrap" FontWeight="Bold" Canvas.Top="215" Width="144"  FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top"/>
