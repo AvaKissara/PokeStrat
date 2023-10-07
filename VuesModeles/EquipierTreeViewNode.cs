@@ -215,24 +215,34 @@ namespace PokeStat.VuesModeles
             );
             return equipierEnSaisie;
         }
+
+        private WindowManager windowManager = new WindowManager();
         private void DetailPopup()
         {
             if (PokEquipierSeletion != null)
             {
                 PokEquipierSeletion.SurnomEquipier = this.Equipier.SurnomEquipier;
+                PokEquipierSeletion.NiveauEquipier = this.Equipier.NiveauEquipier;
                 //var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
                 //activeWindow?.Close();
                 this.Equipier = PokEquipierSeletion;
+
+
+           
+              
                 var equipeNode = new EquipierTreeViewNode(this.Equipier);
                 //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                
                 var detailPopup = new DetailEquipe();
+                detailPopup.Owner = MainWindow;
+                windowManager.Register(detailPopup);
                 detailPopup.DataContext = equipeNode;
 
                 //var equipeNode = new EquipierTreeViewNode(EquipierSeletionne);
 
                 //var detailPopup = new DetailEquipe();
                 //detailPopup.DataContext = equipeNode;
-                detailPopup.ShowDialog();
+                windowManager.ShowWindow("DetailEquipe", detailPopup);
             }
         }
 

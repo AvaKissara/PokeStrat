@@ -31,7 +31,15 @@ namespace PokeStat.Vues.User.GestionEquipe
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            //Window parentWindow = WindowManager;
+
+            //// Vérifiez si la fenêtre parente n'est pas nulle et fermez-la
+            //if (parentWindow != null)
+            //{
+            //    parentWindow.Close();
+            //}
             this.Close();
+
         }
     }
 }

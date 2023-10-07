@@ -115,6 +115,7 @@
     <Compile Include="Utilitaires\PasswordManager.cs" />
     <Compile Include="Utilitaires\RelayCommand.cs" />
     <Compile Include="Utilitaires\SessionManager.cs" />
+    <Compile Include="Utilitaires\WindowManager.cs" />
     <Compile Include="VuesModeles\AccueilVueModel.cs" />
     <Compile Include="VuesModeles\BaseVueModele.cs" />
     <Compile Include="VuesModeles\EquipeTreeViewNode.cs" />

@@ -138,20 +138,52 @@ namespace PokeStat.VuesModeles
             return equipeNodes;
         }
 
+        public MainWindow MainWindow { get; set; }
+        private WindowManager windowManager = new WindowManager();
+
         private void DetailPopup()
         {
+            MEquipier equipierParDefaut = new MEquipier(
+                       IdPokemon: 0,
+                       CheminImgPokemon: "0.png",
+                       NomFraPokemon: "Nouveau",
+                       BasePV: 0,
+                       BaseAttaque: 0,
+                       BaseDefense: 0,
+                       BaseAttSpe: 0,
+                       BaseDefSpe: 0,
+                       BaseVit: 0,
+                       Legendaire: false,
+                       Shiny: false,
+                       Mega: false,
+                       Giga: false,
+                       Fab: false,
+                       SurnomEquipier: "Nouveau",
+                       NiveauEquipier: 0,
+                       EsquiveEquipier: 0,
+                       NiveauBonheur: 0,
+                       Ev: 0,
+                       Iv: 0,
+                       Nature: null,
+                       TalentEquipier: null,
+                       ObjetEquipier: null,
+                       SetCapacites: new ObservableCollection<MCapacite>(),
+                       EquipeId: 0
+                       );
 
-            //    if (SelectedEquipeNode != null)
-            //    {
-            //        // Créez une nouvelle instance de EquipeTreeViewNode pour l'équipe sélectionnée
-            //        var equipeNode = new EquipierTreeViewNode(SelectedEquipeNode.Equipier);
+            var equipeNode = new EquipierTreeViewNode(equipierParDefaut);
+            //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
-            //        // Créez une nouvelle instance de DetailEquipe en passant l'équipeNode comme DataContext
             var detailPopup = new DetailEquipe();
-        //        detailPopup.DataContext = equipeNode;
+            detailPopup.Owner = MainWindow;
+            windowManager.Register(detailPopup);
+            detailPopup.DataContext = equipeNode;
 
-        detailPopup.Show();
-            //    }
+            //var equipeNode = new EquipierTreeViewNode(EquipierSeletionne);
+
+            //var detailPopup = new DetailEquipe();
+            //detailPopup.DataContext = equipeNode;
+            windowManager.ShowWindow("DetailEquipe", detailPopup);
 
         }
         private void ClosePopup()

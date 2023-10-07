@@ -51,6 +51,21 @@ namespace PokeStat.Vues.User.GestionEquipe
                 detailsPokemon.ShowDialog();
             }
         }
+        private void Equipier_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Obtenir l'équipier correspondant aux données de la vue
+            var border = sender as Border;
+            var equipier = border.DataContext as EquipierTreeViewNode;
+
+            if (equipier != null)
+            {
+
+                equipier.EquipierSeletionne = equipier.Equipier;
+            }
+
+            // Empêcher la propagation de l'événement pour éviter la sélection de l'élément parent de la TreeView.
+            e.Handled = true;
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
