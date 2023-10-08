@@ -23,6 +23,8 @@ namespace PokeStat.VuesModeles
     {
        
         public ICommand DetailPopupCommand { get; set; }
+        public ICommand EnregistrerEquipierCommand {  get; set; }  
+        private RelayCommand closeCommand;
 
         private WindowManager windowManager = new WindowManager();
         public MEquipier Equipier { get; set; }
@@ -31,6 +33,7 @@ namespace PokeStat.VuesModeles
 
         private readonly RepTalent repTalent;
         private readonly RepCapacite repCapacite;
+        private RepEquipe repEquipe;
 
         private bool isSelected;
         public bool IsSelected
@@ -260,6 +263,7 @@ namespace PokeStat.VuesModeles
             );
 
             DetailPopupCommand = new RelayCommand(DetailPopupMaj);
+            EnregistrerEquipierCommand = new RelayCommand(EnregistrerEquipier);
             repTalent = new RepTalent();
 
             this.Equipier = Equipier;
@@ -401,9 +405,16 @@ namespace PokeStat.VuesModeles
             {
                 this.EquipierSelectionne = this.Equipier;
             }
-
         }
-        private RelayCommand closeCommand;
+
+        private void EnregistrerEquipier()
+        {
+            if(this.Equipier != null)
+            {
+                repEquipe = new RepEquipe();
+                repEquipe.Add(this.Equipier);
+            }
+        }
 
         public ICommand CloseCommand
         {

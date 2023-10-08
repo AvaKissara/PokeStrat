@@ -57,7 +57,8 @@ namespace PokeStat.Vues.User.GestionEquipe
                 detailsPokemon.Left = detailEquipeLeft - detailsPokemon.Width;
                 detailsPokemon.Top = detailEquipeTop;
 
-                detailsPokemon.ShowDialog();
+                windowManager.ShowWindow("DetailEquipe", detailsPokemon);
+                //detailsPokemon.ShowDialog();
             }
         }
 
@@ -86,8 +87,8 @@ namespace PokeStat.Vues.User.GestionEquipe
             double detailGestionCapaciteHeight = 620;
             detailGestionCapacite.Left = detailCapaciteLeft -146;
             detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 26;
-
-            detailGestionCapacite.ShowDialog();
+            windowManager.ShowWindow("DetailEquipe", detailGestionCapacite);
+            //detailGestionCapacite.ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
