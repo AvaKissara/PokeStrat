@@ -79,7 +79,7 @@ namespace PokeStat.VuesModeles
             windowManager.Register(detailPopup);
             detailPopup.DataContext = equipeNode;
 
-            //var equipeNode = new EquipierTreeViewNode(EquipierSeletionne);
+            //var equipeNode = new EquipierTreeViewNode(EquipierSelectionne);
 
             //var detailPopup = new DetailEquipe();
             //detailPopup.DataContext = equipeNode;

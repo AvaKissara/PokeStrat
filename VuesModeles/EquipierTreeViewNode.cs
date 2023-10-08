@@ -42,31 +42,31 @@ namespace PokeStat.VuesModeles
                 OnPropertyChanged(nameof(IsSelected));
             }
         }
-        private MEquipier equipierSeletionne;
-        public MEquipier EquipierSeletionne
+        private MEquipier equipierSelectionne;
+        public MEquipier EquipierSelectionne
         {
-            get { return equipierSeletionne; }
+            get { return equipierSelectionne; }
             set
             {
-                if (equipierSeletionne != value)
+                if (equipierSelectionne != value)
                 {
-                    if (equipierSeletionne != null)
+                    if (equipierSelectionne != null)
                     {
-                        equipierSeletionne.IsSelected = false;
+                        equipierSelectionne.IsSelected = false;
                     }
 
-                    equipierSeletionne = value;
+                    equipierSelectionne = value;
 
-                    if (equipierSeletionne != null)
+                    if (equipierSelectionne != null)
                     {
-                        equipierSeletionne.IsSelected = true;
+                        equipierSelectionne.IsSelected = true;
                     }
 
-                    OnPropertyChanged(nameof(EquipierSeletionne));
+                    OnPropertyChanged(nameof(EquipierSelectionne));
 
-                    if (PokEquipierSeletion != equipierSeletionne)
+                    if (PokEquipierSelection != equipierSelectionne)
                     {
-                        PokEquipierSeletion = equipierSeletionne;
+                        PokEquipierSelection = equipierSelectionne;
                     }
 
                     DetailPopup();
@@ -74,19 +74,23 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private MEquipier pokEquipierSeletion;
-        public MEquipier PokEquipierSeletion
+        private MEquipier pokEquipierSelection;
+        public MEquipier PokEquipierSelection
         {
-            get { return pokEquipierSeletion; }
+            get { return pokEquipierSelection; }
             set
             {
-                if (pokEquipierSeletion != value)
+                if (pokEquipierSelection != value)
                 {
-                    pokEquipierSeletion = value;
-                    OnPropertyChanged(nameof(PokEquipierSeletion));
+                    pokEquipierSelection = value;
+                    OnPropertyChanged(nameof(PokEquipierSelection));
+
+                    // Mettez à jour this.Equipier avec les modifications
+                    this.Equipier = pokEquipierSelection;
                 }
             }
         }
+
 
         private MSpecimen pokSelection;
         public MSpecimen PokSelection
@@ -108,7 +112,7 @@ namespace PokeStat.VuesModeles
                         string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
                         ImagePokemonSelectionne = new BitmapImage(new Uri(Path.Combine(appDirectory, "0.png")));
                     }
-                    PokEquipierSeletion = FromMSpecimen(pokSelection);
+                    PokEquipierSelection = FromMSpecimen(pokSelection);
                 }
             }
         }
@@ -169,16 +173,58 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private MCapacite capaciteSelection;
-        public MCapacite CapaciteSelection
+        private MCapacite capacite1Selection;
+        public MCapacite Capacite1Selection
         {
-            get { return capaciteSelection; }
+            get { return capacite1Selection; }
             set
             {
-                if (capaciteSelection != value)
+                if (capacite1Selection != value)
                 {
-                    capaciteSelection = value;
-                    OnPropertyChanged(nameof(CapaciteSelection));
+                    capacite1Selection = value;
+                    OnPropertyChanged(nameof(Capacite1Selection));
+                }
+            }
+        }
+
+        private MCapacite capacite2Selection;
+        public MCapacite Capacite2Selection
+        {
+            get { return capacite2Selection; }
+            set
+            {
+                if (capacite2Selection != value)
+                {
+                    capacite2Selection = value;
+                    OnPropertyChanged(nameof(Capacite2Selection));
+                }
+            }
+        }
+
+        private MCapacite capacite3Selection;
+        public MCapacite Capacite3Selection
+        {
+            get { return capacite3Selection; }
+            set
+            {
+                if (capacite3Selection != value)
+                {
+                    capacite3Selection = value;
+                    OnPropertyChanged(nameof(Capacite3Selection));
+                }
+            }
+        }
+
+        private MCapacite capacite4Selection;
+        public MCapacite Capacite4Selection
+        {
+            get { return capacite4Selection; }
+            set
+            {
+                if (capacite4Selection != value)
+                {
+                    capacite4Selection = value;
+                    OnPropertyChanged(nameof(Capacite4Selection));
                 }
             }
         }
@@ -213,7 +259,7 @@ namespace PokeStat.VuesModeles
             EquipeId: 0
             );
 
-            DetailPopupCommand = new RelayCommand(DetailPopup);
+            DetailPopupCommand = new RelayCommand(DetailPopupMaj);
             repTalent = new RepTalent();
 
             this.Equipier = Equipier;
@@ -222,10 +268,12 @@ namespace PokeStat.VuesModeles
                 this.Equipier = equipierParDefaut;               
                 this.Equipier.TalentPokemon = repTalent.GetAll();
             }
+   
             if (ImagePokemonSelectionne == null)
             {
                 ImagePokemonSelectionne = new BitmapImage(new Uri(this.Equipier.CheminImgPokemonAbsolu));
-            }         
+            }   
+            
         }
 
         public MEquipier FromMSpecimen(MSpecimen specimen)
@@ -269,38 +317,92 @@ namespace PokeStat.VuesModeles
 
             return equipierEnSaisie;
         }
-   
+
+        MEquipier equipierCopy;
         private void DetailPopup()
         {
-            if (PokEquipierSeletion != null)
-            {
-                PokEquipierSeletion.SurnomEquipier = this.Equipier.SurnomEquipier;
-                PokEquipierSeletion.NiveauEquipier = this.Equipier.NiveauEquipier;
-
-            }
-            if(NatureSelection!=null) 
-            {
-                this.PokEquipierSeletion.Nature = NatureSelection;
-            }
-            if(TalentSelection!=null)
-            {
-                this.pokEquipierSeletion.TalentEquipier = TalentSelection;
-            }
-            if(ObjetSelection!=null)
-            {
-                this.pokEquipierSeletion.ObjetEquipier = ObjetSelection;
-            }
-            
-            this.Equipier = PokEquipierSeletion;
            
-            var equipeNode = new EquipierTreeViewNode(this.Equipier);      
+            EquipierTreeViewNode equipeNode;
+
+            if (NatureSelection != null)
+            {
+                this.PokEquipierSelection.Nature = NatureSelection;
+            }
+            if (TalentSelection != null)
+            {
+                this.PokEquipierSelection.TalentEquipier = TalentSelection;
+            }
+            if (ObjetSelection != null)
+            {
+                this.PokEquipierSelection.ObjetEquipier = ObjetSelection;
+            }
+
+            this.Equipier = PokEquipierSelection;
+            if(this.Equipier != null)
+            {
+                equipierCopy = this.Equipier.Clone();
+                if (Capacite1Selection != null)
+                {
+                    equipierCopy.SetCapacites[0].NomCapacite = Capacite1Selection.NomCapacite;
+                }
+                if (Capacite2Selection != null)
+                {
+                    if (equipierCopy.SetCapacites.Count>=2)
+                    {
+                        equipierCopy.SetCapacites[1] = Capacite2Selection;
+                    }
+                    else
+                    {
+                        equipierCopy.SetCapacites.Add(Capacite2Selection);
+                    }
+                    
+                }
+                if (Capacite3Selection != null)
+                {
+                    if (equipierCopy.SetCapacites.Count >= 3)
+                    {
+                        equipierCopy.SetCapacites[2] = Capacite3Selection;
+                    }
+                    else
+                    {
+                        equipierCopy.SetCapacites.Add(Capacite3Selection);
+                    }
+                    
+                }
+                if (Capacite4Selection != null)
+                {
+                    if (equipierCopy.SetCapacites.Count >= 4)
+                    {
+                        equipierCopy.SetCapacites[3] = Capacite4Selection;
+                    }
+                    else
+                    {
+                        equipierCopy.SetCapacites.Add(Capacite4Selection);
+                    }
+                   
+                }
+                equipeNode = new EquipierTreeViewNode(equipierCopy);
+            }
+            else
+            {
+                equipeNode = new EquipierTreeViewNode(this.Equipier);
+            }
+        
             var detailPopup = new DetailEquipe();
             detailPopup.Owner = MainWindow;
             windowManager.Register(detailPopup);
             detailPopup.DataContext = equipeNode;
-            windowManager.ShowWindow("DetailEquipe", detailPopup);         
+            windowManager.ShowWindow("DetailEquipe", detailPopup);
         }
 
+        private void DetailPopupMaj()
+        {
+            if(this.Equipier !=null)
+            {
+                this.EquipierSelectionne = this.Equipier;
+            }
+
+        }
         private RelayCommand closeCommand;
 
         public ICommand CloseCommand

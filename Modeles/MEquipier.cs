@@ -100,7 +100,43 @@ namespace PokeStat.Modeles
 
         }
 
-        
+        public MEquipier Clone()
+        {
+            ObservableCollection<MCapacite> setCapacitesClone = this.SetCapacites != null
+                ? new ObservableCollection<MCapacite>(this.SetCapacites)
+                : new ObservableCollection<MCapacite> { new MCapacite(707, "Belier", 20, 90, 85, 0) };
+
+            return new MEquipier(
+                this.IdPokemon,
+                this.CheminImgPokemon,
+                this.NomFraPokemon,
+                this.BasePV,
+                this.BaseAttaque,
+                this.BaseDefense,
+                this.BaseAttSpe,
+                this.BaseDefSpe,
+                this.BaseVit,
+                this.Legendaire,
+                this.Shiny,
+                this.Mega,
+                this.Giga,
+                this.Fab,
+                this.SurnomEquipier,
+                this.NiveauEquipier,
+                this.EsquiveEquipier,
+                this.NiveauBonheur,
+                this.Ev,
+                this.Iv,
+                this.Nature,
+                this.TalentEquipier,
+                this.ObjetEquipier,
+                setCapacitesClone,
+                this.EquipeId
+            );
+        }
+
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName = null)

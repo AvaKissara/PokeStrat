@@ -69,16 +69,14 @@ namespace PokeStat.Vues.User.GestionEquipe
             if (equipier != null)
             {
 
-                equipier.EquipierSeletionne = equipier.Equipier;
+                equipier.EquipierSelectionne = equipier.Equipier;
             }
 
             e.Handled = true;
         }
 
         private void StackPanel_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-           
+        {         
             EquipierTreeViewNode equipier = (DataContext as EquipierTreeViewNode);
             var detailGestionCapacite = new DetailGestionCapacite(equipier);
             detailGestionCapacite.Owner = this; 
@@ -86,8 +84,8 @@ namespace PokeStat.Vues.User.GestionEquipe
             double detailCapaciteLeft = Left;
             double detailCapaciteTop = Top;
             double detailGestionCapaciteHeight = 620;
-            detailGestionCapacite.Left = detailCapaciteLeft -140;
-            detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 40;
+            detailGestionCapacite.Left = detailCapaciteLeft -146;
+            detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 26;
 
             detailGestionCapacite.ShowDialog();
         }

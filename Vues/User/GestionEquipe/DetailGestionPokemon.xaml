@@ -60,7 +60,7 @@
                 <TextBlock x:Name="textBlockt" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="5" Margin="16,-11,0,0" FontSize="16" Text="Talent:" />
                 <ComboBox x:Name="comboBoxt" Grid.Row="5" Grid.Column="1"
-VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding PokEquipierSeletion.TalentPokemon}"  DisplayMemberPath="NomTalent" SelectedValue="{Binding TalentSelection, Mode=TwoWay}" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
+VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding PokEquipierSelection.TalentPokemon}"  DisplayMemberPath="NomTalent" SelectedValue="{Binding TalentSelection, Mode=TwoWay}" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
                 <TextBlock x:Name="textBlocko" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="6" Margin="16,-11,0,0" FontSize="16" Text="Objet:" />
                 <ComboBox x:Name="comboBoxo"  ItemsSource="{Binding Equipier.objets}" Grid.Row="6" Grid.Column="1"
