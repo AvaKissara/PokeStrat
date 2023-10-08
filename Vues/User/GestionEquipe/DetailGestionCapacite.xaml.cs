@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokeStat.VuesModeles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace PokeStat.Vues.User.GestionEquipe
     /// </summary>
     public partial class DetailGestionCapacite : Window
     {
-        public DetailGestionCapacite()
+        public DetailGestionCapacite(EquipierTreeViewNode equipier)
         {
             InitializeComponent();
+            DataContext = equipier;
         }
     }
 }

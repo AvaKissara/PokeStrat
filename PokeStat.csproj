@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\RepAdmin.cs" />
+    <Compile Include="Repositories\RepCapacite.cs" />
     <Compile Include="Repositories\RepDate.cs" />
     <Compile Include="Repositories\RepEquipe.cs" />
     <Compile Include="Repositories\RepGeneration.cs" />

@@ -4,9 +4,62 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe"
+        xmlns:modeles="clr-namespace:PokeStat.VuesModeles" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=modeles:EquipierTreeViewNode}"
         mc:Ignorable="d"
         Title="DetailGestionCapacite" Height="300" Width="800">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Vues/DicoRes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
-        
+        <Border BorderBrush="#FF646464" BorderThickness="2" HorizontalAlignment="Center" Height="250"
+				VerticalAlignment="Center" Width="450" CornerRadius="10" Background="White">
+            <Border.Effect>
+                <DropShadowEffect Opacity="0.5" />
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110" />
+                    <ColumnDefinition Width="38*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.1*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Capacité 1:" HorizontalAlignment="Left"
+						VerticalAlignment="Center" Grid.Row="0" Margin="16,0,0,8" FontSize="16" />
+                <ComboBox x:Name="comboBox" ItemsSource="{Binding Equipier.PoolCapacites}" Grid.Row="0" Grid.Column="1"
+						VerticalAlignment="Center" Margin="10,0,10,8" FontSize="14" DisplayMemberPath="NomCapacite" Grid.ColumnSpan="2" MaxDropDownHeight="260" SelectedValue="{Binding CapaciteSelection, Mode=TwoWay}" />
+
+                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
+					Grid.Row="1" Margin="16,-10,0,0" FontSize="16" Text="Capacité 2:" />
+                <ComboBox x:Name="comboBoxn" ItemsSource="{Binding Equipier.natures}" SelectedValue="{Binding NatureSelection, Mode=TwoWay}" Grid.Row="1" Grid.Column="1"
+			VerticalAlignment="Top" Margin="10,6,10,0" FontSize="14" DisplayMemberPath="NomNature" Grid.ColumnSpan="2" MaxDropDownHeight="210" />
+                <TextBlock x:Name="textBlockt" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
+		Grid.Row="2" Margin="16,-11,0,0" FontSize="16" Text="Capacité 3:" />
+                <ComboBox x:Name="comboBoxt" Grid.Row="2" Grid.Column="1"
+VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding PokEquipierSeletion.TalentPokemon}"  DisplayMemberPath="NomTalent" SelectedValue="{Binding TalentSelection, Mode=TwoWay}" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
+                <TextBlock x:Name="textBlocko" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
+		Grid.Row="3" Margin="16,-11,0,0" FontSize="16" Text="Capacité 4:" />
+                <ComboBox x:Name="comboBoxo"  ItemsSource="{Binding Equipier.objets}" Grid.Row="3" Grid.Column="1"
+VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomObjet" SelectedValue="{Binding ObjetSelection, Mode=TwoWay}" Grid.ColumnSpan="2" MaxDropDownHeight="200" />
+
+                <StackPanel Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left"
+						Orientation="Horizontal" Grid.Column="1" Margin="22,0,0,0">
+                    <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" />
+                    <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
     </Grid>
 </Window>

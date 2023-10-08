@@ -25,6 +25,7 @@ namespace PokeStat.Vues.User.GestionEquipe
     {
         private MainWindow MainWindow;
         public WindowManager windowManager;
+
         public DetailEquipe()
         {
             InitializeComponent();
@@ -39,11 +40,11 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             this.Height = newTop;
 
-           this.Top = newTop;
+            this.Top = newTop;
         }
+
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // Obtenez l'équipier correspondant au DataContext de l'image
            EquipierTreeViewNode equipier = (DataContext as EquipierTreeViewNode);
 
             if (equipier != null)
@@ -53,13 +54,13 @@ namespace PokeStat.Vues.User.GestionEquipe
                 double detailEquipeLeft = Left;
                 double detailEquipeTop = Top;
 
-                // Positionnez la nouvelle fenêtre à gauche de DetailEquipe
                 detailsPokemon.Left = detailEquipeLeft - detailsPokemon.Width;
                 detailsPokemon.Top = detailEquipeTop;
 
                 detailsPokemon.ShowDialog();
             }
         }
+
         private void Equipier_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var border = sender as Border;
@@ -73,15 +74,21 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             e.Handled = true;
         }
+
         private void StackPanel_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var detailGestionCapacite = new DetailGestionCapacite();
-            detailGestionCapacite.Owner = this; // Définissez la fenêtre actuelle comme parent de la popup
+
+           
+            EquipierTreeViewNode equipier = (DataContext as EquipierTreeViewNode);
+            var detailGestionCapacite = new DetailGestionCapacite(equipier);
+            detailGestionCapacite.Owner = this; 
+
             double detailCapaciteLeft = Left;
             double detailCapaciteTop = Top;
             double detailGestionCapaciteHeight = 620;
             detailGestionCapacite.Left = detailCapaciteLeft -140;
             detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 40;
+
             detailGestionCapacite.ShowDialog();
         }
 
