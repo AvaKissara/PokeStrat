@@ -426,6 +426,7 @@ namespace PokeStat.VuesModeles
                 repEquipe = new RepEquipe();
                 repEquipe.Add(this.Equipier);
             }
+            this.Close();
         }
 
         public ICommand CloseCommand

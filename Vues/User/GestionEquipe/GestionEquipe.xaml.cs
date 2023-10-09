@@ -46,25 +46,26 @@ namespace PokeStat.Vues.User.GestionEquipe
 
         private void Equipier_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // Obtenir l'équipier correspondant aux données de la vue
             var border = sender as Border;
             var equipier = border.DataContext as EquipierTreeViewNode;
             
 
             if (equipier != null)
-            {
-      
+            {      
                 equipier.EquipierSelectionne = equipier.Equipier;
             }
-
-            // Empêcher la propagation de l'événement pour éviter la sélection de l'élément parent de la TreeView.
             e.Handled = true;
         }
         public MainWindow MainWindow { get; set; }
 
         private void EquipierButton_Click(object sender, RoutedEventArgs e)
         {
-            MEquipier equipierParDefaut = new MEquipier(
+            Button equipierButton = sender as Button;
+            StackPanel parentStackPanel = equipierButton.Parent as StackPanel;
+            EquipeTreeViewNode equipeNode = parentStackPanel.DataContext as EquipeTreeViewNode;
+
+            MEquipier equipierParDefaut =
+                new MEquipier(
                    IdPokemon: 0,
                    CheminImgPokemon: "0.png",
                    NomFraPokemon: "Nouveau",
@@ -89,26 +90,18 @@ namespace PokeStat.Vues.User.GestionEquipe
                    TalentEquipier: null,
                    ObjetEquipier: null,
                    SetCapacites: new ObservableCollection<MCapacite>(),
-                   EquipeId: 0
-                   );
+                   EquipeId: equipeNode.Equipe.IdEquipe
+                   ); ;
 
-            var equipeNode = new EquipierTreeViewNode(equipierParDefaut);
+            var equipierNode = new EquipierTreeViewNode(equipierParDefaut);
             //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-
-       
-
 
             if (equipeNode != null)
             {
-                // Appelez une méthode ou effectuez une action avec equipierViewModel
-                // par exemple, lancez une action pour sélectionner cet équipier
-                equipeNode.EquipierSelectionne = equipeNode.Equipier;
+                equipierNode.EquipierSelectionne = equipierNode.Equipier;
             }
-
             // Empêcher la propagation de l'événement si nécessaire.
             e.Handled = true;
         }
-
-
     }
 }

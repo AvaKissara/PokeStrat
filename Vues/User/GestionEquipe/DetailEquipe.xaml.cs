@@ -70,7 +70,6 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             if (equipier != null)
             {
-
                 equipier.EquipierSelectionne = equipier.Equipier;
             }
 
