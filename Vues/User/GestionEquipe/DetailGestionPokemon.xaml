@@ -3,6 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
         xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe" xmlns:modeles="clr-namespace:PokeStat.VuesModeles" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=modeles:EquipierTreeViewNode}"
         mc:Ignorable="d"
         Title="DetailGestionPokemon" Height="650" Width="500">
@@ -24,8 +27,9 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90" />
-                    <ColumnDefinition Width="38*" />
-                    <ColumnDefinition Width="233*"/>
+                    <ColumnDefinition Width="43*" />
+                    <ColumnDefinition Width="250*"/>
+                    <ColumnDefinition Width="13*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.3*" />
@@ -36,38 +40,40 @@
                     <RowDefinition Height="0.1*" />
                     <RowDefinition Height="0.1*" />
                     <RowDefinition Height="0.1*" />
-                   
-                </Grid.RowDefinitions>
 
-                <Image Source="{Binding ImagePokemonSelectionne}" Width="170" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="90,-10,0,0" Grid.RowSpan="3"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="42" Grid.Column="2" Margin="218,-50,0,0" Grid.ColumnSpan="2" >
+                    <Button Content="&#xE711;" Width="43" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}"  FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="43" VerticalAlignment="Top" Click="button_Click" />
+                </StackPanel>
+                <Image Source="{Binding ImagePokemonSelectionne}" Width="170" Height="170" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,-10,0,0" Grid.RowSpan="2" Grid.Column="1"/>
 
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Pokémon:" HorizontalAlignment="Left"
 						VerticalAlignment="Center" Grid.Row="1" Margin="16,0,0,0" FontSize="16" />
                 <ComboBox x:Name="comboBox" ItemsSource="{Binding Equipier.pokemons}" Grid.Row="1" Grid.Column="1"
-						VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" DisplayMemberPath="NomFraPokemon" Grid.ColumnSpan="2" MaxDropDownHeight="260" SelectedValue="{Binding PokSelection, Mode=TwoWay}" />
-                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
-						Grid.Row="2" Margin="16,-10,0,0" FontSize="16" Text="Surnom:" />
-                <TextBox x:Name="textBox" Text="{Binding Equipier.SurnomEquipier}" TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" Margin="10,-11,10,0" FontSize="14"
-						VerticalAlignment="Center" Grid.ColumnSpan="2" />
-                <TextBlock x:Name="textBlock1" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
-						Grid.Row="3" Margin="16,-11,0,0" FontSize="16" Text="Niveau:" />
-                <TextBox x:Name="textBox1" Text="{Binding Equipier.NiveauEquipier}" TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Margin="10,-11,10,0" FontSize="14"
-						VerticalAlignment="Center" Grid.ColumnSpan="2" />
-                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
-					Grid.Row="4" Margin="16,-10,0,0" FontSize="16" Text="Nature:" />
+						VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" DisplayMemberPath="NomFraPokemon" Grid.ColumnSpan="3" MaxDropDownHeight="260" SelectedValue="{Binding PokSelection, Mode=TwoWay}" />
+                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
+						Grid.Row="2" Margin="0,8,0,0" FontSize="16" Text="Surnom:" />
+                <TextBox x:Name="textBox" Text="{Binding Equipier.SurnomEquipier}" TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" Margin="10,8,10,0" FontSize="14"
+						VerticalAlignment="Top" Grid.ColumnSpan="3" />
+                <TextBlock x:Name="textBlock1" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top"
+						Grid.Row="3" Margin="16,8,0,0" FontSize="16" Text="Niveau:" />
+                <TextBox x:Name="textBox1" Text="{Binding Equipier.NiveauEquipier}" TextWrapping="Wrap" Grid.Row="3" Grid.Column="1" Margin="10,8,10,0" FontSize="14"
+						VerticalAlignment="Top" Grid.ColumnSpan="3" />
+                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top"
+					Grid.Row="4" Margin="16,8,0,0" FontSize="16" Text="Nature:" />
                 <ComboBox x:Name="comboBoxn" ItemsSource="{Binding Equipier.natures}" SelectedValue="{Binding NatureSelection, Mode=TwoWay}" Grid.Row="4" Grid.Column="1"
-			VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomNature" Grid.ColumnSpan="2" MaxDropDownHeight="210" />
-                <TextBlock x:Name="textBlockt" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
-		Grid.Row="5" Margin="16,-11,0,0" FontSize="16" Text="Talent:" />
+			VerticalAlignment="Top" Margin="10,6,10,0" FontSize="14" DisplayMemberPath="NomNature" Grid.ColumnSpan="3" MaxDropDownHeight="210" />
+                <TextBlock x:Name="textBlockt" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top"
+		Grid.Row="5" Margin="16,8,0,0" FontSize="16" Text="Talent:" />
                 <ComboBox x:Name="comboBoxt" Grid.Row="5" Grid.Column="1"
-VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding PokEquipierSelection.TalentPokemon}"  DisplayMemberPath="NomTalent" SelectedValue="{Binding TalentSelection, Mode=TwoWay}" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
-                <TextBlock x:Name="textBlocko" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
-		Grid.Row="6" Margin="16,-11,0,0" FontSize="16" Text="Objet:" />
+VerticalAlignment="Top" Margin="10,6,10,0" FontSize="14" ItemsSource="{Binding PokEquipierSelection.TalentPokemon}"  DisplayMemberPath="NomTalent" SelectedValue="{Binding TalentSelection, Mode=TwoWay}" Grid.ColumnSpan="3" MaxDropDownHeight="260"/>
+                <TextBlock x:Name="textBlocko" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top"
+		Grid.Row="6" Margin="16,8,0,0" FontSize="16" Text="Objet:" />
                 <ComboBox x:Name="comboBoxo"  ItemsSource="{Binding Equipier.objets}" Grid.Row="6" Grid.Column="1"
-VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomObjet" SelectedValue="{Binding ObjetSelection, Mode=TwoWay}" Grid.ColumnSpan="2" MaxDropDownHeight="200" />
+VerticalAlignment="Top" Margin="10,6,10,0" FontSize="14" DisplayMemberPath="NomObjet" SelectedValue="{Binding ObjetSelection, Mode=TwoWay}" Grid.ColumnSpan="3" MaxDropDownHeight="200" />
 
-                <StackPanel Grid.Row="7" Grid.ColumnSpan="6" VerticalAlignment="Center" HorizontalAlignment="Left"
-						Orientation="Horizontal" Margin="103,0,0,0">
+                <StackPanel Grid.Row="7" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left"
+						Orientation="Horizontal" Margin="13,0,0,0" Grid.Column="1">
                     <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" Click="button_Click" />
                     <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" />
                 </StackPanel>

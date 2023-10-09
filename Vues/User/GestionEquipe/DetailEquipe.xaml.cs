@@ -36,7 +36,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             double detailGestionCapaciteHeight = 620; 
 
-            double newTop = Screen.PrimaryScreen.WorkingArea.Height - detailGestionCapaciteHeight + 400; 
+            double newTop = Screen.PrimaryScreen.WorkingArea.Height - detailGestionCapaciteHeight + 470; 
 
             this.Height = newTop;
 
@@ -85,8 +85,8 @@ namespace PokeStat.Vues.User.GestionEquipe
             double detailCapaciteLeft = Left;
             double detailCapaciteTop = Top;
             double detailGestionCapaciteHeight = 620;
-            detailGestionCapacite.Left = detailCapaciteLeft -146;
-            detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 26;
+            detailGestionCapacite.Left = detailCapaciteLeft -166;
+            detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 46;
             windowManager.ShowWindow("DetailEquipe", detailGestionCapacite);
             //detailGestionCapacite.ShowDialog();
         }

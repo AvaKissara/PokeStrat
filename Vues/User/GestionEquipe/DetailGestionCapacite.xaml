@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
         xmlns:modeles="clr-namespace:PokeStat.VuesModeles" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=modeles:EquipierTreeViewNode}"
         mc:Ignorable="d"
-        Title="DetailGestionCapacite" Height="340" Width="800">
+        Title="DetailGestionCapacite" Height="320" Width="800">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -17,8 +20,8 @@
     </Window.Resources>
 
     <Grid>
-        <Border BorderBrush="#FF646464" BorderThickness="2" HorizontalAlignment="Center" Height="290"
-				VerticalAlignment="Center" Width="450" CornerRadius="10" Background="White">
+        <Border BorderBrush="#FF646464" BorderThickness="2" HorizontalAlignment="Center" Height="270"
+				VerticalAlignment="Top" Width="450" CornerRadius="10" Background="White" Margin="0,45,0,0">
             <Border.Effect>
                 <DropShadowEffect Opacity="0.5" />
             </Border.Effect>
@@ -36,6 +39,9 @@
                     <RowDefinition Height="0.1*" />
                 </Grid.RowDefinitions>
 
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Canvas.Left="398" VerticalAlignment="Top" Canvas.Top="-31" Height="60" Width="42" Grid.Column="1" Margin="288,-48,0,0" >
+                    <Button Content="&#xE711;" Width="43" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}"  FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="43" VerticalAlignment="Top" Click="Button_Click" />
+                </StackPanel>
                 <TextBox x:Name="searchBox" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,8" FontSize="14" TextChanged="searchBox_TextChanged" />
 
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Capacité 1:" HorizontalAlignment="Left"
@@ -47,12 +53,12 @@
 					Grid.Row="2" Margin="16,-10,0,0" FontSize="16" Text="Capacité 2:" />
                 <ComboBox x:Name="comboBoxn" ItemsSource="{Binding Equipier.PoolCapacites}" SelectedValue="{Binding Capacite2Selection, Mode=TwoWay}" Grid.Row="2" Grid.Column="1"
 			VerticalAlignment="Top" Margin="10,6,10,0" FontSize="14" DisplayMemberPath="NomCapacite" Grid.ColumnSpan="2" MaxDropDownHeight="210" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened" />
-                
+
                 <TextBlock x:Name="textBlockt" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="3" Margin="16,-11,0,0" FontSize="16" Text="Capacité 3:" />
                 <ComboBox x:Name="comboBoxt" Grid.Row="3" Grid.Column="1"
 VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding Equipier.PoolCapacites}"  DisplayMemberPath="NomCapacite" SelectedValue="{Binding Capacite3Selection, Mode=TwoWay}" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
-                
+
                 <TextBlock x:Name="textBlocko" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="4" Margin="16,-11,0,0" FontSize="16" Text="Capacité 4:" />
                 <ComboBox x:Name="comboBoxo"  ItemsSource="{Binding Equipier.PoolCapacites}" Grid.Row="4" Grid.Column="1"

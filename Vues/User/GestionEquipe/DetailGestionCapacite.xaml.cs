@@ -87,7 +87,10 @@ namespace PokeStat.Vues.User.GestionEquipe
                 isComboBoxLoaded = true;
             }
         }
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
     }
 }
