@@ -49,6 +49,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             if (equipier != null)
             {
+                equipier.EquipierSaisiEquipeId = equipier.Equipier.EquipeId;
                 DetailGestionPokemon detailsPokemon = new DetailGestionPokemon(equipier);
 
                 double detailEquipeLeft = Left;

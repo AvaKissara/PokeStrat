@@ -232,6 +232,9 @@ namespace PokeStat.VuesModeles
             }
         }
 
+
+        public int EquipierSaisiEquipeId;
+
         public EquipierTreeViewNode(MEquipier Equipier)
         {
             MEquipier equipierParDefaut = new MEquipier(
@@ -259,7 +262,7 @@ namespace PokeStat.VuesModeles
             TalentEquipier: null,
             ObjetEquipier: null,
             SetCapacites: new ObservableCollection<MCapacite>(),
-            EquipeId: 0
+            EquipeId: EquipierSaisiEquipeId
             );
 
             DetailPopupCommand = new RelayCommand(DetailPopupMaj);
@@ -277,6 +280,7 @@ namespace PokeStat.VuesModeles
             {
                 ImagePokemonSelectionne = new BitmapImage(new Uri(this.Equipier.CheminImgPokemonAbsolu));
             }   
+
             
         }
 
@@ -309,15 +313,16 @@ namespace PokeStat.VuesModeles
                 Fab: PokSelection.Fab,
                 Evolution: PokSelection.Evolution,
                 Gen: PokSelection.Gen,
-                
+
                 SurnomEquipier: Equipier.SurnomEquipier,
-                NiveauEquipier: Equipier.NiveauEquipier             
-            ); 
+                NiveauEquipier: Equipier.NiveauEquipier
+            ); ; 
 
             if (specimen.TalentPokemon == null)
             {
                 equipierEnSaisie.TalentPokemon = repTalent.GetTalent(specimen.IdPokemon);
             }
+            equipierEnSaisie.EquipeId = EquipierSaisiEquipeId;
 
             return equipierEnSaisie;
         }
@@ -325,7 +330,11 @@ namespace PokeStat.VuesModeles
         MEquipier equipierCopy;
         private void DetailPopup()
         {
-           
+            if (this.Equipier.EquipeId != 0)
+            {
+                EquipierSaisiEquipeId = this.Equipier.EquipeId;
+            }
+
             EquipierTreeViewNode equipeNode;
 
             if (NatureSelection != null)
@@ -340,7 +349,10 @@ namespace PokeStat.VuesModeles
             {
                 this.PokEquipierSelection.ObjetEquipier = ObjetSelection;
             }
-
+            //if(equipierSelectionne.EquipeId !=0)
+            //{
+            //    equipierSaisiEquipeId = this.equipierSelectionne.EquipeId;
+            //}
             this.Equipier = PokEquipierSelection;
             if(this.Equipier != null)
             {

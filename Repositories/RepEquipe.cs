@@ -200,7 +200,7 @@ namespace PokeStat.Repositories
             SqlCommand requestAddEquipier = bddTool.GetRequest();
             requestAddEquipier.CommandText = "INSERT INTO equipiers (equipe_id,  talent_id,  pok_id,  cap1_id,  cap2_id,  cap3_id,  cap4_id,  objet_id,  nature_id,  surnom,  niveau,  niv_bonheur,  pv,  ev,  iv,  att,  def,  att_spe,  def_spe,  vit,  esquive,  cap1_pp,  cap1_puiss,  cap1_pre,  cap1_crit,  cap2_pp,  cap2_puiss,  cap2_pre,  cap2_crit,  cap3_pp,  cap3_puiss,  cap3_pre,  cap3_crit,  cap4_pp,  cap4_puiss,  cap4_pre,  cap4_crit) VALUES (  @equipe_id,  @talent_id,  @pok_id,  @cap1_id,  @cap2_id,  @cap3_id,  @cap4_id,  @objet_id,  @nature_id,  @surnom,  @niveau,  @niv_bonheur,  @pv,  @ev,  @iv,  @att,  @def,  @att_spe,  @def_spe,  @vit,  @esquive,  @cap1_pp,  @cap1_puiss,  @cap1_pre,  @cap1_crit,  @cap2_pp,  @cap2_puiss,  @cap2_pre,  @cap2_crit,  @cap3_pp,  @cap3_puiss,  @cap3_pre,  @cap3_crit,  @cap4_pp,  @cap4_puiss,  @cap4_pre,  @cap4_crit);";
 
-            requestAddEquipier.Parameters.Add("@equipe_id", SqlDbType.Int).Value = 8;
+            requestAddEquipier.Parameters.Add("@equipe_id", SqlDbType.Int).Value = nouvelEquipier.EquipeId;
             requestAddEquipier.Parameters.Add("@talent_id", SqlDbType.Int).Value = nouvelEquipier.TalentEquipier.IdTalent;
             requestAddEquipier.Parameters.Add("@pok_id", SqlDbType.Int).Value = nouvelEquipier.IdPokemon;
             requestAddEquipier.Parameters.Add("@cap1_id", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].IdCapacite;

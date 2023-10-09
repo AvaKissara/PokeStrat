@@ -24,7 +24,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <Grid>
@@ -40,7 +40,7 @@
 
 
             <!-- Arborescence des équipes -->
-            <TreeView Grid.Row="0" Width="1500" Name="treeViewEquipes" ItemsSource="{Binding EquipesTreeView}" Margin="0,130,0,0"
+            <TreeView Grid.Row="0" Width="1610" Name="treeViewEquipes" ItemsSource="{Binding EquipesTreeView}" Margin="-90,130,0,0"
                       ItemContainerStyle="{StaticResource TreeViewItemStyle}">
                 <TreeView.Resources>
                     <Style TargetType="TreeViewItem">
@@ -60,7 +60,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <!-- Carte pour chaque équipier -->
-                                        <Border Style="{StaticResource CardStyle}" Margin="16, 20" PreviewMouseLeftButtonDown="Equipier_PreviewMouseLeftButtonDown">
+                                        <Border Style="{StaticResource CardStyle}" Margin="16, 16" PreviewMouseLeftButtonDown="Equipier_PreviewMouseLeftButtonDown">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
@@ -77,7 +77,7 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-                            <Border Grid.Row="1" Margin="0,-280,0,0" BorderThickness="1" BorderBrush="Gray" HorizontalAlignment="Right" Width="350">
+                            <Border Grid.Row="1" Margin="0,-280,0,0" BorderThickness="1" BorderBrush="Gray" HorizontalAlignment="Right" Width="250">
                                 <Grid Margin="0,46,3,0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="149"/>
