@@ -243,5 +243,54 @@ namespace PokeStat.Repositories
             bddTool.CloseConnexion();
         }
 
+        public void Delete(MEquipier equipierSupprimer)
+        {
+            bddTool.CheckConnexion();
+
+            try
+            {
+                SqlCommand RequestDeleteEquipier = bddTool.GetRequest();
+                RequestDeleteEquipier.CommandText = "DELETE FROM equipiers WHERE equipe_id = @equipeId " +
+                                        "AND talent_id = @talentId " +
+                                        "AND pok_id = @pokId " +
+                                        "AND cap1_id = @cap1Id " +
+                                        "AND cap2_id = @cap2Id " +
+                                        "AND cap3_id = @cap3Id " +
+                                        "AND cap4_id = @cap4Id " +
+                                        "AND objet_id = @objetId " +
+                                        "AND nature_id = @natureId";
+
+                SqlParameter idEquipe = RequestDeleteEquipier.Parameters.Add("@equipeId", SqlDbType.Int);
+                SqlParameter idTalent = RequestDeleteEquipier.Parameters.Add("@talentId", SqlDbType.Int);
+                SqlParameter idPok = RequestDeleteEquipier.Parameters.Add("@pokId", SqlDbType.Int);
+                SqlParameter idCap1 = RequestDeleteEquipier.Parameters.Add("@cap1Id", SqlDbType.Int);
+                SqlParameter idCap2 = RequestDeleteEquipier.Parameters.Add("@cap2Id", SqlDbType.Int);
+                SqlParameter idCap3 = RequestDeleteEquipier.Parameters.Add("@cap3Id", SqlDbType.Int);
+                SqlParameter idCap4 = RequestDeleteEquipier.Parameters.Add("@cap4Id", SqlDbType.Int);
+                SqlParameter idObjet = RequestDeleteEquipier.Parameters.Add("@objetId", SqlDbType.Int);
+                SqlParameter idNature = RequestDeleteEquipier.Parameters.Add("@natureId", SqlDbType.Int);
+
+                idEquipe.Value = equipierSupprimer.EquipeId;
+                idTalent.Value = equipierSupprimer.TalentId;
+                idPok.Value = equipierSupprimer.IdPokemon;
+                idCap1.Value = equipierSupprimer.Cap1Id;
+                idCap2.Value = equipierSupprimer.Cap2Id;
+                idCap3.Value = equipierSupprimer.Cap3Id;
+                idCap4.Value = equipierSupprimer.Cap4Id;
+                idObjet.Value = equipierSupprimer.ObjetId;
+                idNature.Value = equipierSupprimer.NatureId;
+
+                int result = RequestDeleteEquipier.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Gestion de l'exception
+                Console.WriteLine("Erreur lors de la suppression du type : " + ex.Message);
+            }
+
+            // Fermeture de la connexion
+            bddTool.CloseConnexion();
+        }
+
     }
 }

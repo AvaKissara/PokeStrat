@@ -90,9 +90,9 @@
                                     <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2">
                                         <TextBlock Text="{Binding Equipe.NomEquipe}" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
                                         <!-- Bouton Ajouter un équipier -->
-                                        <Button Content="Ajouter"  Click="EquipierButton_Click" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Cursor=""  Width="342"/>
+                                        <Button Content="Ajouter"  Click="EquipierButton_Click" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Cursor=""  Width="242" HorizontalAlignment="Center"/>
                                         <!-- Bouton Consulter les stats de l'équipe -->
-                                        <Button Content="Stats" Command="{Binding Equipe}" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Cursor=""/>
+                                        <Button Content="Stats" Command="{Binding Equipe}" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Cursor="" />
                                         <!-- Bouton Supprimer l'équipe -->
                                         <Button Content="Supprimer" Command="{Binding Equipe}" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Cursor=""/>
                                     </StackPanel>

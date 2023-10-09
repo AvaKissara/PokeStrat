@@ -81,6 +81,11 @@ namespace PokeStat.Modeles
             NomFraPokemon = nomFraPokemon;
         }
 
+        public MPokemon(int idPokemon)
+        {
+            IdPokemon = idPokemon;
+        }
+
         public MPokemon(int idPokemon, string cheminImgPokemon, string nomFraPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab)
         {
             IdPokemon = idPokemon;

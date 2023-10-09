@@ -23,7 +23,8 @@ namespace PokeStat.VuesModeles
     {
        
         public ICommand DetailPopupCommand { get; set; }
-        public ICommand EnregistrerEquipierCommand {  get; set; }  
+        public ICommand EnregistrerEquipierCommand {  get; set; }
+        public ICommand SupprimerEquipierCommand { get; set; }
         private RelayCommand closeCommand;
 
         private WindowManager windowManager = new WindowManager();
@@ -232,6 +233,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        MEquipier equipierCopy;
 
         public int EquipierSaisiEquipeId;
 
@@ -267,6 +269,7 @@ namespace PokeStat.VuesModeles
 
             DetailPopupCommand = new RelayCommand(DetailPopupMaj);
             EnregistrerEquipierCommand = new RelayCommand(EnregistrerEquipier);
+            SupprimerEquipierCommand = new RelayCommand(SupprimerEquipier);
             repTalent = new RepTalent();
 
             this.Equipier = Equipier;
@@ -327,7 +330,7 @@ namespace PokeStat.VuesModeles
             return equipierEnSaisie;
         }
 
-        MEquipier equipierCopy;
+        
         private void DetailPopup()
         {
             if (this.Equipier.EquipeId != 0)
@@ -349,10 +352,7 @@ namespace PokeStat.VuesModeles
             {
                 this.PokEquipierSelection.ObjetEquipier = ObjetSelection;
             }
-            //if(equipierSelectionne.EquipeId !=0)
-            //{
-            //    equipierSaisiEquipeId = this.equipierSelectionne.EquipeId;
-            //}
+
             this.Equipier = PokEquipierSelection;
             if(this.Equipier != null)
             {
@@ -425,6 +425,17 @@ namespace PokeStat.VuesModeles
             {
                 repEquipe = new RepEquipe();
                 repEquipe.Add(this.Equipier);
+            }
+            this.Close();
+        }
+
+        private void SupprimerEquipier()
+        {
+            if (this.Equipier != null)
+            {
+                MEquipier equipierSupprimer = new MEquipier(this.Equipier.IdPokemon,this.Equipier.EquipeId, this.Equipier.TalentEquipier.IdTalent, this.Equipier.SetCapacites[0].IdCapacite, this.Equipier.SetCapacites[1].IdCapacite, this.Equipier.SetCapacites[2].IdCapacite, this.Equipier.SetCapacites[3].IdCapacite, this.Equipier.ObjetEquipier.IdObjet, this.Equipier.Nature.IdNature);
+                repEquipe = new RepEquipe();
+                repEquipe.Delete(equipierSupprimer);
             }
             this.Close();
         }

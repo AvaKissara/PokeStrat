@@ -33,7 +33,14 @@ namespace PokeStat.Modeles
         public MObjet ObjetEquipier { get; set; }
         public MEquipe EquipeEquipier { get; set; }
         public int EquipeId { get; set; }
-       
+        public int TalentId { get; set; }
+        public int Cap1Id { get; set; }
+        public int Cap2Id { get; set; }
+        public int Cap3Id { get; set; }
+        public int Cap4Id { get; set; }
+        public int ObjetId { get; set; }
+        public int NatureId { get; set; }
+
         private bool isSelected;
         public bool IsSelected
         {
@@ -98,6 +105,19 @@ namespace PokeStat.Modeles
             : base(IdPokemon, CheminImgPokemon, NomFraPokemon)
         {
 
+        }
+
+        public MEquipier(int IdPokemon, int IdEquipe, int IdTalent, int IdCap1, int IdCap2, int IdCap3, int IdCap4, int IdObjet, int IdNature) 
+            :base(IdPokemon)
+        {
+            this.EquipeId = IdEquipe;
+            this.TalentId = IdTalent;
+            this.Cap1Id = IdCap1;
+            this.Cap2Id = IdCap2;
+            this.Cap3Id = IdCap3;
+            this.Cap4Id = IdCap4;
+            this.ObjetId = IdObjet;
+            this.NatureId = IdNature;   
         }
 
         public MEquipier Clone()
