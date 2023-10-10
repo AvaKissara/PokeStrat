@@ -236,9 +236,18 @@ namespace PokeStat.VuesModeles
         MEquipier equipierCopy;
 
         public int EquipierSaisiEquipeId;
-
+        public string surnomPokEquipier;
         public EquipierTreeViewNode(MEquipier Equipier)
         {
+            //if (this.Equipier.SurnomEquipier != null)
+            //{
+            //    surnomPokEquipier = this.Equipier.SurnomEquipier;
+            //}
+            //else
+            //{
+            //    surnomPokEquipier = "Nouveau";
+            //}
+     
             MEquipier equipierParDefaut = new MEquipier(
             IdPokemon: 0,
             CheminImgPokemon: "0.png",
@@ -254,7 +263,7 @@ namespace PokeStat.VuesModeles
             Mega: false,
             Giga: false,
             Fab: false,
-            SurnomEquipier: "Nouveau",
+            SurnomEquipier: "",
             NiveauEquipier: 0,
             EsquiveEquipier: 0,
             NiveauBonheur: 0,
@@ -282,9 +291,7 @@ namespace PokeStat.VuesModeles
             if (ImagePokemonSelectionne == null)
             {
                 ImagePokemonSelectionne = new BitmapImage(new Uri(this.Equipier.CheminImgPokemonAbsolu));
-            }   
-
-            
+            }              
         }
 
         public MEquipier FromMSpecimen(MSpecimen specimen)
@@ -424,7 +431,8 @@ namespace PokeStat.VuesModeles
             if(this.Equipier != null)
             {
                 repEquipe = new RepEquipe();
-                repEquipe.Add(this.Equipier);
+                //repEquipe.Add(this.Equipier);
+                repEquipe.Update(this.Equipier);
             }
             this.Close();
         }
