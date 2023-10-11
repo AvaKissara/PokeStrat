@@ -293,6 +293,7 @@ namespace PokeStat.VuesModeles
             {
                 this.Equipier = equipierParDefaut;               
                 this.Equipier.TalentPokemon = repTalent.GetAll();
+                this.isNotSelected = true;
             }
             if (Equipier.equipierOrigine == null)
             {
@@ -495,14 +496,15 @@ namespace PokeStat.VuesModeles
             {
                 repEquipe = new RepEquipe();
 
-                if (isNotSelected == true)
+                if (this.Equipier.IsSelected == true)
                 {
-                    repEquipe.Add(this.Equipier);
+                   
+                    MEquipier equipierEnModification = GetEquipierAModId(this.Equipier.equipierOrigine);
+                    repEquipe.Update(this.Equipier, equipierEnModification);
                 }
                 else
                 {
-                    MEquipier equipierEnModification = GetEquipierAModId(this.Equipier.equipierOrigine);    
-                    repEquipe.Update(this.Equipier, equipierEnModification);
+                    repEquipe.Add(this.Equipier);
                 }
             }
             this.Close();

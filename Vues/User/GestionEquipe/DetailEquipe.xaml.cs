@@ -83,7 +83,8 @@ namespace PokeStat.Vues.User.GestionEquipe
         {         
             EquipierTreeViewNode equipier = (DataContext as EquipierTreeViewNode);
             var detailGestionCapacite = new DetailGestionCapacite(equipier);
-            detailGestionCapacite.Owner = this; 
+            detailGestionCapacite.Owner = this;
+            equipier.EquipierAModId = equipier.Equipier.equipierOrigine;
 
             double detailCapaciteLeft = Left;
             double detailCapaciteTop = Top;
@@ -97,6 +98,7 @@ namespace PokeStat.Vues.User.GestionEquipe
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            var activeWindow2 = System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         }
     }
 }

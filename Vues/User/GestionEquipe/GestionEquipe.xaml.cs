@@ -56,6 +56,7 @@ namespace PokeStat.Vues.User.GestionEquipe
                 RepEquipe repEquipe;
                 repEquipe = new RepEquipe();
                 equipier.Equipier.equipierOrigine = repEquipe.GetEquipier(equipier.Equipier);
+                equipier.Equipier.IsSelected = true;
                 equipier.EquipierSelectionne = equipier.Equipier;
     
             }
@@ -105,6 +106,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             if (equipeNode != null)
             {
+                equipierNode.Equipier.IsSelected = false;
                 equipierNode.EquipierSelectionne = equipierNode.Equipier;
             }
             // Empêcher la propagation de l'événement si nécessaire.
