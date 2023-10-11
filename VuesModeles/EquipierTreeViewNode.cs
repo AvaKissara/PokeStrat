@@ -493,17 +493,28 @@ namespace PokeStat.VuesModeles
                 {
                     this.Equipier.NiveauEquipier = this.nivPokEquipier;
                 }
-               if(Capacite2Selection==null) 
+               if(Capacite2Selection==null && this.Equipier.SetCapacites !=null) 
                {
-                    this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[1]);
+                    if (this.Equipier.SetCapacites.Count() > 1)
+                    {
+                        this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[1]);
+                    }
                }
-               if (Capacite3Selection == null)
+               if (Capacite3Selection == null && this.Equipier.SetCapacites != null)
                {
-                    this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[1]);
+                    if(this.Equipier.SetCapacites.Count() >2)
+                    {
+                        this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[2]);
+                    }
+                    
                }
-                if (Capacite4Selection == null)
+                if (Capacite4Selection == null && this.Equipier.SetCapacites != null)
                 {
-                    this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[1]);
+                    if (this.Equipier.SetCapacites.Count() > 3)
+                    {
+                        this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[3]);
+                    }
+                        
                 }
                 this.EquipierSelectionne = this.Equipier;
             }

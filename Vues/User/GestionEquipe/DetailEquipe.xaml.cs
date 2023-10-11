@@ -99,11 +99,6 @@ namespace PokeStat.Vues.User.GestionEquipe
             //detailGestionCapacite.ShowDialog();
         }
 
-        public void LoadDataFromDatabase()
-        {
-            // Charger les valeurs depuis la BDD (par exemple, dans une liste).
-         
-        }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
