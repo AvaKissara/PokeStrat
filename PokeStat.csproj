@@ -481,11 +481,9 @@
     <None Include="Ressources\001.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Debug\025.png.jpg" />
     <Content Include="bin\Debug\DotNetProjects.DataVisualization.Toolkit.dll" />
     <Content Include="bin\Debug\PokeStat.exe" />
     <Content Include="bin\Debug\PokeStat.pdb" />
-    <Resource Include="bin\Debug\Ressources\arceus.jpg" />
     <Resource Include="bin\Debug\Ressources\blastoise.jpg" />
     <Resource Include="bin\Debug\Ressources\blaziken.jpg" />
     <Resource Include="bin\Debug\Ressources\bulbasaur.jpg" />
@@ -501,11 +499,8 @@
     <Resource Include="bin\Debug\Ressources\raichu.jpg" />
     <Resource Include="bin\Debug\Ressources\sharpedo.jpg" />
     <Resource Include="bin\Debug\Ressources\squirtle.jpg" />
-    <Resource Include="bin\Debug\Ressources\swampert.jpg" />
     <Resource Include="bin\Debug\Ressources\venusaur.jpg" />
     <Resource Include="bin\Debug\Ressources\wartortle.jpg" />
-    <Resource Include="bin\Debug\venusaur.jpg" />
-    <Resource Include="bin\Debug\wartortle.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

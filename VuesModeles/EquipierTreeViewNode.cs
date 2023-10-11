@@ -77,6 +77,7 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
+        public MEquipier EquipierAModId { get; set; }
 
         private MEquipier pokEquipierSelection;
         public MEquipier PokEquipierSelection
@@ -88,8 +89,6 @@ namespace PokeStat.VuesModeles
                 {
                     pokEquipierSelection = value;
                     OnPropertyChanged(nameof(PokEquipierSelection));
-
-                    // Mettez à jour this.Equipier avec les modifications
                     this.Equipier = pokEquipierSelection;
                 }
             }
@@ -235,8 +234,11 @@ namespace PokeStat.VuesModeles
 
         MEquipier equipierCopy;
 
+       
+
         public int EquipierSaisiEquipeId;
         public string surnomPokEquipier;
+        public bool isNotSelected;
         public EquipierTreeViewNode(MEquipier Equipier)
         {
             //if (this.Equipier.SurnomEquipier != null)
@@ -247,7 +249,11 @@ namespace PokeStat.VuesModeles
             //{
             //    surnomPokEquipier = "Nouveau";
             //}
-     
+            //if (this.EquipierAModId != null)
+            //{
+            //    this.Equipier.equipierOrigine = this.EquipierAModId;
+            //}
+
             MEquipier equipierParDefaut = new MEquipier(
             IdPokemon: 0,
             CheminImgPokemon: "0.png",
@@ -273,7 +279,8 @@ namespace PokeStat.VuesModeles
             TalentEquipier: null,
             ObjetEquipier: null,
             SetCapacites: new ObservableCollection<MCapacite>(),
-            EquipeId: EquipierSaisiEquipeId
+            EquipeId: EquipierSaisiEquipeId,
+            Equipier.equipierOrigine
             );
 
             DetailPopupCommand = new RelayCommand(DetailPopupMaj);
@@ -287,7 +294,11 @@ namespace PokeStat.VuesModeles
                 this.Equipier = equipierParDefaut;               
                 this.Equipier.TalentPokemon = repTalent.GetAll();
             }
-   
+            if (Equipier.equipierOrigine == null)
+            {
+                this.Equipier.equipierOrigine = equipierParDefaut;
+            }
+
             if (ImagePokemonSelectionne == null)
             {
                 ImagePokemonSelectionne = new BitmapImage(new Uri(this.Equipier.CheminImgPokemonAbsolu));
@@ -337,16 +348,50 @@ namespace PokeStat.VuesModeles
             return equipierEnSaisie;
         }
 
-        
+        public MEquipier GetEquipierAModId(MEquipier equipierModification)
+        {
+          
+                MEquipier equipierAModId = new MEquipier(
+              equipierModification.EquipeId,
+              equipierModification.TalentEquipier.IdTalent,
+              equipierModification.IdPokemon,
+              equipierModification.SetCapacites[0].IdCapacite,
+              equipierModification.SetCapacites[1].IdCapacite,
+              equipierModification.SetCapacites[2].IdCapacite,
+              equipierModification.SetCapacites[3].IdCapacite,
+              equipierModification.ObjetEquipier.IdObjet,
+              equipierModification.Nature.IdNature
+              );
+                //this.EquipierAModId.EquipeId = equipierAMod.EquipeId,
+                //    this.EquipierAModId.TalentId = equipierAMod.TalentEquipier.IdTalent,
+                //    this.EquipierAModId.IdPokemon = equipierAMod.IdPokemon,
+                //    this.EquipierAModId.Cap1Id = equipierAMod.SetCapacites[0].IdCapacite,
+                //    this.EquipierAModId.Cap2Id = equipierAMod.SetCapacites[1].IdCapacite,
+                //    this.EquipierAModId.Cap3Id = equipierAMod.SetCapacites[2].IdCapacite,
+                //    this.EquipierAModId.Cap4Id = equipierAMod.SetCapacites[3].IdCapacite,
+                //    this.EquipierAModId.ObjetId = equipierAMod.ObjetEquipier.IdObjet,
+                //    this.EquipierAModId.NatureId = equipierAMod.Nature.IdNature
+          
+            return equipierAModId;
+
+
+        }
+
         private void DetailPopup()
         {
+            if(this.Equipier.equipierOrigine!=null)
+            {
+                this.EquipierAModId = Equipier.equipierOrigine;
+            }
+            if(this.EquipierAModId!=null)
+            {
+                Equipier.equipierOrigine = this.EquipierAModId;
+            }
+            EquipierTreeViewNode equipeNode;
             if (this.Equipier.EquipeId != 0)
             {
                 EquipierSaisiEquipeId = this.Equipier.EquipeId;
             }
-
-            EquipierTreeViewNode equipeNode;
-
             if (NatureSelection != null)
             {
                 this.PokEquipierSelection.Nature = NatureSelection;
@@ -361,7 +406,24 @@ namespace PokeStat.VuesModeles
             }
 
             this.Equipier = PokEquipierSelection;
-            if(this.Equipier != null)
+         
+            //if (this.Equipier != null && this.Equipier.SetCapacites != null)
+            //{
+            //    this.EquipierSelectionne = this.Equipier;
+            //    this.Equipier.EquipierAModId = new MEquipier(
+            //        equipierSelectionne.EquipeId,
+            //        equipierSelectionne.TalentEquipier.IdTalent,
+            //        equipierSelectionne.IdPokemon,
+            //        equipierSelectionne.SetCapacites[0]?.IdCapacite ?? 0,
+            //        equipierSelectionne.SetCapacites[1]?.IdCapacite ?? 0,
+            //        equipierSelectionne.SetCapacites[2]?.IdCapacite ?? 0,
+            //        equipierSelectionne.SetCapacites[3]?.IdCapacite ?? 0,
+            //        equipierSelectionne.ObjetEquipier.IdObjet,
+            //        equipierSelectionne.Nature.IdNature
+            //    );
+            //}
+
+            if (this.Equipier != null)
             {
                 equipierCopy = this.Equipier.Clone();
                 if (Capacite1Selection != null)
@@ -424,6 +486,7 @@ namespace PokeStat.VuesModeles
             {
                 this.EquipierSelectionne = this.Equipier;
             }
+          
         }
 
         private void EnregistrerEquipier()
@@ -431,8 +494,16 @@ namespace PokeStat.VuesModeles
             if(this.Equipier != null)
             {
                 repEquipe = new RepEquipe();
-                //repEquipe.Add(this.Equipier);
-                repEquipe.Update(this.Equipier);
+
+                if (isNotSelected == true)
+                {
+                    repEquipe.Add(this.Equipier);
+                }
+                else
+                {
+                    MEquipier equipierEnModification = GetEquipierAModId(this.Equipier.equipierOrigine);    
+                    repEquipe.Update(this.Equipier, equipierEnModification);
+                }
             }
             this.Close();
         }

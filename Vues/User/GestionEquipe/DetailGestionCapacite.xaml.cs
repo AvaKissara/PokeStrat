@@ -22,15 +22,13 @@ namespace PokeStat.Vues.User.GestionEquipe
     /// </summary>
     public partial class DetailGestionCapacite : Window
     {
-   
+        private int currentPage = 1;
+        private int pageSize = 50;
         public DetailGestionCapacite(EquipierTreeViewNode equipier)
         {
             InitializeComponent();
             DataContext = equipier;
         }
-
-        private int currentPage = 1;
-        private int pageSize = 50;
 
         private void comboBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -48,6 +46,11 @@ namespace PokeStat.Vues.User.GestionEquipe
             currentPage++;
         }
 
+        /// <summary>
+        /// Méthode pour filtrer les capacités via la barre recherche
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             EquipierTreeViewNode equipier = (DataContext as EquipierTreeViewNode);

@@ -51,9 +51,8 @@ namespace PokeStat.Modeles
                 OnPropertyChanged(nameof(IsSelected));
             }
         }
-
-
-
+       
+        public MEquipier equipierOrigine { get; set; }
         private readonly RepPokemon repPokemon;
         private readonly RepNature repNature;
         private readonly RepObjet repObjet; 
@@ -67,7 +66,7 @@ namespace PokeStat.Modeles
         public ICommand DetailPopupCommand { get; set; }
 
 
-        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, string SurnomEquipier, int NiveauEquipier, int EsquiveEquipier, int NiveauBonheur, int Ev, int Iv, MNature Nature, MTalent TalentEquipier, MObjet ObjetEquipier, ObservableCollection<MCapacite> SetCapacites, int EquipeId)
+        public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, string SurnomEquipier, int NiveauEquipier, int EsquiveEquipier, int NiveauBonheur, int Ev, int Iv, MNature Nature, MTalent TalentEquipier, MObjet ObjetEquipier, ObservableCollection<MCapacite> SetCapacites, int EquipeId, MEquipier EquipierOrigine)
             : base(IdPokemon, CheminImgPokemon, NomFraPokemon, BasePV, BaseAttaque, BaseDefense, BaseAttSpe, BaseDefSpe, BaseVit, Legendaire, Shiny, Mega, Giga, Fab)
         {
             this.SurnomEquipier = SurnomEquipier;
@@ -92,6 +91,7 @@ namespace PokeStat.Modeles
             this.PoolCapacites = repPokemon.GetPoolCapacite(IdPokemon);
             this.TalentPokemon = repPokemon.GetPoolTalent(IdPokemon);
             this.PoolCapacites = repCapacite.GetCapacite(IdPokemon);
+            this.equipierOrigine = EquipierOrigine;
         }
 
         public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string NomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, MPokemon Evolution, MGeneration Gen, string SurnomEquipier, int NiveauEquipier)
@@ -107,7 +107,7 @@ namespace PokeStat.Modeles
 
         }
 
-        public MEquipier(int IdPokemon, int IdEquipe, int IdTalent, int IdCap1, int IdCap2, int IdCap3, int IdCap4, int IdObjet, int IdNature) 
+        public MEquipier( int IdEquipe, int IdTalent, int IdPokemon, int IdCap1, int IdCap2, int IdCap3, int IdCap4, int IdObjet, int IdNature) 
             :base(IdPokemon)
         {
             this.EquipeId = IdEquipe;
@@ -151,8 +151,9 @@ namespace PokeStat.Modeles
                 this.TalentEquipier,
                 this.ObjetEquipier,
                 setCapacitesClone,
-                this.EquipeId
-            );
+                this.EquipeId,
+                this.equipierOrigine
+            ); ;
         }
 
 

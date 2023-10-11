@@ -1,4 +1,5 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.Repositories;
 using PokeStat.Utilitaires;
 using PokeStat.VuesModeles;
 using System;
@@ -50,6 +51,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             if (equipier != null)
             {
                 equipier.EquipierSaisiEquipeId = equipier.Equipier.EquipeId;
+                equipier.EquipierAModId = equipier.Equipier.equipierOrigine;
                 DetailGestionPokemon detailsPokemon = new DetailGestionPokemon(equipier);
 
                 double detailEquipeLeft = Left;
@@ -71,6 +73,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             if (equipier != null)
             {
                 equipier.EquipierSelectionne = equipier.Equipier;
+       
             }
 
             e.Handled = true;

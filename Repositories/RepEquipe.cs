@@ -86,7 +86,36 @@ namespace PokeStat.Repositories
                             string nomObjet = equipiers.IsDBNull(25) ? "" : $"{equipiers[25]}";
                             objetTenu = new MObjet(idObjet, nomObjet);
                         }
-                    
+                        MEquipier equipierParDefaut = new MEquipier(
+                            IdPokemon: 0,
+                            CheminImgPokemon: "0.png",
+                            NomFraPokemon: "Nouveau",
+                            BasePV: 0,
+                            BaseAttaque: 0,
+                            BaseDefense: 0,
+                            BaseAttSpe: 0,
+                            BaseDefSpe: 0,
+                            BaseVit: 0,
+                            Legendaire: false,
+                            Shiny: false,
+                            Mega: false,
+                            Giga: false,
+                            Fab: false,
+                            SurnomEquipier: "",
+                            NiveauEquipier: 0,
+                            EsquiveEquipier: 0,
+                            NiveauBonheur: 0,
+                            Ev: 0,
+                            Iv: 0,
+                            Nature: null,
+                            TalentEquipier: null,
+                            ObjetEquipier: null,
+                            SetCapacites: new ObservableCollection<MCapacite>(),
+                            EquipeId: equipiers.GetInt32(50),
+                            EquipierOrigine: null                  
+                            );
+
+
 
                         MEquipier unEquipier = new MEquipier(
                             equipiers.GetInt32(0),
@@ -113,8 +142,9 @@ namespace PokeStat.Repositories
                             talentEquipier,
                             objetTenu,
                             capacites,
-                            equipiers.GetInt32(50)
-                            );
+                            equipiers.GetInt32(50),
+                            equipierParDefaut
+                           );
 
                         observableMEquipiers.Add(unEquipier);
                     }
@@ -131,6 +161,112 @@ namespace PokeStat.Repositories
 
             return observableMEquipiers;
         }
+
+          public MEquipier GetEquipier(MEquipier equipier)
+          {
+            bddTool.CheckConnexion();
+            MEquipier Equipier = null;
+            try
+            {
+                SqlCommand requestGetEquipier = bddTool.GetRequest();
+                requestGetEquipier.CommandText = "SELECT EQ.pok_id, P.pok_img, P.nom_fra_pok, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit, EQ.equipe_id FROM equipiers AS EQ LEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok LEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature LEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap LEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap LEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap WHERE equipe_id = @equipeIdModifier AND talent_id = @talentId AND pok_id = @pokIdOrigine AND cap1_id = @cap1IdOrigine AND cap2_id = @cap2IdOrigine AND cap3_id = @cap3IdOrigine AND cap4_id = @cap4IdOrigine AND objet_id = @objetIdOrigine AND nature_id = @natureIdOrigine ;";
+
+                requestGetEquipier.Parameters.Add("@equipeIdModifier", SqlDbType.Int).Value = equipier.EquipeId;
+                requestGetEquipier.Parameters.Add("@talentId", SqlDbType.Int).Value = equipier.TalentEquipier.IdTalent;
+                requestGetEquipier.Parameters.Add("@pokIdOrigine", SqlDbType.Int).Value = equipier.IdPokemon;
+                requestGetEquipier.Parameters.Add("@cap1IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[0].IdCapacite;
+                requestGetEquipier.Parameters.Add("@cap2IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[1].IdCapacite;
+                requestGetEquipier.Parameters.Add("@cap3IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[2].IdCapacite;
+                requestGetEquipier.Parameters.Add("@cap4IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[3].IdCapacite;
+                requestGetEquipier.Parameters.Add("@objetIdOrigine", SqlDbType.Int).Value = equipier.ObjetEquipier.IdObjet;
+                requestGetEquipier.Parameters.Add("@natureIdOrigine", SqlDbType.Int).Value = equipier.Nature.IdNature;
+
+                using (SqlDataReader equipiers = requestGetEquipier.ExecuteReader())
+                {
+                    if (equipiers.Read())
+                    {
+                        ObservableCollection<MCapacite> capacites = new ObservableCollection<MCapacite>();
+                        for (int i = 26; i <= 49; i += 6)
+                        {
+                            if (!equipiers.IsDBNull(i))
+                            {
+                                int idCapacite = equipiers.GetInt32(i);
+                                string nomCapacite = equipiers.IsDBNull(i + 1) ? "" : $"{equipiers[i + 1]}";
+                                int pp = equipiers.IsDBNull(i + 2) ? 0 : equipiers.GetInt32(i + 2);
+                                int pre = equipiers.IsDBNull(i + 3) ? 0 : equipiers.GetInt32(i + 3);
+                                int puiss = equipiers.IsDBNull(i + 4) ? 0 : equipiers.GetInt32(i + 4);
+                                int crit = equipiers.IsDBNull(i + 5) ? 0 : equipiers.GetInt32(i + 5);
+                                MCapacite capacite = new MCapacite(idCapacite, nomCapacite, pp, pre, puiss, crit);
+                                capacites.Add(capacite);
+                            }
+                        }
+                        MNature natureEquipier = null;
+                        if (!equipiers.IsDBNull(20))
+                        {
+                            int idNature = equipiers.GetInt32(20);
+                            string nomNature = equipiers.IsDBNull(21) ? "" : $"{equipiers[21]}";
+                            natureEquipier = new MNature(idNature, nomNature);
+                        }
+
+                        MTalent talentEquipier = null;
+                        if (!equipiers.IsDBNull(22))
+                        {
+                            int idTalent = equipiers.GetInt32(22);
+                            string nomTalent = equipiers.IsDBNull(23) ? "" : $"{equipiers[23]}";
+                            talentEquipier = new MTalent(idTalent, nomTalent);
+                        }
+
+                        MObjet objetTenu = null;
+                        if (!equipiers.IsDBNull(24))
+                        {
+                            int idObjet = equipiers.GetInt32(24);
+                            string nomObjet = equipiers.IsDBNull(25) ? "" : $"{equipiers[25]}";
+                            objetTenu = new MObjet(idObjet, nomObjet);
+                        }
+                        MEquipier equipierOrigineDefaut = null;
+                        Equipier = new MEquipier(
+                            equipiers.GetInt32(0),
+                            $"{equipiers[1]}",
+                            $"{equipiers[2]}",
+                            equipiers.GetInt32(3),
+                            equipiers.GetInt32(4),
+                            equipiers.GetInt32(5),
+                            equipiers.GetInt32(6),
+                            equipiers.GetInt32(7),
+                            equipiers.GetInt32(8),
+                            Convert.ToBoolean(equipiers.GetValue(9)),
+                            Convert.ToBoolean(equipiers.GetValue(10)),
+                            Convert.ToBoolean(equipiers.GetValue(11)),
+                            Convert.ToBoolean(equipiers.GetValue(12)),
+                            Convert.ToBoolean(equipiers.GetValue(13)),
+                            $"{equipiers[14]}",
+                            equipiers.GetInt32(15),
+                            equipiers.GetInt32(16),
+                            equipiers.GetInt32(17),
+                            equipiers.GetInt32(18),
+                            equipiers.GetInt32(19),
+                            natureEquipier,
+                            talentEquipier,
+                            objetTenu,
+                            capacites,
+                            equipiers.GetInt32(50),
+                            equipierOrigineDefaut
+                        );
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Gestion de l'exception
+                Console.WriteLine("Erreur lors de la récupération de l'équipier : " + ex.Message);
+            }
+
+            // Fermeture de la connexion
+            bddTool.CloseConnexion();
+
+            return Equipier;
+        }
+
 
         public ObservableCollection<MEquipe> GetAllEquipes()
         {
@@ -292,30 +428,21 @@ namespace PokeStat.Repositories
             bddTool.CloseConnexion();
         }
 
-        public void Update(MEquipier equipierModifier)
+        public void Update(MEquipier equipierModifier, MEquipier equipierOrigine)
         {
             bddTool.CheckConnexion();
 
             SqlCommand RequestUpdateEquipier = bddTool.GetRequest();
-            RequestUpdateEquipier.CommandText = "UPDATE equipiers SET talent_id = @talentId, pok_id = @pokId, cap1_Id = @cap1Id, cap2_id = @cap2Id, cap3_id = @cap3Id,  cap4_id = @cap4Id, objet_id = @objetId, nature_id = @natureId, surnom = @surnom, niveau = @niveau, niv_bonheur = @niv_bonheur, pv = @pv, ev = @ev, iv = @iv, att = @att, def = @def, att_spe = @att_spe, def_spe = @def_spe, vit = @vit, esquive = @esquive, cap1_pp = @cap1_pp, cap1_puiss = @cap1_puiss, cap1_pre = @cap1_pre, cap1_crit = @cap1_crit, cap2_pp = @cap2_pp, cap2_puiss = @cap2_puiss, cap2_pre = @cap2_pre, cap2_crit = @cap2_crit, cap3_pp = @cap3_pp, cap3_puiss = @cap3_puiss, cap3_pre = @cap3_pre, cap3_crit = @cap3_crit, cap4_pp = @cap4_pp,  cap4_puiss = @cap4_puiss, cap4_pre = @cap4_pre, cap4_crit = @cap4_crit WHERE equipe_id = @equipeId " +
-                                        "AND talent_id = @talentId " +
-                                        "AND pok_id = @pokId " +
-                                        "AND cap1_id = @cap1Id " +
-                                        "AND cap2_id = @cap2Id " +
-                                        "AND cap3_id = @cap3Id " +
-                                        "AND cap4_id = @cap4Id " +
-                                        "AND objet_id = @objetId " +
-                                        "AND nature_id = @natureId";
+            RequestUpdateEquipier.CommandText = "UPDATE equipiers SET talent_id = @talent_id, pok_id = @pok_id, cap1_id = @cap1_id, cap2_id = @cap2_id, cap3_id = @cap3_id, cap4_id = @cap4_id, objet_id = @objet_id, nature_id = @nature_id, surnom = @surnom, niveau = @niveau, niv_bonheur = @niv_bonheur, pv = @pv, ev = @ev, iv = @iv, att = @att, def = @def, att_spe = @att_spe, def_spe = @def_spe, vit = @vit, esquive = @esquive, cap1_pp = @cap1_pp, cap1_puiss = @cap1_puiss, cap1_pre = @cap1_pre, cap1_crit = @cap1_crit, cap2_pp = @cap2_pp, cap2_puiss = @cap2_puiss, cap2_pre = @cap2_pre, cap2_crit = @cap2_crit, cap3_pp = @cap3_pp, cap3_puiss = @cap3_puiss, cap3_pre = @cap3_pre, cap3_crit = @cap3_crit, cap4_pp = @cap4_pp, cap4_puiss = @cap4_puiss, cap4_pre = @cap4_pre, cap4_crit = @cap4_crit WHERE equipe_id = @equipeIdModifier AND talent_id = @talentId AND pok_id = @pokIdOrigine AND cap1_id = @cap1IdOrigine AND cap2_id = @cap2IdOrigine AND cap3_id = @cap3IdOrigine AND cap4_id = @cap4IdOrigine AND objet_id = @objetIdOrigine AND nature_id = @natureIdOrigine";
 
-            RequestUpdateEquipier.Parameters.Add("@equipeId", SqlDbType.Int).Value = equipierModifier.EquipeId;
-            RequestUpdateEquipier.Parameters.Add("@talentId", SqlDbType.Int).Value = equipierModifier.TalentEquipier.IdTalent;
-            RequestUpdateEquipier.Parameters.Add("@pokId", SqlDbType.Int).Value = equipierModifier.IdPokemon;
-            RequestUpdateEquipier.Parameters.Add("@cap1Id", SqlDbType.Int).Value = equipierModifier.SetCapacites[0].IdCapacite;
-            RequestUpdateEquipier.Parameters.Add("@cap2Id", SqlDbType.Int).Value = equipierModifier.SetCapacites[1].IdCapacite;
-            RequestUpdateEquipier.Parameters.Add("@cap3Id", SqlDbType.Int).Value = equipierModifier.SetCapacites[2].IdCapacite;
-            RequestUpdateEquipier.Parameters.Add("@cap4Id", SqlDbType.Int).Value = equipierModifier.SetCapacites[3].IdCapacite;
-            RequestUpdateEquipier.Parameters.Add("@objetId", SqlDbType.Int).Value = equipierModifier.ObjetEquipier.IdObjet;
-            RequestUpdateEquipier.Parameters.Add("@natureId", SqlDbType.Int).Value = equipierModifier.Nature.IdNature;
+            RequestUpdateEquipier.Parameters.Add("@talent_id", SqlDbType.Int).Value = equipierModifier.TalentEquipier.IdTalent;
+            RequestUpdateEquipier.Parameters.Add("@pok_id", SqlDbType.Int).Value = equipierModifier.IdPokemon;
+            RequestUpdateEquipier.Parameters.Add("@cap1_id", SqlDbType.Int).Value = equipierModifier.SetCapacites[0].IdCapacite;
+            RequestUpdateEquipier.Parameters.Add("@cap2_id", SqlDbType.Int).Value = equipierModifier.SetCapacites[1].IdCapacite;
+            RequestUpdateEquipier.Parameters.Add("@cap3_id", SqlDbType.Int).Value = equipierModifier.SetCapacites[2].IdCapacite;
+            RequestUpdateEquipier.Parameters.Add("@cap4_id", SqlDbType.Int).Value = equipierModifier.SetCapacites[3].IdCapacite;
+            RequestUpdateEquipier.Parameters.Add("@objet_id", SqlDbType.Int).Value = equipierModifier.ObjetEquipier.IdObjet;
+            RequestUpdateEquipier.Parameters.Add("@nature_id", SqlDbType.Int).Value = equipierModifier.Nature.IdNature;
             RequestUpdateEquipier.Parameters.Add("@surnom", SqlDbType.VarChar).Value = equipierModifier.SurnomEquipier;
             RequestUpdateEquipier.Parameters.Add("@niveau", SqlDbType.Int).Value = equipierModifier.NiveauEquipier;
             RequestUpdateEquipier.Parameters.Add("@niv_bonheur", SqlDbType.Int).Value = equipierModifier.NiveauBonheur;
@@ -344,6 +471,15 @@ namespace PokeStat.Repositories
             RequestUpdateEquipier.Parameters.Add("@cap4_puiss", SqlDbType.Int).Value = equipierModifier.SetCapacites[3].BasePuiss;
             RequestUpdateEquipier.Parameters.Add("@cap4_pre", SqlDbType.Int).Value = equipierModifier.SetCapacites[3].BasePre;
             RequestUpdateEquipier.Parameters.Add("@cap4_crit", SqlDbType.Int).Value = equipierModifier.SetCapacites[3].BaseCrit;
+            RequestUpdateEquipier.Parameters.Add("@equipeIdModifier", SqlDbType.Int).Value = equipierModifier.EquipeId;
+            RequestUpdateEquipier.Parameters.Add("@talentId", SqlDbType.Int).Value = equipierOrigine.TalentId;
+            RequestUpdateEquipier.Parameters.Add("@pokIdOrigine", SqlDbType.Int).Value = equipierOrigine.IdPokemon;
+            RequestUpdateEquipier.Parameters.Add("@cap1IdOrigine", SqlDbType.Int).Value = equipierOrigine.Cap1Id;
+            RequestUpdateEquipier.Parameters.Add("@cap2IdOrigine", SqlDbType.Int).Value = equipierOrigine.Cap2Id;
+            RequestUpdateEquipier.Parameters.Add("@cap3IdOrigine", SqlDbType.Int).Value = equipierOrigine.Cap3Id;
+            RequestUpdateEquipier.Parameters.Add("@cap4IdOrigine", SqlDbType.Int).Value = equipierOrigine.Cap4Id;
+            RequestUpdateEquipier.Parameters.Add("@objetIdOrigine", SqlDbType.Int).Value = equipierOrigine.ObjetId;
+            RequestUpdateEquipier.Parameters.Add("@natureIdOrigine", SqlDbType.Int).Value = equipierOrigine.NatureId;
 
             int result = RequestUpdateEquipier.ExecuteNonQuery();
 

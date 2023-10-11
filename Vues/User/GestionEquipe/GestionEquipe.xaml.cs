@@ -1,4 +1,5 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.Repositories;
 using PokeStat.Utilitaires;
 using PokeStat.VuesModeles;
 using System;
@@ -51,8 +52,12 @@ namespace PokeStat.Vues.User.GestionEquipe
             
 
             if (equipier != null)
-            {      
+            {
+                RepEquipe repEquipe;
+                repEquipe = new RepEquipe();
+                equipier.Equipier.equipierOrigine = repEquipe.GetEquipier(equipier.Equipier);
                 equipier.EquipierSelectionne = equipier.Equipier;
+    
             }
             e.Handled = true;
         }
@@ -64,6 +69,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             StackPanel parentStackPanel = equipierButton.Parent as StackPanel;
             EquipeTreeViewNode equipeNode = parentStackPanel.DataContext as EquipeTreeViewNode;
 
+            MEquipier equipierOrigineDefaut = null;
             MEquipier equipierParDefaut =
                 new MEquipier(
                    IdPokemon: 0,
@@ -90,7 +96,8 @@ namespace PokeStat.Vues.User.GestionEquipe
                    TalentEquipier: null,
                    ObjetEquipier: null,
                    SetCapacites: new ObservableCollection<MCapacite>(),
-                   EquipeId: equipeNode.Equipe.IdEquipe
+                   EquipeId: equipeNode.Equipe.IdEquipe,
+                   equipierOrigineDefaut
                    ); ;
 
             var equipierNode = new EquipierTreeViewNode(equipierParDefaut);

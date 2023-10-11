@@ -43,6 +43,7 @@ namespace PokeStat.VuesModeles
 
         private void DetailPopup()
         {
+            MEquipier equipierOrigineDefaut = null;
             MEquipier equipierParDefaut = new MEquipier(
                        IdPokemon: 0,
                        CheminImgPokemon: "0.png",
@@ -68,7 +69,8 @@ namespace PokeStat.VuesModeles
                        TalentEquipier: null,
                        ObjetEquipier: null,
                        SetCapacites: new ObservableCollection<MCapacite>(),
-                       EquipeId: 0
+                       EquipeId: 0,
+                       equipierOrigineDefaut
                        );
 
             var equipeNode = new EquipierTreeViewNode(equipierParDefaut);
