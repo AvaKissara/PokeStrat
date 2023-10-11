@@ -237,18 +237,25 @@ namespace PokeStat.VuesModeles
        
 
         public int EquipierSaisiEquipeId;
-        public string surnomPokEquipier;
-        private bool isNotSelected;
-        public bool IsNotSelected
+        private string surnomPokEquipier;
+        public string SurnomPokEquipier
         {
-            get { return isNotSelected; }
+            get { return surnomPokEquipier; }
             set
             {
-                isNotSelected = value;
-                OnPropertyChanged(nameof(IsNotSelected));
-
+                if (surnomPokEquipier != value)
+                {
+                    surnomPokEquipier = value;
+                    OnPropertyChanged(nameof(SurnomPokEquipier));
+                }
+                if(surnomPokEquipier==null)
+                {
+                    surnomPokEquipier = this.Equipier.NomFraPokemon;
+                }
             }
         }
+
+
         public EquipierTreeViewNode(MEquipier Equipier)
         {
             //if (this.Equipier.SurnomEquipier != null)
@@ -267,7 +274,7 @@ namespace PokeStat.VuesModeles
             MEquipier equipierParDefaut = new MEquipier(
             IdPokemon: 0,
             CheminImgPokemon: "0.png",
-            NomFraPokemon: "Nouveau",
+            NomFraPokemon: "",
             BasePV: 0,
             BaseAttaque: 0,
             BaseDefense: 0,
@@ -350,15 +357,15 @@ namespace PokeStat.VuesModeles
                 Evolution: PokSelection.Evolution,
                 Gen: PokSelection.Gen,
 
-                SurnomEquipier: Equipier.SurnomEquipier,
-                NiveauEquipier: Equipier.NiveauEquipier
+                SurnomEquipier: SurnomPokEquipier,
+                NiveauEquipier: this.Equipier.NiveauEquipier
             ); ; 
 
             if (specimen.TalentPokemon == null)
             {
                 equipierEnSaisie.TalentPokemon = repTalent.GetTalent(specimen.IdPokemon);
             }
-            
+       
             return equipierEnSaisie;
         }
 
@@ -376,15 +383,7 @@ namespace PokeStat.VuesModeles
               equipierModification.ObjetEquipier.IdObjet,
               equipierModification.Nature.IdNature
               );
-                //this.EquipierAModId.EquipeId = equipierAMod.EquipeId,
-                //    this.EquipierAModId.TalentId = equipierAMod.TalentEquipier.IdTalent,
-                //    this.EquipierAModId.IdPokemon = equipierAMod.IdPokemon,
-                //    this.EquipierAModId.Cap1Id = equipierAMod.SetCapacites[0].IdCapacite,
-                //    this.EquipierAModId.Cap2Id = equipierAMod.SetCapacites[1].IdCapacite,
-                //    this.EquipierAModId.Cap3Id = equipierAMod.SetCapacites[2].IdCapacite,
-                //    this.EquipierAModId.Cap4Id = equipierAMod.SetCapacites[3].IdCapacite,
-                //    this.EquipierAModId.ObjetId = equipierAMod.ObjetEquipier.IdObjet,
-                //    this.EquipierAModId.NatureId = equipierAMod.Nature.IdNature
+
           
             return equipierAModId;
 
@@ -430,22 +429,7 @@ namespace PokeStat.VuesModeles
 
             this.Equipier = PokEquipierSelection;
          
-            //if (this.Equipier != null && this.Equipier.SetCapacites != null)
-            //{
-            //    this.EquipierSelectionne = this.Equipier;
-            //    this.Equipier.EquipierAModId = new MEquipier(
-            //        equipierSelectionne.EquipeId,
-            //        equipierSelectionne.TalentEquipier.IdTalent,
-            //        equipierSelectionne.IdPokemon,
-            //        equipierSelectionne.SetCapacites[0]?.IdCapacite ?? 0,
-            //        equipierSelectionne.SetCapacites[1]?.IdCapacite ?? 0,
-            //        equipierSelectionne.SetCapacites[2]?.IdCapacite ?? 0,
-            //        equipierSelectionne.SetCapacites[3]?.IdCapacite ?? 0,
-            //        equipierSelectionne.ObjetEquipier.IdObjet,
-            //        equipierSelectionne.Nature.IdNature
-            //    );
-            //}
-
+   
             if (this.Equipier != null)
             {
                 equipierCopy = this.Equipier.Clone();
@@ -507,16 +491,13 @@ namespace PokeStat.VuesModeles
         {
             if(this.Equipier !=null)
             {
+                if(this.surnomPokEquipier!=null)
+                {
+                    this.Equipier.SurnomEquipier = this.surnomPokEquipier;
+                }
+               
                 this.EquipierSelectionne = this.Equipier;
             }
-            //if (this.Equipier.IsSelected == true)
-            //{
-            //    this.IsSelected = true;
-            //}
-            //else if (this.Equipier.IsSelected == false)
-            //{
-            //    this.IsSelected = false;
-            //}
 
         }
 

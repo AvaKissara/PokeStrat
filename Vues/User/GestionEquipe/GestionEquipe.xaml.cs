@@ -26,6 +26,7 @@ namespace PokeStat.Vues.User.GestionEquipe
     public partial class GestionEquipe : Page
     {
         private GestionEquipeVueModele gestionEquipeVueModele;
+        public MainWindow MainWindow { get; set; }
         public GestionEquipe()
         {
             InitializeComponent();
@@ -37,13 +38,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             NavigationServices.NavigateToPage(this);
             
         }
-        //private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        //{
-        //    if (DataContext is GestionEquipeVueModele viewModel)
-        //    {
-        //        viewModel.SelectedEquipeNode = e.NewValue as EquipeTreeViewNode;
-        //    }
-        //}
+
 
         private void Equipier_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -57,13 +52,13 @@ namespace PokeStat.Vues.User.GestionEquipe
                 repEquipe = new RepEquipe();
                 equipier.Equipier.equipierOrigine = repEquipe.GetEquipier(equipier.Equipier);
                 equipier.Equipier.equipierOrigine.IsSelected = true;
-                equipier.IsNotSelected = false;
+
                 equipier.EquipierSelectionne = equipier.Equipier;
     
             }
             e.Handled = true;
         }
-        public MainWindow MainWindow { get; set; }
+     
 
         private void EquipierButton_Click(object sender, RoutedEventArgs e)
         {
