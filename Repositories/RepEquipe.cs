@@ -471,7 +471,7 @@ namespace PokeStat.Repositories
             RequestUpdateEquipier.Parameters.Add("@cap4_puiss", SqlDbType.Int).Value = equipierModifier.SetCapacites[3].BasePuiss;
             RequestUpdateEquipier.Parameters.Add("@cap4_pre", SqlDbType.Int).Value = equipierModifier.SetCapacites[3].BasePre;
             RequestUpdateEquipier.Parameters.Add("@cap4_crit", SqlDbType.Int).Value = equipierModifier.SetCapacites[3].BaseCrit;
-            RequestUpdateEquipier.Parameters.Add("@equipeIdModifier", SqlDbType.Int).Value = equipierModifier.EquipeId;
+            RequestUpdateEquipier.Parameters.Add("@equipeIdModifier", SqlDbType.Int).Value = equipierOrigine.EquipeId;
             RequestUpdateEquipier.Parameters.Add("@talentId", SqlDbType.Int).Value = equipierOrigine.TalentId;
             RequestUpdateEquipier.Parameters.Add("@pokIdOrigine", SqlDbType.Int).Value = equipierOrigine.IdPokemon;
             RequestUpdateEquipier.Parameters.Add("@cap1IdOrigine", SqlDbType.Int).Value = equipierOrigine.Cap1Id;

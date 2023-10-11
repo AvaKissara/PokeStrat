@@ -85,6 +85,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             var detailGestionCapacite = new DetailGestionCapacite(equipier);
             detailGestionCapacite.Owner = this;
             equipier.EquipierAModId = equipier.Equipier.equipierOrigine;
+          
 
             double detailCapaciteLeft = Left;
             double detailCapaciteTop = Top;

@@ -56,7 +56,8 @@ namespace PokeStat.Vues.User.GestionEquipe
                 RepEquipe repEquipe;
                 repEquipe = new RepEquipe();
                 equipier.Equipier.equipierOrigine = repEquipe.GetEquipier(equipier.Equipier);
-                equipier.Equipier.IsSelected = true;
+                equipier.Equipier.equipierOrigine.IsSelected = true;
+                equipier.IsNotSelected = false;
                 equipier.EquipierSelectionne = equipier.Equipier;
     
             }
@@ -75,7 +76,7 @@ namespace PokeStat.Vues.User.GestionEquipe
                 new MEquipier(
                    IdPokemon: 0,
                    CheminImgPokemon: "0.png",
-                   NomFraPokemon: "Nouveau",
+                   NomFraPokemon: "",
                    BasePV: 0,
                    BaseAttaque: 0,
                    BaseDefense: 0,
@@ -106,7 +107,8 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             if (equipeNode != null)
             {
-                equipierNode.Equipier.IsSelected = false;
+                equipierNode.Equipier.equipierOrigine.IsSelected = false;
+    
                 equipierNode.EquipierSelectionne = equipierNode.Equipier;
             }
             // Empêcher la propagation de l'événement si nécessaire.
