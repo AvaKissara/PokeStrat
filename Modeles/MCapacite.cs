@@ -8,7 +8,7 @@ namespace PokeStat.Modeles
 {
     public class MCapacite
     {
-        public int IdCapacite { get; }
+        public int IdCapacite { get; set; }
         public string NomCapacite { get; set; }
         public string DescCapacite { get; set; }
         public int BasePp { get; set; }
