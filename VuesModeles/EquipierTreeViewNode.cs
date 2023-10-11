@@ -442,7 +442,7 @@ namespace PokeStat.VuesModeles
                         equipierCopy.SetCapacites.Add(Capacite2Selection);
                     }
                     
-                }
+                }  
                 if (Capacite3Selection != null)
                 {
                     if (equipierCopy.SetCapacites.Count >= 3)
@@ -493,8 +493,18 @@ namespace PokeStat.VuesModeles
                 {
                     this.Equipier.NiveauEquipier = this.nivPokEquipier;
                 }
-               
-               
+               if(Capacite2Selection==null) 
+               {
+                    this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[1]);
+               }
+               if (Capacite3Selection == null)
+               {
+                    this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[1]);
+               }
+                if (Capacite4Selection == null)
+                {
+                    this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[1]);
+                }
                 this.EquipierSelectionne = this.Equipier;
             }
 

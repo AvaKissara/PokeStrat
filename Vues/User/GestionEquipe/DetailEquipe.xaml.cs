@@ -4,6 +4,7 @@ using PokeStat.Utilitaires;
 using PokeStat.VuesModeles;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,6 +83,8 @@ namespace PokeStat.Vues.User.GestionEquipe
         private void StackPanel_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {         
             EquipierTreeViewNode equipier = (DataContext as EquipierTreeViewNode);
+
+
             var detailGestionCapacite = new DetailGestionCapacite(equipier);
             detailGestionCapacite.Owner = this;
             equipier.EquipierAModId = equipier.Equipier.equipierOrigine;
@@ -92,9 +95,16 @@ namespace PokeStat.Vues.User.GestionEquipe
             double detailGestionCapaciteHeight = 620;
             detailGestionCapacite.Left = detailCapaciteLeft -166;
             detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 46;
-            windowManager.ShowWindow("DetailEquipe", detailGestionCapacite);
+            windowManager.ShowWindow("DetailGestionCapacite", detailGestionCapacite);
             //detailGestionCapacite.ShowDialog();
         }
+
+        public void LoadDataFromDatabase()
+        {
+            // Charger les valeurs depuis la BDD (par exemple, dans une liste).
+         
+        }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

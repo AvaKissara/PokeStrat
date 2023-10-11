@@ -52,7 +52,7 @@
                 <TextBlock x:Name="textBlock4" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 					Grid.Row="2" Margin="16,-10,0,0" FontSize="16" Text="Capacité 2:" />
                 <ComboBox x:Name="comboBoxn" ItemsSource="{Binding Equipier.PoolCapacites}" SelectedValue="{Binding Capacite2Selection, Mode=TwoWay}" Grid.Row="2" Grid.Column="1"
-			VerticalAlignment="Top" Margin="10,6,10,0" FontSize="14" DisplayMemberPath="NomCapacite" Grid.ColumnSpan="2" MaxDropDownHeight="210" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened" />
+			VerticalAlignment="Top" Margin="10,6,10,0" FontSize="14" DisplayMemberPath="NomCapacite"  Grid.ColumnSpan="2" MaxDropDownHeight="210" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened" />
 
                 <TextBlock x:Name="textBlockt" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="3" Margin="16,-11,0,0" FontSize="16" Text="Capacité 3:" />
