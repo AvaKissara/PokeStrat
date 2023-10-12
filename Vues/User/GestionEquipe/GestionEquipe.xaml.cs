@@ -32,10 +32,10 @@ namespace PokeStat.Vues.User.GestionEquipe
             InitializeComponent();
             gestionEquipeVueModele = new GestionEquipeVueModele();
             DataContext = gestionEquipeVueModele;
-
-            Frame mainFrame = NavigationServices.GetMainFrame();
-            NavigationServices.Initialize(mainFrame);
-            NavigationServices.NavigateToPage(this);
+      
+            //Frame mainFrame = NavigationServices.GetMainFrame();
+            //NavigationServices.Initialize(mainFrame);
+            //NavigationServices.NavigateToPage(this);
             
         }
 

@@ -28,7 +28,6 @@ namespace PokeStat.Vues.User.GestionEquipe
             DataContext = equipier;
         }
 
-
         private void button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

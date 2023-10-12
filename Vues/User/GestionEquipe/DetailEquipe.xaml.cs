@@ -99,6 +99,20 @@ namespace PokeStat.Vues.User.GestionEquipe
             //detailGestionCapacite.ShowDialog();
         }
 
+        private void Stat_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EquipierTreeViewNode equipier = (DataContext as EquipierTreeViewNode);
+            var detailGestionStat = new DetailGestionStat(equipier);
+            detailGestionStat.Owner = this;
+            equipier.BasePV = equipier.Equipier.BasePV;
+
+            double detailEquipeLeft = Left;
+            double detailEquipeTop = Top;
+
+            detailGestionStat.Left = detailEquipeLeft + detailGestionStat.Width;
+            detailGestionStat.Top = detailEquipeTop;
+            windowManager.ShowWindow("DetailGestionStat", detailGestionStat);
+        }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)

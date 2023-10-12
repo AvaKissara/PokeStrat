@@ -25,6 +25,7 @@ namespace PokeStat.VuesModeles
         public ICommand DetailPopupCommand { get; set; }
         public ICommand EnregistrerEquipierCommand {  get; set; }
         public ICommand SupprimerEquipierCommand { get; set; }
+        
         private RelayCommand closeCommand;
 
         private WindowManager windowManager = new WindowManager();
@@ -263,8 +264,44 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        public EquipierTreeViewNode(MEquipier Equipier)
+        private double basePVPercentage;
+        public double BasePVPercentage
         {
+            get { return basePVPercentage; }
+            set
+            {
+                if (basePVPercentage != value)
+                {
+                    basePVPercentage = value;
+                    OnPropertyChanged(nameof(BasePVPercentage));
+                   
+                }
+            }
+        }
+
+        private int basePV;
+        public int BasePV
+        {
+            get { return basePV; }
+            set
+            {
+                if (basePV != value)
+                {
+                    basePV = value;
+                    OnPropertyChanged(nameof(BasePV));
+                }
+            }
+        }
+
+        public void UpdateBasePVPercentage()
+        {
+            double calculatedPercentage = ((double)this.Equipier.BasePV / (this.Equipier.BasePV + 252))*100;
+            BasePVPercentage = Math.Round(calculatedPercentage);
+        }
+
+
+        public EquipierTreeViewNode(MEquipier Equipier)
+        {          
             MEquipier equipierParDefaut = new MEquipier(
             IdPokemon: 0,
             CheminImgPokemon: "0.png",
@@ -306,13 +343,19 @@ namespace PokeStat.VuesModeles
                
                 this.Equipier.TalentPokemon = repTalent.GetAll();
             }
+            else
+            {
+                
+            }
             if (Equipier.equipierOrigine == null)
             {
                 this.Equipier.equipierOrigine = equipierParDefaut;
             }
             else
-            {            
-               this.Equipier.EquipeId = this.Equipier.equipierOrigine.EquipeId;
+            {
+                this.UpdateBasePVPercentage();
+                this.Equipier.EquipeId = this.Equipier.equipierOrigine.EquipeId;
+             
             }
 
             if (ImagePokemonSelectionne == null)
@@ -359,7 +402,7 @@ namespace PokeStat.VuesModeles
             {
                 equipierEnSaisie.TalentPokemon = repTalent.GetTalent(specimen.IdPokemon);
             }
-       
+            
             return equipierEnSaisie;
         }
 
@@ -377,17 +420,13 @@ namespace PokeStat.VuesModeles
               equipierModification.ObjetEquipier.IdObjet,
               equipierModification.Nature.IdNature
               );
-
-          
+            
             return equipierAModId;
-
-
         }
 
         private void DetailPopup()
         {
-
-            if(this.Equipier.equipierOrigine!=null)
+            if (this.Equipier.equipierOrigine!=null)
             {
                 this.EquipierAModId = Equipier.equipierOrigine;
             }
@@ -505,8 +544,7 @@ namespace PokeStat.VuesModeles
                     if(this.Equipier.SetCapacites.Count() >2)
                     {
                         this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[2]);
-                    }
-                    
+                    }                 
                }
                 if (Capacite4Selection == null && this.Equipier.SetCapacites != null)
                 {
@@ -565,14 +603,23 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        MainWindow mainWindow;
         private void Close()
-        {         
-
-            MainWindow mainWindow = new MainWindow();
+        {
+            mainWindow = new MainWindow();
             mainWindow.DataContext = new AccueilVueModel();
             windowManager.Register(mainWindow);
             NavigationServices.NavigateToPage(new GestionEquipe());
             windowManager.ShowWindow("Mainwindow", mainWindow);
         }
+
+        //private void CloseCap()
+        //{
+        //    var detailPopup = new DetailEquipe();
+        //    detailPopup.Owner = MainWindow;
+        //    windowManager.Register(detailPopup);
+        //    detailPopup.DataContext = this;
+        //    windowManager.ShowWindow("DetailEquipe", detailPopup);
+        //}
     }
 }

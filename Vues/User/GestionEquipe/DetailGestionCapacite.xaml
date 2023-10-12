@@ -65,7 +65,7 @@ VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Bind
 VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomCapacite" SelectedValue="{Binding Capacite4Selection, Mode=TwoWay}" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened" Grid.ColumnSpan="2" MaxDropDownHeight="200" />
                 <StackPanel Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left"
 						Orientation="Horizontal" Grid.Column="1" Margin="22,0,0,0">
-                    <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" />
+                    <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" Click="Button_Click" />
                     <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" />
                 </StackPanel>
             </Grid>

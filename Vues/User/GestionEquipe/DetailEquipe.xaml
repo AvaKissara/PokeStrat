@@ -37,10 +37,10 @@
                         <Border x:Name="border1" Height="631" Width="470" VerticalAlignment="Top" Style="{DynamicResource CardStyle}" HorizontalAlignment="Center" Canvas.Left="-659" Canvas.Top="-70">
                             <Canvas Margin ="30">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.RowSpan="2" Canvas.Left="398" VerticalAlignment="Center" Canvas.Top="-31" Height="61" Width="42" >
-                                    <Button Content="&#xE711;" Width="43" Command="{Binding CloseCommand}" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}"  FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top" />
+                                    <Button Content="&#xE711;" Width="43" Command="{Binding CloseCommand}" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}"  FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top" Click="Button_Click" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.RowSpan="2" Canvas.Left="398" VerticalAlignment="Bottom" Canvas.Top="552" Height="61" Width="42" >
-                                    <Button  Content="&#xE001;" Command="{Binding EnregistrerEquipierCommand}" Width="43" HorizontalContentAlignment="Center" Background="#FF5DE052"  BorderBrush="{x:Null}"  FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top" Click="Button_Click" />
+                                    <Button  Content="&#xE001;" Command="{Binding EnregistrerEquipierCommand}" Width="43" HorizontalContentAlignment="Center" Background="#FF5DE052"  BorderBrush="{x:Null}"  FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top"  />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.RowSpan="2" Canvas.Right="398" VerticalAlignment="Center" Canvas.Top="552" Height="61" Width="51" Canvas.Left="-31" >
                                     <Button  Content="&#xE74D;" Command="{Binding SupprimerEquipierCommand}" Width="45" HorizontalContentAlignment="Center" Background="red"  BorderBrush="{x:Null}"  FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="50" VerticalAlignment="Top" />
@@ -106,7 +106,7 @@
                                         </TransformGroup>
                                     </Border.RenderTransform>
                                 </Border>
-                                <Grid HorizontalAlignment="Left" Canvas.Right="155" VerticalAlignment="Center" Canvas.Left="209" Canvas.Top="59">
+                                <Grid HorizontalAlignment="Left" Canvas.Right="155" VerticalAlignment="Center" Canvas.Left="209" Canvas.Top="59" PreviewMouseDown="Stat_PreviewMouseDown">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -124,7 +124,7 @@
 
                                     <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="8,26,8,4">
                                         <TextBlock Text="PV" FontSize="16" Foreground="#FF878585" Width="70"/>
-                                        <ProgressBar Height="10" Width="100" Value="{Binding Equipier.BasePV}" />
+                                        <ProgressBar Height="10" Width="100" Value="{Binding BasePVPercentage}" />
                                         <TextBlock Text="{Binding Equipier.BasePV}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="8" >

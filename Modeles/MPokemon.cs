@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Security.RightsManagement;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Modeles
 {
-    public abstract class MPokemon
+    public abstract class MPokemon 
     {
         public int IdPokemon { get; set; }
         public string CheminImgPokemon { get; set; }
@@ -106,5 +107,7 @@ namespace PokeStat.Modeles
         }
 
         public MPokemon() { }
+
+     
     }
 }

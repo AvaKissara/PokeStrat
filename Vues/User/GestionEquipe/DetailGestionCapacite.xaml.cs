@@ -24,6 +24,8 @@ namespace PokeStat.Vues.User.GestionEquipe
     {
         private int currentPage = 1;
         private int pageSize = 50;
+        private bool isComboBoxLoaded = false;
+
         public DetailGestionCapacite(EquipierTreeViewNode equipier)
         {
             InitializeComponent();
@@ -80,8 +82,6 @@ namespace PokeStat.Vues.User.GestionEquipe
             return filteredItems;
         }
 
-
-        private bool isComboBoxLoaded = false;
 
         private void comboBox_DropDownOpened(object sender, EventArgs e)
         {

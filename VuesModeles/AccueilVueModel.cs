@@ -91,13 +91,22 @@ namespace PokeStat.VuesModeles
             NavigationServices.NavigateToPage(new GestionEquipe());
         }
 
+        //private void ConnexionPopup()
+        //{
+        //    var connexionPopup = new Connexion();
+        //    connexionPopup.DataContext = new GestionAuthVueModele();
+        //    connexionPopup.ShowDialog();
+        //}
+        public WindowManager windowManager;
         private void ConnexionPopup()
         {
+            windowManager = new WindowManager();
             var connexionPopup = new Connexion();
+           
             connexionPopup.DataContext = new GestionAuthVueModele();
-            connexionPopup.ShowDialog();
+            windowManager.Register(connexionPopup);
+            windowManager.ShowWindow("ConnexionPopup", connexionPopup);
         }
-
 
         private void InscriptionPopup()
         {

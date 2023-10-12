@@ -23,7 +23,7 @@ namespace PokeStat.Vues
     public partial class AccueilPage : Page
     {
         private AccueilVueModel accueilVueModel;
-        private Frame MainFrame;
+        private readonly Frame MainFrame;
         public AccueilPage()
         {
             MainFrame = NavigationServices.GetMainFrame();

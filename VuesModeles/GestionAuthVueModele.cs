@@ -65,7 +65,8 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        public MainWindow MainWindow { get; private set; }
+        public MainWindow MainWindow { get; set; }
+        public WindowManager windowManager;
 
         public GestionAuthVueModele()
         {
@@ -119,15 +120,26 @@ namespace PokeStat.VuesModeles
                 }
                 SessionManager.Instance.Account = personneConnectee;
 
-                MainWindow = new MainWindow();
+                //MainWindow = new MainWindow();
 
+                //var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+
+                //activeWindow?.Close();
+
+                //MainWindow mainWindow = new MainWindow();
+                //mainWindow.Show(); 
+                //Application.Current.MainWindow.Close();
                 var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-
                 activeWindow?.Close();
-
+                windowManager = new WindowManager();
                 MainWindow mainWindow = new MainWindow();
-                mainWindow.Show(); 
-                Application.Current.MainWindow.Close();
+                windowManager.Register(mainWindow);
+                windowManager.ShowWindow("MainWindow", mainWindow);
+
+              
+
+                //windowManager.CloseWindow(MainWindow);
+
             }
             else
             {

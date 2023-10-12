@@ -107,6 +107,7 @@
     <Compile Include="Repositories\RepType.cs" />
     <Compile Include="Repositories\RepUser.cs" />
     <Compile Include="Repositories\RepVersion.cs" />
+    <Compile Include="Services\StatsCalculator.cs" />
     <Compile Include="Utilitaires\BddTool.cs" />
     <Compile Include="Utilitaires\BitmapToImageSourceConverter.cs" />
     <Compile Include="Utilitaires\BoolToVisibilityConverter.cs" />
@@ -200,6 +201,9 @@
     </Compile>
     <Compile Include="Vues\User\GestionEquipe\DetailGestionPokemon.xaml.cs">
       <DependentUpon>DetailGestionPokemon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\User\GestionEquipe\DetailGestionStat.xaml.cs">
+      <DependentUpon>DetailGestionStat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vues\User\GestionEquipe\GestionEquipe.xaml.cs">
       <DependentUpon>GestionEquipe.xaml</DependentUpon>
@@ -325,6 +329,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vues\User\GestionEquipe\DetailGestionStat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vues\User\GestionEquipe\GestionEquipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -369,7 +377,6 @@
     <Folder Include="bin\Release\" />
     <Folder Include="data\" />
     <Folder Include="Resources\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ressources\arceus.jpg">
