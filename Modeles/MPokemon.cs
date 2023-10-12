@@ -106,6 +106,18 @@ namespace PokeStat.Modeles
             TypesPokemon = new List<MType>();
         }
 
+        public MPokemon(int IdPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit)
+        {
+            this.IdPokemon = IdPokemon;
+            this.BasePV = BasePV;
+            this.BaseAttaque = BaseAttaque;
+            this.BaseDefense = BaseDefense;
+            this.BaseAttSpe = BaseAttSpe;
+            this.BaseDefSpe = BaseDefSpe;
+            this.BaseVit = BaseVit;
+        }
+
+
         public MPokemon() { }
 
      

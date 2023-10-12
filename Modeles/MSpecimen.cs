@@ -31,5 +31,10 @@ namespace PokeStat.Modeles
 
         }
 
+        public MSpecimen(int IdPokemon,  int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit) : base(IdPokemon, BasePV, BaseAttaque, BaseDefense, BaseAttSpe, BaseDefSpe, BaseVit)
+        {
+
+        }
+
     }
 }

@@ -96,7 +96,6 @@ namespace PokeStat.Repositories
                     );
 
                     ListMSpecimens.Add(unPokemon);
-
                 }
             }
 
@@ -104,6 +103,38 @@ namespace PokeStat.Repositories
             bddTool.CloseConnexion();
 
             return ListMSpecimens;
+        }
+
+        public MSpecimen GetSpecimen(int idPokemon)
+        {
+            bddTool.CheckConnexion();
+
+            MSpecimen Specimen = null;
+
+            SqlCommand RequestGetSpecimen = bddTool.GetRequest();
+            RequestGetSpecimen.CommandText = "SELECT P.id_pok, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit FROM Pokemons AS P WHERE P.id_pok = @id_pok;";
+            RequestGetSpecimen.Parameters.Add("@id_pok", SqlDbType.Int).Value = idPokemon;
+
+            using (SqlDataReader specimen = RequestGetSpecimen.ExecuteReader())
+            {
+                while (specimen.Read())
+                {        
+                    Specimen = new MSpecimen(
+                        specimen.GetInt32(0),
+                         specimen.GetInt32(1),
+                         specimen.GetInt32(2),
+                         specimen.GetInt32(3),
+                         specimen.GetInt32(4),
+                         specimen.GetInt32(5),
+                         specimen.GetInt32(6)
+                    );
+                }
+            }
+
+            // Fermeture de la connexion
+            bddTool.CloseConnexion();
+
+            return Specimen;
         }
 
         public List<MCapacite> GetPoolCapacite(int idEquipier)

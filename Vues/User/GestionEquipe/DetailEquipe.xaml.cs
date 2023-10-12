@@ -111,6 +111,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             detailGestionStat.Left = detailEquipeLeft + detailGestionStat.Width;
             detailGestionStat.Top = detailEquipeTop;
+
             windowManager.ShowWindow("DetailGestionStat", detailGestionStat);
         }
 

@@ -162,110 +162,111 @@ namespace PokeStat.Repositories
             return observableMEquipiers;
         }
 
-          public MEquipier GetEquipier(MEquipier equipier)
-          {
-            bddTool.CheckConnexion();
-            MEquipier Equipier = null;
-            try
+    public MEquipier GetEquipier(MEquipier equipier)
+    {
+        bddTool.CheckConnexion();
+
+        MEquipier Equipier = null;
+        try
+        {
+            SqlCommand requestGetEquipier = bddTool.GetRequest();
+            requestGetEquipier.CommandText = "SELECT EQ.pok_id, P.pok_img, P.nom_fra_pok, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit, EQ.equipe_id FROM equipiers AS EQ LEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok LEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature LEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap LEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap LEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap WHERE equipe_id = @equipeIdModifier AND talent_id = @talentId AND pok_id = @pokIdOrigine AND cap1_id = @cap1IdOrigine AND cap2_id = @cap2IdOrigine AND cap3_id = @cap3IdOrigine AND cap4_id = @cap4IdOrigine AND objet_id = @objetIdOrigine AND nature_id = @natureIdOrigine ;";
+
+            requestGetEquipier.Parameters.Add("@equipeIdModifier", SqlDbType.Int).Value = equipier.EquipeId;
+            requestGetEquipier.Parameters.Add("@talentId", SqlDbType.Int).Value = equipier.TalentEquipier.IdTalent;
+            requestGetEquipier.Parameters.Add("@pokIdOrigine", SqlDbType.Int).Value = equipier.IdPokemon;
+            requestGetEquipier.Parameters.Add("@cap1IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[0].IdCapacite;
+            requestGetEquipier.Parameters.Add("@cap2IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[1].IdCapacite;
+            requestGetEquipier.Parameters.Add("@cap3IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[2].IdCapacite;
+            requestGetEquipier.Parameters.Add("@cap4IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[3].IdCapacite;
+            requestGetEquipier.Parameters.Add("@objetIdOrigine", SqlDbType.Int).Value = equipier.ObjetEquipier.IdObjet;
+            requestGetEquipier.Parameters.Add("@natureIdOrigine", SqlDbType.Int).Value = equipier.Nature.IdNature;
+
+            using (SqlDataReader equipiers = requestGetEquipier.ExecuteReader())
             {
-                SqlCommand requestGetEquipier = bddTool.GetRequest();
-                requestGetEquipier.CommandText = "SELECT EQ.pok_id, P.pok_img, P.nom_fra_pok, EQ.pv, EQ.att, EQ.def, EQ.att_spe, EQ.def_spe, EQ.vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, EQ.surnom, EQ.niveau, EQ.esquive, EQ.ev, EQ.iv, EQ.niv_bonheur, EQ.nature_id, N.nom_nature, EQ.talent_id, T.nom_talent, EQ.objet_id, O.nom_objet, EQ.cap1_id, C.nom_cap, EQ.cap1_pp, EQ.cap1_pre, EQ.cap1_puiss, EQ.cap1_crit, EQ.cap2_id, C2.nom_cap, EQ.cap2_pp, EQ.cap2_pre, EQ.cap2_puiss, EQ.cap2_crit, EQ.cap3_id, C3.nom_cap, EQ.cap3_pp, EQ.cap3_pre, EQ.cap3_puiss, EQ.cap3_crit, EQ.cap4_id, C4.nom_cap, EQ.cap4_pp, EQ.cap4_pre, EQ.cap4_puiss, EQ.cap4_crit, EQ.equipe_id FROM equipiers AS EQ LEFT JOIN Pokemons AS P ON EQ.pok_id = P.id_pok LEFT JOIN Natures AS N ON EQ.nature_id = N.id_nature LEFT JOIN Talents AS T ON EQ.talent_id = T.id_talent LEFT JOIN Objets AS O ON EQ.objet_id = O.id_objet LEFT JOIN Capacites AS C ON EQ.cap1_id = C.id_cap LEFT JOIN Capacites AS C2 ON EQ.cap2_id = C2.id_cap LEFT JOIN Capacites AS C3 ON EQ.cap3_id = C3.id_cap LEFT JOIN Capacites AS C4 ON EQ.cap4_id = C4.id_cap WHERE equipe_id = @equipeIdModifier AND talent_id = @talentId AND pok_id = @pokIdOrigine AND cap1_id = @cap1IdOrigine AND cap2_id = @cap2IdOrigine AND cap3_id = @cap3IdOrigine AND cap4_id = @cap4IdOrigine AND objet_id = @objetIdOrigine AND nature_id = @natureIdOrigine ;";
-
-                requestGetEquipier.Parameters.Add("@equipeIdModifier", SqlDbType.Int).Value = equipier.EquipeId;
-                requestGetEquipier.Parameters.Add("@talentId", SqlDbType.Int).Value = equipier.TalentEquipier.IdTalent;
-                requestGetEquipier.Parameters.Add("@pokIdOrigine", SqlDbType.Int).Value = equipier.IdPokemon;
-                requestGetEquipier.Parameters.Add("@cap1IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[0].IdCapacite;
-                requestGetEquipier.Parameters.Add("@cap2IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[1].IdCapacite;
-                requestGetEquipier.Parameters.Add("@cap3IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[2].IdCapacite;
-                requestGetEquipier.Parameters.Add("@cap4IdOrigine", SqlDbType.Int).Value = equipier.SetCapacites[3].IdCapacite;
-                requestGetEquipier.Parameters.Add("@objetIdOrigine", SqlDbType.Int).Value = equipier.ObjetEquipier.IdObjet;
-                requestGetEquipier.Parameters.Add("@natureIdOrigine", SqlDbType.Int).Value = equipier.Nature.IdNature;
-
-                using (SqlDataReader equipiers = requestGetEquipier.ExecuteReader())
+                if (equipiers.Read())
                 {
-                    if (equipiers.Read())
+                    ObservableCollection<MCapacite> capacites = new ObservableCollection<MCapacite>();
+                    for (int i = 26; i <= 49; i += 6)
                     {
-                        ObservableCollection<MCapacite> capacites = new ObservableCollection<MCapacite>();
-                        for (int i = 26; i <= 49; i += 6)
+                        if (!equipiers.IsDBNull(i))
                         {
-                            if (!equipiers.IsDBNull(i))
-                            {
-                                int idCapacite = equipiers.GetInt32(i);
-                                string nomCapacite = equipiers.IsDBNull(i + 1) ? "" : $"{equipiers[i + 1]}";
-                                int pp = equipiers.IsDBNull(i + 2) ? 0 : equipiers.GetInt32(i + 2);
-                                int pre = equipiers.IsDBNull(i + 3) ? 0 : equipiers.GetInt32(i + 3);
-                                int puiss = equipiers.IsDBNull(i + 4) ? 0 : equipiers.GetInt32(i + 4);
-                                int crit = equipiers.IsDBNull(i + 5) ? 0 : equipiers.GetInt32(i + 5);
-                                MCapacite capacite = new MCapacite(idCapacite, nomCapacite, pp, pre, puiss, crit);
-                                capacites.Add(capacite);
-                            }
+                            int idCapacite = equipiers.GetInt32(i);
+                            string nomCapacite = equipiers.IsDBNull(i + 1) ? "" : $"{equipiers[i + 1]}";
+                            int pp = equipiers.IsDBNull(i + 2) ? 0 : equipiers.GetInt32(i + 2);
+                            int pre = equipiers.IsDBNull(i + 3) ? 0 : equipiers.GetInt32(i + 3);
+                            int puiss = equipiers.IsDBNull(i + 4) ? 0 : equipiers.GetInt32(i + 4);
+                            int crit = equipiers.IsDBNull(i + 5) ? 0 : equipiers.GetInt32(i + 5);
+                            MCapacite capacite = new MCapacite(idCapacite, nomCapacite, pp, pre, puiss, crit);
+                            capacites.Add(capacite);
                         }
-                        MNature natureEquipier = null;
-                        if (!equipiers.IsDBNull(20))
-                        {
-                            int idNature = equipiers.GetInt32(20);
-                            string nomNature = equipiers.IsDBNull(21) ? "" : $"{equipiers[21]}";
-                            natureEquipier = new MNature(idNature, nomNature);
-                        }
-
-                        MTalent talentEquipier = null;
-                        if (!equipiers.IsDBNull(22))
-                        {
-                            int idTalent = equipiers.GetInt32(22);
-                            string nomTalent = equipiers.IsDBNull(23) ? "" : $"{equipiers[23]}";
-                            talentEquipier = new MTalent(idTalent, nomTalent);
-                        }
-
-                        MObjet objetTenu = null;
-                        if (!equipiers.IsDBNull(24))
-                        {
-                            int idObjet = equipiers.GetInt32(24);
-                            string nomObjet = equipiers.IsDBNull(25) ? "" : $"{equipiers[25]}";
-                            objetTenu = new MObjet(idObjet, nomObjet);
-                        }
-                        MEquipier equipierOrigineDefaut = null;
-                        Equipier = new MEquipier(
-                            equipiers.GetInt32(0),
-                            $"{equipiers[1]}",
-                            $"{equipiers[2]}",
-                            equipiers.GetInt32(3),
-                            equipiers.GetInt32(4),
-                            equipiers.GetInt32(5),
-                            equipiers.GetInt32(6),
-                            equipiers.GetInt32(7),
-                            equipiers.GetInt32(8),
-                            Convert.ToBoolean(equipiers.GetValue(9)),
-                            Convert.ToBoolean(equipiers.GetValue(10)),
-                            Convert.ToBoolean(equipiers.GetValue(11)),
-                            Convert.ToBoolean(equipiers.GetValue(12)),
-                            Convert.ToBoolean(equipiers.GetValue(13)),
-                            $"{equipiers[14]}",
-                            equipiers.GetInt32(15),
-                            equipiers.GetInt32(16),
-                            equipiers.GetInt32(17),
-                            equipiers.GetInt32(18),
-                            equipiers.GetInt32(19),
-                            natureEquipier,
-                            talentEquipier,
-                            objetTenu,
-                            capacites,
-                            equipiers.GetInt32(50),
-                            equipierOrigineDefaut
-                        );
                     }
+                    MNature natureEquipier = null;
+                    if (!equipiers.IsDBNull(20))
+                    {
+                        int idNature = equipiers.GetInt32(20);
+                        string nomNature = equipiers.IsDBNull(21) ? "" : $"{equipiers[21]}";
+                        natureEquipier = new MNature(idNature, nomNature);
+                    }
+
+                    MTalent talentEquipier = null;
+                    if (!equipiers.IsDBNull(22))
+                    {
+                        int idTalent = equipiers.GetInt32(22);
+                        string nomTalent = equipiers.IsDBNull(23) ? "" : $"{equipiers[23]}";
+                        talentEquipier = new MTalent(idTalent, nomTalent);
+                    }
+
+                    MObjet objetTenu = null;
+                    if (!equipiers.IsDBNull(24))
+                    {
+                        int idObjet = equipiers.GetInt32(24);
+                        string nomObjet = equipiers.IsDBNull(25) ? "" : $"{equipiers[25]}";
+                        objetTenu = new MObjet(idObjet, nomObjet);
+                    }
+                    MEquipier equipierOrigineDefaut = null;
+                    Equipier = new MEquipier(
+                        equipiers.GetInt32(0),
+                        $"{equipiers[1]}",
+                        $"{equipiers[2]}",
+                        equipiers.GetInt32(3),
+                        equipiers.GetInt32(4),
+                        equipiers.GetInt32(5),
+                        equipiers.GetInt32(6),
+                        equipiers.GetInt32(7),
+                        equipiers.GetInt32(8),
+                        Convert.ToBoolean(equipiers.GetValue(9)),
+                        Convert.ToBoolean(equipiers.GetValue(10)),
+                        Convert.ToBoolean(equipiers.GetValue(11)),
+                        Convert.ToBoolean(equipiers.GetValue(12)),
+                        Convert.ToBoolean(equipiers.GetValue(13)),
+                        $"{equipiers[14]}",
+                        equipiers.GetInt32(15),
+                        equipiers.GetInt32(16),
+                        equipiers.GetInt32(17),
+                        equipiers.GetInt32(18),
+                        equipiers.GetInt32(19),
+                        natureEquipier,
+                        talentEquipier,
+                        objetTenu,
+                        capacites,
+                        equipiers.GetInt32(50),
+                        equipierOrigineDefaut
+                    );
                 }
             }
-            catch (Exception ex)
-            {
-                // Gestion de l'exception
-                Console.WriteLine("Erreur lors de la récupération de l'équipier : " + ex.Message);
-            }
-
-            // Fermeture de la connexion
-            bddTool.CloseConnexion();
-
-            return Equipier;
         }
+        catch (Exception ex)
+        {
+            // Gestion de l'exception
+            Console.WriteLine("Erreur lors de la récupération de l'équipier : " + ex.Message);
+        }
+
+        // Fermeture de la connexion
+        bddTool.CloseConnexion();
+
+        return Equipier;
+    }
 
 
         public ObservableCollection<MEquipe> GetAllEquipes()
@@ -329,116 +330,117 @@ namespace PokeStat.Repositories
             return observableMEquipes;
         }
 
-            public void Add(MEquipier nouvelEquipier)
+
+        public void Add(MEquipier nouvelEquipier)
+        {
+            bddTool.CheckConnexion();
+
+            SqlCommand RequestUpdateEquipier = bddTool.GetRequest();
+            RequestUpdateEquipier.CommandText = "INSERT INTO equipiers (equipe_id,  talent_id,  pok_id,  cap1_id,  cap2_id,  cap3_id,  cap4_id,  objet_id,  nature_id,  surnom,  niveau,  niv_bonheur,  pv,  ev,  iv,  att,  def,  att_spe,  def_spe,  vit,  esquive,  cap1_pp,  cap1_puiss,  cap1_pre,  cap1_crit,  cap2_pp,  cap2_puiss,  cap2_pre,  cap2_crit,  cap3_pp,  cap3_puiss,  cap3_pre,  cap3_crit,  cap4_pp,  cap4_puiss,  cap4_pre,  cap4_crit) VALUES (  @equipe_id,  @talent_id,  @pok_id,  @cap1_id,  @cap2_id,  @cap3_id,  @cap4_id,  @objet_id,  @nature_id,  @surnom,  @niveau,  @niv_bonheur,  @pv,  @ev,  @iv,  @att,  @def,  @att_spe,  @def_spe,  @vit,  @esquive,  @cap1_pp,  @cap1_puiss,  @cap1_pre,  @cap1_crit,  @cap2_pp,  @cap2_puiss,  @cap2_pre,  @cap2_crit,  @cap3_pp,  @cap3_puiss,  @cap3_pre,  @cap3_crit,  @cap4_pp,  @cap4_puiss,  @cap4_pre,  @cap4_crit);";
+
+            RequestUpdateEquipier.Parameters.Add("@equipe_id", SqlDbType.Int).Value = nouvelEquipier.EquipeId;
+            RequestUpdateEquipier.Parameters.Add("@talent_id", SqlDbType.Int).Value = nouvelEquipier.TalentEquipier.IdTalent;
+            RequestUpdateEquipier.Parameters.Add("@pok_id", SqlDbType.Int).Value = nouvelEquipier.IdPokemon;
+            RequestUpdateEquipier.Parameters.Add("@cap1_id", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].IdCapacite;
+            // Paramètre pour cap2_id (vérification si non null)
+            if (nouvelEquipier.SetCapacites.Count > 1)
             {
-                bddTool.CheckConnexion();
+                RequestUpdateEquipier.Parameters.Add("@cap2_id", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].IdCapacite;
+            }
+            else
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap2_id", SqlDbType.Int).Value = -1;
+            }
 
-                SqlCommand RequestUpdateEquipier = bddTool.GetRequest();
-                RequestUpdateEquipier.CommandText = "INSERT INTO equipiers (equipe_id,  talent_id,  pok_id,  cap1_id,  cap2_id,  cap3_id,  cap4_id,  objet_id,  nature_id,  surnom,  niveau,  niv_bonheur,  pv,  ev,  iv,  att,  def,  att_spe,  def_spe,  vit,  esquive,  cap1_pp,  cap1_puiss,  cap1_pre,  cap1_crit,  cap2_pp,  cap2_puiss,  cap2_pre,  cap2_crit,  cap3_pp,  cap3_puiss,  cap3_pre,  cap3_crit,  cap4_pp,  cap4_puiss,  cap4_pre,  cap4_crit) VALUES (  @equipe_id,  @talent_id,  @pok_id,  @cap1_id,  @cap2_id,  @cap3_id,  @cap4_id,  @objet_id,  @nature_id,  @surnom,  @niveau,  @niv_bonheur,  @pv,  @ev,  @iv,  @att,  @def,  @att_spe,  @def_spe,  @vit,  @esquive,  @cap1_pp,  @cap1_puiss,  @cap1_pre,  @cap1_crit,  @cap2_pp,  @cap2_puiss,  @cap2_pre,  @cap2_crit,  @cap3_pp,  @cap3_puiss,  @cap3_pre,  @cap3_crit,  @cap4_pp,  @cap4_puiss,  @cap4_pre,  @cap4_crit);";
+            // Paramètre pour cap3_id (vérification si non null)
+            if (nouvelEquipier.SetCapacites.Count > 2)
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap3_id", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].IdCapacite;
+            }
+            else
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap3_id", SqlDbType.Int).Value = -1;
+            }
 
-                RequestUpdateEquipier.Parameters.Add("@equipe_id", SqlDbType.Int).Value = nouvelEquipier.EquipeId;
-                RequestUpdateEquipier.Parameters.Add("@talent_id", SqlDbType.Int).Value = nouvelEquipier.TalentEquipier.IdTalent;
-                RequestUpdateEquipier.Parameters.Add("@pok_id", SqlDbType.Int).Value = nouvelEquipier.IdPokemon;
-                RequestUpdateEquipier.Parameters.Add("@cap1_id", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].IdCapacite;
-                // Paramètre pour cap2_id (vérification si non null)
-                if (nouvelEquipier.SetCapacites.Count > 1)
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap2_id", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].IdCapacite;
-                }
-                else
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap2_id", SqlDbType.Int).Value = -1;
-                }
+            // Paramètre pour cap4_id (vérification si non null)
+            if (nouvelEquipier.SetCapacites.Count > 3)
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap4_id", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].IdCapacite;
+            }
+            else
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap4_id", SqlDbType.Int).Value = -1;
+            }
+            RequestUpdateEquipier.Parameters.Add("@objet_id", SqlDbType.Int).Value = nouvelEquipier.ObjetEquipier.IdObjet;
+            RequestUpdateEquipier.Parameters.Add("@nature_id", SqlDbType.Int).Value = nouvelEquipier.Nature.IdNature;
+            RequestUpdateEquipier.Parameters.Add("@surnom", SqlDbType.VarChar).Value = nouvelEquipier.SurnomEquipier;
+            RequestUpdateEquipier.Parameters.Add("@niveau", SqlDbType.Int).Value = nouvelEquipier.NiveauEquipier;
+            RequestUpdateEquipier.Parameters.Add("@niv_bonheur", SqlDbType.Int).Value = nouvelEquipier.NiveauBonheur;
+            RequestUpdateEquipier.Parameters.Add("@pv", SqlDbType.Int).Value = nouvelEquipier.BasePV;
+            RequestUpdateEquipier.Parameters.Add("@ev", SqlDbType.Int).Value = nouvelEquipier.Ev;
+            RequestUpdateEquipier.Parameters.Add("@iv", SqlDbType.Int).Value = nouvelEquipier.Iv;
+            RequestUpdateEquipier.Parameters.Add("@att", SqlDbType.Int).Value = nouvelEquipier.BaseAttaque;
+            RequestUpdateEquipier.Parameters.Add("@def", SqlDbType.Int).Value = nouvelEquipier.BaseDefense;
+            RequestUpdateEquipier.Parameters.Add("@att_spe", SqlDbType.Int).Value = nouvelEquipier.BaseAttSpe;
+            RequestUpdateEquipier.Parameters.Add("@def_spe", SqlDbType.Int).Value = nouvelEquipier.BaseDefSpe;
+            RequestUpdateEquipier.Parameters.Add("@vit", SqlDbType.Int).Value = nouvelEquipier.BaseVit;
+            RequestUpdateEquipier.Parameters.Add("@esquive", SqlDbType.Int).Value = nouvelEquipier.EsquiveEquipier;
+            RequestUpdateEquipier.Parameters.Add("@cap1_pp", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].BasePp;
+            RequestUpdateEquipier.Parameters.Add("@cap1_puiss", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].BasePuiss;
+            RequestUpdateEquipier.Parameters.Add("@cap1_pre", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].BasePre;
+            RequestUpdateEquipier.Parameters.Add("@cap1_crit", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].BaseCrit;
+            // Paramètres pour les valeurs de cap2 (BasePp, BasePuiss, BasePre, BaseCrit)
+            if (nouvelEquipier.SetCapacites.Count > 1)
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap2_pp", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].BasePp;
+                RequestUpdateEquipier.Parameters.Add("@cap2_puiss", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].BasePuiss;
+                RequestUpdateEquipier.Parameters.Add("@cap2_pre", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].BasePre;
+                RequestUpdateEquipier.Parameters.Add("@cap2_crit", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].BaseCrit;
+            }
+            else
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap2_pp", SqlDbType.Int).Value = DBNull.Value;
+                RequestUpdateEquipier.Parameters.Add("@cap2_puiss", SqlDbType.Int).Value = DBNull.Value;
+                RequestUpdateEquipier.Parameters.Add("@cap2_pre", SqlDbType.Int).Value = DBNull.Value;
+                RequestUpdateEquipier.Parameters.Add("@cap2_crit", SqlDbType.Int).Value = DBNull.Value;
+            }
 
-                // Paramètre pour cap3_id (vérification si non null)
-                if (nouvelEquipier.SetCapacites.Count > 2)
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap3_id", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].IdCapacite;
-                }
-                else
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap3_id", SqlDbType.Int).Value = -1;
-                }
+            // Paramètres pour les valeurs de cap3 (BasePp, BasePuiss, BasePre, BaseCrit)
+            if (nouvelEquipier.SetCapacites.Count > 2)
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap3_pp", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].BasePp;
+                RequestUpdateEquipier.Parameters.Add("@cap3_puiss", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].BasePuiss;
+                RequestUpdateEquipier.Parameters.Add("@cap3_pre", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].BasePre;
+                RequestUpdateEquipier.Parameters.Add("@cap3_crit", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].BaseCrit;
+            }
+            else
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap3_pp", SqlDbType.Int).Value = DBNull.Value;
+                RequestUpdateEquipier.Parameters.Add("@cap3_puiss", SqlDbType.Int).Value = DBNull.Value;
+                RequestUpdateEquipier.Parameters.Add("@cap3_pre", SqlDbType.Int).Value = DBNull.Value;
+                RequestUpdateEquipier.Parameters.Add("@cap3_crit", SqlDbType.Int).Value = DBNull.Value;
+            }
 
-                // Paramètre pour cap4_id (vérification si non null)
-                if (nouvelEquipier.SetCapacites.Count > 3)
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap4_id", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].IdCapacite;
-                }
-                else
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap4_id", SqlDbType.Int).Value = -1;
-                }
-                RequestUpdateEquipier.Parameters.Add("@objet_id", SqlDbType.Int).Value = nouvelEquipier.ObjetEquipier.IdObjet;
-                RequestUpdateEquipier.Parameters.Add("@nature_id", SqlDbType.Int).Value = nouvelEquipier.Nature.IdNature;
-                RequestUpdateEquipier.Parameters.Add("@surnom", SqlDbType.VarChar).Value = nouvelEquipier.SurnomEquipier;
-                RequestUpdateEquipier.Parameters.Add("@niveau", SqlDbType.Int).Value = nouvelEquipier.NiveauEquipier;
-                RequestUpdateEquipier.Parameters.Add("@niv_bonheur", SqlDbType.Int).Value = nouvelEquipier.NiveauBonheur;
-                RequestUpdateEquipier.Parameters.Add("@pv", SqlDbType.Int).Value = nouvelEquipier.BasePV;
-                RequestUpdateEquipier.Parameters.Add("@ev", SqlDbType.Int).Value = nouvelEquipier.Ev;
-                RequestUpdateEquipier.Parameters.Add("@iv", SqlDbType.Int).Value = nouvelEquipier.Iv;
-                RequestUpdateEquipier.Parameters.Add("@att", SqlDbType.Int).Value = nouvelEquipier.BaseAttaque;
-                RequestUpdateEquipier.Parameters.Add("@def", SqlDbType.Int).Value = nouvelEquipier.BaseDefense;
-                RequestUpdateEquipier.Parameters.Add("@att_spe", SqlDbType.Int).Value = nouvelEquipier.BaseAttSpe;
-                RequestUpdateEquipier.Parameters.Add("@def_spe", SqlDbType.Int).Value = nouvelEquipier.BaseDefSpe;
-                RequestUpdateEquipier.Parameters.Add("@vit", SqlDbType.Int).Value = nouvelEquipier.BaseVit;
-                RequestUpdateEquipier.Parameters.Add("@esquive", SqlDbType.Int).Value = nouvelEquipier.EsquiveEquipier;
-                RequestUpdateEquipier.Parameters.Add("@cap1_pp", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].BasePp;
-                RequestUpdateEquipier.Parameters.Add("@cap1_puiss", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].BasePuiss;
-                RequestUpdateEquipier.Parameters.Add("@cap1_pre", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].BasePre;
-                RequestUpdateEquipier.Parameters.Add("@cap1_crit", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[0].BaseCrit;
-                // Paramètres pour les valeurs de cap2 (BasePp, BasePuiss, BasePre, BaseCrit)
-                if (nouvelEquipier.SetCapacites.Count > 1)
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap2_pp", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].BasePp;
-                    RequestUpdateEquipier.Parameters.Add("@cap2_puiss", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].BasePuiss;
-                    RequestUpdateEquipier.Parameters.Add("@cap2_pre", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].BasePre;
-                    RequestUpdateEquipier.Parameters.Add("@cap2_crit", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[1].BaseCrit;
-                }
-                else
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap2_pp", SqlDbType.Int).Value = DBNull.Value;
-                    RequestUpdateEquipier.Parameters.Add("@cap2_puiss", SqlDbType.Int).Value = DBNull.Value;
-                    RequestUpdateEquipier.Parameters.Add("@cap2_pre", SqlDbType.Int).Value = DBNull.Value;
-                    RequestUpdateEquipier.Parameters.Add("@cap2_crit", SqlDbType.Int).Value = DBNull.Value;
-                }
+            // Paramètres pour les valeurs de cap4 (BasePp, BasePuiss, BasePre, BaseCrit)
+            if (nouvelEquipier.SetCapacites.Count > 3)
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap4_pp", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].BasePp;
+                RequestUpdateEquipier.Parameters.Add("@cap4_puiss", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].BasePuiss;
+                RequestUpdateEquipier.Parameters.Add("@cap4_pre", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].BasePre;
+                RequestUpdateEquipier.Parameters.Add("@cap4_crit", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].BaseCrit;
+            }
+            else
+            {
+                RequestUpdateEquipier.Parameters.Add("@cap4_pp", SqlDbType.Int).Value = DBNull.Value;
+                RequestUpdateEquipier.Parameters.Add("@cap4_puiss", SqlDbType.Int).Value = DBNull.Value;
+                RequestUpdateEquipier.Parameters.Add("@cap4_pre", SqlDbType.Int).Value = DBNull.Value;
+                RequestUpdateEquipier.Parameters.Add("@cap4_crit", SqlDbType.Int).Value = DBNull.Value;
+            }
 
-                // Paramètres pour les valeurs de cap3 (BasePp, BasePuiss, BasePre, BaseCrit)
-                if (nouvelEquipier.SetCapacites.Count > 2)
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap3_pp", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].BasePp;
-                    RequestUpdateEquipier.Parameters.Add("@cap3_puiss", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].BasePuiss;
-                    RequestUpdateEquipier.Parameters.Add("@cap3_pre", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].BasePre;
-                    RequestUpdateEquipier.Parameters.Add("@cap3_crit", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[2].BaseCrit;
-                }
-                else
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap3_pp", SqlDbType.Int).Value = DBNull.Value;
-                    RequestUpdateEquipier.Parameters.Add("@cap3_puiss", SqlDbType.Int).Value = DBNull.Value;
-                    RequestUpdateEquipier.Parameters.Add("@cap3_pre", SqlDbType.Int).Value = DBNull.Value;
-                    RequestUpdateEquipier.Parameters.Add("@cap3_crit", SqlDbType.Int).Value = DBNull.Value;
-                }
+        int result = RequestUpdateEquipier.ExecuteNonQuery();
 
-                // Paramètres pour les valeurs de cap4 (BasePp, BasePuiss, BasePre, BaseCrit)
-                if (nouvelEquipier.SetCapacites.Count > 3)
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap4_pp", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].BasePp;
-                    RequestUpdateEquipier.Parameters.Add("@cap4_puiss", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].BasePuiss;
-                    RequestUpdateEquipier.Parameters.Add("@cap4_pre", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].BasePre;
-                    RequestUpdateEquipier.Parameters.Add("@cap4_crit", SqlDbType.Int).Value = nouvelEquipier.SetCapacites[3].BaseCrit;
-                }
-                else
-                {
-                    RequestUpdateEquipier.Parameters.Add("@cap4_pp", SqlDbType.Int).Value = DBNull.Value;
-                    RequestUpdateEquipier.Parameters.Add("@cap4_puiss", SqlDbType.Int).Value = DBNull.Value;
-                    RequestUpdateEquipier.Parameters.Add("@cap4_pre", SqlDbType.Int).Value = DBNull.Value;
-                    RequestUpdateEquipier.Parameters.Add("@cap4_crit", SqlDbType.Int).Value = DBNull.Value;
-                }
-
-            int result = RequestUpdateEquipier.ExecuteNonQuery();
-
-            bddTool.CloseConnexion();
-        }
+        bddTool.CloseConnexion();
+    }
 
         public void Delete(MEquipier equipierSupprimer)
         {

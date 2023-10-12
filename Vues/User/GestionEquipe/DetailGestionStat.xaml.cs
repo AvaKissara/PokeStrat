@@ -35,13 +35,15 @@ namespace PokeStat.Vues.User.GestionEquipe
                 switch (slider.Name)
                 {
                     case "pvValue":
-           
-                        double percentage = slider.Value;
-                        double maxHP = equipier.Equipier.BasePV + 252;
-                        double calculatedValue = (percentage / 100) * maxHP;
-
-                        equipier.Equipier.BasePV = (int)calculatedValue;
-                        equipier.BasePV = (int)calculatedValue;
+                        equipier.BasePVPercentage = slider.Value;
+                        double pourcentage = slider.Value;
+                        double maxHP = equipier.pokemonRef.BasePV + 252;
+                        double calculValue = (pourcentage / 100) * maxHP;
+                        if (calculValue > maxHP)
+                        {
+                            calculValue = maxHP;
+                        }
+                        equipier.BasePV = (int)calculValue;
                         break;
                     case "attValue":
                         equipier.Equipier.BaseAttaque = (int)slider.Value;

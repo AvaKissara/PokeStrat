@@ -41,6 +41,7 @@ namespace PokeStat.Modeles
         public int ObjetId { get; set; }
         public int NatureId { get; set; }
 
+
         private bool isSelected;
         public bool IsSelected
         {

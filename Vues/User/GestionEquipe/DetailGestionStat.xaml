@@ -55,12 +55,12 @@
                 <DockPanel VerticalAlignment="Center" Grid.Row="1" Margin="0,26,8,4" Width="340" >
                     <TextBlock Text="PV" FontSize="16" Foreground="Black" Width="60" Grid.Column="0" />
                     <TextBox Grid.Column="2" Text="{Binding BasePV, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
-                    <Slider Maximum="455" Grid.Column="1" Value="{Binding BasePVPercentage}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="pvValue" ValueChanged="Slider_ValueChanged" />
+                    <Slider Maximum="100" Grid.Column="1" Value="{Binding BasePVPercentage}" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="pvValue" ValueChanged="Slider_ValueChanged" />
                 </DockPanel>
                 <DockPanel VerticalAlignment="Center" Grid.Row="2" Margin="0,26,8,4" Width="340" >
                     <TextBlock Text="Att." FontSize="16" Foreground="Black" Width="60" Grid.Column="0" />
                     <TextBox Grid.Column="2" Text="{Binding Equipier.BaseAttaque, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
-                    <Slider Maximum="455" Grid.Column="1" Value="{Binding Equipier.BasePV}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="attValue" ValueChanged="Slider_ValueChanged" />
+                    <Slider Maximum="455" Grid.Column="1" Value="{Binding Equipier.BaseAttaque}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="attValue" ValueChanged="Slider_ValueChanged" />
                 </DockPanel>
                 <DockPanel VerticalAlignment="Center" Grid.Row="3" Margin="0,26,8,4" Width="340" >
                     <TextBlock Text="Def" FontSize="16" Foreground="Black" Width="60" Grid.Column="0" />

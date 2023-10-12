@@ -1,5 +1,6 @@
 ﻿using PokeStat.Modeles;
 using PokeStat.Repositories;
+using PokeStat.Services;
 using PokeStat.Utilitaires;
 using PokeStat.Vues;
 using PokeStat.Vues.User.GestionEquipe;
@@ -17,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
+
 namespace PokeStat.VuesModeles
 {
     public class EquipierTreeViewNode : BaseVueModele
@@ -25,7 +27,7 @@ namespace PokeStat.VuesModeles
         public ICommand DetailPopupCommand { get; set; }
         public ICommand EnregistrerEquipierCommand {  get; set; }
         public ICommand SupprimerEquipierCommand { get; set; }
-        
+
         private RelayCommand closeCommand;
 
         private WindowManager windowManager = new WindowManager();
@@ -35,7 +37,10 @@ namespace PokeStat.VuesModeles
 
         private readonly RepTalent repTalent;
         private readonly RepCapacite repCapacite;
+
         private RepEquipe repEquipe;
+        private StatsCalculator statsCalculator;
+
 
         private bool isSelected;
         public bool IsSelected
@@ -73,11 +78,11 @@ namespace PokeStat.VuesModeles
                     {
                         PokEquipierSelection = equipierSelectionne;
                     }
-
                     DetailPopup();
                 }
             }
         }
+
         public MEquipier EquipierAModId { get; set; }
 
         private MEquipier pokEquipierSelection;
@@ -94,7 +99,6 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
-
 
         private MSpecimen pokSelection;
         public MSpecimen PokSelection
@@ -276,7 +280,9 @@ namespace PokeStat.VuesModeles
                     OnPropertyChanged(nameof(BasePVPercentage));
                    
                 }
+                
             }
+
         }
 
         private int basePV;
@@ -293,12 +299,93 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        public void UpdateBasePVPercentage()
-        {
-            double calculatedPercentage = ((double)this.Equipier.BasePV / (this.Equipier.BasePV + 252))*100;
-            BasePVPercentage = Math.Round(calculatedPercentage);
-        }
+        //public void MajPVPourcentage()
+        //{
+        //    int max= this.Equipier.BasePV + 252;
+        //    double calculPourcentage = ((double)this.Equipier.BasePV / max)*100;
 
+        //    if (calculPourcentage > max)
+        //    {
+        //        calculPourcentage = (int)max;
+        //    }
+        //    BasePVPercentage = Math.Round(calculPourcentage);
+
+        //}
+        public MSpecimen pokemonRef;
+        public void MajPourcentageStat(string nomStat, double valeurPourcentage)
+        {
+            List<MSpecimen> pokemons = this.Equipier.pokemons;
+            pokemonRef = pokemons.Find(pokemon => pokemon.IdPokemon == this.Equipier.IdPokemon); 
+
+            int valeurBase = 0;
+            int max = 252; 
+
+            switch (nomStat)
+            {
+                case "PV":
+                    valeurBase = pokemonRef.BasePV;
+                    max = valeurBase + max;
+                    break;
+                case "Attaque":
+                    valeurBase = this.Equipier.BaseAttaque;
+                    max = valeurBase + max;
+                    break;
+                case "Défense":
+                    valeurBase = this.Equipier.BaseDefense;
+                    max = valeurBase + max;
+                    break;
+                case "Att. Spe":
+                    valeurBase = this.Equipier.BaseAttSpe;
+                    max = valeurBase + max;
+                    break;
+                case "Def. Spe":
+                    valeurBase = this.Equipier.BaseDefSpe;
+                    max = valeurBase + max;
+                    break;
+                case "Vitesse":
+                    valeurBase = this.Equipier.BaseVit;
+                    max = valeurBase + max;
+                    break;
+                default:
+
+                    break;
+            }
+
+            double calculPourcentage = (valeurPourcentage / max) * 100.0;
+           
+
+            if (calculPourcentage > max)
+            {
+                calculPourcentage = max;
+            }
+            int nouvelleValeurBase = (int)calculPourcentage;
+ 
+            switch (nomStat)
+            {
+                case "PV":
+                    this.BasePVPercentage = nouvelleValeurBase;
+                    //this.BasePV = nouvelleValeurEntier;
+                    break;
+                case "Attaque":
+                    this.Equipier.BaseAttaque = nouvelleValeurBase;
+                    break;
+                case "Défense":
+                    this.Equipier.BaseDefense = nouvelleValeurBase;
+                    break;
+                case "Att. Spe":
+                    this.Equipier.BaseAttSpe = nouvelleValeurBase;
+                    break;
+                case "Def. Spe":
+                    this.Equipier.BaseDefSpe = nouvelleValeurBase;
+                    break;
+                case "Vitesse":
+                    this.Equipier.BaseVit = nouvelleValeurBase;
+                    break;
+                default:
+
+                    break;
+            }
+        }
 
         public EquipierTreeViewNode(MEquipier Equipier)
         {          
@@ -334,7 +421,9 @@ namespace PokeStat.VuesModeles
             DetailPopupCommand = new RelayCommand(DetailPopupMaj);
             EnregistrerEquipierCommand = new RelayCommand(EnregistrerEquipier);
             SupprimerEquipierCommand = new RelayCommand(SupprimerEquipier);
+
             repTalent = new RepTalent();
+            statsCalculator = new StatsCalculator();
 
             this.Equipier = Equipier;
             if (Equipier == null)
@@ -343,21 +432,15 @@ namespace PokeStat.VuesModeles
                
                 this.Equipier.TalentPokemon = repTalent.GetAll();
             }
-            else
-            {
-                
-            }
             if (Equipier.equipierOrigine == null)
             {
                 this.Equipier.equipierOrigine = equipierParDefaut;
             }
             else
-            {
-                this.UpdateBasePVPercentage();
-                this.Equipier.EquipeId = this.Equipier.equipierOrigine.EquipeId;
-             
+            {              
+                    MajStats();
+                               
             }
-
             if (ImagePokemonSelectionne == null)
             {
                 ImagePokemonSelectionne = new BitmapImage(new Uri(this.Equipier.CheminImgPokemonAbsolu));
@@ -442,7 +525,9 @@ namespace PokeStat.VuesModeles
             {
                 this.IsSelected = false;
             }
+
             EquipierTreeViewNode equipeNode;
+
             if (this.Equipier.EquipeId != 0)
             {
                 EquipierSaisiEquipeId = this.Equipier.EquipeId;
@@ -461,8 +546,7 @@ namespace PokeStat.VuesModeles
             }
 
             this.Equipier = PokEquipierSelection;
-         
-   
+           
             if (this.Equipier != null)
             {
                 equipierCopy = this.Equipier.Clone();
@@ -479,8 +563,7 @@ namespace PokeStat.VuesModeles
                     else
                     {
                         equipierCopy.SetCapacites.Add(Capacite2Selection);
-                    }
-                    
+                    }                   
                 }  
                 if (Capacite3Selection != null)
                 {
@@ -554,11 +637,24 @@ namespace PokeStat.VuesModeles
                     }
                         
                 }
+                if(this.BasePV!=0)
+                {
+                    this.Equipier.BasePV = this.BasePV; 
+                }
                 this.EquipierSelectionne = this.Equipier;
             }
 
         }
 
+        public void MajStats()
+        {
+            this.BasePV = this.Equipier.BasePV;
+            this.BasePVPercentage = this.BasePV;
+            if (BasePVPercentage != 0)
+            {
+                this.MajPourcentageStat("PV", BasePVPercentage);
+            }
+        }
         private void EnregistrerEquipier()
         {
             if(this.Equipier != null)
