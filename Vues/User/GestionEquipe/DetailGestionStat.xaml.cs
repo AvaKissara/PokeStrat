@@ -35,7 +35,7 @@ namespace PokeStat.Vues.User.GestionEquipe
                 switch (slider.Name)
                 {
                     case "pvValue":
-                        equipier.BasePVPercentage = slider.Value;
+                        equipier.BasePVPourcentage = slider.Value;
                         double pourcentage = slider.Value;
                         double maxHP = equipier.pokemonRef.BasePV + 252;
                         double calculValue = (pourcentage / 100) * maxHP;
@@ -45,21 +45,67 @@ namespace PokeStat.Vues.User.GestionEquipe
                         }
                         equipier.BasePV = (int)calculValue;
                         break;
+
                     case "attValue":
-                        equipier.Equipier.BaseAttaque = (int)slider.Value;
+                        equipier.BaseAttaquePourcentage = slider.Value;
+                        double pourcentageAtt = slider.Value;
+                        double maxAtt = equipier.pokemonRef.BaseAttaque + 252;
+                        double calculValueAtt = (pourcentageAtt / 100) * maxAtt;
+                        if (calculValueAtt > maxAtt)
+                        {
+                            calculValueAtt = maxAtt;
+                        }
+                        equipier.BaseAttaque = (int)calculValueAtt;
                         break;
+
                     case "defValue":
-                        equipier.Equipier.BaseDefense = (int)slider.Value;
+                        equipier.BaseDefensePourcentage = slider.Value;
+                        double pourcentageDef = slider.Value;
+                        double maxDef = equipier.pokemonRef.BaseDefense + 252;
+                        double calculValueDef = (pourcentageDef / 100) * maxDef;
+                        if (calculValueDef > maxDef)
+                        {
+                            calculValueDef = maxDef;
+                        }
+                        equipier.BaseDefense = (int)calculValueDef;
                         break;
+
                     case "attSpeValue":
-                        equipier.Equipier.BaseAttSpe = (int)slider.Value;
+                        equipier.BaseAttSpePourcentage = slider.Value;
+                        double pourcentageAttSpe = slider.Value;
+                        double maxAttSpe = equipier.pokemonRef.BaseAttSpe + 252;
+                        double calculValueAttSpe = (pourcentageAttSpe / 100) * maxAttSpe;
+                        if (calculValueAttSpe > maxAttSpe)
+                        {
+                            calculValueAttSpe = maxAttSpe;
+                        }
+                        equipier.BaseAttSpe = (int)calculValueAttSpe;
                         break;
+
                     case "defSpeValue":
-                        equipier.Equipier.BaseDefSpe = (int)slider.Value;
+                        equipier.BaseDefSpePourcentage = slider.Value;
+                        double pourcentageDefSpe = slider.Value;
+                        double maxDefSpe = equipier.pokemonRef.BaseDefSpe + 252;
+                        double calculValueDefSpe = (pourcentageDefSpe / 100) * maxDefSpe;
+                        if (calculValueDefSpe > maxDefSpe)
+                        {
+                            calculValueDefSpe = maxDefSpe;
+                        }
+                        equipier.BaseDefSpe = (int)calculValueDefSpe;
                         break;
+
                     case "vitValue":
-                        equipier.Equipier.BaseVit = (int)slider.Value;
+                        equipier.BaseVitPourcentage = slider.Value;
+                        double pourcentageVit = slider.Value;
+                        double maxVit = equipier.pokemonRef.BaseVit + 252;
+                        double calculValueVit = (pourcentageVit / 100) * maxVit;
+                        if (calculValueVit > maxVit)
+                        {
+                            calculValueVit = maxVit;
+                        }
+                        equipier.BaseVit = (int)calculValueVit;
                         break;
+
                     default:
                         break;
                 }

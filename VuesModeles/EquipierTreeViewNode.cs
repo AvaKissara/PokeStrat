@@ -40,6 +40,7 @@ namespace PokeStat.VuesModeles
 
         private RepEquipe repEquipe;
         private StatsCalculator statsCalculator;
+        public MSpecimen pokemonRef;
 
 
         private bool isSelected;
@@ -268,21 +269,18 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private double basePVPercentage;
-        public double BasePVPercentage
+        private double basePVPourcentage;
+        public double BasePVPourcentage
         {
-            get { return basePVPercentage; }
+            get { return basePVPourcentage; }
             set
             {
-                if (basePVPercentage != value)
+                if (basePVPourcentage != value)
                 {
-                    basePVPercentage = value;
-                    OnPropertyChanged(nameof(BasePVPercentage));
-                   
-                }
-                
+                    basePVPourcentage = value;
+                    OnPropertyChanged(nameof(BasePVPourcentage));  
+                }               
             }
-
         }
 
         private int basePV;
@@ -299,19 +297,145 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        //public void MajPVPourcentage()
-        //{
-        //    int max= this.Equipier.BasePV + 252;
-        //    double calculPourcentage = ((double)this.Equipier.BasePV / max)*100;
+        private double baseAttaquePourcentage;
+        public double BaseAttaquePourcentage
+        {
+            get { return baseAttaquePourcentage; }
+            set
+            {
+                if (baseAttaquePourcentage != value)
+                {
+                    baseAttaquePourcentage = value;
+                    OnPropertyChanged(nameof(BaseAttaquePourcentage));
+                }
+            }
+        }
 
-        //    if (calculPourcentage > max)
-        //    {
-        //        calculPourcentage = (int)max;
-        //    }
-        //    BasePVPercentage = Math.Round(calculPourcentage);
+        private int baseAttaque;
+        public int BaseAttaque
+        {
+            get { return baseAttaque; }
+            set
+            {
+                if (baseAttaque != value)
+                {
+                    baseAttaque = value;
+                    OnPropertyChanged(nameof(BaseAttaque));
+                }
+            }
+        }
 
-        //}
-        public MSpecimen pokemonRef;
+        private double baseDefensePourcentage;
+        public double BaseDefensePourcentage
+        {
+            get { return baseDefensePourcentage; }
+            set
+            {
+                if (baseDefensePourcentage != value)
+                {
+                    baseDefensePourcentage = value;
+                    OnPropertyChanged(nameof(BaseDefensePourcentage));
+                }
+            }
+        }
+
+        private int baseDefense;
+        public int BaseDefense
+        {
+            get { return baseDefense; }
+            set
+            {
+                if (baseDefense != value)
+                {
+                    baseDefense = value;
+                    OnPropertyChanged(nameof(BaseDefense));
+                }
+            }
+        }
+
+        private double baseAttSpePourcentage;
+        public double BaseAttSpePourcentage
+        {
+            get { return baseAttSpePourcentage; }
+            set
+            {
+                if (baseAttSpePourcentage != value)
+                {
+                    baseAttSpePourcentage = value;
+                    OnPropertyChanged(nameof(BaseAttSpePourcentage));
+                }
+            }
+        }
+
+        private int baseAttSpe;
+        public int BaseAttSpe
+        {
+            get { return baseAttSpe; }
+            set
+            {
+                if (baseAttSpe != value)
+                {
+                    baseAttSpe = value;
+                    OnPropertyChanged(nameof(BaseAttSpe));
+                }
+            }
+        }
+
+        private double baseDefSpePourcentage;
+        public double BaseDefSpePourcentage
+        {
+            get { return baseDefSpePourcentage; }
+            set
+            {
+                if (baseDefSpePourcentage != value)
+                {
+                    baseDefSpePourcentage = value;
+                    OnPropertyChanged(nameof(BaseDefSpePourcentage));
+                }
+            }
+        }
+
+        private int baseDefSpe;
+        public int BaseDefSpe
+        {
+            get { return baseDefSpe; }
+            set
+            {
+                if (baseDefSpe != value)
+                {
+                    baseDefSpe = value;
+                    OnPropertyChanged(nameof(BaseDefSpe));
+                }
+            }
+        }
+        private double baseVitPourcentage;
+        public double BaseVitPourcentage
+        {
+            get { return baseVitPourcentage; }
+            set
+            {
+                if (baseVitPourcentage != value)
+                {
+                    baseVitPourcentage = value;
+                    OnPropertyChanged(nameof(BaseVitPourcentage));
+                }
+            }
+        }
+
+        private int baseVit;
+        public int BaseVit
+        {
+            get { return baseVit; }
+            set
+            {
+                if (baseVit != value)
+                {
+                    baseVit = value;
+                    OnPropertyChanged(nameof(BaseVit));
+                }
+            }
+        }
+
         public void MajPourcentageStat(string nomStat, double valeurPourcentage)
         {
             List<MSpecimen> pokemons = this.Equipier.pokemons;
@@ -327,23 +451,23 @@ namespace PokeStat.VuesModeles
                     max = valeurBase + max;
                     break;
                 case "Attaque":
-                    valeurBase = this.Equipier.BaseAttaque;
+                    valeurBase = pokemonRef.BaseAttaque;
                     max = valeurBase + max;
                     break;
                 case "Défense":
-                    valeurBase = this.Equipier.BaseDefense;
+                    valeurBase = pokemonRef.BaseDefense;
                     max = valeurBase + max;
                     break;
-                case "Att. Spe":
-                    valeurBase = this.Equipier.BaseAttSpe;
+                case "Att Spe":
+                    valeurBase = pokemonRef.BaseAttSpe;
                     max = valeurBase + max;
                     break;
-                case "Def. Spe":
-                    valeurBase = this.Equipier.BaseDefSpe;
+                case "Def Spe":
+                    valeurBase = pokemonRef.BaseDefSpe;
                     max = valeurBase + max;
                     break;
                 case "Vitesse":
-                    valeurBase = this.Equipier.BaseVit;
+                    valeurBase = pokemonRef.BaseVit;
                     max = valeurBase + max;
                     break;
                 default:
@@ -363,23 +487,23 @@ namespace PokeStat.VuesModeles
             switch (nomStat)
             {
                 case "PV":
-                    this.BasePVPercentage = nouvelleValeurBase;
+                    this.BasePVPourcentage = nouvelleValeurBase;
                     //this.BasePV = nouvelleValeurEntier;
                     break;
                 case "Attaque":
-                    this.Equipier.BaseAttaque = nouvelleValeurBase;
+                    this.BaseAttaquePourcentage = nouvelleValeurBase;
                     break;
                 case "Défense":
-                    this.Equipier.BaseDefense = nouvelleValeurBase;
+                    this.BaseDefensePourcentage = nouvelleValeurBase;
                     break;
-                case "Att. Spe":
-                    this.Equipier.BaseAttSpe = nouvelleValeurBase;
+                case "Att Spe":
+                    this.BaseAttSpePourcentage = nouvelleValeurBase;
                     break;
-                case "Def. Spe":
-                    this.Equipier.BaseDefSpe = nouvelleValeurBase;
+                case "Def Spe":
+                    this.BaseDefSpePourcentage = nouvelleValeurBase;
                     break;
                 case "Vitesse":
-                    this.Equipier.BaseVit = nouvelleValeurBase;
+                    this.BaseVitPourcentage = nouvelleValeurBase;
                     break;
                 default:
 
@@ -615,44 +739,107 @@ namespace PokeStat.VuesModeles
                 {
                     this.Equipier.NiveauEquipier = this.nivPokEquipier;
                 }
-               if(Capacite2Selection==null && this.Equipier.SetCapacites !=null) 
-               {
-                    if (this.Equipier.SetCapacites.Count() > 1)
-                    {
-                        this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[1]);
-                    }
-               }
-               if (Capacite3Selection == null && this.Equipier.SetCapacites != null)
-               {
-                    if(this.Equipier.SetCapacites.Count() >2)
-                    {
-                        this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[2]);
-                    }                 
-               }
-                if (Capacite4Selection == null && this.Equipier.SetCapacites != null)
+                if(Capacite1Selection!=null)
                 {
-                    if (this.Equipier.SetCapacites.Count() > 3)
+                    if (Capacite2Selection == null && this.Equipier.SetCapacites != null)
                     {
-                        this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[3]);
+                        if (this.Equipier.SetCapacites.Count() > 1)
+                        {
+                            this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[1]);
+                        }
                     }
-                        
+                    if (Capacite3Selection == null && this.Equipier.SetCapacites != null)
+                    {
+                        if (this.Equipier.SetCapacites.Count() > 2)
+                        {
+                            this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[2]);
+                        }
+                    }
+                    if (Capacite4Selection == null && this.Equipier.SetCapacites != null)
+                    {
+                        if (this.Equipier.SetCapacites.Count() > 3)
+                        {
+                            this.Equipier.SetCapacites.Remove(this.Equipier.SetCapacites[3]);
+                        }
+                    }
                 }
+               
                 if(this.BasePV!=0)
                 {
                     this.Equipier.BasePV = this.BasePV; 
                 }
+                if (this.BaseAttaque != 0)
+                {
+                    this.Equipier.BaseAttaque = this.BaseAttaque;
+                }
+                if (this.BaseDefense != 0)
+                {
+                    this.Equipier.BaseDefense = this.BaseDefense;
+                }
+                if (this.BaseAttSpe != 0)
+                {
+                    this.Equipier.BaseAttSpe = this.BaseAttSpe;
+                }
+                if (this.BaseDefSpe != 0)
+                {
+                    this.Equipier.BaseDefSpe = this.BaseDefSpe;
+                }
+                if (this.BaseVit != 0)
+                {
+                    this.Equipier.BaseVit = this.BaseVit;
+                }
+
                 this.EquipierSelectionne = this.Equipier;
             }
-
         }
 
         public void MajStats()
         {
             this.BasePV = this.Equipier.BasePV;
-            this.BasePVPercentage = this.BasePV;
-            if (BasePVPercentage != 0)
+            this.BasePVPourcentage = this.BasePV;
+            if (BasePVPourcentage != 0)
             {
-                this.MajPourcentageStat("PV", BasePVPercentage);
+                this.MajPourcentageStat("PV", BasePVPourcentage);
+            }
+
+            this.BaseAttaque = this.Equipier.BaseAttaque;
+            this.BaseAttaquePourcentage = this.BaseAttaque;
+
+            if (BaseAttaquePourcentage != 0)
+            {
+                this.MajPourcentageStat("Attaque", BaseAttaquePourcentage);
+            }
+
+            this.BaseDefense = this.Equipier.BaseDefense;
+            this.BaseDefensePourcentage = this.BaseDefense;
+
+            if (BaseDefensePourcentage != 0)
+            {
+                this.MajPourcentageStat("Défense", BaseDefensePourcentage);
+            }
+
+            this.BaseAttSpe = this.Equipier.BaseAttSpe;
+            this.BaseAttSpePourcentage = this.BaseAttSpe;
+
+            if (BaseAttSpePourcentage != 0)
+            {
+                this.MajPourcentageStat("Att Spe", BaseAttSpePourcentage);
+            }
+
+            this.BaseDefSpe = this.Equipier.BaseDefSpe;
+            this.BaseDefSpePourcentage = this.BaseDefSpe;
+
+            if (BaseDefSpePourcentage != 0)
+            {
+                this.MajPourcentageStat("Déf Spe", BaseDefSpePourcentage);
+            }
+
+            this.BaseVit = this.Equipier.BaseVit;
+            this.BaseVitPourcentage = this.BaseVit;
+
+            if (BaseVitPourcentage != 0)
+            {
+                this.MajPourcentageStat("Vitesse", BaseVitPourcentage);
             }
         }
         private void EnregistrerEquipier()

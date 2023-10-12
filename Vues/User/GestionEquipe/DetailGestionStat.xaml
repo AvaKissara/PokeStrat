@@ -55,32 +55,32 @@
                 <DockPanel VerticalAlignment="Center" Grid.Row="1" Margin="0,26,8,4" Width="340" >
                     <TextBlock Text="PV" FontSize="16" Foreground="Black" Width="60" Grid.Column="0" />
                     <TextBox Grid.Column="2" Text="{Binding BasePV, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
-                    <Slider Maximum="100" Grid.Column="1" Value="{Binding BasePVPercentage}" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="pvValue" ValueChanged="Slider_ValueChanged" />
+                    <Slider Maximum="100" Grid.Column="1" Value="{Binding BasePVPourcentage}" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="pvValue" ValueChanged="Slider_ValueChanged" />
                 </DockPanel>
                 <DockPanel VerticalAlignment="Center" Grid.Row="2" Margin="0,26,8,4" Width="340" >
                     <TextBlock Text="Att." FontSize="16" Foreground="Black" Width="60" Grid.Column="0" />
-                    <TextBox Grid.Column="2" Text="{Binding Equipier.BaseAttaque, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
-                    <Slider Maximum="455" Grid.Column="1" Value="{Binding Equipier.BaseAttaque}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="attValue" ValueChanged="Slider_ValueChanged" />
+                    <TextBox Grid.Column="2" Text="{Binding BaseAttaque, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
+                    <Slider Maximum="100" Grid.Column="1" Value="{Binding BaseAttaquePourcentage}" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="attValue" ValueChanged="Slider_ValueChanged" />
                 </DockPanel>
                 <DockPanel VerticalAlignment="Center" Grid.Row="3" Margin="0,26,8,4" Width="340" >
                     <TextBlock Text="Def" FontSize="16" Foreground="Black" Width="60" Grid.Column="0" />
-                    <TextBox Grid.Column="2" Text="{Binding Equipier.BaseDefense, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
-                    <Slider Maximum="455" Grid.Column="1" Value="{Binding Equipier.BaseDefense}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="defValue" ValueChanged="Slider_ValueChanged" />
+                    <TextBox Grid.Column="2" Text="{Binding BaseDefense, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
+                    <Slider Maximum="100" Grid.Column="1" Value="{Binding BaseDefensePourcentage}" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="defValue" ValueChanged="Slider_ValueChanged" />
                 </DockPanel>
                 <DockPanel VerticalAlignment="Center" Grid.Row="4" Margin="0,26,8,4" Width="340" >
                     <TextBlock Text="Att Spe" FontSize="16" Foreground="Black" Width="60" Grid.Column="0" />
-                    <TextBox Grid.Column="2" Text="{Binding Equipier.BaseAttSpe, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
-                    <Slider Maximum="455" Grid.Column="1" Value="{Binding Equipier.BaseAttSpe}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="attSpeValue" ValueChanged="Slider_ValueChanged" />
+                    <TextBox Grid.Column="2" Text="{Binding BaseAttSpe, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
+                    <Slider Maximum="100" Grid.Column="1" Value="{Binding BaseAttSpePourcentage}" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="attSpeValue" ValueChanged="Slider_ValueChanged" />
                 </DockPanel>
                 <DockPanel VerticalAlignment="Center" Grid.Row="5" Margin="0,26,8,4" Width="340" >
                     <TextBlock Text="Def Spe" FontSize="16" Foreground="Black" Width="60" Grid.Column="0" />
-                    <TextBox Grid.Column="2" Text="{Binding Equipier.BaseDefSpe, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
-                    <Slider Maximum="455" Grid.Column="1" Value="{Binding Equipier.BaseDefSpe}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="defSpeValue" ValueChanged="Slider_ValueChanged" />
+                    <TextBox Grid.Column="2" Text="{Binding BaseDefSpe, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
+                    <Slider Maximum="100" Grid.Column="1" Value="{Binding BaseDefSpePourcentage}" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="defSpeValue" ValueChanged="Slider_ValueChanged" />
                 </DockPanel>
                 <DockPanel VerticalAlignment="Center" Grid.Row="6" Margin="0,26,8,4" Width="340" >
                     <TextBlock Text="Vit" FontSize="16" Foreground="Black" Width="60" Grid.Column="0" />
-                    <TextBox Grid.Column="2" Text="{Binding Equipier.BaseVit, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
-                    <Slider Maximum="455" Grid.Column="1" Value="{Binding Equipier.BaseVit}" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" Name="vitValue" ValueChanged="Slider_ValueChanged" />
+                    <TextBox Grid.Column="2" Text="{Binding BaseVit, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40"  />
+                    <Slider Maximum="100" Grid.Column="1" Value="{Binding BaseVitPourcentage}" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="vitValue" ValueChanged="Slider_ValueChanged" />
                 </DockPanel>
                 <DockPanel VerticalAlignment="Center" Grid.Row="7"  HorizontalAlignment="Center" Height="46">
                     <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" Click="button_Click" />
