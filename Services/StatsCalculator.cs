@@ -18,17 +18,17 @@ namespace PokeStat.Services
             return (int)(((iv + 2 * baseStat + (ev / 4)) * niveau / 100 + 5) * natureMultiplier);
         }
 
-        public double CalculPourcentage(int valeurDeBase)
-        {
-            double maxPV = valeurDeBase + 252;
-            return (valeurDeBase / maxPV) * 100.0;
-        }
+        //public double CalculPourcentage(int valeurDeBase)
+        //{
+        //    double maxPV = valeurDeBase + 252;
+        //    return (valeurDeBase / maxPV) * 100.0;
+        //}
 
-        public int PourcentageVersEntier(double pourcentage, int maxPV)
-        {
-            double valeurTotale = (pourcentage / 100.0) * maxPV;
-            return (int)valeurTotale;
-        }
+        //public int PourcentageVersEntier(double pourcentage, int maxPV)
+        //{
+        //    double valeurTotale = (pourcentage / 100.0) * maxPV;
+        //    return (int)valeurTotale;
+        //}
 
     }
 }

@@ -475,7 +475,7 @@ namespace PokeStat.VuesModeles
                     break;
             }
 
-            double calculPourcentage = (valeurPourcentage / max) * 100.0;
+            double calculPourcentage = (valeurPourcentage / max) * 100;
            
 
             if (calculPourcentage > max)
@@ -488,7 +488,6 @@ namespace PokeStat.VuesModeles
             {
                 case "PV":
                     this.BasePVPourcentage = nouvelleValeurBase;
-                    //this.BasePV = nouvelleValeurEntier;
                     break;
                 case "Attaque":
                     this.BaseAttaquePourcentage = nouvelleValeurBase;
@@ -766,6 +765,7 @@ namespace PokeStat.VuesModeles
                
                 if(this.BasePV!=0)
                 {
+                    this.BasePV = statsCalculator.CalculPV(pokemonRef.BasePV, this.Equipier.Ev, this.Equipier.Iv, this.Equipier.NiveauEquipier);
                     this.Equipier.BasePV = this.BasePV; 
                 }
                 if (this.BaseAttaque != 0)
@@ -831,7 +831,7 @@ namespace PokeStat.VuesModeles
 
             if (BaseDefSpePourcentage != 0)
             {
-                this.MajPourcentageStat("Déf Spe", BaseDefSpePourcentage);
+                this.MajPourcentageStat("Def Spe", BaseDefSpePourcentage);
             }
 
             this.BaseVit = this.Equipier.BaseVit;
@@ -856,6 +856,12 @@ namespace PokeStat.VuesModeles
                 }
                 else
                 {
+                    if(this.Equipier.EquipeId==0)
+                    {
+                        this.Equipier.EquipeId = this.Equipier.equipierOrigine.EquipeId;
+                    }
+                    this.Equipier.Ev = 510;
+                    this.Equipier.Iv = 31;
                     repEquipe.Add(this.Equipier);
                 }
             }
