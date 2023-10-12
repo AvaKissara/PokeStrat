@@ -788,7 +788,11 @@ namespace PokeStat.VuesModeles
                 {
                     this.Equipier.BaseVit = this.BaseVit;
                 }
-                this.Equipier = statsCalculator.GetNatureStats(this.Equipier);
+                if(this.Equipier.Nature!=null) 
+                {
+                    this.Equipier = statsCalculator.GetNatureStats(this.Equipier);
+                }
+             
                 this.EquipierSelectionne = this.Equipier;
             }
         }
