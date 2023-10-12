@@ -788,7 +788,7 @@ namespace PokeStat.VuesModeles
                 {
                     this.Equipier.BaseVit = this.BaseVit;
                 }
-
+                this.Equipier = statsCalculator.GetNatureStats(this.Equipier);
                 this.EquipierSelectionne = this.Equipier;
             }
         }
@@ -860,6 +860,7 @@ namespace PokeStat.VuesModeles
                     {
                         this.Equipier.EquipeId = this.Equipier.equipierOrigine.EquipeId;
                     }
+                    
                     this.Equipier.Ev = 510;
                     this.Equipier.Iv = 31;
                     repEquipe.Add(this.Equipier);

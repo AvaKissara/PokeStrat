@@ -103,6 +103,7 @@
     <Compile Include="Repositories\RepNature.cs" />
     <Compile Include="Repositories\RepObjet.cs" />
     <Compile Include="Repositories\RepPokemon.cs" />
+    <Compile Include="Repositories\RepStat.cs" />
     <Compile Include="Repositories\RepTalent.cs" />
     <Compile Include="Repositories\RepType.cs" />
     <Compile Include="Repositories\RepUser.cs" />

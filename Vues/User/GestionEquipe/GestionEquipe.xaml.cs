@@ -66,46 +66,54 @@ namespace PokeStat.Vues.User.GestionEquipe
             StackPanel parentStackPanel = equipierButton.Parent as StackPanel;
             EquipeTreeViewNode equipeNode = parentStackPanel.DataContext as EquipeTreeViewNode;
 
-            MEquipier equipierOrigineDefaut = null;
-            MEquipier equipierParDefaut =
-                new MEquipier(
-                   IdPokemon: 0,
-                   CheminImgPokemon: "0.png",
-                   NomFraPokemon: "",
-                   BasePV: 0,
-                   BaseAttaque: 0,
-                   BaseDefense: 0,
-                   BaseAttSpe: 0,
-                   BaseDefSpe: 0,
-                   BaseVit: 0,
-                   Legendaire: false,
-                   Shiny: false,
-                   Mega: false,
-                   Giga: false,
-                   Fab: false,
-                   SurnomEquipier: "Nouveau",
-                   NiveauEquipier: 0,
-                   EsquiveEquipier: 0,
-                   NiveauBonheur: 0,
-                   Ev: 0,
-                   Iv: 0,
-                   Nature: null,
-                   TalentEquipier: null,
-                   ObjetEquipier: null,
-                   SetCapacites: new ObservableCollection<MCapacite>(),
-                   EquipeId: equipeNode.Equipe.IdEquipe,
-                   equipierOrigineDefaut
-                   ); ;
-
-            var equipierNode = new EquipierTreeViewNode(equipierParDefaut);
-            //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-
-            if (equipeNode != null)
+            if(equipeNode.Equipiers.Count()<6) 
             {
-                equipierNode.Equipier.equipierOrigine.IsSelected = false;
-    
-                equipierNode.EquipierSelectionne = equipierNode.Equipier;
+                MEquipier equipierOrigineDefaut = null;
+                MEquipier equipierParDefaut =
+                    new MEquipier(
+                       IdPokemon: 0,
+                       CheminImgPokemon: "0.png",
+                       NomFraPokemon: "",
+                       BasePV: 0,
+                       BaseAttaque: 0,
+                       BaseDefense: 0,
+                       BaseAttSpe: 0,
+                       BaseDefSpe: 0,
+                       BaseVit: 0,
+                       Legendaire: false,
+                       Shiny: false,
+                       Mega: false,
+                       Giga: false,
+                       Fab: false,
+                       SurnomEquipier: "Nouveau",
+                       NiveauEquipier: 0,
+                       EsquiveEquipier: 0,
+                       NiveauBonheur: 0,
+                       Ev: 0,
+                       Iv: 0,
+                       Nature: null,
+                       TalentEquipier: null,
+                       ObjetEquipier: null,
+                       SetCapacites: new ObservableCollection<MCapacite>(),
+                       EquipeId: equipeNode.Equipe.IdEquipe,
+                       equipierOrigineDefaut
+                       ); 
+
+                var equipierNode = new EquipierTreeViewNode(equipierParDefaut);
+                //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+
+                if (equipeNode != null)
+                {
+                    equipierNode.Equipier.equipierOrigine.IsSelected = false;
+
+                    equipierNode.EquipierSelectionne = equipierNode.Equipier;
+                }
             }
+            else
+            {
+                MessageBox.Show("L'équipe est pleine");
+            }
+           
             // Empêcher la propagation de l'événement si nécessaire.
             e.Handled = true;
         }

@@ -10,11 +10,12 @@ namespace PokeStat.Modeles
     {
         public int IdStat { get; set; }
         public string NomStat { get; set; }
+        public string AbbrStat { get; set; }
 
-        public MStat(int idStat, string nomStat)
+        public MStat(int idStat, string AbbrStat)
         {
-            IdStat = idStat;
-            NomStat = nomStat;
+            this.IdStat = idStat;
+            this.AbbrStat = AbbrStat;
         }
     }
 }
