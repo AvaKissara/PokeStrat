@@ -55,12 +55,9 @@
         </Grid>
 
         <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding NavigationBarViewModel}"   />
-        
+
         <Grid Grid.Column="1" Grid.Row="0">
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Source="Vues/AccueilPage.xaml" HorizontalAlignment="Center" />
         </Grid>
-
-
-
     </Grid>
 </Window>

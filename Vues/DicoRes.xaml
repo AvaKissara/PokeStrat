@@ -9,15 +9,12 @@
 
 
     <local1:NavigationBar x:Key="NavigationBar">
-        <!-- Définissez ici le contenu de la barre de navigation pour l'utilisateur ordinaire -->
     </local1:NavigationBar>
 
     <local1:NavigationBarUser x:Key="NavigationBarUser">
-        <!-- Définissez ici le contenu de la barre de navigation pour l'utilisateur ordinaire -->
     </local1:NavigationBarUser>
 
     <local1:NavigationBarAdmin x:Key="NavigationBarAdmin">
-        <!-- Définissez ici le contenu de la barre de navigation pour l'administrateur -->
     </local1:NavigationBarAdmin>
 
 
@@ -319,12 +316,23 @@
                             <Setter TargetName="Bd" Property="Background" Value="#2D354D" />
                             <Setter Property="Foreground" Value="#FFF3D772" />
                             <Setter Property="FontWeight" Value="Bold" />
-
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style x:Key="CustomScrollViewerStyle" TargetType="ScrollViewer">
+        <Style.Resources>
+            <Style TargetType="ScrollBar">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+            </Style>
+            <Style TargetType="RepeatButton">
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
 </ResourceDictionary>

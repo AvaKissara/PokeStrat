@@ -125,7 +125,7 @@ namespace PokeStat.VuesModeles
             else
             {
                 repDate.Add(cree);
-                repAdmin.Add(nouvelAdmin);
+                repAdmin.Add(nouvelAdmin, SessionManager.Instance.Account.IdPersonne);
                 MessageBox.Show("L'inscription est réussie !");
             }          
         }

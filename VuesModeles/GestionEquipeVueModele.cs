@@ -3,6 +3,7 @@ using PokeStat.Repositories;
 using PokeStat.Utilitaires;
 using PokeStat.Vues;
 using PokeStat.Vues.Authentification;
+using PokeStat.Vues.CrudAdmin;
 using PokeStat.Vues.User.GestionEquipe;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -107,6 +108,7 @@ namespace PokeStat.VuesModeles
         public GestionEquipeVueModele()
         {
             GestionCommand = new RelayCommand(GestionEquipe);
+            CreeCommand = new RelayCommand(CreeEquipe);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
             DetailPopupCommand = new RelayCommand(DetailPopup);
@@ -142,6 +144,16 @@ namespace PokeStat.VuesModeles
         public MainWindow MainWindow { get; set; }
         private WindowManager windowManager = new WindowManager();
 
+        private MEquipe equipe;
+        public MEquipe Equipe
+        {
+            get { return equipe; }
+            set
+            {
+                equipe = value;
+                OnPropertyChanged(nameof(Equipe));
+            }
+        }
         private void DetailPopup()
         {
             MEquipier equipierOrigineDefaut  = null;
@@ -199,6 +211,17 @@ namespace PokeStat.VuesModeles
         private void GestionEquipe()
         {
             NavigationServices.NavigateToPage(new GestionEquipe());
+        }
+
+        public void CreeEquipe()
+        {
+            Equipe = new MEquipe(this.IdEquipe, this.NomEquipe);
+            EquipeTreeViewNode equipeNode = new EquipeTreeViewNode(Equipe);
+            windowManager = new WindowManager();
+            var creeEquipePopup = new CreeEquipe(equipeNode);
+    
+            windowManager.Register(creeEquipePopup);
+            windowManager.ShowWindow("CreeEquipe", creeEquipePopup);
         }
 
         private void AccueilPage()

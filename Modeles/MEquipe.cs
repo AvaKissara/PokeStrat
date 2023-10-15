@@ -32,6 +32,14 @@ namespace PokeStat.Modeles
             this.Equipiers = equipiers;
             this.Equipiers = new ObservableCollection<MEquipier>();
         }
+
+        public MEquipe(int idEquipe, string nomEquipe)
+        {
+            OuvrirPopupCommand = new RelayCommand(OuvrirPopup);
+            this.IdEquipe = idEquipe;
+            this.NomEquipe = nomEquipe;
+        }
+
         private void OuvrirPopup()
         {
             var popupViewModel = new EquipierTreeViewNode(nouvelEquipier);  

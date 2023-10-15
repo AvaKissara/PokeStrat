@@ -198,6 +198,9 @@
     <Compile Include="Vues\Layout\NavigationBarUser.xaml.cs">
       <DependentUpon>NavigationBarUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vues\User\GestionEquipe\CreeEquipe.xaml.cs">
+      <DependentUpon>CreeEquipe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vues\User\GestionEquipe\DetailEquipe.xaml.cs">
       <DependentUpon>DetailEquipe.xaml</DependentUpon>
     </Compile>
@@ -323,6 +326,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vues\Layout\NavigationBarUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\User\GestionEquipe\CreeEquipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

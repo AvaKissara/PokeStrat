@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Repositories
 {
-    public class RepAdmin : IRepository<MAdmin>
+    public class RepAdmin 
     {
         public BddTool bddTool;
 
@@ -117,7 +117,7 @@ namespace PokeStat.Repositories
 
             return salt;
         }
-        public void Add(MAdmin nouvelAdmin)
+        public void Add(MAdmin nouvelAdmin, int adminId)
         {
             bddTool.CheckConnexion();
             // Convertir le SecureString en string
@@ -126,11 +126,11 @@ namespace PokeStat.Repositories
             // Utiliser PasswordManager pour hacher le mot de passe
             (string hash, string salt) = PasswordManager.HashPassword(mdpString);
 
-            //try
-            //{
-            SqlCommand RequestAddAdmin = bddTool.GetRequest();
+            try
+            {
+                SqlCommand RequestAddAdmin = bddTool.GetRequest();
 
-            RequestAddAdmin.CommandText = "INSERT INTO admins(nom_admin, prenom_admin, pseudo_admin, mail_admin, mdp_admin, actualise_le, date_id, sel_admin) VALUES(@nom_admin, @prenom_admin, @pseudo, @mail_admin, @mdp_admin, @actualise_le, @date_id, @sel_admin)";
+            RequestAddAdmin.CommandText = "INSERT INTO admins(nom_admin, prenom_admin, pseudo_admin, mail_admin, mdp_admin, actualise_le, date_id, sel_admin) VALUES(@nom_admin, @prenom_admin, @pseudo, @mail_admin, @mdp_admin, @actualise_le, @date_id, @sel_admin); SELECT id_admin From Admins WHERE id_admin= @adminId; EXEC SetAdminID  @adminId= @adminId;";
 
                 SqlParameter nom = RequestAddAdmin.Parameters.Add("@nom_admin", SqlDbType.VarChar);
                 SqlParameter prenom = RequestAddAdmin.Parameters.Add("@prenom_admin", SqlDbType.VarChar);
@@ -140,6 +140,8 @@ namespace PokeStat.Repositories
                 SqlParameter actualise = RequestAddAdmin.Parameters.Add("@actualise_le", SqlDbType.DateTime);
                 SqlParameter cree = RequestAddAdmin.Parameters.Add("@date_id", SqlDbType.DateTime);
                 SqlParameter sel = RequestAddAdmin.Parameters.Add("@sel_admin", SqlDbType.VarChar);
+                SqlParameter adminIdParam = RequestAddAdmin.Parameters.Add("@adminId", SqlDbType.Int);
+
 
                 nom.Value = nouvelAdmin.NomPersonne;
                 prenom.Value = nouvelAdmin.PrenomPersonne;
@@ -149,18 +151,20 @@ namespace PokeStat.Repositories
                 actualise.Value = DateTime.Now;
                 cree.Value = nouvelAdmin.Cree.IdDate;
                 sel.Value = salt;
+                adminIdParam.Value = adminId;
 
-                int result = RequestAddAdmin.ExecuteNonQuery();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("Erreur lors de l'ajout de l'utilisateur: " + ex.Message);
-            //}
+            int result = RequestAddAdmin.ExecuteNonQuery();
+        }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur lors de l'ajout de l'utilisateur: " + ex.Message);
+            }
 
-            // Fermeture de la connexion
-            bddTool.CloseConnexion();
+    // Fermeture de la connexion
+    bddTool.CloseConnexion();
         }
 
+     
         public void Delete(int idSuppr)
         {
             throw new NotImplementedException();

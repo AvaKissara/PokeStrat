@@ -1,4 +1,5 @@
 ﻿using PokeStat.Modeles;
+using PokeStat.Repositories;
 using PokeStat.Utilitaires;
 using PokeStat.Vues.User.GestionEquipe;
 using System;
@@ -15,6 +16,9 @@ namespace PokeStat.VuesModeles
     public class EquipeTreeViewNode : BaseVueModele
     {
         public ICommand DetailPopupCommand { get; set; }
+        public ICommand AjouteCommand { get; set; }
+        private RepEquipe repEquipe { get; set; }
+
         private bool isSelected;
         public bool IsSelected
         {
@@ -25,24 +29,28 @@ namespace PokeStat.VuesModeles
                 OnPropertyChanged(nameof(IsSelected));
             }
         }
-        public MEquipe Equipe { get; }
+        public MEquipe Equipe { get; set; }
         public ObservableCollection<EquipierTreeViewNode> Equipiers { get; }= new ObservableCollection<EquipierTreeViewNode>();
         public EquipeTreeViewNode(MEquipe Equipe)
         {
+            repEquipe = new RepEquipe();
             this.Equipe = Equipe;
+            AjouteCommand = new RelayCommand(AjouteEquipe);
         }
         public EquipeTreeViewNode(MEquipe Equipe, ObservableCollection<EquipierTreeViewNode> Equipiers)
         {
+            repEquipe = new RepEquipe();
             DetailPopupCommand = new RelayCommand(DetailPopup);
             this.Equipe = Equipe;
             this.Equipiers = Equipiers;
-
+            AjouteCommand = new RelayCommand(AjouteEquipe);
         }
         public MainWindow MainWindow { get; set; }
         private WindowManager windowManager = new WindowManager();
 
         private void DetailPopup()
         {
+            int equipeId = repEquipe.GetLastEquipeId();
             MEquipier equipierOrigineDefaut = null;
             MEquipier equipierParDefaut = new MEquipier(
                        IdPokemon: 0,
@@ -69,12 +77,11 @@ namespace PokeStat.VuesModeles
                        TalentEquipier: null,
                        ObjetEquipier: null,
                        SetCapacites: new ObservableCollection<MCapacite>(),
-                       EquipeId: 0,
+                       EquipeId: equipeId,
                        equipierOrigineDefaut
                        );
 
             var equipeNode = new EquipierTreeViewNode(equipierParDefaut);
-            //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
 
             var detailPopup = new DetailEquipe();
             detailPopup.Owner = MainWindow;
@@ -88,6 +95,14 @@ namespace PokeStat.VuesModeles
             windowManager.ShowWindow("DetailEquipe", detailPopup);
 
         }
-
+        public void AjouteEquipe()
+        {
+            MEquipe equipeAAjouter = new MEquipe(this.Equipe.IdEquipe, this.Equipe.NomEquipe);
+            if(this.Equipe.NomEquipe!=null) 
+            {
+                repEquipe.AddEquipe(equipeAAjouter.NomEquipe, SessionManager.Instance.Account.IdPersonne);
+            }
+            DetailPopup();
+        }
     }
 }

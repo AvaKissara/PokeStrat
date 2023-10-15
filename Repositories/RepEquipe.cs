@@ -267,6 +267,28 @@ namespace PokeStat.Repositories
 
         return Equipier;
     }
+        public void AddEquipe(string nomEquipe, int userId)
+        {
+            bddTool.CheckConnexion();
+
+            try
+            {
+                SqlCommand requestInsertEquipe = bddTool.GetRequest();
+                requestInsertEquipe.CommandText = "INSERT INTO Equipes (nom_equipe, user_id) VALUES (@NomEquipe, @UserId)";
+                requestInsertEquipe.Parameters.AddWithValue("@NomEquipe", nomEquipe);
+                requestInsertEquipe.Parameters.AddWithValue("@UserId", userId);
+
+                requestInsertEquipe.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Gestion de l'exception
+                Console.WriteLine("Erreur lors de l'insertion de l'équipe : " + ex.Message);
+            }
+
+            // Fermeture de la connexion
+            bddTool.CloseConnexion();
+        }
 
 
         public ObservableCollection<MEquipe> GetAllEquipes()
@@ -328,6 +350,34 @@ namespace PokeStat.Repositories
             bddTool.CloseConnexion();
 
             return observableMEquipes;
+        }
+
+        public int GetLastEquipeId()
+        {
+            bddTool.CheckConnexion();
+            int lastEquipeId = 0;
+
+            try
+            {
+                SqlCommand requestGetLastEquipeId = bddTool.GetRequest();
+                requestGetLastEquipeId.CommandText = "SELECT MAX(id_equipe) FROM Equipes";
+                object result = requestGetLastEquipeId.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    lastEquipeId = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Gestion de l'exception
+                Console.WriteLine("Erreur lors de la récupération du dernier ID d'équipe : " + ex.Message);
+            }
+
+            // Fermeture de la connexion
+            bddTool.CloseConnexion();
+
+            return lastEquipeId;
         }
 
 

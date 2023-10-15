@@ -1,0 +1,23 @@
+﻿<Window x:Class="PokeStat.Vues.User.GestionEquipe.CreeEquipe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        xmlns:local="clr-namespace:PokeStat.Vues.User.GestionEquipe"
+        xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" 
+        d:DataContext="{d:DesignInstance Type=vuesmodeles:EquipeTreeViewNode}"
+        mc:Ignorable="d"
+        Title="CreeEquipe" Height="300" Width="500">
+    
+    <Grid Background="White">
+        <TextBlock Text="NOM DE L'EQUIPE" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="26" Padding="6,4" Foreground="#2D354D" Margin="0 30 0 0"/>
+        <Label Content="Nom" FontFamily="Raleway" Foreground="#2D354D" FontSize="18" HorizontalAlignment="Left" Margin="96,100,0,0" VerticalAlignment="Top" />
+        <TextBox Name="tbNomEquipe" Text="{Binding Equipe.NomEquipe}" HorizontalAlignment="Center" Margin="20,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" />
+
+
+        <Button Name="btnValid" Content="Valider" Command="{Binding AjouteCommand }" HorizontalAlignment="Left" Margin="158,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#2D354D" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnAnnul" Content="Annuler"  HorizontalAlignment="Left" Margin="257,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#2D354D" Foreground="White" FontSize="18" Padding="20,7"/>
+
+    </Grid>
+</Window>

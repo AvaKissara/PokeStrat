@@ -35,17 +35,6 @@ namespace PokeStat
 
         }
 
-        public void UpdateNavigationBarVisibility()
-        {
-            // Obtenez le rôle actuel à partir du modèle de vue principal
-            UserRole currentRole = SessionManager.Instance.Role;
-
-            // Mettez à jour la visibilité des éléments de la barre de navigation en fonction du rôle actuel
-            //NavigationBar.Visibility = currentRole == UserRole.Profane ? Visibility.Visible : Visibility.Collapsed;
-            //NavigationBarUser.Visibility = currentRole == UserRole.Utilisateur ? Visibility.Visible : Visibility.Collapsed;
-            //NavigationBarAdmin.Visibility = currentRole == UserRole.Administrateur ? Visibility.Visible : Visibility.Collapsed;
-        }
-
 
         public void SetWindowFullScreen()
         {

@@ -117,5 +117,23 @@ namespace PokeStat.Vues.User.GestionEquipe
             // Empêcher la propagation de l'événement si nécessaire.
             e.Handled = true;
         }
+
+        private void TreeView_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)sender;
+
+            // Réglage de la position de la barre de défilement verticale
+            if (e.Delta > 0)
+            {
+                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - 1);
+            }
+            else
+            {
+                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset + 1);
+            }
+
+            e.Handled = true; // Empêche la propagation de l'événement
+        }
+
     }
 }
