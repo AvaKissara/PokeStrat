@@ -1,0 +1,56 @@
+﻿<Window x:Class="PokeStat.Vues.CrudAdmin.CreerAdmin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PokeStat.Vues.CrudAdmin"
+        xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" 
+        d:DataContext="{d:DesignInstance Type=vuesmodeles:GestionAdminVueModele}"
+        xmlns:composants="clr-namespace:PokeStat.Composants"
+        mc:Ignorable="d"
+        Title="CreerAdmin" Height="450" Width="800">
+
+    <Grid Background="White" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="CRÉATION D'UN ADMIN" HorizontalAlignment="Left" FontFamily="Raleway" FontSize="26" Padding="6,4" Foreground="#2D354D" Margin="14,-49,0,49" />
+
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Nom" FontFamily="Raleway" Foreground="#2D354D" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NomAdmin}" Name="tbNomAdmin" Width="200" VerticalAlignment="Center" />
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Prénom" FontFamily="Raleway" Foreground="#2D354D" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding PrenomAdmin}" Name="tbPrenomAdmin" Width="200" VerticalAlignment="Center" />
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Pseudo" FontFamily="Raleway" Foreground="#2D354D" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding PseudoAdmin}" Name="tbPseudoAdmin" Width="200" VerticalAlignment="Center" />
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Email" FontFamily="Raleway" Foreground="#2D354D" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding MailAdmin}" Name="tbMailAdmin" Width="200" VerticalAlignment="Center" />
+
+        <Label Grid.Row="5" Grid.Column="0" Content="Mot de passe" FontFamily="Raleway" Foreground="#2D354D" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <composants:MdpControl Grid.Row="5" Grid.Column="1" Password="{Binding MdpAdmin}"  Width="200" VerticalAlignment="Center"/>
+
+        <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="50,40,0,0">
+            <Button Name="btnValid" Content="Valider" Command="{Binding AjouteCommand}" Width="100" FontFamily="Raleway" Background="#2D354D" Foreground="White" FontSize="18" Padding="18,7" Margin="0 0 20 0" />
+            <Button Name="btnAnnul" Content="Annuler" Command="{Binding AccueilPageCommand}" Width="100" FontFamily="Raleway" Background="#2D354D" Foreground="White" FontSize="18" Padding="18,7" />
+        </DockPanel>
+
+
+    </Grid>
+
+
+</Window>

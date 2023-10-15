@@ -693,7 +693,7 @@ namespace PokeStat.VuesModeles
 
 
                 // Créez un objet BitmapImage à partir du chemin relatif
-                System.Drawing.Image ImgPokemon = System.Drawing.Image.FromFile(AbsoluDtImagePath);
+                //System.Drawing.Image ImgPokemon = System.Drawing.Image.FromFile(AbsoluDtImagePath);
                 
 
                 DataRow row;

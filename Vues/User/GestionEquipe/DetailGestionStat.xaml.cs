@@ -1,4 +1,5 @@
-﻿using PokeStat.VuesModeles;
+﻿using PokeStat.Modeles;
+using PokeStat.VuesModeles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,15 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             if (DataContext is EquipierTreeViewNode equipier)
             {
+                Dictionary<MStat, int>  eVParStat = new Dictionary<MStat, int>();
+
                 switch (slider.Name)
                 {
-                    case "pvValue":
+                    case "pvValue":                 
                         equipier.BasePVPourcentage = slider.Value;
+                        equipier.EvStat = equipier.BasePV - equipier.Equipier.BasePV;
+                        
+
                         double pourcentage = slider.Value;
                         double maxHP = equipier.pokemonRef.BasePV + 252;
                         double calculValue = (pourcentage / 100) * maxHP;
@@ -48,6 +54,9 @@ namespace PokeStat.Vues.User.GestionEquipe
 
                     case "attValue":
                         equipier.BaseAttaquePourcentage = slider.Value;
+                        equipier.EvStat = equipier.BaseAttaque - equipier.Equipier.BaseAttaque;
+                      
+
                         double pourcentageAtt = slider.Value;
                         double maxAtt = equipier.pokemonRef.BaseAttaque + 252;
                         double calculValueAtt = (pourcentageAtt / 100) * maxAtt;
@@ -60,6 +69,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
                     case "defValue":
                         equipier.BaseDefensePourcentage = slider.Value;
+                        equipier.EvStat = equipier.BaseDefense - equipier.Equipier.BaseDefense;
                         double pourcentageDef = slider.Value;
                         double maxDef = equipier.pokemonRef.BaseDefense + 252;
                         double calculValueDef = (pourcentageDef / 100) * maxDef;
@@ -72,6 +82,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
                     case "attSpeValue":
                         equipier.BaseAttSpePourcentage = slider.Value;
+                        equipier.EvStat = equipier.BaseAttSpe - equipier.Equipier.BaseAttSpe;
                         double pourcentageAttSpe = slider.Value;
                         double maxAttSpe = equipier.pokemonRef.BaseAttSpe + 252;
                         double calculValueAttSpe = (pourcentageAttSpe / 100) * maxAttSpe;
@@ -84,6 +95,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
                     case "defSpeValue":
                         equipier.BaseDefSpePourcentage = slider.Value;
+                        equipier.EvStat = equipier.BaseDefSpe - equipier.Equipier.BaseDefSpe;
                         double pourcentageDefSpe = slider.Value;
                         double maxDefSpe = equipier.pokemonRef.BaseDefSpe + 252;
                         double calculValueDefSpe = (pourcentageDefSpe / 100) * maxDefSpe;
@@ -96,6 +108,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
                     case "vitValue":
                         equipier.BaseVitPourcentage = slider.Value;
+                        equipier.EvStat = equipier.BaseVit - equipier.Equipier.BaseVit;
                         double pourcentageVit = slider.Value;
                         double maxVit = equipier.pokemonRef.BaseVit + 252;
                         double calculValueVit = (pourcentageVit / 100) * maxVit;
@@ -109,7 +122,16 @@ namespace PokeStat.Vues.User.GestionEquipe
                     default:
                         break;
                 }
-      
+                if (equipier.EvStat < 0)
+                {
+                    equipier.EvStat = 0;
+                }
+                equipier.EvTotal = equipier.Equipier.Ev - equipier.EvStat;
+                if (equipier.EvTotal < 0)
+                {
+                    equipier.EvTotal = 0;
+                }
+
             }
         }
 

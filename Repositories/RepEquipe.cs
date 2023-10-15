@@ -86,6 +86,7 @@ namespace PokeStat.Repositories
                             string nomObjet = equipiers.IsDBNull(25) ? "" : $"{equipiers[25]}";
                             objetTenu = new MObjet(idObjet, nomObjet);
                         }
+
                         MEquipier equipierParDefaut = new MEquipier(
                             IdPokemon: 0,
                             CheminImgPokemon: "0.png",
@@ -155,7 +156,6 @@ namespace PokeStat.Repositories
                 // Gestion de l'exception
                 Console.WriteLine("Erreur lors de la récupération des équipes : " + ex.Message);
             }
-
             // Fermeture de la connexion
             bddTool.CloseConnexion();
 

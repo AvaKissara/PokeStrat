@@ -10,12 +10,14 @@
       Title="CreeUser">
     
 
+
     <Grid Background="#2D354D">
+        
         <Grid>
             <TextBlock Text="AJOUTER UN UTILISATEUR" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway" FontSize="26" Padding="6,4" Foreground="White"/>
         </Grid>
         <Label Content="Nom:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,250,0,0" VerticalAlignment="Top" />
-        <TextBox Name="tbNomUser" HorizontalAlignment="Left" Margin="200,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
+        <TextBox Name="tbNomUser" HorizontalAlignment="Left" Margin="0,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
             <TextBox.Text>
                 <Binding Path="NomUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
             </TextBox.Text>
@@ -29,7 +31,7 @@
         </TextBox>
 
         <Label Content="Pseudo:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,300,0,0" VerticalAlignment="Top" />
-        <TextBox Name="tbPseudoUser" HorizontalAlignment="Left" Margin="200,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
+        <TextBox Name="tbPseudoUser" HorizontalAlignment="Left" Margin="0,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" >
             <TextBox.Text>
                 <Binding Path="PseudoUser" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" />
             </TextBox.Text>
@@ -43,7 +45,7 @@
         </TextBox>
 
         <Label Content="Mot de passe:" FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Left" Margin="70,350,0,0" VerticalAlignment="Top" />
-        <composants:MdpControl Password="{Binding MdpUser}"  HorizontalAlignment="Left" Margin="200,355,0,0" VerticalAlignment="Top" Width="200"/>
+        <composants:MdpControl Password="{Binding MdpUser}"  HorizontalAlignment="Left" Margin="0,355,0,0" VerticalAlignment="Top" Width="200"/>
  
         <Label Content="Confirmer mot de passe:"  FontFamily="Raleway" Foreground="White" FontSize="18" HorizontalAlignment="Right" Margin="0,350,270,0" VerticalAlignment="Top" />
         <composants:MdpControl Password="{Binding ConfirmMdp}" HorizontalAlignment="Right" Margin="0,355,70,0" VerticalAlignment="Top" Width="200" />

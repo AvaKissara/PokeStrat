@@ -26,6 +26,18 @@ namespace PokeStat.Services
             return (int)(((iv + 2 * baseStat + (ev / 4)) * niveau / 100 + 5) * natureMultiplier);
         }
 
+        public int CalculEVPourPV(int pv, int niveau, int baseStat, int iv)
+        {
+            return (((pv - 10) * 100) / (niveau - 2 * baseStat - 100)) * 4;
+        }
+
+
+        public int CalculEVPourStat(int stat, double modificateurNature, int niveau, int baseStat, int iv, int evTotal)
+        {
+            return (int)((((stat / modificateurNature) - 5) * 100) / (niveau - (2 * baseStat) - ((iv / 4) * 4)));
+        }
+
+
         public MEquipier GetNatureStats(MEquipier equipier)
         {
             MEquipier equipierStatNature = equipier;
@@ -61,6 +73,7 @@ namespace PokeStat.Services
                    break;
 
             }
+
             switch (statMalus.IdStat)
             {
                 case 1:
@@ -91,8 +104,91 @@ namespace PokeStat.Services
 
                     break;
             }
-                    return equipierStatNature;
+            return equipierStatNature;
+        }
 
+        public bool AjouterEVAStat(MEquipier equipier, MStat stat, int evsAAjouter)
+        {
+            int MaxTotalEVs = 510;
+            int MaxEVsParStat = 252;
+
+
+
+            if (evsAAjouter <= 0)
+            {
+                return false;
+            }
+
+            int totalEVs = equipier.Ev;
+            if (totalEVs + evsAAjouter > MaxTotalEVs)
+            {
+                return false;
+            }
+
+            int baseStat = 0; 
+
+            // Utilisez les méthodes de calcul pour obtenir le nouveau total d'EVs dans la statistique.
+            int nouveauTotalEVsStat = evsAAjouter;
+            int niveau = equipier.NiveauEquipier; // Remplacez par la vraie valeur du niveau de l'équipier.
+            double modificateurNature = 1.0; // Remplacez par le modificateur de nature réel.
+
+            switch (stat.IdStat)
+            {
+                case 1:
+                    baseStat = equipier.BasePV;
+                    nouveauTotalEVsStat = CalculEVPourPV(baseStat, niveau, baseStat, nouveauTotalEVsStat);
+                    break;
+                case 2:
+                    baseStat = equipier.BaseAttaque; // Exemple pour la statistique "Attaque".
+                    nouveauTotalEVsStat = CalculEVPourStat(baseStat, modificateurNature, niveau, baseStat, 0, nouveauTotalEVsStat);
+                    break;
+                case 3:
+                    baseStat = equipier.BaseDefense; // Exemple pour la statistique "Attaque".
+                    nouveauTotalEVsStat = CalculEVPourStat(baseStat, modificateurNature, niveau, baseStat, 0, nouveauTotalEVsStat);
+                    break;
+                case 4:
+                    baseStat = equipier.BaseAttSpe; // Exemple pour la statistique "Attaque".
+                    nouveauTotalEVsStat = CalculEVPourStat(baseStat, modificateurNature, niveau, baseStat, 0, nouveauTotalEVsStat);
+                    break;
+                case 5:
+                    baseStat = equipier.BaseDefSpe; // Exemple pour la statistique "Attaque".
+                    nouveauTotalEVsStat = CalculEVPourStat(baseStat, modificateurNature, niveau, baseStat, 0, nouveauTotalEVsStat);
+                    break;
+                case 6:
+                    baseStat = equipier.BaseVit; // Exemple pour la statistique "Attaque".
+                    nouveauTotalEVsStat = CalculEVPourStat(baseStat, modificateurNature, niveau, baseStat, 0, nouveauTotalEVsStat);
+                    break;
+                default:
+
+                    break;
+            }
+         
+
+            //if (stat.AbbrStat == "PV")
+            //{
+            //    baseStat = equipier.BasePV;
+            //    nouveauTotalEVsStat = CalculEVPourPV(baseStat, niveau, baseStat, nouveauTotalEVsStat);
+            //}
+            //else
+            //{
+            //    // Remplacez par la vraie valeur de base de la statistique spécifique.
+            //    baseStat = equipier.BaseAttaque; // Exemple pour la statistique "Attaque".
+            //    nouveauTotalEVsStat = CalculEVPourStat(baseStat, modificateurNature, niveau, baseStat, 0, nouveauTotalEVsStat);
+            //}
+
+            if (nouveauTotalEVsStat > MaxEVsParStat)
+            {
+                return false; // Dépassement du maximum d'EVs pour une statistique.
+            }
+
+            // Mettez à jour le total des EVs.
+            equipier.Ev += evsAAjouter;
+
+            // Mettez à jour les EVs pour la statistique spécifiée.
+            // Stockez les EVs par statistique dans une structure de données (p. ex., un dictionnaire).
+            equipier.EVParStat[stat] = nouveauTotalEVsStat;
+
+            return true; // Les EVs ont été ajoutés avec succès.
         }
     }
 }

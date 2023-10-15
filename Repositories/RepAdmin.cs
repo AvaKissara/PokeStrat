@@ -63,8 +63,7 @@ namespace PokeStat.Repositories
                             $"{users[4]}",
                             mdp,
                             users.GetDateTime(users.GetOrdinal("actualise_le")),
-                            creationDate,
-                            mdpFort);
+                            creationDate);
 
                         ListMAdmins.Add(unAdmin);
                     }
@@ -88,14 +87,14 @@ namespace PokeStat.Repositories
 
             SecureString salt = new SecureString();
 
-            SqlCommand RequestGetSaltUser = bddTool.GetRequest();
-            RequestGetSaltUser.CommandText = "SELECT sel_user FROM Users WHERE id_user = @id_user";
+            SqlCommand RequestGetSaltAdmin = bddTool.GetRequest();
+            RequestGetSaltAdmin.CommandText = "SELECT sel_admin FROM Admins WHERE id_admin = @id_admin";
 
-            SqlParameter id = RequestGetSaltUser.Parameters.Add("@id_user", SqlDbType.Int);
+            SqlParameter id = RequestGetSaltAdmin.Parameters.Add("@id_admin", SqlDbType.Int);
 
             id.Value = idUserLogin;
 
-            SqlDataReader reader = RequestGetSaltUser.ExecuteReader();
+            SqlDataReader reader = RequestGetSaltAdmin.ExecuteReader();
 
             if (reader.HasRows)
             {
@@ -118,9 +117,48 @@ namespace PokeStat.Repositories
 
             return salt;
         }
-             public void Add(MAdmin MModele)
+        public void Add(MAdmin nouvelAdmin)
         {
-            throw new NotImplementedException();
+            bddTool.CheckConnexion();
+            // Convertir le SecureString en string
+            string mdpString = PasswordManager.ToInsecureString(nouvelAdmin.MdpPersonne);
+
+            // Utiliser PasswordManager pour hacher le mot de passe
+            (string hash, string salt) = PasswordManager.HashPassword(mdpString);
+
+            //try
+            //{
+            SqlCommand RequestAddAdmin = bddTool.GetRequest();
+
+            RequestAddAdmin.CommandText = "INSERT INTO admins(nom_admin, prenom_admin, pseudo_admin, mail_admin, mdp_admin, actualise_le, date_id, sel_admin) VALUES(@nom_admin, @prenom_admin, @pseudo, @mail_admin, @mdp_admin, @actualise_le, @date_id, @sel_admin)";
+
+                SqlParameter nom = RequestAddAdmin.Parameters.Add("@nom_admin", SqlDbType.VarChar);
+                SqlParameter prenom = RequestAddAdmin.Parameters.Add("@prenom_admin", SqlDbType.VarChar);
+                SqlParameter pseuso = RequestAddAdmin.Parameters.Add("@pseudo", SqlDbType.VarChar);
+                SqlParameter mail = RequestAddAdmin.Parameters.Add("@mail_admin", SqlDbType.VarChar);
+                SqlParameter mdp = RequestAddAdmin.Parameters.Add("@mdp_admin", SqlDbType.VarChar);
+                SqlParameter actualise = RequestAddAdmin.Parameters.Add("@actualise_le", SqlDbType.DateTime);
+                SqlParameter cree = RequestAddAdmin.Parameters.Add("@date_id", SqlDbType.DateTime);
+                SqlParameter sel = RequestAddAdmin.Parameters.Add("@sel_admin", SqlDbType.VarChar);
+
+                nom.Value = nouvelAdmin.NomPersonne;
+                prenom.Value = nouvelAdmin.PrenomPersonne;
+                pseuso.Value = nouvelAdmin.PseudoPersonne;
+                mail.Value = nouvelAdmin.MailPersonne;
+                mdp.Value = hash;
+                actualise.Value = DateTime.Now;
+                cree.Value = nouvelAdmin.Cree.IdDate;
+                sel.Value = salt;
+
+                int result = RequestAddAdmin.ExecuteNonQuery();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Erreur lors de l'ajout de l'utilisateur: " + ex.Message);
+            //}
+
+            // Fermeture de la connexion
+            bddTool.CloseConnexion();
         }
 
         public void Delete(int idSuppr)

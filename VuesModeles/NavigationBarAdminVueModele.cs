@@ -16,6 +16,7 @@ namespace PokeStat.VuesModeles
         public ICommand GestionVersionCommand { get; set; }
         public ICommand GestionGenerationCommand { get; set; }
         public ICommand GestionUserCommand { get; set; }
+        public ICommand GestionAdminCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
@@ -48,13 +49,14 @@ namespace PokeStat.VuesModeles
                 }
             }
         }
-        public NavigationBarAdminVueModele(ICommand gestionPokemonCommand, ICommand gestionTypeCommand, ICommand gestionVersionCommand, ICommand gestionGenerationCommand, ICommand gestionUserCommand, ICommand accueilPageCommand, ICommand closeCommand, SessionManager sessionManager)
+        public NavigationBarAdminVueModele(ICommand gestionPokemonCommand, ICommand gestionTypeCommand, ICommand gestionVersionCommand, ICommand gestionGenerationCommand, ICommand gestionUserCommand, ICommand gestionAdminCommand, ICommand accueilPageCommand, ICommand closeCommand, SessionManager sessionManager)
         {
             GestionPokemonCommand = gestionPokemonCommand;
             GestionTypeCommand = gestionTypeCommand;
             GestionVersionCommand = gestionVersionCommand;
             GestionGenerationCommand = gestionGenerationCommand;
             GestionUserCommand = gestionUserCommand;
+            GestionAdminCommand = gestionAdminCommand;
             AccueilPageCommand = accueilPageCommand;
             CloseCommand = closeCommand;
             _sessionManager = sessionManager;

@@ -60,9 +60,7 @@
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Content="&#xE711;" Width="49.699" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}" Command="{Binding CloseCommand}" FontFamily="Segoe MDL2 Assets" FontSize="24" Foreground="White" Height="50" VerticalAlignment="Top"/>
                 </StackPanel>
-           
             </Grid>
-           
         </Grid> 
     </Grid>
 </UserControl>

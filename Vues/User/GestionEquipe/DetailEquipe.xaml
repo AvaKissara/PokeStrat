@@ -125,32 +125,32 @@
                                     <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="8,26,8,4">
                                         <TextBlock Text="PV" FontSize="16" Foreground="#FF878585" Width="70"/>
                                         <ProgressBar Height="10" Width="100" Value="{Binding BasePVPourcentage}" />
-                                        <TextBlock Text="{Binding Equipier.BasePV}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
+                                        <TextBlock Text="{Binding BasePV}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="8" >
                                         <TextBlock Text="Attaque" FontSize="16" Foreground="#FF878585" Width="70" />
                                         <ProgressBar Height="10" Width="100" Value="{Binding BaseAttaquePourcentage}" />
-                                        <TextBlock Text="{Binding Equipier.BaseAttaque}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
+                                        <TextBlock Text="{Binding BaseAttaque}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="8">
                                         <TextBlock Text="Défense" FontSize="16" Foreground="#FF878585" Width="70"/>
                                         <ProgressBar Height="10" Width="100" Value="{Binding BaseDefensePourcentage}" />
-                                        <TextBlock Text="{Binding Equipier.BaseDefense}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
+                                        <TextBlock Text="{Binding BaseDefense}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="8">
                                         <TextBlock Text="Att. Spe" FontSize="16" Foreground="#FF878585" Width="70"/>
                                         <ProgressBar Height="10" Width="100" Value="{Binding BaseAttSpePourcentage}" />
-                                        <TextBlock Text="{Binding Equipier.BaseAttSpe}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
+                                        <TextBlock Text="{Binding BaseAttSpe}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="8">
                                         <TextBlock Text="Def. Spe" FontSize="16" Foreground="#FF878585" Width="70"/>
                                         <ProgressBar Height="10" Width="100" Value="{Binding BaseDefSpePourcentage}" />
-                                        <TextBlock Text="{Binding Equipier.BaseDefSpe}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
+                                        <TextBlock Text="{Binding BaseDefSpe}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="8">
                                         <TextBlock Text="Vit" FontSize="16" Foreground="#FF878585" Width="70"/>
                                         <ProgressBar Height="10" Width="100" Value="{Binding BaseVitPourcentage}" />
-                                        <TextBlock Text="{Binding Equipier.BaseVit}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
+                                        <TextBlock Text="{Binding BaseVit}" FontSize="12" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Margin="4,0,0,0"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="8" Margin="8">
                                         <TextBlock Text="Esquive" FontSize="16" Foreground="#FF878585" Width="70"/>

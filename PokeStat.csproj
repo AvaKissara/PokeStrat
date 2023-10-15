@@ -123,6 +123,7 @@
     <Compile Include="VuesModeles\BaseVueModele.cs" />
     <Compile Include="VuesModeles\EquipeTreeViewNode.cs" />
     <Compile Include="VuesModeles\EquipierTreeViewNode.cs" />
+    <Compile Include="VuesModeles\GestionAdminVueModele.cs" />
     <Compile Include="VuesModeles\GestionAuthVueModele.cs" />
     <Compile Include="VuesModeles\GestionEquipeVueModele.cs" />
     <Compile Include="VuesModeles\GestionGenVueModele.cs" />
@@ -139,6 +140,9 @@
     </Compile>
     <Compile Include="Vues\Authentification\Connexion.xaml.cs">
       <DependentUpon>Connexion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vues\CrudAdmin\CreerAdmin.xaml.cs">
+      <DependentUpon>CreerAdmin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vues\CrudGeneration\CreeGen.xaml.cs">
       <DependentUpon>CreeGen.xaml</DependentUpon>
@@ -239,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vues\Authentification\Connexion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vues\CrudAdmin\CreerAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

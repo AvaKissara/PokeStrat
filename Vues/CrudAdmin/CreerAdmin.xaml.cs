@@ -1,4 +1,4 @@
-﻿using PokeStat.VuesModeles;
+﻿using PokeStat.Utilitaires;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +11,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PokeStat.Vues.Layout
+namespace PokeStat.Vues.CrudAdmin
 {
     /// <summary>
-    /// Logique d'interaction pour NavigationBarAdmin.xaml
+    /// Logique d'interaction pour CreerAdmin.xaml
     /// </summary>
-    public partial class NavigationBarAdmin : UserControl
+    public partial class CreerAdmin : Window
     {
-        public NavigationBarAdmin()
+        private MainWindow MainWindow;
+        public CreerAdmin()
         {
             InitializeComponent();
-
+            MainWindow = new MainWindow();
+            Frame mainFrame = NavigationServices.GetMainFrame();
+            NavigationServices.Initialize(mainFrame);
         }
     }
 }

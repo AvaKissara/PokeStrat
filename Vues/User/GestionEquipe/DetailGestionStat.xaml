@@ -42,10 +42,13 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="42" Grid.Column="0" Margin="0,-50,0,0" Grid.ColumnSpan="2" >
                     <Button Content="&#xE711;" Width="43" HorizontalContentAlignment="Center" Background="#FF0C94CC" BorderBrush="{x:Null}"  FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White" Height="43" VerticalAlignment="Top" Click="button_Click" />
                 </StackPanel>
-                <DockPanel VerticalAlignment="Top" Grid.Row="0" Margin="2,30,10,0" Width="340" >
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0">
+                <DockPanel VerticalAlignment="Top" Grid.Row="0" Margin="6,30,6,0" Width="382" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0" Margin="0 0 4 0">
                         <TextBlock Text="EV" FontSize="16" Foreground="Black" Width="30" />
-                        <TextBox Text="{Binding Equipier.Ev, UpdateSourceTrigger=PropertyChanged}" Width="40" />
+                        <TextBox Text="{Binding EvTotal, UpdateSourceTrigger=PropertyChanged}" Width="40" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="0">
+                        <TextBox Text="{Binding EvStat, UpdateSourceTrigger=PropertyChanged}" Width="40" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Grid.Column="1">
                         <TextBlock Text="IV" FontSize="16" Foreground="Black" Width="30" />

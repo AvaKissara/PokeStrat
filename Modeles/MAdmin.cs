@@ -12,7 +12,7 @@ namespace PokeStat.Modeles
         public SecureString MdpRenforce { get; set; }
 
 
-        public MAdmin(int idPersonne, string nomPersonne, string prenomPersonne, string pseudoPersonne, string mailPersonne, SecureString mdpPersonne, DateTime actualise, MDate cree, SecureString MdpRenforce)
+        public MAdmin(int idPersonne, string nomPersonne, string prenomPersonne, string pseudoPersonne, string mailPersonne, SecureString mdpPersonne, DateTime actualise, MDate cree)
       : base(idPersonne, nomPersonne, prenomPersonne, pseudoPersonne, mailPersonne, mdpPersonne, actualise, cree)
         {
             this.MdpRenforce = MdpRenforce;

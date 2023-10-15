@@ -40,6 +40,8 @@ namespace PokeStat.Modeles
         public int Cap4Id { get; set; }
         public int ObjetId { get; set; }
         public int NatureId { get; set; }
+        public Dictionary<MStat, int> EVParStat { get; set; }
+
 
 
         private bool isSelected;
@@ -93,6 +95,7 @@ namespace PokeStat.Modeles
             this.TalentPokemon = repPokemon.GetPoolTalent(IdPokemon);
             this.PoolCapacites = repCapacite.GetCapacite(IdPokemon);
             this.equipierOrigine = EquipierOrigine;
+            EVParStat = new Dictionary<MStat, int>();
         }
 
         public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, string NomEngPokemon, string NumPokemon, decimal TaillePokemon, decimal PoidsPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, MPokemon Evolution, MGeneration Gen, string SurnomEquipier, int NiveauEquipier)

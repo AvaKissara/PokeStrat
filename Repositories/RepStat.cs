@@ -29,6 +29,30 @@ namespace PokeStat.Repositories
             }
         }
 
+        public Dictionary<MStat, int> GetAll()
+        {
+            bddTool.CheckConnexion();
+
+            Dictionary<MStat, int> allStats = new Dictionary<MStat, int>();
+            SqlCommand RequestGetStats = bddTool.GetRequest();
+            RequestGetStats.CommandText = "SELECT id_stat, nom_stat FROM Stats";
+
+            using (SqlDataReader stats = RequestGetStats.ExecuteReader())
+            {
+                while (stats.Read())
+                {
+                    MStat stat = new MStat(
+                        stats.GetInt32(0),
+                        stats.GetString(1)
+                     );
+                
+                   allStats.Add(stat, 0);
+                }     
+            }
+
+            return allStats;
+        }
+
         public (MStat statBonus, MStat statMalus) GetNatureStats(int idNature)
         {
             bddTool.CheckConnexion();

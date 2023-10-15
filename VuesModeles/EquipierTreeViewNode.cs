@@ -436,6 +436,34 @@ namespace PokeStat.VuesModeles
             }
         }
 
+        private int evTotal;
+        public int EvTotal
+        {
+            get { return evTotal; }
+            set
+            {
+                if (evTotal != value)
+                {
+                    evTotal = value;
+                    OnPropertyChanged(nameof(EvTotal));
+                }
+            }
+        }
+
+        private int evStat;
+        public int EvStat
+        {
+            get { return evStat; }
+            set
+            {
+                if (evStat != value)
+                {
+                    evStat = value;
+                    OnPropertyChanged(nameof(EvStat));
+                }
+            }
+        }
+
         public void MajPourcentageStat(string nomStat, double valeurPourcentage)
         {
             List<MSpecimen> pokemons = this.Equipier.pokemons;
@@ -449,6 +477,7 @@ namespace PokeStat.VuesModeles
                 case "PV":
                     valeurBase = pokemonRef.BasePV;
                     max = valeurBase + max;
+
                     break;
                 case "Attaque":
                     valeurBase = pokemonRef.BaseAttaque;
@@ -488,6 +517,7 @@ namespace PokeStat.VuesModeles
             {
                 case "PV":
                     this.BasePVPourcentage = nouvelleValeurBase;
+         
                     break;
                 case "Attaque":
                     this.BaseAttaquePourcentage = nouvelleValeurBase;
@@ -561,8 +591,7 @@ namespace PokeStat.VuesModeles
             }
             else
             {              
-                    MajStats();
-                               
+                 MajStats();                              
             }
             if (ImagePokemonSelectionne == null)
             {
@@ -608,14 +637,19 @@ namespace PokeStat.VuesModeles
             {
                 equipierEnSaisie.TalentPokemon = repTalent.GetTalent(specimen.IdPokemon);
             }
-            
+            if(this.Equipier.Ev==0 && this.Equipier.Iv==0) 
+            {
+                equipierEnSaisie.Ev = 510;
+                equipierEnSaisie.Iv = 31;
+            }
+           
             return equipierEnSaisie;
         }
 
         public MEquipier GetEquipierAModId(MEquipier equipierModification)
         {
           
-                MEquipier equipierAModId = new MEquipier(
+              MEquipier equipierAModId = new MEquipier(
               equipierModification.EquipeId,
               equipierModification.TalentEquipier.IdTalent,
               equipierModification.IdPokemon,
@@ -765,7 +799,13 @@ namespace PokeStat.VuesModeles
                
                 if(this.BasePV!=0)
                 {
-                    this.BasePV = statsCalculator.CalculPV(pokemonRef.BasePV, this.Equipier.Ev, this.Equipier.Iv, this.Equipier.NiveauEquipier);
+                    //if (pokemonRef != null)
+                    //{
+                    //    this.Equipier.Ev = this.EvTotal;
+                        
+                    //    this.BasePV = statsCalculator.CalculPV(pokemonRef.BasePV, this.Equipier.Iv, this.EvStat, this.Equipier.NiveauEquipier);
+                    //    int ev = statsCalculator.CalculEVPourPV(this.Equipier.BasePV, this.Equipier.NiveauEquipier, pokemonRef.BasePV, this.Equipier.Iv);
+                    //}
                     this.Equipier.BasePV = this.BasePV; 
                 }
                 if (this.BaseAttaque != 0)
@@ -803,7 +843,10 @@ namespace PokeStat.VuesModeles
             this.BasePVPourcentage = this.BasePV;
             if (BasePVPourcentage != 0)
             {
+             
+                
                 this.MajPourcentageStat("PV", BasePVPourcentage);
+               
             }
 
             this.BaseAttaque = this.Equipier.BaseAttaque;
@@ -846,6 +889,7 @@ namespace PokeStat.VuesModeles
                 this.MajPourcentageStat("Vitesse", BaseVitPourcentage);
             }
         }
+
         private void EnregistrerEquipier()
         {
             if(this.Equipier != null)

@@ -17,6 +17,7 @@ using PokeStat.Vues.CrudVersion;
 using PokeStat.Vues.CrudUser;
 using PokeStat.Vues.Authentification;
 using PokeStat.Vues.User.GestionEquipe;
+using PokeStat.Vues.CrudAdmin;
 
 namespace PokeStat.VuesModeles
 {
@@ -30,6 +31,7 @@ namespace PokeStat.VuesModeles
         public ICommand GestionVersionCommand { get; set; }
         public ICommand GestionGenerationCommand { get; set; }
         public ICommand GestionUserCommand { get; set; }
+        public ICommand GestionAdminCommand { get; set; }
         public ICommand GestionEquipeCommand { get; set; }
         public ICommand GestionProfileCommand { get; set; }
         public ICommand GestionMatchCommand { get; set; }
@@ -48,7 +50,7 @@ namespace PokeStat.VuesModeles
                 }
                 else if (SessionManager.Instance.Role == UserRole.Administrateur)
                 {
-                    return new NavigationBarAdminVueModele(GestionPokemonCommand, GestionTypeCommand, GestionVersionCommand, GestionGenerationCommand, GestionUserCommand, AccueilPageCommand, CloseCommand, SessionManager.Instance);
+                    return new NavigationBarAdminVueModele(GestionPokemonCommand, GestionTypeCommand, GestionVersionCommand, GestionGenerationCommand, GestionUserCommand, GestionAdminCommand, AccueilPageCommand, CloseCommand, SessionManager.Instance);
                 }
                 else
                 {
@@ -66,6 +68,7 @@ namespace PokeStat.VuesModeles
             GestionVersionCommand = new RelayCommand(GestionVersion);
             GestionGenerationCommand = new RelayCommand(GestionGeneration);
             GestionUserCommand = new RelayCommand(GestionUser);
+            GestionAdminCommand = new RelayCommand(GestionAdmin);
             GestionEquipeCommand = new RelayCommand(GestionEquipe);
             GestionProfileCommand = new RelayCommand(GestionProfile);
             GestionMatchCommand = new RelayCommand(GestionMatch);
@@ -132,6 +135,16 @@ namespace PokeStat.VuesModeles
         public void GestionUser()
         {
             NavigationServices.NavigateToPage(new GestionUser());
+        }
+
+        public void GestionAdmin()
+        {
+            windowManager = new WindowManager();
+            var creeAdminPopup = new CreerAdmin();
+            creeAdminPopup.DataContext = new GestionAdminVueModele();
+
+            windowManager.Register(creeAdminPopup);
+            windowManager.ShowWindow("CreerAdminPopup", creeAdminPopup);
         }
 
         private void AccueilPage()
