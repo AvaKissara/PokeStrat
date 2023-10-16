@@ -173,7 +173,7 @@ namespace PokeStat.Repositories
             List<MTalent> ListMTalents = new List<MTalent>();
 
             SqlCommand RequestGetTalents = bddTool.GetRequest();
-            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM Pokemon_Talent AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent WHERE P.id_pok = @id_pok;";
+            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM Pokemons_Talents AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent WHERE P.id_pok = @id_pok;";
 
             SqlParameter idPok = RequestGetTalents.Parameters.Add("@id_pok", SqlDbType.Int);
 
@@ -274,7 +274,7 @@ namespace PokeStat.Repositories
             bddTool.CheckConnexion();
 
             SqlCommand RequestAddTypePokemon = bddTool.GetRequest();
-            RequestAddTypePokemon.CommandText = "INSERT INTO pokemon_type (type_id, pok_id, emplac) VALUES (@type_id, @pok_id, @emplac)";
+            RequestAddTypePokemon.CommandText = "INSERT INTO Pokemons_Types_Generations (type_id, pok_id, emplac) VALUES (@type_id, @pok_id, @emplac)";
 
             SqlParameter idType = RequestAddTypePokemon.Parameters.Add("@type_id", SqlDbType.Int);
             SqlParameter idPok = RequestAddTypePokemon.Parameters.Add("@pok_id", SqlDbType.Int);

@@ -35,7 +35,7 @@ namespace PokeStat.Repositories
             List<MTalent> ListMTalents = new List<MTalent>();
 
             SqlCommand RequestGetTalents = bddTool.GetRequest();
-            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM Pokemon_Talent AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent;";
+            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM Pokemons_Talents AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent;";
 
             using (SqlDataReader talents = RequestGetTalents.ExecuteReader())
             {
@@ -60,7 +60,7 @@ namespace PokeStat.Repositories
             List<MTalent> ListMTalents = new List<MTalent>();
 
             SqlCommand RequestGetTalents = bddTool.GetRequest();
-            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM Pokemon_Talent AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent WHERE P.id_pok = @id_pok;";
+            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM Pokemons_Talents AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent WHERE P.id_pok = @id_pok;";
             SqlParameter idEq = RequestGetTalents.Parameters.Add("@id_pok", SqlDbType.Int);
 
             idEq.Value = idEquipier;
