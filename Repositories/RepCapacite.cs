@@ -35,7 +35,7 @@ namespace PokeStat.Repositories
             List<MCapacite> ListMCapacites = new List<MCapacite>();
 
             SqlCommand RequestGetCaps = bddTool.GetRequest();
-            RequestGetCaps.CommandText = "SELECT P.id_pok, C.id_cap, C.nom_cap, CG.pp, CG.puiss, CG.pre, CG.base_crit FROM pokemon_capacite AS PC LEFT JOIN Pokemons AS P ON PC.pok_id = P.id_pok LEFT JOIN Capacites AS C ON PC.cap_id = C.id_cap LEFT JOIN Cap_gen AS CG ON C.id_cap = CG.cap_id WHERE P.id_pok = @id_pok ORDER BY C.nom_cap ASC;";
+            RequestGetCaps.CommandText = "SELECT P.id_pok, C.id_cap, C.nom_cap, CG.pp, CG.puiss, CG.pre, CG.base_crit FROM Pokemons_Capacites AS PC LEFT JOIN Pokemons AS P ON PC.pok_id = P.id_pok LEFT JOIN Capacites AS C ON PC.cap_id = C.id_cap LEFT JOIN Capacites_Generations AS CG ON C.id_cap = CG.cap_id WHERE P.id_pok = @id_pok ORDER BY C.nom_cap ASC;";
             SqlParameter idEq = RequestGetCaps.Parameters.Add("@id_pok", SqlDbType.Int);
 
             idEq.Value = idEquipier;

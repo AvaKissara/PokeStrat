@@ -390,6 +390,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Debug\Ressources\" />
     <Folder Include="bin\Release\" />
     <Folder Include="data\" />
     <Folder Include="Resources\" />
@@ -507,23 +508,6 @@
     <Content Include="bin\Debug\DotNetProjects.DataVisualization.Toolkit.dll" />
     <Content Include="bin\Debug\PokeStat.exe" />
     <Content Include="bin\Debug\PokeStat.pdb" />
-    <Resource Include="bin\Debug\Ressources\blastoise.jpg" />
-    <Resource Include="bin\Debug\Ressources\blaziken.jpg" />
-    <Resource Include="bin\Debug\Ressources\bulbasaur.jpg" />
-    <Resource Include="bin\Debug\Ressources\charizard.jpg" />
-    <Resource Include="bin\Debug\Ressources\charmander.jpg" />
-    <Resource Include="bin\Debug\Ressources\charmeleon.jpg" />
-    <Resource Include="bin\Debug\Ressources\ivysaur.jpg" />
-    <Resource Include="bin\Debug\Ressources\marshtomp.jpg" />
-    <Resource Include="bin\Debug\Ressources\mewtwo.jpg" />
-    <Resource Include="bin\Debug\Ressources\milotic.jpg" />
-    <Resource Include="bin\Debug\Ressources\mudkip.jpg" />
-    <Resource Include="bin\Debug\Ressources\pikachu.jpg" />
-    <Resource Include="bin\Debug\Ressources\raichu.jpg" />
-    <Resource Include="bin\Debug\Ressources\sharpedo.jpg" />
-    <Resource Include="bin\Debug\Ressources\squirtle.jpg" />
-    <Resource Include="bin\Debug\Ressources\venusaur.jpg" />
-    <Resource Include="bin\Debug\Ressources\wartortle.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

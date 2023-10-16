@@ -14,7 +14,7 @@ namespace PokeStat
         SqlConnection connexion;
         public SqlConnection GetConnexion()
         {
-            connexion = new SqlConnection(@"Data Source=LEODAGAN;Initial Catalog=PokeStat;Persist Security Info=True;User ID=sa;Password=It@chi8!");
+            connexion = new SqlConnection(@"Data Source=EREBE;Initial Catalog=PokeStat;Persist Security Info=True;User ID=sa;Password=It@chi8!");
             connexion.Open();
             return connexion;
         }

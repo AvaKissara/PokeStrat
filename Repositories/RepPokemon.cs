@@ -144,7 +144,7 @@ namespace PokeStat.Repositories
             List<MCapacite> ListMCapacites = new List<MCapacite>();
 
             SqlCommand RequestGetCapacites = bddTool.GetRequest();
-            RequestGetCapacites.CommandText = "SELECT P.id_pok, C.id_cap, C.nom_cap FROM pokemon_capacite AS CS LEFT JOIN Pokemons AS P ON CS.pok_id = P.id_pok LEFT JOIN Capacites AS C ON CS.cap_id = C.id_cap WHERE P.id_pok = @id_pok;";
+            RequestGetCapacites.CommandText = "SELECT P.id_pok, C.id_cap, C.nom_cap FROM Pokemons_Capacites AS CS LEFT JOIN Pokemons AS P ON CS.pok_id = P.id_pok LEFT JOIN Capacites AS C ON CS.cap_id = C.id_cap WHERE P.id_pok = @id_pok;";
             
             SqlParameter idPok = RequestGetCapacites.Parameters.Add("@id_pok", SqlDbType.Int);
 
@@ -173,7 +173,7 @@ namespace PokeStat.Repositories
             List<MTalent> ListMTalents = new List<MTalent>();
 
             SqlCommand RequestGetTalents = bddTool.GetRequest();
-            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM pokemon_talent AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent WHERE P.id_pok = @id_pok;";
+            RequestGetTalents.CommandText = "SELECT P.id_pok, PT.talent_id, T.nom_talent FROM Pokemon_Talent AS PT LEFT JOIN Pokemons AS P ON PT.pok_id = P.id_pok LEFT JOIN Talents AS T ON PT.talent_id = T.id_talent WHERE P.id_pok = @id_pok;";
 
             SqlParameter idPok = RequestGetTalents.Parameters.Add("@id_pok", SqlDbType.Int);
 
