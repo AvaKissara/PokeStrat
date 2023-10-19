@@ -84,6 +84,55 @@ namespace PokeStat.Repositories
             return ListMUsers;
         }
 
+        public MUser GetUser(string mailUser)
+        {
+            bddTool.CheckConnexion();
+
+            MUser User = new MUser();
+
+            try
+            {
+                SqlCommand RequestGetUser = bddTool.GetRequest();
+                RequestGetUser.CommandText = "SELECT * FROM Users WHERE mail_user = @mail_user";
+                RequestGetUser.Parameters.Add("@mail_user", SqlDbType.VarChar).Value = mailUser;
+                using (SqlDataReader user = RequestGetUser.ExecuteReader())
+                {
+                    while (user.Read())
+                    {
+                        SecureString mdp = new NetworkCredential("", $"{user[5]}").SecurePassword;
+                        MDate creationDate = null;
+                        if (!user.IsDBNull(7))
+                        {
+                            DateTime idDate = DateTime.Parse($"{user[7]}");
+                            creationDate = new MDate(idDate);
+                        }
+
+                        User = new MUser(
+                            user.GetInt32(0),
+                            $"{user[1]}",
+                            $"{user[2]}",
+                            $"{user[3]}",
+                            $"{user[4]}",
+                            mdp,
+                            DateTime.Parse($"{user[6]}"),
+                            creationDate);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Gestion de l'exception
+                Console.WriteLine("Erreur lors de la récupération des utilisateurs: " + ex.Message);
+            }
+
+
+            // Fermeture de la connexion
+            bddTool.CloseConnexion();
+
+            return User;
+        }
+
         public SecureString GetSalt(int idUserLogin)
         {
             bddTool.CheckConnexion();

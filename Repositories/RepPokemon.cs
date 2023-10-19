@@ -38,7 +38,8 @@ namespace PokeStat.Repositories
             List<MSpecimen> ListMSpecimens = new List<MSpecimen>();
 
             SqlCommand RequestGetPokemons = bddTool.GetRequest();
-            RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img,  P.nom_fra_pok, P.nom_eng_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, P2.id_pok as evo_de_id, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, G.id_gen, G.nom_gen FROM Pokemons AS P LEFT JOIN Generations as G ON P.gen_id = G.id_gen LEFT JOIN Pokemons P2 ON P.evo_de_id = P2.id_pok";
+            //RequestGetPokemons.CommandText = "SELECT p.id_pok, P.pok_img,  P.nom_fra_pok, P.nom_eng_pok,  P.num_pok, P.taille_pok, P.poids_pok, P.base_hp, P.base_att, P.base_def, P.base_sp_att, P.base_sp_def, P.base_vit, P.legendaire, P.shiny, P.mega, P.gigamax, P.fabuleux, P2.id_pok as evo_de_id, P2.pok_img as img_evo, P2.nom_fra_pok as nom_evo, G.id_gen, G.nom_gen FROM Pokemons AS P LEFT JOIN Generations as G ON P.gen_id = G.id_gen LEFT JOIN Pokemons P2 ON P.evo_de_id = P2.id_pok;";
+            RequestGetPokemons.CommandText = "SELECT * FROM VueGetAllPokemons;";
 
             using (SqlDataReader pokemons = RequestGetPokemons.ExecuteReader())
             {
@@ -64,12 +65,13 @@ namespace PokeStat.Repositories
                         string nomGen = pokemons.IsDBNull(22) ? "" : $"{pokemons[22]}";
                         gen = new MGeneration(idGen, nomGen);
                     }
-                    int base_hp = pokemons.IsDBNull(7) ? 0 : pokemons.GetInt32(7);
-                    int base_att = pokemons.IsDBNull(8) ? 0 : pokemons.GetInt32(8);
-                    int base_def = pokemons.IsDBNull(9) ? 0 : pokemons.GetInt32(9);
-                    int base_sp_att = pokemons.IsDBNull(10) ? 0 : pokemons.GetInt32(10);
-                    int base_sp_def = pokemons.IsDBNull(11) ? 0 : pokemons.GetInt32(11);
-                    int base_vit = pokemons.IsDBNull(12) ? 0 : pokemons.GetInt32(12);
+                    short base_hp = pokemons.IsDBNull(7) ? (short)0 : pokemons.GetInt16(7);
+                    short base_att = pokemons.IsDBNull(8) ? (short)0 : pokemons.GetInt16(8);
+                    short base_def = pokemons.IsDBNull(9) ? (short)0 : pokemons.GetInt16(9);
+                    short base_sp_att = pokemons.IsDBNull(10) ? (short)0 : pokemons.GetInt16(10);
+                    short base_sp_def = pokemons.IsDBNull(11) ? (short)0 : pokemons.GetInt16(11);
+                    short base_vit = pokemons.IsDBNull(12) ? (short)0 : pokemons.GetInt16(12);
+
 
 
                     MSpecimen unPokemon = new MSpecimen(

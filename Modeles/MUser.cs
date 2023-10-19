@@ -19,11 +19,12 @@ namespace PokeStat.Modeles
 
         }
 
-        public MUser(int IdPersonne, string PseudoPersonne)
-     : base(IdPersonne, PseudoPersonne)
+        public MUser(int IdPersonne, string MailPersonne)
+     : base(IdPersonne, MailPersonne)
         {
 
         }
+     
 
         public MUser()
         { }

@@ -32,10 +32,10 @@ namespace PokeStat.Modeles
             Cree = cree;
         }
 
-        public MPersonne(int idPersonne, string pseudoPersonne)
+        public MPersonne(int idPersonne, string mailPersonne)
         {
             IdPersonne = idPersonne;
-            PseudoPersonne = pseudoPersonne;
+            MailPersonne = MailPersonne;
         }
 
         public MPersonne() { }

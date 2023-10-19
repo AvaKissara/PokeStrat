@@ -80,71 +80,77 @@ namespace PokeStat.VuesModeles
 
         public void Connexion()
         {
+            MUser userAConnecter = new MUser(0, Identifiant);
             List<MUser> users = repUser.GetAll();
             List<MAdmin> admins = repAdmin.GetAll();
-            MUser userAConnecter = users.FirstOrDefault(u => u.MailPersonne == Identifiant);
+            //MUser userAConnecter = users.FirstOrDefault(u => u.MailPersonne == Identifiant);
+            userAConnecter = repUser.GetUser(Identifiant);
             MAdmin adminAConnecter = admins.FirstOrDefault(a => a.MailPersonne == Identifiant);
 
-            if (userAConnecter != null && adminAConnecter != null)
+            if (userAConnecter == null && adminAConnecter == null)
             {
-                MessageBox.Show("Erreur : Plusieurs utilisateurs avec le même email.");
-                return;
-            }
-
-            SecureString selHasheUser = userAConnecter != null ? repUser.GetSalt(userAConnecter.IdPersonne) : null;
-            SecureString selHasheAdmin = adminAConnecter != null ? repAdmin.GetSalt(adminAConnecter.IdPersonne) : null;
-
-            bool connexionReussieUser = userAConnecter != null && PasswordManager.VerifyPassword(Mdp, userAConnecter.MdpPersonne, selHasheUser);
-            bool connexionReussieAdmin = adminAConnecter != null && PasswordManager.VerifyPassword(Mdp, adminAConnecter.MdpPersonne, selHasheAdmin);
-            //bool connexionReussieAdmin = adminAConnecter != null;
-
-            if (connexionReussieUser || connexionReussieAdmin)
-            {
-                MPersonne personneConnectee = null;
-
-                // Défini le rôle de l'utilisateur
-                if (connexionReussieAdmin)
-                {
-                    personneConnectee = adminAConnecter;
-                    Role = UserRole.Administrateur;
-
-                }
-                else if(connexionReussieUser)
-                {
-                    personneConnectee = userAConnecter;
-                    Role = UserRole.Utilisateur;
-                }
-                else
-                {
-                    Role = UserRole.Profane;
-                }
-                SessionManager.Instance.Account = personneConnectee;
-
-                //MainWindow = new MainWindow();
-
-                //var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-
-                //activeWindow?.Close();
-
-                //MainWindow mainWindow = new MainWindow();
-                //mainWindow.Show(); 
-                //Application.Current.MainWindow.Close();
-                var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-                activeWindow?.Close();
-                windowManager = new WindowManager();
-                MainWindow mainWindow = new MainWindow();
-                windowManager.Register(mainWindow);
-                windowManager.ShowWindow("MainWindow", mainWindow);
-
-              
-
-                //windowManager.CloseWindow(MainWindow);
+                MessageBox.Show("L'email n'est pas reconnu");
 
             }
             else
             {
-                MessageBox.Show("Raté");
+                SecureString selHasheUser = userAConnecter != null ? repUser.GetSalt(userAConnecter.IdPersonne) : null;
+                SecureString selHasheAdmin = adminAConnecter != null ? repAdmin.GetSalt(adminAConnecter.IdPersonne) : null;
+
+                bool connexionReussieUser = userAConnecter != null && PasswordManager.VerifyPassword(Mdp, userAConnecter.MdpPersonne, selHasheUser);
+                bool connexionReussieAdmin = adminAConnecter != null && PasswordManager.VerifyPassword(Mdp, adminAConnecter.MdpPersonne, selHasheAdmin);
+                //bool connexionReussieAdmin = adminAConnecter != null;
+
+                if (connexionReussieUser || connexionReussieAdmin)
+                {
+                    MPersonne personneConnectee = null;
+
+                    // Défini le rôle de l'utilisateur
+                    if (connexionReussieAdmin)
+                    {
+                        personneConnectee = adminAConnecter;
+                        Role = UserRole.Administrateur;
+
+                    }
+                    else if (connexionReussieUser)
+                    {
+                        personneConnectee = userAConnecter;
+                        Role = UserRole.Utilisateur;
+                    }
+                    else
+                    {
+                        Role = UserRole.Profane;
+                    }
+                    SessionManager.Instance.Account = personneConnectee;
+
+                    //MainWindow = new MainWindow();
+
+                    //var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+
+                    //activeWindow?.Close();
+
+                    //MainWindow mainWindow = new MainWindow();
+                    //mainWindow.Show(); 
+                    //Application.Current.MainWindow.Close();
+                    var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                    activeWindow?.Close();
+                    windowManager = new WindowManager();
+                    MainWindow mainWindow = new MainWindow();
+                    windowManager.Register(mainWindow);
+                    windowManager.ShowWindow("MainWindow", mainWindow);
+
+
+
+                    //windowManager.CloseWindow(MainWindow);
+
+                }
+                else
+                {
+                    MessageBox.Show("Raté");
+                }
             }
+
+          
         }
 
         private void AccueilPage()
