@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="GESTION DES POKEMONS" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Raleway"  FontSize="24" Padding="6,4" Margin="0,16,0,0" Foreground="White"/>
-            <Image Source="{Binding AbsoluteDtImagePath}" />
+            <Image Source="{Binding AbsoluDtImagePath}" />
         </Grid>
 
       

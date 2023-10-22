@@ -37,7 +37,6 @@ namespace PokeStat.VuesModeles
 
         private readonly RepTalent repTalent;
         private readonly RepCapacite repCapacite;
-
         private RepEquipe repEquipe;
         private StatsCalculator statsCalculator;
         public MSpecimen pokemonRef;

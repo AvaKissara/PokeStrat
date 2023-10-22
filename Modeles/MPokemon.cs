@@ -12,12 +12,12 @@ namespace PokeStat.Modeles
     public abstract class MPokemon 
     {
         public int IdPokemon { get; set; }
-        public string CheminImgPokemon { get; set; }
-        public string NomFraPokemon { get; set; }
-        public string NomEngPokemon { get; set; }
-        public string NumPokemon { get; set; }
-        public decimal TaillePokemon { get; set; }
-        public decimal PoidsPokemon { get; set; }
+        public string CheminImgPokemon { get; protected set; }
+        public string NomFraPokemon { get; protected set; }
+        public string NomEngPokemon { get; protected set; }
+        public string NumPokemon { get; protected set; }
+        public decimal TaillePokemon { get; protected set; }
+        public decimal PoidsPokemon { get; protected set; }
         public int BasePV { get; set; }
         public int BaseAttaque { get; set; }
         public int BaseDefense { get; set; }
@@ -40,10 +40,7 @@ namespace PokeStat.Modeles
             {
                 if (!string.IsNullOrEmpty(CheminImgPokemon))
                 {
-                    // Obtenez le chemin du répertoire de l'exécutable de l'application
                     string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-                    // Composez le chemin absolu en concaténant le chemin du répertoire de l'application avec le chemin relatif
                     return Path.Combine(appDirectory, CheminImgPokemon);
                 }
 
@@ -82,11 +79,6 @@ namespace PokeStat.Modeles
             NomFraPokemon = nomFraPokemon;
         }
 
-        public MPokemon(int idPokemon)
-        {
-            IdPokemon = idPokemon;
-        }
-
         public MPokemon(int idPokemon, string cheminImgPokemon, string nomFraPokemon, int basePV, int baseAttaque, int baseDefense, int baseAttSpe, int baseDefSpe, int baseVit, bool legendaire, bool shiny, bool mega, bool giga, bool fab)
         {
             IdPokemon = idPokemon;
@@ -117,9 +109,11 @@ namespace PokeStat.Modeles
             this.BaseVit = BaseVit;
         }
 
+        public MPokemon(int idPokemon)
+        {
+            IdPokemon = idPokemon;
+        }
 
-        public MPokemon() { }
-
-     
+        public MPokemon() { }     
     }
 }

@@ -110,7 +110,6 @@
     <Compile Include="Repositories\RepVersion.cs" />
     <Compile Include="Services\StatsCalculator.cs" />
     <Compile Include="Utilitaires\BddTool.cs" />
-    <Compile Include="Utilitaires\BitmapToImageSourceConverter.cs" />
     <Compile Include="Utilitaires\BoolToVisibilityConverter.cs" />
     <Compile Include="Utilitaires\DataTableTool.cs" />
     <Compile Include="Utilitaires\DRVToModelConverter.cs" />

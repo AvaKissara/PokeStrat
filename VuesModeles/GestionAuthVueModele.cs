@@ -24,6 +24,22 @@ namespace PokeStat.VuesModeles
 
         private readonly RepAdmin repAdmin;
 
+        private UserRole role;
+
+        public UserRole Role
+        {
+            get { return role; }
+            set
+            {
+                if (role != value)
+                {
+                    role = value;
+                    OnPropertyChanged(nameof(Role));
+                }
+            }
+        }
+
+
         private AccueilVueModel accueilVueModel;
 
 
@@ -50,20 +66,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        private UserRole role;
-
-        public UserRole Role
-        {
-            get { return role; }
-            set
-            {
-                if (role != value)
-                {
-                    role = value;
-                    OnPropertyChanged(nameof(Role));
-                }
-            }
-        }
+     
 
         public MainWindow MainWindow { get; set; }
         public WindowManager windowManager;
@@ -99,7 +102,6 @@ namespace PokeStat.VuesModeles
 
                 bool connexionReussieUser = userAConnecter != null && PasswordManager.VerifyPassword(Mdp, userAConnecter.MdpPersonne, selHasheUser);
                 bool connexionReussieAdmin = adminAConnecter != null && PasswordManager.VerifyPassword(Mdp, adminAConnecter.MdpPersonne, selHasheAdmin);
-                //bool connexionReussieAdmin = adminAConnecter != null;
 
                 if (connexionReussieUser || connexionReussieAdmin)
                 {

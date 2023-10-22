@@ -12,7 +12,6 @@ namespace PokeStat.Modeles
 {
     public class MUser : MPersonne
     {
-    
         public MUser(int IdPersonne, string NomPersonne, string PrenomPersonne, string PseudoPersonne, string MailPersonne, SecureString MdpPersonne, DateTime RoleActualise, MDate RoleCree)
       : base(IdPersonne, NomPersonne, PrenomPersonne, PseudoPersonne, MailPersonne, MdpPersonne, RoleActualise, RoleCree)
         {

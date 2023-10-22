@@ -120,11 +120,11 @@ namespace PokeStat.Repositories
 
             (string hash, string salt) = PasswordManager.HashPassword(mdpString);
 
-            try
-            {
+            //try
+            //{
                 SqlCommand RequestAddAdmin = bddTool.GetRequest();
 
-                RequestAddAdmin.CommandText = "INSERT INTO admins(nom_admin, prenom_admin, pseudo_admin, mail_admin, mdp_admin, actualise_le, date_id, sel_admin) VALUES(@nom_admin, @prenom_admin, @pseudo, @mail_admin, @mdp_admin, @actualise_le, @date_id, @sel_admin); SELECT id_admin From Admins WHERE id_admin= @adminId; EXEC SetAdminID  @adminId= @adminId;";
+                RequestAddAdmin.CommandText = "INSERT INTO admins(nom_admin, prenom_admin, pseudo_admin, mail_admin, mdp_admin, actualise_le, date_id, sel_admin, createur_id) VALUES(@nom_admin, @prenom_admin, @pseudo, @mail_admin, @mdp_admin, @actualise_le, @date_id, @sel_admin, @adminId); ";
 
                 SqlParameter nom = RequestAddAdmin.Parameters.Add("@nom_admin", SqlDbType.VarChar);
                 SqlParameter prenom = RequestAddAdmin.Parameters.Add("@prenom_admin", SqlDbType.VarChar);
@@ -149,11 +149,11 @@ namespace PokeStat.Repositories
 
                 int result = RequestAddAdmin.ExecuteNonQuery();
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erreur lors de l'ajout de l'utilisateur: " + ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Erreur lors de l'ajout de l'utilisateur: " + ex.Message);
+            //}
 
             bddTool.CloseConnexion();
         }

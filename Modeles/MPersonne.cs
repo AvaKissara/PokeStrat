@@ -38,8 +38,6 @@ namespace PokeStat.Modeles
             MailPersonne = MailPersonne;
         }
 
-        public MPersonne() { }
-
         public string ToInsecureString(SecureString securePassword)
         {
             if (securePassword == null)
@@ -58,6 +56,8 @@ namespace PokeStat.Modeles
                 Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
             }
         }
+
+        public MPersonne() { }
     }
 
 }

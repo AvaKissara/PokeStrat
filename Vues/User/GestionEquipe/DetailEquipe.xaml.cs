@@ -60,8 +60,7 @@ namespace PokeStat.Vues.User.GestionEquipe
                 detailsPokemon.Left = detailEquipeLeft - detailsPokemon.Width;
                 detailsPokemon.Top = detailEquipeTop;
 
-                windowManager.ShowWindow("DetailEquipe", detailsPokemon);
-                //detailsPokemon.ShowDialog();
+                windowManager.ShowWindow("DetailPokemon", detailsPokemon);
             }
         }
 

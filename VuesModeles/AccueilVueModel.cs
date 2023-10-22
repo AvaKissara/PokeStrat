@@ -38,12 +38,11 @@ namespace PokeStat.VuesModeles
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
+
         public BaseVueModele NavigationBarViewModel
         {
             get
             {
-                // En fonction du rôle actuel
-                // retourne le modèle de navigation bar approprié
                 if (SessionManager.Instance.Role == UserRole.Utilisateur)
                 {
                     return new NavigationBarUserVueModele(GestionEquipeCommand, GestionProfileCommand, GestionMatchCommand, AccueilPageCommand, CloseCommand, SessionManager.Instance);

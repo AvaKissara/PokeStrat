@@ -15,7 +15,6 @@ namespace PokeStat.VuesModeles
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         public virtual void Dispose() { }
     }
 }

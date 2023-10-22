@@ -168,8 +168,7 @@ namespace PokeStat.VuesModeles
             GestionCommand = new RelayCommand(GestionVersion);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
-
-            
+           
             repVersion = new RepVersion();
             List<MVersion> versions = repVersion.GetAll();
 
