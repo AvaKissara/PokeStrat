@@ -52,7 +52,7 @@ namespace PokeStat.VuesModeles
         }
         public bool IsSelectionne => LigneSelection != null;
 
-        //Propriété de type booléen utilisée pour contrôler la saisie d'une version
+        //Propriété de type booléen utilisée pour contrôler la saisie d'un utilisateur
         private bool isSaisieValide;
         public bool IsSaisieValide
         {
@@ -64,7 +64,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        //Propriété de type string utilisée pour stocker un message d'erreur relatif à la saisie d'un type
+        //Propriété de type string utilisée pour stocker un message d'erreur relatif à la saisie d'un utilisateur
         private string erreurSaisie;
         public string ErreurSaisie
         {
@@ -199,7 +199,7 @@ namespace PokeStat.VuesModeles
 
         public void UpdateSecurePassword(SecureString securePassword)
         {
-            MdpUser = securePassword.Copy(); // Copy the password to the view model's SecureString
+            MdpUser = securePassword.Copy(); 
         }
         private void CreeUser()
         {
@@ -226,7 +226,7 @@ namespace PokeStat.VuesModeles
                 repDate.Add(cree);
                 repUser.Add(nouvelUser);
             }
-            // Actualisation de la liste des types
+            // Actualisation de la liste des utilisateurs
             users = repUser.GetAll();
             dtData = DataTableTool.ConvertListToDataTable(users);
 

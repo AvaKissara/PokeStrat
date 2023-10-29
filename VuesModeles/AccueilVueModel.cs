@@ -38,11 +38,11 @@ namespace PokeStat.VuesModeles
         public ICommand AccueilPageCommand { get; set; }
         public ICommand CloseCommand { get; }
 
-
         public BaseVueModele NavigationBarViewModel
         {
             get
             {
+                // Sélection d'un modèle de barre de navigation en fonction du rôle de l'utilisateur
                 if (SessionManager.Instance.Role == UserRole.Utilisateur)
                 {
                     return new NavigationBarUserVueModele(GestionEquipeCommand, GestionProfileCommand, GestionMatchCommand, AccueilPageCommand, CloseCommand, SessionManager.Instance);
@@ -60,6 +60,7 @@ namespace PokeStat.VuesModeles
 
         public AccueilVueModel()
         {
+            // Initialisation des commandes lors de la création de l'objet AccueilVueModel
             ConnexionPopupCommand = new RelayCommand(ConnexionPopup);
             InscriptionPopupCommand = new RelayCommand(InscriptionPopup);
             GestionPokemonCommand = new RelayCommand(GestionPokemon);
@@ -73,38 +74,33 @@ namespace PokeStat.VuesModeles
             GestionMatchCommand = new RelayCommand(GestionMatch);
             AccueilPageCommand = new RelayCommand(AccueilPage);
             CloseCommand = new RelayCommand(Close);
-
-      
         }
 
+        // Méthodes pour gérer les différentes actions de l'interface
 
         public void GestionProfile()
         {
-
+            // Code à ajouter pour gérer la page de gestion de profil
         }
 
         public void GestionMatch()
         {
-
+            // Code à ajouter pour gérer la page de gestion de matchs
         }
 
         public void GestionEquipe()
         {
+            // Naviguer vers la page de gestion d'équipe
             NavigationServices.NavigateToPage(new GestionEquipe());
         }
 
-        //private void ConnexionPopup()
-        //{
-        //    var connexionPopup = new Connexion();
-        //    connexionPopup.DataContext = new GestionAuthVueModele();
-        //    connexionPopup.ShowDialog();
-        //}
         public WindowManager windowManager;
+
         private void ConnexionPopup()
         {
+            // Ouvrir une fenêtre de connexion pop-up
             windowManager = new WindowManager();
             var connexionPopup = new Connexion();
-           
             connexionPopup.DataContext = new GestionAuthVueModele();
             windowManager.Register(connexionPopup);
             windowManager.ShowWindow("ConnexionPopup", connexionPopup);
@@ -112,53 +108,61 @@ namespace PokeStat.VuesModeles
 
         private void InscriptionPopup()
         {
+            // Naviguer vers la page de création d'utilisateur
             NavigationServices.NavigateToPage(new CreeUser());
         }
 
-        private void GestionPokemon() 
+        private void GestionPokemon()
         {
+            // Naviguer vers la page de gestion de Pokémon
             NavigationServices.NavigateToPage(new GestionPokemon());
         }
 
         private void GestionType()
         {
+            // Naviguer vers la page de gestion de types
             NavigationServices.NavigateToPage(new GestionType());
         }
 
-
         public void GestionGeneration()
         {
+            // Naviguer vers la page de gestion de générations
             NavigationServices.NavigateToPage(new GestionGen());
         }
 
         public void GestionUser()
         {
+            // Naviguer vers la page de gestion d'utilisateurs
             NavigationServices.NavigateToPage(new GestionUser());
         }
 
         public void GestionAdmin()
         {
+            // Ouvrir une fenêtre pop-up pour la création d'administrateur
             windowManager = new WindowManager();
             var creeAdminPopup = new CreerAdmin();
             creeAdminPopup.DataContext = new GestionAdminVueModele();
-
             windowManager.Register(creeAdminPopup);
             windowManager.ShowWindow("CreerAdminPopup", creeAdminPopup);
         }
 
         private void AccueilPage()
         {
-       
+            // Naviguer vers la page d'accueil
             NavigationServices.NavigateToPage(new AccueilPage());
         }
 
         public void GestionVersion()
         {
+            // Naviguer vers la page de gestion des versions
             NavigationServices.NavigateToPage(new GestionVersion());
         }
+
         private void Close()
         {
+            // Fermer l'application
             Application.Current.Shutdown();
         }
     }
+
 }

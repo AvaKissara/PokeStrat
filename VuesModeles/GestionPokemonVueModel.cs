@@ -6,7 +6,7 @@ using PokeStat.Vues.CrudPokemon;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
@@ -665,8 +665,8 @@ namespace PokeStat.VuesModeles
             dtData.Columns.Add("HP", typeof(int));
             dtData.Columns.Add("Attaque", typeof(int));
             dtData.Columns.Add("Défense", typeof(int));
-            dtData.Columns.Add("Att. spé", typeof(int));
-            dtData.Columns.Add("Déf. spé", typeof(int));
+            dtData.Columns.Add("Attspé", typeof(int));
+            dtData.Columns.Add("Défspé", typeof(int));
             dtData.Columns.Add("Vitesse", typeof(int));
             dtData.Columns.Add("Légendaire", typeof(bool));
             dtData.Columns.Add("Shiny", typeof(bool));
@@ -688,18 +688,18 @@ namespace PokeStat.VuesModeles
                 string basePath = @"C:/Users/AvaKissara/source/repos/PokeStat/Ressources/";
                 //string fullPath = System.IO.Path.GetFullPath("C:\Users/Lila%20Badi/Documents/GitHub/AvaKissara/PokeStat/Ressources/" + relativeDtImagePath);
                 AbsoluDtImagePath = System.IO.Path.Combine(basePath, pokemon.CheminImgPokemon);
-                
-             
 
 
-                // Créez un objet BitmapImage à partir du chemin relatif
+
+
+                //// Créez un objet BitmapImage à partir du chemin relatif
                 //System.Drawing.Image ImgPokemon = System.Drawing.Image.FromFile(AbsoluDtImagePath);
                 
 
                 DataRow row;
                 row = dtData.NewRow();
                 row[0] = pokemon.IdPokemon;
-                row[1] = AbsoluDtImagePath;
+                row[1] = pokemon.CheminImgPokemon;
                 row[2] = pokemon.NomFraPokemon;
                 row[3] = pokemon.NomEngPokemon;
                 row[4] = pokemon.NumPokemon;

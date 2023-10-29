@@ -18,10 +18,6 @@
     </Page.Resources>
     <Grid >
        <Grid Margin="-100,48,-120,-319">
-            <!--<Grid.Background>-->
-                <!--<ImageBrush ImageSource="../bin/Debug/cardpic.png"/>-->
-            <!--</Grid.Background>-->
-
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />

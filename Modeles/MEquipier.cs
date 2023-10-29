@@ -160,8 +160,6 @@ namespace PokeStat.Modeles
             ); ;
         }
 
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName = null)

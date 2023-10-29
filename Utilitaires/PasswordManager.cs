@@ -22,12 +22,12 @@ namespace PokeStat.Utilitaires
             }
             else
             {
-                // Générer un sel aléatoire sous forme de tableau d'octets
+                // Génére un sel aléatoire sous forme de tableau d'octets
                 byte[] saltBytes = GenerateSalt();
                 // Conversion du mot de passe en tableau d'octets
                 byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 
-                // Créer une instance de l'algorithme de hachage SHA256
+                // Crée une instance de l'algorithme de hachage SHA256
                 using (var sha256 = SHA256.Create())
                 {
                     // Combinaison du sel et du mot de passe en un seul tableau d'octets
@@ -35,10 +35,10 @@ namespace PokeStat.Utilitaires
                     Buffer.BlockCopy(saltBytes, 0, saltedPassword, 0, saltBytes.Length);
                     Buffer.BlockCopy(passwordBytes, 0, saltedPassword, saltBytes.Length, passwordBytes.Length);
 
-                    // Calculer le hachage du mot de passe et du sel combinés
+                    // Calcule le hachage du mot de passe et du sel combinés
                     byte[] hashedBytes = sha256.ComputeHash(saltedPassword);
 
-                    // Convertir les tableaux d'octets en chaînes Base64 pour le stockage
+                    // Converti les tableaux d'octets en chaînes Base64 pour le stockage
                     return (Convert.ToBase64String(hashedBytes), Convert.ToBase64String(saltBytes));
                 }
           
@@ -52,12 +52,12 @@ namespace PokeStat.Utilitaires
             string storedHash = ToInsecureString(secureStoredHash);
             string salt = ToInsecureString(secureSalt);
 
-            // Convertir le sel en tableau d'octets
+            // Converti le sel en tableau d'octets
             byte[] saltBytes = Convert.FromBase64String(salt);
             // Conversion du mot de passe saisi en tableau d'octets
             byte[] enteredPasswordBytes = Encoding.UTF8.GetBytes(enteredPassword);
 
-            // Créer une instance de l'algorithme de hachage SHA256
+            // Crée une instance de l'algorithme de hachage SHA256
             using (var sha256 = SHA256.Create())
             {
                 // Combinaison du sel et du mot de passe saisi en un seul tableau d'octets
@@ -65,13 +65,13 @@ namespace PokeStat.Utilitaires
                 Buffer.BlockCopy(saltBytes, 0, saltedEnteredPassword, 0, saltBytes.Length);
                 Buffer.BlockCopy(enteredPasswordBytes, 0, saltedEnteredPassword, saltBytes.Length, enteredPasswordBytes.Length);
 
-                // Calculer le hachage du mot de passe saisi et du sel combinés
+                // Calcule le hachage du mot de passe saisi et du sel combinés
                 byte[] hashedEnteredPassword = sha256.ComputeHash(saltedEnteredPassword);
 
-                // Convertir le hachage saisi en chaîne Base64 pour la comparaison
+                // Converti le hachage saisi en chaîne Base64 pour la comparaison
                 string enteredPasswordHash = Convert.ToBase64String(hashedEnteredPassword);
 
-                // Comparer le hachage saisi avec le hachage stocké
+                // Compare le hachage saisi avec le hachage stocké
                 return enteredPasswordHash == storedHash;
             }
         }
@@ -80,7 +80,7 @@ namespace PokeStat.Utilitaires
         private static byte[] GenerateSalt()
         {
             byte[] salt = new byte[32];
-            // Utiliser RNGCryptoServiceProvider pour générer un sel aléatoire sécurisé
+            // Utilise RNGCryptoServiceProvider pour générer un sel aléatoire sécurisé
             using (var rng = new RNGCryptoServiceProvider())
             {
                 rng.GetBytes(salt);

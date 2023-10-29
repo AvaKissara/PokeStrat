@@ -73,8 +73,4 @@ namespace PokeStat.Utilitaires
         Utilisateur, // L'utilisateur connecté
         Administrateur // L'administrateur connecté
     }
-
-   
-
-
 }

@@ -94,7 +94,6 @@ namespace PokeStat.Vues.User.GestionEquipe
             detailGestionCapacite.Left = detailCapaciteLeft -166;
             detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 46;
             windowManager.ShowWindow("DetailGestionCapacite", detailGestionCapacite);
-            //detailGestionCapacite.ShowDialog();
         }
 
         private void Stat_PreviewMouseDown(object sender, MouseButtonEventArgs e)

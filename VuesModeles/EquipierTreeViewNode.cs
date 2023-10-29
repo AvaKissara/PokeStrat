@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -943,20 +944,21 @@ namespace PokeStat.VuesModeles
         MainWindow mainWindow;
         private void Close()
         {
-            mainWindow = new MainWindow();
-            mainWindow.DataContext = new AccueilVueModel();
-            windowManager.Register(mainWindow);
-            NavigationServices.NavigateToPage(new GestionEquipe());
-            windowManager.ShowWindow("Mainwindow", mainWindow);
+            //mainWindow = new MainWindow();
+            //mainWindow.DataContext = new AccueilVueModel();
+            //windowManager.Register(mainWindow);
+            //NavigationServices.NavigateToPage(new GestionEquipe());
+            //windowManager.ShowWindow("Mainwindow", mainWindow);
+            //var activeWindow = System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            //activeWindow?.Close();
+
+            //windowManager = new WindowManager();
+            //MainWindow mainWindow = new MainWindow();
+            //windowManager.Register(mainWindow);
+            //NavigationServices.NavigateToPage(new GestionEquipe());
+            //windowManager.ShowWindow("MainWindow", mainWindow);
         }
 
-        //private void CloseCap()
-        //{
-        //    var detailPopup = new DetailEquipe();
-        //    detailPopup.Owner = MainWindow;
-        //    windowManager.Register(detailPopup);
-        //    detailPopup.DataContext = this;
-        //    windowManager.ShowWindow("DetailEquipe", detailPopup);
-        //}
+       
     }
 }

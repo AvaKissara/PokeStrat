@@ -19,7 +19,7 @@ namespace PokeStat.Utilitaires
 
             if (existingWindow != null)
             {
-                await Task.Delay(1000);
+                await Task.Delay(500);
                 // Fermez la fenêtre existante
                 existingWindow.Close();
                 openWindows.Remove(existingWindow);
@@ -74,9 +74,9 @@ namespace PokeStat.Utilitaires
             window.Activate();
         }
 
-        public void CloseWindow(string key)
+        public void CloseWindow(Window window)
         {
-            var window = openWindows.FirstOrDefault(w => w.Name == key);
+            //var window = openWindows.FirstOrDefault(w => w.Name == key);
             if (window != null)
             {
                 openWindows.Remove(window);

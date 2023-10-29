@@ -86,7 +86,6 @@ namespace PokeStat.VuesModeles
             MUser userAConnecter = new MUser(0, Identifiant);
             List<MUser> users = repUser.GetAll();
             List<MAdmin> admins = repAdmin.GetAll();
-            //MUser userAConnecter = users.FirstOrDefault(u => u.MailPersonne == Identifiant);
             userAConnecter = repUser.GetUser(Identifiant);
             MAdmin adminAConnecter = admins.FirstOrDefault(a => a.MailPersonne == Identifiant);
 
@@ -125,16 +124,10 @@ namespace PokeStat.VuesModeles
                     }
                     SessionManager.Instance.Account = personneConnectee;
 
-                    //MainWindow = new MainWindow();
-
-                    //var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-
-                    //activeWindow?.Close();
-
-                    //MainWindow mainWindow = new MainWindow();
-                    //mainWindow.Show(); 
-                    //Application.Current.MainWindow.Close();
+ 
                     var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+                    activeWindow?.Close();
+                    activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
                     activeWindow?.Close();
                     windowManager = new WindowManager();
                     MainWindow mainWindow = new MainWindow();
@@ -143,7 +136,7 @@ namespace PokeStat.VuesModeles
 
 
 
-                    //windowManager.CloseWindow(MainWindow);
+                  
 
                 }
                 else

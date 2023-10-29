@@ -49,7 +49,6 @@
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding Equipe}">
                             <StackPanel>
-
                                 <ItemsControl ItemsSource="{Binding Equipiers}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>

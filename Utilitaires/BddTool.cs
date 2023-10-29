@@ -23,6 +23,7 @@ namespace PokeStat.Utilitaires
             {
                 activeConnexion.Open();
             }
+
         }
         public void CloseConnexion() 
         {

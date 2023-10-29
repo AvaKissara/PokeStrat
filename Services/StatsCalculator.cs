@@ -31,13 +31,6 @@ namespace PokeStat.Services
             return (((pv - 10) * 100) / (niveau - 2 * baseStat - 100)) * 4;
         }
 
-
-        public int CalculEVPourStat(int stat, double modificateurNature, int niveau, int baseStat, int iv, int evTotal)
-        {
-            return (int)((((stat / modificateurNature) - 5) * 100) / (niveau - (2 * baseStat) - ((iv / 4) * 4)));
-        }
-
-
         public MEquipier GetNatureStats(MEquipier equipier)
         {
             MEquipier equipierStatNature = equipier;
@@ -107,6 +100,10 @@ namespace PokeStat.Services
             return equipierStatNature;
         }
 
+        public int CalculEVPourStat(int stat, double modificateurNature, int niveau, int baseStat, int iv, int evTotal)
+        {
+            return (int)((((stat / modificateurNature) - 5) * 100) / (niveau - (2 * baseStat) - ((iv / 4) * 4)));
+        }
         public bool AjouterEVAStat(MEquipier equipier, MStat stat, int evsAAjouter)
         {
             int MaxTotalEVs = 510;
