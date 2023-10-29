@@ -901,6 +901,7 @@ namespace PokeStat.VuesModeles
                
                     MEquipier equipierEnModification = GetEquipierAModId(this.Equipier.equipierOrigine);
                     repEquipe.Update(this.Equipier, equipierEnModification);
+                    Close();
                 }
                 else
                 {
@@ -912,9 +913,10 @@ namespace PokeStat.VuesModeles
                     this.Equipier.Ev = 510;
                     this.Equipier.Iv = 31;
                     repEquipe.Add(this.Equipier);
+                    Close();
                 }
             }
-            this.Close();
+
         }
 
         private void SupprimerEquipier()
@@ -924,8 +926,9 @@ namespace PokeStat.VuesModeles
                 MEquipier equipierSupprimer = new MEquipier(this.Equipier.EquipeId, this.Equipier.TalentEquipier.IdTalent, this.Equipier.IdPokemon, this.Equipier.SetCapacites[0].IdCapacite, this.Equipier.SetCapacites[1].IdCapacite, this.Equipier.SetCapacites[2].IdCapacite, this.Equipier.SetCapacites[3].IdCapacite, this.Equipier.ObjetEquipier.IdObjet, this.Equipier.Nature.IdNature);
                 repEquipe = new RepEquipe();
                 repEquipe.Delete(equipierSupprimer);
+                this.Close();
             }
-            this.Close();
+         
         }
 
         public ICommand CloseCommand
@@ -945,7 +948,7 @@ namespace PokeStat.VuesModeles
         private void Close()
         {
             //mainWindow = new MainWindow();
-            //mainWindow.DataContext = new AccueilVueModel();
+            //mainWindow.DataContext = new GestionEquipeVueModele();
             //windowManager.Register(mainWindow);
             //NavigationServices.NavigateToPage(new GestionEquipe());
             //windowManager.ShowWindow("Mainwindow", mainWindow);

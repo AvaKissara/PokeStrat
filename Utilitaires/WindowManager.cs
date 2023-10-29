@@ -19,7 +19,7 @@ namespace PokeStat.Utilitaires
 
             if (existingWindow != null)
             {
-                await Task.Delay(500);
+                await Task.Delay(700);
                 // Fermez la fenêtre existante
                 existingWindow.Close();
                 openWindows.Remove(existingWindow);

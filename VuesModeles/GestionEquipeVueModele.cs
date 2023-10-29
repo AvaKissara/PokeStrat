@@ -52,8 +52,6 @@ namespace PokeStat.VuesModeles
             {
                 selectedEquipe = value;
                 OnPropertyChanged(nameof(SelectedEquipe));
-
-                // Mettez à jour la liste d'équipiers en fonction de l'équipe sélectionnée
                 _equipiers = selectedEquipe?.Equipiers;
             }
         }
