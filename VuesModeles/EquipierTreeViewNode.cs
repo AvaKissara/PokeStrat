@@ -957,6 +957,7 @@ namespace PokeStat.VuesModeles
             //windowManager.Register(mainWindow);
             //NavigationServices.NavigateToPage(new GestionEquipe());
             //windowManager.ShowWindow("MainWindow", mainWindow);
+            NavigationServices.NavigateToPage(new GestionEquipe());
         }
 
        

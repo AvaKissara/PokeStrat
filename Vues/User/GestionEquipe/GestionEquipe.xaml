@@ -37,7 +37,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <ScrollViewer  Grid.Row="1" VerticalScrollBarVisibility="Auto"  Style="{StaticResource CustomScrollViewerStyle}" PreviewMouseWheel="TreeView_PreviewMouseWheel" CanContentScroll="True">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"  Style="{StaticResource CustomScrollViewerStyle}" PreviewMouseWheel="TreeView_PreviewMouseWheel" CanContentScroll="True">
                 <!-- Arborescence des équipes -->
                 <TreeView Grid.Row="1" Width="1592" Name="treeViewEquipes" ItemsSource="{Binding EquipesTreeView}" Margin="0,80,0,0"
                       ItemContainerStyle="{StaticResource TreeViewItemStyle}">
