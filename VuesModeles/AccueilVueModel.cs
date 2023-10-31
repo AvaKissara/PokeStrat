@@ -36,6 +36,7 @@ namespace PokeStat.VuesModeles
         public ICommand GestionProfileCommand { get; set; }
         public ICommand GestionMatchCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
+        public ICommand DeconnexionCommand { get; set; }
         public ICommand CloseCommand { get; }
 
         public BaseVueModele NavigationBarViewModel
@@ -45,7 +46,7 @@ namespace PokeStat.VuesModeles
                 // Sélection d'un modèle de barre de navigation en fonction du rôle de l'utilisateur
                 if (SessionManager.Instance.Role == UserRole.Utilisateur)
                 {
-                    return new NavigationBarUserVueModele(GestionEquipeCommand, GestionProfileCommand, GestionMatchCommand, AccueilPageCommand, CloseCommand, SessionManager.Instance);
+                    return new NavigationBarUserVueModele(GestionEquipeCommand, GestionProfileCommand, GestionMatchCommand, AccueilPageCommand, DeconnexionCommand, CloseCommand, SessionManager.Instance);
                 }
                 else if (SessionManager.Instance.Role == UserRole.Administrateur)
                 {
@@ -73,19 +74,30 @@ namespace PokeStat.VuesModeles
             GestionProfileCommand = new RelayCommand(GestionProfile);
             GestionMatchCommand = new RelayCommand(GestionMatch);
             AccueilPageCommand = new RelayCommand(AccueilPage);
+            DeconnexionCommand = new RelayCommand(Deconnexion);
             CloseCommand = new RelayCommand(Close);
         }
 
         // Méthodes pour gérer les différentes actions de l'interface
+        public void Deconnexion()
+        {
+           
+            windowManager = new WindowManager();
+            MainWindow mainWindow = new MainWindow();
+            windowManager.Register(mainWindow);
+
+            windowManager.ShowWindow("MainWindow", mainWindow);
+            SessionManager.Instance.ClearUser();
+        }
 
         public void GestionProfile()
         {
-            // Code à ajouter pour gérer la page de gestion de profil
+
         }
 
         public void GestionMatch()
         {
-            // Code à ajouter pour gérer la page de gestion de matchs
+      
         }
 
         public void GestionEquipe()

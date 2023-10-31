@@ -29,9 +29,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
         public DetailEquipe()
         {
-            InitializeComponent();
-     
-            windowManager = new WindowManager();
+            InitializeComponent();       
             Frame mainFrame = NavigationServices.GetMainFrame();
             NavigationServices.Initialize(mainFrame);
 
@@ -60,7 +58,11 @@ namespace PokeStat.Vues.User.GestionEquipe
                 detailsPokemon.Left = detailEquipeLeft - detailsPokemon.Width;
                 detailsPokemon.Top = detailEquipeTop;
 
-                windowManager.ShowWindow("DetailPokemon", detailsPokemon);
+                using (var manager = new WindowManager())
+                {
+                    manager.ShowWindow("DetailPokemon", detailsPokemon);
+                }
+               
             }
         }
 
@@ -93,7 +95,11 @@ namespace PokeStat.Vues.User.GestionEquipe
             double detailGestionCapaciteHeight = 620;
             detailGestionCapacite.Left = detailCapaciteLeft -166;
             detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 46;
-            windowManager.ShowWindow("DetailGestionCapacite", detailGestionCapacite);
+
+            using (var manager = new WindowManager())
+            {
+                manager.ShowWindow("DetailGestionCapacite", detailGestionCapacite);
+            }
         }
 
         private void Stat_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -108,14 +114,15 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             detailGestionStat.Left = detailEquipeLeft + detailGestionStat.Width;
             detailGestionStat.Top = detailEquipeTop;
-
-            windowManager.ShowWindow("DetailGestionStat", detailGestionStat);
+            using (var manager = new WindowManager())
+            {
+                manager.ShowWindow("DetailGestionStat", detailGestionStat);
+            }
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs c)
         {
-            
             this.Close();
             
             //e.Items.Refresh();

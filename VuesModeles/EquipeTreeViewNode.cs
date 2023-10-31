@@ -46,7 +46,7 @@ namespace PokeStat.VuesModeles
             AjouteCommand = new RelayCommand(AjouteEquipe);
         }
         public MainWindow MainWindow { get; set; }
-        private WindowManager windowManager = new WindowManager();
+
 
         private void DetailPopup()
         {
@@ -85,10 +85,13 @@ namespace PokeStat.VuesModeles
 
             var detailPopup = new DetailEquipe();
             detailPopup.Owner = MainWindow;
-            windowManager.Register(detailPopup);
             detailPopup.DataContext = equipeNode;
-
-            windowManager.ShowWindow("DetailEquipe", detailPopup);
+            using (var manager = new WindowManager())
+            {
+                manager.Register(detailPopup);
+                manager.ShowWindow("DetailEquipe", detailPopup);
+            }
+         
 
         }
         public void AjouteEquipe()
@@ -96,7 +99,11 @@ namespace PokeStat.VuesModeles
             MEquipe equipeAAjouter = new MEquipe(this.Equipe.IdEquipe, this.Equipe.NomEquipe);
             if(this.Equipe.NomEquipe!=null) 
             {
-                repEquipe.AddEquipe(equipeAAjouter.NomEquipe, SessionManager.Instance.Account.IdPersonne);
+                using (var repository = new RepEquipe())
+                {
+                    repository.AddEquipe(equipeAAjouter.NomEquipe, SessionManager.Instance.Account.IdPersonne);
+                }
+               
             }
             DetailPopup();
         }

@@ -124,20 +124,18 @@ namespace PokeStat.VuesModeles
                     }
                     SessionManager.Instance.Account = personneConnectee;
 
- 
                     var activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
                     activeWindow?.Close();
                     activeWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
                     activeWindow?.Close();
-                    windowManager = new WindowManager();
+        
                     MainWindow mainWindow = new MainWindow();
-                    windowManager.Register(mainWindow);
-                    windowManager.ShowWindow("MainWindow", mainWindow);
-
-
-
+                    using (var manager = new WindowManager())
+                    {
+                        manager.Register(mainWindow);
+                        manager.ShowWindow("MainWindow", mainWindow);
+                    }
                   
-
                 }
                 else
                 {

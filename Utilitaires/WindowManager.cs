@@ -8,18 +8,18 @@ using System.Windows.Media.Animation;
 
 namespace PokeStat.Utilitaires
 {
-    public class WindowManager
+    public class WindowManager : IDisposable
     {
         public static List<Window> openWindows = new List<Window>();
 
-        public async Task Register(Window window)
+        public void Register(Window window)
         {
             // Vérifiez si une fenêtre du même type existe déjà
             var existingWindow = openWindows.FirstOrDefault(w => w.GetType() == window.GetType());
 
             if (existingWindow != null)
             {
-                await Task.Delay(700);
+                //await Task.Delay(700);
                 // Fermez la fenêtre existante
                 existingWindow.Close();
                 openWindows.Remove(existingWindow);
@@ -82,6 +82,11 @@ namespace PokeStat.Utilitaires
                 openWindows.Remove(window);
                 window.Close();
             }
+        }
+
+        public void Dispose()
+        {
+           
         }
     }
 

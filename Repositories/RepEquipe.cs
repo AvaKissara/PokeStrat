@@ -13,17 +13,20 @@ using System.Windows.Forms;
 
 namespace PokeStat.Repositories
 {
-    public class RepEquipe
+    public class RepEquipe : IDisposable
     {
         public BddTool bddTool;
-
+        public void Dispose()
+        {
+            // Libérer les ressources non managées ici, par exemple, fermer une connexion à la base de données.
+        }
         public RepEquipe()
         {
             bddTool = new BddTool();
 
             try
             {
-                this.bddTool.DbConnnexion();
+                this.bddTool.DbConnexion();
             }
             catch (Exception ex)
             {

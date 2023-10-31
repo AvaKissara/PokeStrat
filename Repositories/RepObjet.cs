@@ -19,7 +19,7 @@ namespace PokeStat.Repositories
 
             try
             {
-                this.bddTool.DbConnnexion();
+                this.bddTool.DbConnexion();
             }
             catch (Exception ex)
             {

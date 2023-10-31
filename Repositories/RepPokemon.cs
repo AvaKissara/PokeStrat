@@ -12,7 +12,7 @@ using System.Windows.Navigation;
 
 namespace PokeStat.Repositories
 {
-    public class RepPokemon : IRepository<MSpecimen>
+    public class RepPokemon : IRepository<MSpecimen>, IDisposable
     {
         public BddTool bddTool;
 
@@ -22,7 +22,7 @@ namespace PokeStat.Repositories
 
             try
             {
-                this.bddTool.DbConnnexion();
+                this.bddTool.DbConnexion();
             }
             catch (Exception ex)
             {
@@ -299,6 +299,11 @@ namespace PokeStat.Repositories
 
         public void Delete(int idMModele)
         {
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

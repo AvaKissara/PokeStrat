@@ -32,7 +32,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             InitializeComponent();
             gestionEquipeVueModele = new GestionEquipeVueModele();
             DataContext = gestionEquipeVueModele;
-            
+
             //Frame mainFrame = NavigationServices.GetMainFrame();
             //NavigationServices.Initialize(mainFrame);
             //NavigationServices.NavigateToPage(this);
@@ -48,9 +48,12 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             if (equipier != null)
             {
-                RepEquipe repEquipe;
-                repEquipe = new RepEquipe();
-                equipier.Equipier.equipierOrigine = repEquipe.GetEquipier(equipier.Equipier);
+            
+                using (var repository = new RepEquipe())
+                {
+                    equipier.Equipier.equipierOrigine = repository.GetEquipier(equipier.Equipier);
+                }
+                            
                 equipier.Equipier.equipierOrigine.IsSelected = true;
 
                 equipier.EquipierSelectionne = equipier.Equipier;

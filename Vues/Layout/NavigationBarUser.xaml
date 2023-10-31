@@ -45,7 +45,7 @@
                 <Button Content="Equipes" Command="{Binding GestionEquipeCommand}" HorizontalAlignment="Left" Height="60" Width="200" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Tag="&#xE125;" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}"/>
                 <Button Content="Matchs" Command="{Binding GestionMatchCommand}" HorizontalAlignment="Left" Height="60" Width="200" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Tag="&#xE007;" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}"/>
                 <Button Content="Setting" HorizontalAlignment="Left" Height="60" Width="200" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Tag="&#xE115;" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}"/>
-                <Button Content="Déconnexion" HorizontalAlignment="Left" Height="60" Width="200" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Tag="&#xE711;" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}"/>
+                <Button Content="Déconnexion" HorizontalAlignment="Left" Height="60" Width="200" Style="{DynamicResource ButtonSlidStyle}" FontWeight="Bold" FontSize="14" Tag="&#xE711;" Background="{x:Null}" Foreground="#FFDAD6D6" BorderBrush="{x:Null}" Command="{Binding DeconnexionCommand}" />
                 <Image Height="312.255" Opacity="0.84" StretchDirection="DownOnly" Margin="-139.333,0,0,0">
                     <Image.Effect>
                         <BlurEffect Radius="1" RenderingBias="Quality"/>

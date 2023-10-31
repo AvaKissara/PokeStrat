@@ -15,6 +15,7 @@ namespace PokeStat.VuesModeles
         public ICommand GestionProfileCommand { get; set; }
         public ICommand GestionMatchCommand { get; set; }
         public ICommand AccueilPageCommand { get; set; }
+        public ICommand DeconnexionCommand { get; set; }
         public ICommand CloseCommand { get; }
 
         private readonly SessionManager _sessionManager;
@@ -47,7 +48,7 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        public NavigationBarUserVueModele(ICommand gestionEquipeCommand, ICommand gestionProfileCommand, ICommand gestionMatchCommand, ICommand accueilPageCommand, ICommand closeCommand, SessionManager sessionManager)
+        public NavigationBarUserVueModele(ICommand gestionEquipeCommand, ICommand gestionProfileCommand, ICommand gestionMatchCommand, ICommand accueilPageCommand, ICommand closeCommand, ICommand deconnexionCommand, SessionManager sessionManager)
         {
         
             this.GestionEquipeCommand = gestionEquipeCommand;
@@ -55,8 +56,9 @@ namespace PokeStat.VuesModeles
             this.GestionProfileCommand = gestionProfileCommand;
             this.AccueilPageCommand = accueilPageCommand;
             this.CloseCommand = closeCommand;
+            this.DeconnexionCommand = deconnexionCommand;
             this._sessionManager = sessionManager;
-
+         
         }
 
         private void OnAccountChanged()

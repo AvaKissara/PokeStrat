@@ -3,17 +3,13 @@ using PokeStat.Repositories;
 using PokeStat.Services;
 using PokeStat.Utilitaires;
 using PokeStat.Vues;
+using PokeStat.Vues.Authentification;
 using PokeStat.Vues.User.GestionEquipe;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -37,8 +33,7 @@ namespace PokeStat.VuesModeles
         public MainWindow MainWindow { get; set; }
 
         private readonly RepTalent repTalent;
-        private readonly RepCapacite repCapacite;
-        private RepEquipe repEquipe;
+  
         private StatsCalculator statsCalculator;
         public MSpecimen pokemonRef;
 
@@ -755,9 +750,13 @@ namespace PokeStat.VuesModeles
         
             var detailPopup = new DetailEquipe();
             detailPopup.Owner = MainWindow;
-            windowManager.Register(detailPopup);
             detailPopup.DataContext = equipeNode;
-            windowManager.ShowWindow("DetailEquipe", detailPopup);
+            using (var manager = new WindowManager())
+            {
+                manager.Register(detailPopup);
+                manager.ShowWindow("DetailEquipe", detailPopup);
+            }
+                                   
         }
 
         private void DetailPopupMaj()
@@ -894,14 +893,16 @@ namespace PokeStat.VuesModeles
         {
             if(this.Equipier != null)
             {
-                repEquipe = new RepEquipe();
+               
            
                 if (this.Equipier.equipierOrigine.IsSelected == true)
                 {
-               
                     MEquipier equipierEnModification = GetEquipierAModId(this.Equipier.equipierOrigine);
-                    repEquipe.Update(this.Equipier, equipierEnModification);
-                    Close();
+                    using (var repository = new RepEquipe())
+                    {
+                        repository.Update(this.Equipier, equipierEnModification);
+                    }                                        
+                    this.Close();
                 }
                 else
                 {
@@ -912,8 +913,12 @@ namespace PokeStat.VuesModeles
                     
                     this.Equipier.Ev = 510;
                     this.Equipier.Iv = 31;
-                    repEquipe.Add(this.Equipier);
-                    Close();
+                    using (var repository = new RepEquipe())
+                    {
+                        repository.Add(this.Equipier);
+                    }
+                  
+                    this.Close();
                 }
             }
 
@@ -924,8 +929,12 @@ namespace PokeStat.VuesModeles
             if (this.Equipier != null)
             {
                 MEquipier equipierSupprimer = new MEquipier(this.Equipier.EquipeId, this.Equipier.TalentEquipier.IdTalent, this.Equipier.IdPokemon, this.Equipier.SetCapacites[0].IdCapacite, this.Equipier.SetCapacites[1].IdCapacite, this.Equipier.SetCapacites[2].IdCapacite, this.Equipier.SetCapacites[3].IdCapacite, this.Equipier.ObjetEquipier.IdObjet, this.Equipier.Nature.IdNature);
-                repEquipe = new RepEquipe();
-                repEquipe.Delete(equipierSupprimer);
+                //repEquipe = new RepEquipe();
+                using (var repository = new RepEquipe())
+                {
+                    repository.Delete(equipierSupprimer);
+                }
+                
                 this.Close();
             }
          
@@ -960,9 +969,13 @@ namespace PokeStat.VuesModeles
             //windowManager.Register(mainWindow);
             //NavigationServices.NavigateToPage(new GestionEquipe());
             //windowManager.ShowWindow("MainWindow", mainWindow);
+
+            //var gestionEquipePopup = new GestionEquipe();
+            //gestionEquipePopup.DataContext = new GestionEquipeVueModele();
+
             NavigationServices.NavigateToPage(new GestionEquipe());
         }
-
        
+
     }
 }

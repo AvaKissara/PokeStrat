@@ -11,25 +11,43 @@ namespace PokeStat.Utilitaires
     public class BddTool
     {
         private SqlConnection activeConnexion;
+        private readonly object connexionLock = new object();
 
-        public void DbConnnexion()
+        public SqlConnection DbConnexion()
         {
-            ConnexionBdd con = new ConnexionBdd();
-            this.activeConnexion = con.GetConnexion();
+            if (activeConnexion == null)
+            {
+                lock (connexionLock)
+                {
+                    if (activeConnexion == null)
+                    {
+                        ConnexionBdd con = new ConnexionBdd();
+                        activeConnexion = con.GetConnexion();
+                    }
+                }
+            }
+            return activeConnexion;
         }
+
         public void CheckConnexion()
         {
-            if (activeConnexion.State == ConnectionState.Closed)
-            {
-                activeConnexion.Open();
-            }
+            SqlConnection connexion = DbConnexion();
 
+            if (connexion.State == ConnectionState.Closed)
+            {              
+                connexion.Open();       
+            }
         }
-        public void CloseConnexion() 
+
+        public void CloseConnexion()
         {
-            this.activeConnexion.Close();
+            if (activeConnexion != null)
+            {
+                activeConnexion.Close();
+            }
         }
-        public SqlCommand GetRequest() 
+
+        public SqlCommand GetRequest()
         {
             SqlCommand Request = activeConnexion.CreateCommand();
             return Request;
