@@ -47,7 +47,6 @@ namespace PokeStat.VuesModeles
         }
         public MainWindow MainWindow { get; set; }
 
-
         private void DetailPopup()
         {
             int equipeId = repEquipe.GetLastEquipeId();
@@ -90,10 +89,9 @@ namespace PokeStat.VuesModeles
             {
                 manager.Register(detailPopup);
                 manager.ShowWindow("DetailEquipe", detailPopup);
-            }
-         
-
+            }       
         }
+
         public void AjouteEquipe()
         {
             MEquipe equipeAAjouter = new MEquipe(this.Equipe.IdEquipe, this.Equipe.NomEquipe);

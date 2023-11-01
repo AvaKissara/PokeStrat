@@ -22,10 +22,55 @@ namespace PokeStat.Vues.User.GestionEquipe
     /// </summary>
     public partial class DetailGestionPokemon : Window
     {
+        private bool isComboBoxLoaded = false;
+
         public DetailGestionPokemon(EquipierTreeViewNode equipier)
         {
             InitializeComponent();
             DataContext = equipier;
+        }
+
+        /// <summary>
+        /// Méthode pour filtrer les capacités via la barre recherche
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EquipierTreeViewNode equipier = (DataContext as EquipierTreeViewNode);
+
+            if (equipier != null)
+            {
+                string searchText = searchBox.Text;
+
+                if (searchText.Length >= 1)
+                {
+                    List<MSpecimen> items = equipier.Equipier.pokemons;
+                    var filteredItems = BarreRechercheCapacite(searchText, items);
+                    comboBox.ItemsSource = filteredItems;
+                }
+                else
+                {
+                    comboBox.ItemsSource = null;
+                }
+            }
+        }
+
+
+        public List<MSpecimen> BarreRechercheCapacite(string searchText, List<MSpecimen> items)
+        {
+            var filteredItems = items.Where(pokemon => pokemon.NomFraPokemon.StartsWith(searchText, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            return filteredItems;
+        }
+
+
+        private void comboBox_DropDownOpened(object sender, EventArgs e)
+        {
+            if (!isComboBoxLoaded)
+            {
+                isComboBoxLoaded = true;
+            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

@@ -17,7 +17,6 @@ namespace PokeStat.Utilitaires
         public UserRole Role { get; set; }
 
         private static SessionManager _instance;
-
         public static SessionManager Instance
         {
             get
@@ -29,6 +28,7 @@ namespace PokeStat.Utilitaires
                 return _instance;
             }
         }
+
         public MPersonne Account
         {
             get => _account;
@@ -61,6 +61,7 @@ namespace PokeStat.Utilitaires
             Account = null;
             Role = UserRole.Profane; 
         }
+
         public void SetPreviousPage(string pageName)
         {
             PreviousPage = pageName;
@@ -69,8 +70,8 @@ namespace PokeStat.Utilitaires
 
     public enum UserRole
     {
-        Profane,    // L'utilisateur non connecté
-        Utilisateur, // L'utilisateur connecté
-        Administrateur // L'administrateur connecté
+        Profane,
+        Utilisateur,
+        Administrateur 
     }
 }
