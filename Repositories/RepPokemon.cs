@@ -303,7 +303,7 @@ namespace PokeStat.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            bddTool.Dispose();
         }
     }
 }

@@ -51,7 +51,7 @@
 
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Pokémon" HorizontalAlignment="Left"
 						VerticalAlignment="Top" Grid.Row="2" Margin="16,4,0,0" FontSize="16" />
-                <ComboBox x:Name="comboBox" ItemsSource="{Binding Equipier.pokemons}" Grid.Row="2" Grid.Column="1"
+                <ComboBox x:Name="comboBox" ItemsSource="{Binding Pokemons}" Grid.Row="2" Grid.Column="1"
 						VerticalAlignment="Top" Margin="10,4,10,0" FontSize="14" DisplayMemberPath="NomFraPokemon" Grid.ColumnSpan="3" MaxDropDownHeight="260" SelectedValue="{Binding PokSelection, Mode=TwoWay}" />
 
                 <TextBlock x:Name="textBlock2" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"
@@ -82,7 +82,7 @@ VerticalAlignment="Center" Margin="10,0,10,0" FontSize="14" DisplayMemberPath="N
                 <StackPanel Grid.Row="7" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left"
 						Orientation="Horizontal" Margin="13,0,0,0" Grid.Column="1">
                     <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" Click="button_Click" />
-                    <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" />
+                    <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" Click="button_Click"/>
                 </StackPanel>
             </Grid>
         </Border>

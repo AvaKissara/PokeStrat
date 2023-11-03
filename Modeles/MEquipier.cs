@@ -84,14 +84,12 @@ namespace PokeStat.Modeles
             repPokemon = new RepPokemon();
             repNature = new RepNature();
             repObjet = new RepObjet();
-            repCapacite = new RepCapacite();
+            this.pokemons = null;
 
-            this.pokemons = repPokemon.GetAll();
-            
             this.TalentPokemon = repPokemon.GetPoolTalent(IdPokemon);
             this.natures = repNature.GetAll();
-            this.objets = repObjet.GetAll();          
-            this.PoolCapacites = repCapacite.GetCapacite(IdPokemon);
+            this.objets = repObjet.GetAll();
+            this.PoolCapacites = null;
             this.equipierOrigine = EquipierOrigine;
 
         }

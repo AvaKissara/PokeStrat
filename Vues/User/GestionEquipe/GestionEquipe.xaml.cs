@@ -32,11 +32,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             InitializeComponent();
             gestionEquipeVueModele = new GestionEquipeVueModele();
             DataContext = gestionEquipeVueModele;
-            this.Focus();
-            //Frame mainFrame = NavigationServices.GetMainFrame();
-            //NavigationServices.Initialize(mainFrame);
-            //NavigationServices.NavigateToPage(this);
-
+           
         }
 
 
@@ -49,7 +45,7 @@ namespace PokeStat.Vues.User.GestionEquipe
             if (equipier != null)
             {
             
-                using (var repository = new RepEquipe())
+                using (RepEquipe repository = new RepEquipe())
                 {
                     equipier.Equipier.equipierOrigine = repository.GetEquipier(equipier.Equipier);
                 }
@@ -135,7 +131,7 @@ namespace PokeStat.Vues.User.GestionEquipe
                 scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset + 1);
             }
 
-            e.Handled = true; // Empêche la propagation de l'événement
+            e.Handled = true; 
         }
 
     }

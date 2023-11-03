@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Repositories
 {
-    public class RepNature
+    public class RepNature : IDisposable
     {
         public BddTool bddTool;
 
@@ -28,7 +28,10 @@ namespace PokeStat.Repositories
                 Console.WriteLine("Erreur lors de la connexion à la base de données : " + ex.Message);
             }
         }
-
+        public void Dispose()
+        {
+            bddTool.Dispose();
+        }
         public List<MNature> GetAll()
         {
             bddTool.CheckConnexion();

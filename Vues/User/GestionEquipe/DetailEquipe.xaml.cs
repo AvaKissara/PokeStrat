@@ -119,7 +119,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
 
         private void Button_Click(object sender, RoutedEventArgs c)
-        {         
+        {             
             this.Close();
         }
     }

@@ -63,7 +63,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
                 if (searchText.Length >= 1)
                 {
-                    List<MCapacite> items = equipier.Equipier.PoolCapacites;
+                    List<MCapacite> items = equipier.Capacites;
                     var filteredItems = BarreRechercheCapacite(searchText, items); 
                     comboBox.ItemsSource = filteredItems;
                 }

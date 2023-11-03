@@ -31,7 +31,7 @@ namespace PokeStat.VuesModeles
             }
         }
         public MEquipe Equipe { get; set; }
-        public ObservableCollection<EquipierTreeViewNode> Equipiers { get; }= new ObservableCollection<EquipierTreeViewNode>();
+        public ObservableCollection<EquipierTreeViewNode> Equipiers { get; set; } = new ObservableCollection<EquipierTreeViewNode>();
         public EquipeTreeViewNode(MEquipe Equipe)
         {
             //repEquipe = new RepEquipe();
@@ -98,7 +98,7 @@ namespace PokeStat.VuesModeles
             MEquipe equipeAAjouter = new MEquipe(this.Equipe.IdEquipe, this.Equipe.NomEquipe);
             if(this.Equipe.NomEquipe!=null) 
             {
-                using (var repository = new RepEquipe())
+                using (RepEquipe repository = new RepEquipe())
                 {
                     repository.AddEquipe(equipeAAjouter.NomEquipe, SessionManager.Instance.Account.IdPersonne);
                 }

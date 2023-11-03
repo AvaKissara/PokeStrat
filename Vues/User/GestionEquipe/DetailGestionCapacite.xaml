@@ -46,27 +46,27 @@
 
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Capacité 1:" HorizontalAlignment="Left"
 						VerticalAlignment="Center" Grid.Row="1" Margin="16,0,0,8" FontSize="16" />
-                <ComboBox x:Name="comboBox" ItemsSource="{Binding Equipier.PoolCapacites}" Grid.Row="1" Grid.Column="1"
+                <ComboBox x:Name="comboBox" ItemsSource="{Binding Capacites}" Grid.Row="1" Grid.Column="1"
 						VerticalAlignment="Center" Margin="10,0,10,8" FontSize="14" DisplayMemberPath="NomCapacite" Grid.ColumnSpan="2" MaxDropDownHeight="260" SelectedValue="{Binding Capacite1Selection, Mode=TwoWay}" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened"/>
 
                 <TextBlock x:Name="textBlock4" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 					Grid.Row="2" Margin="16,-10,0,0" FontSize="16" Text="Capacité 2:" />
-                <ComboBox x:Name="comboBoxn" ItemsSource="{Binding Equipier.PoolCapacites}" SelectedValue="{Binding Capacite2Selection, Mode=TwoWay}" Grid.Row="2" Grid.Column="1"
+                <ComboBox x:Name="comboBoxn" ItemsSource="{Binding Capacites}" SelectedValue="{Binding Capacite2Selection, Mode=TwoWay}" Grid.Row="2" Grid.Column="1"
 			VerticalAlignment="Top" Margin="10,6,10,0" FontSize="14" DisplayMemberPath="NomCapacite"  Grid.ColumnSpan="2" MaxDropDownHeight="210" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened" />
 
                 <TextBlock x:Name="textBlockt" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="3" Margin="16,-11,0,0" FontSize="16" Text="Capacité 3:" />
                 <ComboBox x:Name="comboBoxt" Grid.Row="3" Grid.Column="1"
-VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding Equipier.PoolCapacites}"  DisplayMemberPath="NomCapacite" SelectedValue="{Binding Capacite3Selection, Mode=TwoWay}" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
+VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" ItemsSource="{Binding Capacites}"  DisplayMemberPath="NomCapacite" SelectedValue="{Binding Capacite3Selection, Mode=TwoWay}" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened" Grid.ColumnSpan="2" MaxDropDownHeight="260"/>
 
                 <TextBlock x:Name="textBlocko" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center"
 		Grid.Row="4" Margin="16,-11,0,0" FontSize="16" Text="Capacité 4:" />
-                <ComboBox x:Name="comboBoxo"  ItemsSource="{Binding Equipier.PoolCapacites}" Grid.Row="4" Grid.Column="1"
+                <ComboBox x:Name="comboBoxo"  ItemsSource="{Binding Capacites}" Grid.Row="4" Grid.Column="1"
 VerticalAlignment="Center" Margin="10,-11,10,0" FontSize="14" DisplayMemberPath="NomCapacite" SelectedValue="{Binding Capacite4Selection, Mode=TwoWay}" PreviewKeyDown="comboBox_PreviewKeyDown"  DropDownOpened="comboBox_DropDownOpened" Grid.ColumnSpan="2" MaxDropDownHeight="200" />
                 <StackPanel Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left"
 						Orientation="Horizontal" Grid.Column="1" Margin="22,0,0,0">
                     <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" Click="Button_Click" />
-                    <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" />
+                    <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" Click="Button_Click"/>
                 </StackPanel>
             </Grid>
         </Border>

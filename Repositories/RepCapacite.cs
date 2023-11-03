@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Repositories
 {
-    public class RepCapacite
+    public class RepCapacite : IDisposable
     {
         public BddTool bddTool;
         public RepCapacite() 
@@ -27,7 +27,10 @@ namespace PokeStat.Repositories
                 Console.WriteLine("Erreur lors de la connexion à la base de données : " + ex.Message);
             }
         }
-
+        public void Dispose()
+        {
+            bddTool.Dispose();
+        }
         public List<MCapacite> GetCapacite(int idEquipier)
         {
             bddTool.CheckConnexion();

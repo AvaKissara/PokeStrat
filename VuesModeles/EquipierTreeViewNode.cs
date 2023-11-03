@@ -4,6 +4,7 @@ using PokeStat.Services;
 using PokeStat.Utilitaires;
 using PokeStat.Vues;
 using PokeStat.Vues.Authentification;
+using PokeStat.Vues.CrudPokemon;
 using PokeStat.Vues.User.GestionEquipe;
 using System;
 using System.Collections.Generic;
@@ -459,10 +460,58 @@ namespace PokeStat.VuesModeles
             }
         }
 
-        public void MajPourcentageStat(string nomStat, double valeurPourcentage)
+        private List<MSpecimen> pokemons;
+        public List<MSpecimen> Pokemons
         {
-            List<MSpecimen> pokemons = this.Equipier.pokemons;
-            pokemonRef = pokemons.Find(pokemon => pokemon.IdPokemon == this.Equipier.IdPokemon); 
+            get
+            {
+                if (pokemons == null)
+                {
+
+                    using (RepPokemon repPokemon = new RepPokemon())
+                    {
+                        pokemons = repPokemon.GetAll();
+                    }
+                }
+                return pokemons;
+            }
+        }
+        private List<MCapacite> capacites;
+        public List<MCapacite> Capacites
+        {
+            get
+            {
+                if (capacites == null)
+                {
+
+                    using (RepCapacite repCapacite = new RepCapacite())
+                    {
+                        capacites = repCapacite.GetCapacite(this.Equipier.IdPokemon);
+                    }
+                }
+                return capacites;
+            }
+        }
+        //private List<MNature> natures;
+        //public List<MNature> Natures
+        //{
+        //    get
+        //    {
+        //        if (natures == null)
+        //        {
+
+        //            using (RepNature repNature = new RepNature())
+        //            {
+        //                natures = repNature.GetAll();
+        //            }
+        //        }
+        //        return natures;
+        //    }
+        //}
+
+        public void MajPourcentageStat(string nomStat, double valeurPourcentage)
+        {                          
+            pokemonRef = Pokemons.Find(pokemon => pokemon.IdPokemon == this.Equipier.IdPokemon); 
 
             int valeurBase = 0;
             int max = 252; 
@@ -565,20 +614,19 @@ namespace PokeStat.VuesModeles
             EquipeId: Equipier.EquipeId,
             Equipier.equipierOrigine
             );
-
+            
             DetailPopupCommand = new RelayCommand(DetailPopupMaj);
             EnregistrerEquipierCommand = new RelayCommand(EnregistrerEquipier);
             SupprimerEquipierCommand = new RelayCommand(SupprimerEquipier);
 
-            repTalent = new RepTalent();
+         
             statsCalculator = new StatsCalculator();
 
             this.Equipier = Equipier;
             if (Equipier == null)
             {
-                this.Equipier = equipierParDefaut; 
-               
-                this.Equipier.TalentPokemon = repTalent.GetAll();
+                this.Equipier = equipierParDefaut;                
+                this.Equipier.TalentPokemon = null;
             }
             if (Equipier.equipierOrigine == null)
             {
@@ -630,14 +678,17 @@ namespace PokeStat.VuesModeles
 
             if (specimen.TalentPokemon == null)
             {
-                equipierEnSaisie.TalentPokemon = repTalent.GetTalent(specimen.IdPokemon);
+                using(RepTalent repTalent = new RepTalent())
+                {
+                    equipierEnSaisie.TalentPokemon = repTalent.GetTalent(specimen.IdPokemon);
+                }
+               
             }
             if(this.Equipier.Ev==0 && this.Equipier.Iv==0) 
             {
                 equipierEnSaisie.Ev = 510;
                 equipierEnSaisie.Iv = 31;
-            }
-           
+            }          
             return equipierEnSaisie;
         }
 
@@ -971,8 +1022,9 @@ namespace PokeStat.VuesModeles
 
             //var gestionEquipePopup = new GestionEquipe();
             //gestionEquipePopup.DataContext = new GestionEquipeVueModele();
-           windowManager.Dispose();
-           //NavigationServices.NavigateToPage(new GestionEquipe());
+
+            NavigationServices.NavigateToPage(new GestionEquipe());
+            windowManager.Dispose();      
         }
        
 

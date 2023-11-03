@@ -94,6 +94,7 @@ namespace PokeStat.Utilitaires
                 {
                     window.Close();
                     openWindows.Remove(window);
+                    mainWindow.Focus();
                 }
             }
         }

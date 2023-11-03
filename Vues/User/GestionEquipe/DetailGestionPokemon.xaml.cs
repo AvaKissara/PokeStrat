@@ -45,7 +45,7 @@ namespace PokeStat.Vues.User.GestionEquipe
 
                 if (searchText.Length >= 1)
                 {
-                    List<MSpecimen> items = equipier.Equipier.pokemons;
+                    List<MSpecimen> items = equipier.Pokemons;
                     var filteredItems = BarreRechercheCapacite(searchText, items);
                     comboBox.ItemsSource = filteredItems;
                 }
@@ -55,7 +55,6 @@ namespace PokeStat.Vues.User.GestionEquipe
                 }
             }
         }
-
 
         public List<MSpecimen> BarreRechercheCapacite(string searchText, List<MSpecimen> items)
         {

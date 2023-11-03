@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Repositories
 {
-    public class RepTalent
+    public class RepTalent : IDisposable
     {
         public BddTool bddTool;
 
@@ -28,6 +28,12 @@ namespace PokeStat.Repositories
                 Console.WriteLine("Erreur lors de la connexion à la base de données : " + ex.Message);
             }
         }
+
+        public void Dispose()
+        {
+            bddTool.Dispose();
+        }
+
         public List<MTalent> GetAll()
         {
             bddTool.CheckConnexion();

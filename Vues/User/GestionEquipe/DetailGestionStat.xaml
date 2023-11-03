@@ -87,7 +87,7 @@
                 </DockPanel>
                 <DockPanel VerticalAlignment="Center" Grid.Row="7"  HorizontalAlignment="Center" Height="46">
                     <Button Command="{Binding DetailPopupCommand}" x:Name="button"  Content="Valider" Width="75" Margin="10" FontSize="16" Click="button_Click" />
-                    <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" />
+                    <Button x:Name="button1" Content="Annuler" Width="75" Margin="10" FontSize="16" Click="button_Click" />
                 </DockPanel>
             </Grid>
         </Border>
