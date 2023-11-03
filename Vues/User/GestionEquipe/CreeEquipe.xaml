@@ -15,9 +15,11 @@
         <Label Content="Nom" FontFamily="Raleway" Foreground="#2D354D" FontSize="18" HorizontalAlignment="Left" Margin="96,100,0,0" VerticalAlignment="Top" />
         <TextBox Name="tbNomEquipe" Text="{Binding Equipe.NomEquipe}" HorizontalAlignment="Center" Margin="20,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" />
 
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center" Margin="20,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16"/>
+
 
         <Button Name="btnValid" Content="Valider" Command="{Binding AjouteCommand }" HorizontalAlignment="Left" Margin="158,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#2D354D" Foreground="White" FontSize="18" Padding="20,7"/>
-        <Button Name="btnAnnul" Content="Annuler"  HorizontalAlignment="Left" Margin="257,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#2D354D" Foreground="White" FontSize="18" Padding="20,7"/>
+        <Button Name="btnAnnul" Content="Annuler"  HorizontalAlignment="Left" Margin="257,0,0,60" VerticalAlignment="Bottom" FontFamily="Raleway"  Background="#2D354D" Foreground="White" FontSize="18" Padding="20,7" Click="btnAnnul_Click"/>
 
     </Grid>
 </Window>

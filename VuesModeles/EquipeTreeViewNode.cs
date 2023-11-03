@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PokeStat.VuesModeles
@@ -30,6 +31,17 @@ namespace PokeStat.VuesModeles
                 OnPropertyChanged(nameof(IsSelected));
             }
         }
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         public MEquipe Equipe { get; set; }
         public ObservableCollection<EquipierTreeViewNode> Equipiers { get; set; } = new ObservableCollection<EquipierTreeViewNode>();
         public EquipeTreeViewNode(MEquipe Equipe)
@@ -50,7 +62,12 @@ namespace PokeStat.VuesModeles
 
         private void DetailPopup()
         {
-            int equipeId = repEquipe.GetLastEquipeId();
+            int equipeId;
+            using (RepEquipe repEquipe = new RepEquipe())
+            {
+                equipeId = repEquipe.GetLastEquipeId();
+            }
+                
             MEquipier equipierOrigineDefaut = null;
             MEquipier equipierParDefaut = new MEquipier(
                        IdPokemon: 0,
@@ -96,15 +113,18 @@ namespace PokeStat.VuesModeles
         public void AjouteEquipe()
         {
             MEquipe equipeAAjouter = new MEquipe(this.Equipe.IdEquipe, this.Equipe.NomEquipe);
-            if(this.Equipe.NomEquipe!=null) 
+            if(!string.IsNullOrWhiteSpace(this.Equipe.NomEquipe)) 
             {
                 using (RepEquipe repository = new RepEquipe())
                 {
                     repository.AddEquipe(equipeAAjouter.NomEquipe, SessionManager.Instance.Account.IdPersonne);
                 }
-               
+                DetailPopup();
             }
-            DetailPopup();
+            else
+            {
+                ErrorMessage = "Le nom de l'équipe ne doit pas être vide.";
+            }
         }
     }
 }

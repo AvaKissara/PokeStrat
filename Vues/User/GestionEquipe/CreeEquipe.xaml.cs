@@ -27,5 +27,9 @@ namespace PokeStat.Vues.User.GestionEquipe
             DataContext = equipe;
             InitializeComponent();
         }
+        private void btnAnnul_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

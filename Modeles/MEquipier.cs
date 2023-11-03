@@ -57,7 +57,6 @@ namespace PokeStat.Modeles
         private readonly RepPokemon repPokemon;
         private readonly RepNature repNature;
         private readonly RepObjet repObjet; 
-        private readonly RepCapacite repCapacite;
 
         public List<MSpecimen> pokemons { get; set; }
         public List<MNature> natures { get; set; }
@@ -85,7 +84,6 @@ namespace PokeStat.Modeles
             repNature = new RepNature();
             repObjet = new RepObjet();
             this.pokemons = null;
-
             this.TalentPokemon = repPokemon.GetPoolTalent(IdPokemon);
             this.natures = repNature.GetAll();
             this.objets = repObjet.GetAll();

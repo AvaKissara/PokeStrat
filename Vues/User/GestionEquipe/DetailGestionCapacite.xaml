@@ -7,7 +7,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        xmlns:modeles="clr-namespace:PokeStat.VuesModeles" xmlns:vuesmodeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=modeles:EquipierTreeViewNode}"
+        xmlns:modeles="clr-namespace:PokeStat.VuesModeles" d:DataContext="{d:DesignInstance Type=modeles:EquipierTreeViewNode}"
         mc:Ignorable="d"
         Title="DetailGestionCapacite" Height="320" Width="800">
 
