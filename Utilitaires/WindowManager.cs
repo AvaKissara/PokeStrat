@@ -86,7 +86,16 @@ namespace PokeStat.Utilitaires
 
         public void Dispose()
         {
-           
+            var mainWindow = Application.Current.MainWindow;
+
+            foreach (var window in openWindows.ToList())
+            {
+                if (window != mainWindow)
+                {
+                    window.Close();
+                    openWindows.Remove(window);
+                }
+            }
         }
     }
 

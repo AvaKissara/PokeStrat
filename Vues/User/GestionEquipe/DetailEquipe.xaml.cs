@@ -57,11 +57,10 @@ namespace PokeStat.Vues.User.GestionEquipe
 
                 detailsPokemon.Left = detailEquipeLeft - detailsPokemon.Width;
                 detailsPokemon.Top = detailEquipeTop;
+                windowManager = new WindowManager();
 
-                using (var manager = new WindowManager())
-                {
-                    manager.ShowWindow("DetailPokemon", detailsPokemon);
-                }
+                windowManager.ShowWindow("DetailPokemon", detailsPokemon);
+          
                
             }
         }
@@ -95,11 +94,10 @@ namespace PokeStat.Vues.User.GestionEquipe
             double detailGestionCapaciteHeight = 620;
             detailGestionCapacite.Left = detailCapaciteLeft -166;
             detailGestionCapacite.Top = detailCapaciteTop + detailGestionCapaciteHeight + 46;
+            windowManager = new WindowManager();
 
-            using (var manager = new WindowManager())
-            {
-                manager.ShowWindow("DetailGestionCapacite", detailGestionCapacite);
-            }
+            windowManager.ShowWindow("DetailGestionCapacite", detailGestionCapacite);
+        
         }
 
         private void Stat_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -114,18 +112,15 @@ namespace PokeStat.Vues.User.GestionEquipe
 
             detailGestionStat.Left = detailEquipeLeft + detailGestionStat.Width;
             detailGestionStat.Top = detailEquipeTop;
-            using (var manager = new WindowManager())
-            {
-                manager.ShowWindow("DetailGestionStat", detailGestionStat);
-            }
+            windowManager = new WindowManager();
+            windowManager.ShowWindow("DetailGestionStat", detailGestionStat);
+            
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs c)
-        {
+        {         
             this.Close();
-            
-            //e.Items.Refresh();
         }
     }
 }

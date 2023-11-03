@@ -42,8 +42,6 @@ namespace PokeStat.Modeles
         public int NatureId { get; set; }
         public Dictionary<MStat, int> EVParStat { get; set; }
 
-
-
         private bool isSelected;
         public bool IsSelected
         {
@@ -68,7 +66,6 @@ namespace PokeStat.Modeles
 
         public ICommand DetailPopupCommand { get; set; }
 
-
         public MEquipier(int IdPokemon, string CheminImgPokemon, string NomFraPokemon, int BasePV, int BaseAttaque, int BaseDefense, int BaseAttSpe, int BaseDefSpe, int BaseVit, bool Legendaire, bool Shiny, bool Mega, bool Giga, bool Fab, string SurnomEquipier, int NiveauEquipier, int EsquiveEquipier, int NiveauBonheur, int Ev, int Iv, MNature Nature, MTalent TalentEquipier, MObjet ObjetEquipier, ObservableCollection<MCapacite> SetCapacites, int EquipeId, MEquipier EquipierOrigine)
             : base(IdPokemon, CheminImgPokemon, NomFraPokemon, BasePV, BaseAttaque, BaseDefense, BaseAttSpe, BaseDefSpe, BaseVit, Legendaire, Shiny, Mega, Giga, Fab)
         {
@@ -90,7 +87,7 @@ namespace PokeStat.Modeles
             repCapacite = new RepCapacite();
 
             this.pokemons = repPokemon.GetAll();
-            this.PoolCapacites = repPokemon.GetPoolCapacite(IdPokemon);
+            
             this.TalentPokemon = repPokemon.GetPoolTalent(IdPokemon);
             this.natures = repNature.GetAll();
             this.objets = repObjet.GetAll();          

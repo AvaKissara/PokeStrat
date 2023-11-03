@@ -747,15 +747,14 @@ namespace PokeStat.VuesModeles
             {
                 equipeNode = new EquipierTreeViewNode(this.Equipier);
             }
-        
+            windowManager = new WindowManager();
             var detailPopup = new DetailEquipe();
             detailPopup.Owner = MainWindow;
             detailPopup.DataContext = equipeNode;
-            using (var manager = new WindowManager())
-            {
-                manager.Register(detailPopup);
-                manager.ShowWindow("DetailEquipe", detailPopup);
-            }
+           
+            windowManager.Register(detailPopup);
+            windowManager.ShowWindow("DetailEquipe", detailPopup);
+
                                    
         }
 
@@ -898,7 +897,7 @@ namespace PokeStat.VuesModeles
                 if (this.Equipier.equipierOrigine.IsSelected == true)
                 {
                     MEquipier equipierEnModification = GetEquipierAModId(this.Equipier.equipierOrigine);
-                    using (var repository = new RepEquipe())
+                    using (RepEquipe repository = new RepEquipe())
                     {
                         repository.Update(this.Equipier, equipierEnModification);
                     }                                        
@@ -913,7 +912,7 @@ namespace PokeStat.VuesModeles
                     
                     this.Equipier.Ev = 510;
                     this.Equipier.Iv = 31;
-                    using (var repository = new RepEquipe())
+                    using (RepEquipe repository = new RepEquipe())
                     {
                         repository.Add(this.Equipier);
                     }
@@ -930,7 +929,7 @@ namespace PokeStat.VuesModeles
             {
                 MEquipier equipierSupprimer = new MEquipier(this.Equipier.EquipeId, this.Equipier.TalentEquipier.IdTalent, this.Equipier.IdPokemon, this.Equipier.SetCapacites[0].IdCapacite, this.Equipier.SetCapacites[1].IdCapacite, this.Equipier.SetCapacites[2].IdCapacite, this.Equipier.SetCapacites[3].IdCapacite, this.Equipier.ObjetEquipier.IdObjet, this.Equipier.Nature.IdNature);
                 //repEquipe = new RepEquipe();
-                using (var repository = new RepEquipe())
+                using (RepEquipe repository = new RepEquipe())
                 {
                     repository.Delete(equipierSupprimer);
                 }
@@ -972,8 +971,8 @@ namespace PokeStat.VuesModeles
 
             //var gestionEquipePopup = new GestionEquipe();
             //gestionEquipePopup.DataContext = new GestionEquipeVueModele();
-
-            NavigationServices.NavigateToPage(new GestionEquipe());
+           windowManager.Dispose();
+           //NavigationServices.NavigateToPage(new GestionEquipe());
         }
        
 

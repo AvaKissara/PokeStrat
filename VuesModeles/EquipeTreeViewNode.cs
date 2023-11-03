@@ -18,6 +18,7 @@ namespace PokeStat.VuesModeles
         public ICommand DetailPopupCommand { get; set; }
         public ICommand AjouteCommand { get; set; }
         private RepEquipe repEquipe { get; set; }
+        private WindowManager windowManager = new WindowManager();
 
         private bool isSelected;
         public bool IsSelected
@@ -33,13 +34,13 @@ namespace PokeStat.VuesModeles
         public ObservableCollection<EquipierTreeViewNode> Equipiers { get; }= new ObservableCollection<EquipierTreeViewNode>();
         public EquipeTreeViewNode(MEquipe Equipe)
         {
-            repEquipe = new RepEquipe();
+            //repEquipe = new RepEquipe();
             this.Equipe = Equipe;
             AjouteCommand = new RelayCommand(AjouteEquipe);
         }
         public EquipeTreeViewNode(MEquipe Equipe, ObservableCollection<EquipierTreeViewNode> Equipiers)
         {
-            repEquipe = new RepEquipe();
+            //repEquipe = new RepEquipe();
             DetailPopupCommand = new RelayCommand(DetailPopup);
             this.Equipe = Equipe;
             this.Equipiers = Equipiers;
@@ -83,13 +84,13 @@ namespace PokeStat.VuesModeles
             var equipeNode = new EquipierTreeViewNode(equipierParDefaut);
 
             var detailPopup = new DetailEquipe();
+            windowManager = new WindowManager();
             detailPopup.Owner = MainWindow;
             detailPopup.DataContext = equipeNode;
-            using (var manager = new WindowManager())
-            {
-                manager.Register(detailPopup);
-                manager.ShowWindow("DetailEquipe", detailPopup);
-            }       
+         
+            windowManager.Register(detailPopup);
+            windowManager.ShowWindow("DetailEquipe", detailPopup);
+          
         }
 
         public void AjouteEquipe()

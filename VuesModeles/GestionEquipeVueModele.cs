@@ -25,8 +25,8 @@ namespace PokeStat.VuesModeles
         public ICommand CloseCommand { get; }
         public ICommand DetailPopupCommand { get; set; }
         public ICommand ClosePopupCommand { get; set; }
-       
 
+        private WindowManager windowManager = new WindowManager();
         //private readonly RepEquipe repEquipe;
         private readonly ObservableCollection<MEquipe> _equipes;
         public IEnumerable<MEquipe> Equipes => _equipes;
@@ -112,7 +112,7 @@ namespace PokeStat.VuesModeles
             DetailPopupCommand = new RelayCommand(DetailPopup);
             ClosePopupCommand = new RelayCommand(ClosePopup);
             //repEquipe = new RepEquipe();
-            using (var repository = new RepEquipe())
+            using (RepEquipe repository = new RepEquipe())
             {
                 _equipes = repository.GetAllEquipes();
                 _equipiers = repository.GetEquipiers();
@@ -144,7 +144,7 @@ namespace PokeStat.VuesModeles
         }
 
         public MainWindow MainWindow { get; set; }
-        private WindowManager windowManager = new WindowManager();
+        //private WindowManager windowManager = new WindowManager();
 
         private MEquipe equipe;
         public MEquipe Equipe
@@ -190,15 +190,14 @@ namespace PokeStat.VuesModeles
 
             var equipeNode = new EquipierTreeViewNode(equipierParDefaut);
             //var activeWindow2 = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-
+            windowManager = new WindowManager();
             var detailPopup = new DetailEquipe();
             detailPopup.Owner = MainWindow;
             detailPopup.DataContext = equipeNode;
-            using (var manager = new WindowManager())
-            {
-                manager.Register(detailPopup);
-                windowManager.ShowWindow("DetailEquipe", detailPopup);
-            }
+         
+            windowManager.Register(detailPopup);
+            windowManager.ShowWindow("DetailEquipe", detailPopup);
+     
            
            
 
@@ -224,13 +223,12 @@ namespace PokeStat.VuesModeles
         {
             Equipe = new MEquipe(this.IdEquipe, this.NomEquipe);
             EquipeTreeViewNode equipeNode = new EquipeTreeViewNode(Equipe);
-            //windowManager = new WindowManager();
+            windowManager = new WindowManager();
             var creeEquipePopup = new CreeEquipe(equipeNode);
-            using (var manager = new WindowManager())
-            {
-                manager.Register(creeEquipePopup);
-                manager.ShowWindow("CreeEquipe", creeEquipePopup);
-            }
+          
+            windowManager.Register(creeEquipePopup);
+            windowManager.ShowWindow("CreeEquipe", creeEquipePopup);
+
            
         }
 

@@ -34,8 +34,8 @@ namespace PokeStat.Utilitaires
             SqlConnection connexion = DbConnexion();
 
             if (connexion.State == ConnectionState.Closed)
-            {              
-                connexion.Open();       
+            {
+                connexion.Open();
             }
         }
 
@@ -47,10 +47,28 @@ namespace PokeStat.Utilitaires
             }
         }
 
+
         public SqlCommand GetRequest()
         {
             SqlCommand Request = activeConnexion.CreateCommand();
             return Request;
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (activeConnexion != null)
+                {
+                    activeConnexion.Close();
+                    activeConnexion.Dispose();
+                    activeConnexion = null;
+                }
+            }
         }
     }
 }

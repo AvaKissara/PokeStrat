@@ -31,7 +31,7 @@ namespace PokeStat.Vues
             InitializeComponent();
             accueilVueModel = new AccueilVueModel();
             DataContext = accueilVueModel;
-
+            this.Focus();
         }
 
     }

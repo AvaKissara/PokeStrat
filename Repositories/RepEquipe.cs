@@ -18,7 +18,7 @@ namespace PokeStat.Repositories
         public BddTool bddTool;
         public void Dispose()
         {
-            // Libérer les ressources non managées ici, par exemple, fermer une connexion à la base de données.
+            bddTool.Dispose();
         }
         public RepEquipe()
         {
