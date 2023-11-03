@@ -46,13 +46,11 @@ namespace PokeStat.VuesModeles
         public ObservableCollection<EquipierTreeViewNode> Equipiers { get; set; } = new ObservableCollection<EquipierTreeViewNode>();
         public EquipeTreeViewNode(MEquipe Equipe)
         {
-            //repEquipe = new RepEquipe();
             this.Equipe = Equipe;
             AjouteCommand = new RelayCommand(AjouteEquipe);
         }
         public EquipeTreeViewNode(MEquipe Equipe, ObservableCollection<EquipierTreeViewNode> Equipiers)
         {
-            //repEquipe = new RepEquipe();
             DetailPopupCommand = new RelayCommand(DetailPopup);
             this.Equipe = Equipe;
             this.Equipiers = Equipiers;
@@ -67,7 +65,7 @@ namespace PokeStat.VuesModeles
             {
                 equipeId = repEquipe.GetLastEquipeId();
             }
-                
+            
             MEquipier equipierOrigineDefaut = null;
             MEquipier equipierParDefaut = new MEquipier(
                        IdPokemon: 0,
@@ -99,20 +97,18 @@ namespace PokeStat.VuesModeles
                        );
 
             var equipeNode = new EquipierTreeViewNode(equipierParDefaut);
-
-            var detailPopup = new DetailEquipe();
-            windowManager = new WindowManager();
+            var detailPopup = new DetailEquipe();        
             detailPopup.Owner = MainWindow;
             detailPopup.DataContext = equipeNode;
-         
+            windowManager = new WindowManager();
             windowManager.Register(detailPopup);
-            windowManager.ShowWindow("DetailEquipe", detailPopup);
-          
+            windowManager.ShowWindow("DetailEquipe", detailPopup);        
         }
 
         public void AjouteEquipe()
         {
             MEquipe equipeAAjouter = new MEquipe(this.Equipe.IdEquipe, this.Equipe.NomEquipe);
+
             if(!string.IsNullOrWhiteSpace(this.Equipe.NomEquipe)) 
             {
                 using (RepEquipe repository = new RepEquipe())

@@ -817,6 +817,10 @@ namespace PokeStat.VuesModeles
                 {
                     this.Equipier.SurnomEquipier = this.surnomPokEquipier;
                 }
+                else
+                {
+                    this.Equipier.SurnomEquipier = this.Equipier.NomFraPokemon;
+                }
                 if(this.NivPokEquipier!=0)
                 {
                     this.Equipier.NiveauEquipier = this.nivPokEquipier;
