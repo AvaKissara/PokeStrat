@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PokeStat.Utilitaires
 {
-    public class BddTool
+    public class BddTool : IDisposable
     {
         private SqlConnection activeConnexion;
         private readonly object connexionLock = new object();

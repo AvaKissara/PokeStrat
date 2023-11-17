@@ -111,15 +111,13 @@ namespace PokeStat.VuesModeles
             CloseCommand = new RelayCommand(Close);
             DetailPopupCommand = new RelayCommand(DetailPopup);
             ClosePopupCommand = new RelayCommand(ClosePopup);
-            //repEquipe = new RepEquipe();
+
             using (RepEquipe repository = new RepEquipe())
             {
                 _equipes = repository.GetAllEquipes();
                 _equipiers = repository.GetEquipiers();
-            }
-           
-            _equipesTreeView = InitializeTreeViewData();
-
+                _equipesTreeView = InitializeTreeViewData();
+            }                  
         }
 
         private ObservableCollection<EquipeTreeViewNode> InitializeTreeViewData()
@@ -144,7 +142,6 @@ namespace PokeStat.VuesModeles
         }
 
         public MainWindow MainWindow { get; set; }
-        //private WindowManager windowManager = new WindowManager();
 
         private MEquipe equipe;
         public MEquipe Equipe
@@ -196,17 +193,7 @@ namespace PokeStat.VuesModeles
             detailPopup.DataContext = equipeNode;
          
             windowManager.Register(detailPopup);
-            windowManager.ShowWindow("DetailEquipe", detailPopup);
-     
-           
-           
-
-            //var equipeNode = new EquipierTreeViewNode(EquipierSelectionne);
-
-            //var detailPopup = new DetailEquipe();
-            //detailPopup.DataContext = equipeNode;
-          
-
+            windowManager.ShowWindow("DetailEquipe", detailPopup);                         
         }
         private void ClosePopup()
         {
@@ -227,9 +214,7 @@ namespace PokeStat.VuesModeles
             var creeEquipePopup = new CreeEquipe(equipeNode);
           
             windowManager.Register(creeEquipePopup);
-            windowManager.ShowWindow("CreeEquipe", creeEquipePopup);
-
-           
+            windowManager.ShowWindow("CreeEquipe", creeEquipePopup);           
         }
 
         private void AccueilPage()

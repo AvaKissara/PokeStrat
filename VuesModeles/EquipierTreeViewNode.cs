@@ -38,6 +38,16 @@ namespace PokeStat.VuesModeles
         private StatsCalculator statsCalculator;
         public MSpecimen pokemonRef;
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
 
         private bool isSelected;
         public bool IsSelected
